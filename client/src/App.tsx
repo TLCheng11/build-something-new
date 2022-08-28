@@ -1,12 +1,13 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import DesignPage from "./DesignPage/DesignPageLayout/DesignPage";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/testing" element={<h1>Test Route</h1>} />
           <Route path="/" element={<h1>Page Count: </h1>} />
+          <Route path="/design-page" element={<DesignPage />} />
         </Routes>
       </div>
     </BrowserRouter>
