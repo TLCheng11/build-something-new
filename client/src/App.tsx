@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DesignPage from "./DesignPage/DesignPageLayout/DesignPage";
+import DesignPage from "./components/DesignPage/DesignPageLayout/DesignPage";
 
 function App() {
   return (
