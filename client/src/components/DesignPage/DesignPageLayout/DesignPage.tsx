@@ -3,7 +3,11 @@ import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
 function DesignPage() {
-  // const selectedRef = useRef();
+  // const selectedModel
+  const [selectedModel, setselectedModel] = useState<{
+    type: string;
+    id: number;
+  }>({ type: "", id: 0 });
 
   // states for grid controls
   const [gridMain, setgridMain] = useState<[number, number, string, string]>([
@@ -23,6 +27,8 @@ function DesignPage() {
   const [postion, setpostion] = useState<number[]>([0, 0, 0]);
   const [rotation, setrotation] = useState<number[]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("blue");
+
+  console.log(selectedModel);
 
   useEffect(() => {
     if (modelType === "Box") {
@@ -51,6 +57,9 @@ function DesignPage() {
           gridMain={gridMain}
           showGridMain={showGridMain}
           size={size}
+          setsize={setsize}
+          selectedModel={selectedModel}
+          setselectedModel={setselectedModel}
         />
       </div>
     </div>
