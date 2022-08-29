@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import ModelBox from "../Models/ModelBox";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
@@ -20,21 +19,10 @@ function DesignPage() {
 
   // properties for selected model
   const [planeSize, setplaneSize] = useState<[number, number]>([1000, 1000]);
-  const [size, setsize] = useState<[number, number, number]>([2, 2, 2]);
+  const [size, setsize] = useState<[number, number, number]>([1, 1, 1]);
   const [postion, setpostion] = useState<number[]>([0, 0, 0]);
   const [rotation, setrotation] = useState<number[]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("blue");
-
-  // count control for models amount
-  // const [showPlane, setShowPlane] = useState<JSX.Element[]>([]);
-  // const [showBox, setShowBox] = useState<JSX.Element[]>([
-  //   <ModelBox size={size} setSelectedRef={setSelectedRef} />,
-  // ]);
-  // const [showSphere, setShowSphere] = useState<JSX.Element[]>([]);
-
-  // function setSelectedRef(ref: React.MutableRefObject<undefined>) {
-  //   selectedRef.current = ref.current;
-  // }
 
   useEffect(() => {
     if (modelType === "Box") {
@@ -53,7 +41,7 @@ function DesignPage() {
           modelType={modelType}
           setmodelType={setmodelType}
           planeSize={planeSize}
-          setplaneSize={planeSize}
+          setplaneSize={setplaneSize}
           size={size}
           setSize={setsize}
         />
