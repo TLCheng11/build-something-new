@@ -24,8 +24,8 @@ function DesignPage() {
   // properties for selected model
   const [planeSize, setplaneSize] = useState<[number, number]>([1000, 1000]);
   const [size, setsize] = useState<[number, number, number]>([1, 1, 1]);
-  const [position, setposition] = useState<number[]>([0, 0, 0]);
-  const [rotation, setrotation] = useState<number[]>([0, 0, 0]);
+  const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
+  const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("blue");
 
   console.log(selectedModel);
@@ -62,6 +62,8 @@ function DesignPage() {
           setsize={setsize}
           selectedModel={selectedModel}
           setselectedModel={setselectedModel}
+          position={position}
+          setposition={setposition}
         />
       </div>
     </div>

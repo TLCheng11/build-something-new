@@ -13,8 +13,8 @@ interface Props {
   setsize: Dispatch<SetStateAction<[number, number, number]>>;
   planeSize: [number, number];
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
-  position: number[];
-  setposition: React.Dispatch<React.SetStateAction<number[]>>;
+  position: [number, number, number];
+  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function DesignControls(props: Props) {

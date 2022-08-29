@@ -18,6 +18,8 @@ interface Props {
       id: number;
     }>
   >;
+  position: [number, number, number];
+  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function DesignCanvas(props: Props) {
@@ -28,6 +30,8 @@ function DesignCanvas(props: Props) {
     setsize,
     selectedModel,
     setselectedModel,
+    position,
+    setposition,
   } = props;
 
   return (
@@ -40,16 +44,18 @@ function DesignCanvas(props: Props) {
           setsize={setsize}
           selectedModel={selectedModel}
           setselectedModel={setselectedModel}
+          position={position}
+          setposition={setposition}
           id={1}
-          position={[0, 0, 0]}
         />
         <ModelBox
           size={size}
           setsize={setsize}
           selectedModel={selectedModel}
           setselectedModel={setselectedModel}
+          position={position}
+          setposition={setposition}
           id={2}
-          position={[0, 2, 0]}
         />
       </Canvas>
     </div>

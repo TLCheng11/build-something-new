@@ -14,14 +14,25 @@ interface Props {
       id: number;
     }>
   >;
-  id: number;
   position: [number, number, number];
+  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  id: number;
 }
 
 function ModelBox(props: Props) {
-  const { size, setsize, selectedModel, setselectedModel, id, position } =
-    props;
+  const {
+    size,
+    setsize,
+    selectedModel,
+    setselectedModel,
+    position,
+    setposition,
+    id,
+  } = props;
   const [selfSize, setselfSize] = useState<[number, number, number]>([1, 1, 1]);
+  const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
+    0, 0, 0,
+  ]);
 
   const type: string = "Box";
 
@@ -33,7 +44,14 @@ function ModelBox(props: Props) {
 
   useEffect(() => {
     if (selectedModel.type === type && selectedModel.id === id) {
+      setSelfPosition(position);
+    }
+  }, [position]);
+
+  useEffect(() => {
+    if (selectedModel.type === type && selectedModel.id === id) {
       setsize(selfSize);
+      setposition(selfPosition);
     }
   }, [selectedModel]);
 
@@ -42,7 +60,7 @@ function ModelBox(props: Props) {
   }
 
   return (
-    <Box args={selfSize} onClick={handleOnClick} position={position}>
+    <Box args={selfSize} onClick={handleOnClick} position={selfPosition}>
       <meshNormalMaterial />
     </Box>
   );
