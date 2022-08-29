@@ -4,10 +4,12 @@ interface Props {
   modelType: string;
   size: [number, number, number];
   setSize: Dispatch<SetStateAction<[number, number, number]>>;
+  planeSize: [number, number];
+  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
 }
 
 function ModelSizeContorls(props: Props) {
-  const { modelType, size, setSize } = props;
+  const { modelType, size, setSize, planeSize, setplaneSize } = props;
 
   return (
     <div id="model-size-controls" className="h-full w-full bg-gray-600">
@@ -16,15 +18,15 @@ function ModelSizeContorls(props: Props) {
       </div>
       {modelType === "Plane" && (
         <div>
-          {/* <div>
+          <div>
             <label htmlFor="model-width">Width</label>
             <input
               type="number"
               min="0"
               name="model-width"
-              value={size[0]}
+              value={planeSize[0]}
               onChange={(e) =>
-                setSize((size) => [parseInt(e.target.value), size[1]])
+                setplaneSize((size) => [parseInt(e.target.value), size[1]])
               }
             />
           </div>
@@ -34,12 +36,12 @@ function ModelSizeContorls(props: Props) {
               type="number"
               min="0"
               name="model-depth"
-              value={size[1]}
+              value={planeSize[1]}
               onChange={(e) =>
-                setSize((size) => [size[0], parseInt(e.target.value)])
+                setplaneSize((size) => [size[0], parseInt(e.target.value)])
               }
             />
-          </div> */}
+          </div>
         </div>
       )}
       {modelType === "Box" && (

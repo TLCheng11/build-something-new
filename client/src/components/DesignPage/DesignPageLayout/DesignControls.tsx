@@ -10,6 +10,8 @@ interface Props {
   setmodelType: Dispatch<SetStateAction<string>>;
   size: [number, number, number];
   setSize: Dispatch<SetStateAction<[number, number, number]>>;
+  planeSize: [number, number];
+  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
 }
 
 function DesignControls(props: Props) {
@@ -20,6 +22,8 @@ function DesignControls(props: Props) {
     setmodelType,
     size,
     setSize,
+    planeSize,
+    setplaneSize,
   } = props;
   return (
     <div>
@@ -28,7 +32,13 @@ function DesignControls(props: Props) {
         setshowGridMain={setshowGridMain}
       />
       <ModelTypesControls modelType={modelType} setmodelType={setmodelType} />
-      <ModelSizeContorls modelType={modelType} size={size} setSize={setSize} />
+      <ModelSizeContorls
+        modelType={modelType}
+        size={size}
+        setSize={setSize}
+        planeSize={planeSize}
+        setplaneSize={setplaneSize}
+      />
     </div>
   );
 }

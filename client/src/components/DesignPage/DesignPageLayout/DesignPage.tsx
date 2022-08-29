@@ -19,6 +19,7 @@ function DesignPage() {
   const [modelType, setmodelType] = useState<string>("Plane");
 
   // properties for selected model
+  const [planeSize, setplaneSize] = useState<[number, number]>([1000, 1000]);
   const [size, setsize] = useState<[number, number, number]>([2, 2, 2]);
   const [postion, setpostion] = useState<number[]>([0, 0, 0]);
   const [rotation, setrotation] = useState<number[]>([0, 0, 0]);
@@ -51,6 +52,8 @@ function DesignPage() {
           setshowGridMain={setshowGridMain}
           modelType={modelType}
           setmodelType={setmodelType}
+          planeSize={planeSize}
+          setplaneSize={planeSize}
           size={size}
           setSize={setsize}
         />
