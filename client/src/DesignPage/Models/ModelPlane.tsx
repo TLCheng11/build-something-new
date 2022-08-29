@@ -1,5 +1,7 @@
+import { Plane } from "@react-three/drei";
+
 function ModelPlane() {
-  return <div></div>;
+  return <Plane></Plane>;
 }
 
 export default ModelPlane;

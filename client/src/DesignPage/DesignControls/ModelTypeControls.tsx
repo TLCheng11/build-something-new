@@ -5,7 +5,7 @@ interface Props {
   setmodelType: Dispatch<SetStateAction<string>>;
 }
 
-function ModelControls(props: Props) {
+function ModelTypesControls(props: Props) {
   const { modelType, setmodelType } = props;
 
   return (
@@ -32,4 +32,4 @@ function ModelControls(props: Props) {
   );
 }
 
-export default ModelControls;
+export default ModelTypesControls;

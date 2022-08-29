@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import ModelBox from "../Models/ModelBox";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
 function DesignPage() {
+  // const selectedRef = useRef();
+
   // states for grid controls
   const [gridMain, setgridMain] = useState<[number, number, string, string]>([
     10,
@@ -16,14 +19,27 @@ function DesignPage() {
   const [modelType, setmodelType] = useState<string>("Plane");
 
   // properties for selected model
-  const [size, setsize] = useState<number[]>([]);
+  const [size, setsize] = useState<[number, number, number]>([2, 2, 2]);
   const [postion, setpostion] = useState<number[]>([0, 0, 0]);
   const [rotation, setrotation] = useState<number[]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("blue");
 
+  // count control for models amount
+  // const [showPlane, setShowPlane] = useState<JSX.Element[]>([]);
+  // const [showBox, setShowBox] = useState<JSX.Element[]>([
+  //   <ModelBox size={size} setSelectedRef={setSelectedRef} />,
+  // ]);
+  // const [showSphere, setShowSphere] = useState<JSX.Element[]>([]);
+
+  // function setSelectedRef(ref: React.MutableRefObject<undefined>) {
+  //   selectedRef.current = ref.current;
+  // }
+
   useEffect(() => {
-    if (modelType === "Plane") {
-      setsize([1000, 1000]);
+    if (modelType === "Box") {
+      setsize([1, 1, 1]);
+    } else if (modelType === "Sphere") {
+      setsize([1, 32, 16]);
     }
   }, [modelType]);
 
@@ -35,10 +51,16 @@ function DesignPage() {
           setshowGridMain={setshowGridMain}
           modelType={modelType}
           setmodelType={setmodelType}
+          size={size}
+          setSize={setsize}
         />
       </div>
       <div id="design-canvas-holder" className="h-full w-3/4 border">
-        <DesignCanvas gridMain={gridMain} showGridMain={showGridMain} />
+        <DesignCanvas
+          gridMain={gridMain}
+          showGridMain={showGridMain}
+          size={size}
+        />
       </div>
     </div>
   );
