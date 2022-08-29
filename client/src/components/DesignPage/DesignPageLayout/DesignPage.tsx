@@ -24,7 +24,7 @@ function DesignPage() {
   // properties for selected model
   const [planeSize, setplaneSize] = useState<[number, number]>([1000, 1000]);
   const [size, setsize] = useState<[number, number, number]>([1, 1, 1]);
-  const [postion, setpostion] = useState<number[]>([0, 0, 0]);
+  const [position, setposition] = useState<number[]>([0, 0, 0]);
   const [rotation, setrotation] = useState<number[]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("blue");
 
@@ -49,7 +49,9 @@ function DesignPage() {
           planeSize={planeSize}
           setplaneSize={setplaneSize}
           size={size}
-          setSize={setsize}
+          setsize={setsize}
+          position={position}
+          setposition={setposition}
         />
       </div>
       <div id="design-canvas-holder" className="h-full w-3/4 border">

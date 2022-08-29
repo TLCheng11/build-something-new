@@ -3,13 +3,13 @@ import { Dispatch, SetStateAction } from "react";
 interface Props {
   modelType: string;
   size: [number, number, number];
-  setSize: Dispatch<SetStateAction<[number, number, number]>>;
+  setsize: Dispatch<SetStateAction<[number, number, number]>>;
   planeSize: [number, number];
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
 }
 
 function ModelSizeContorls(props: Props) {
-  const { modelType, size, setSize, planeSize, setplaneSize } = props;
+  const { modelType, size, setsize, planeSize, setplaneSize } = props;
 
   return (
     <div id="model-size-controls" className="h-full w-full bg-gray-600">
@@ -19,7 +19,7 @@ function ModelSizeContorls(props: Props) {
       {modelType === "Plane" && (
         <div>
           <div>
-            <label htmlFor="model-width">Width</label>
+            <label htmlFor="model-width">Width:</label>
             <input
               type="number"
               min="0"
@@ -31,7 +31,7 @@ function ModelSizeContorls(props: Props) {
             />
           </div>
           <div>
-            <label htmlFor="model-depth">Depth</label>
+            <label htmlFor="model-depth">Depth:</label>
             <input
               type="number"
               min="0"
@@ -47,38 +47,38 @@ function ModelSizeContorls(props: Props) {
       {modelType === "Box" && (
         <div>
           <div>
-            <label htmlFor="model-width">Width</label>
+            <label htmlFor="model-width">Width:</label>
             <input
               type="number"
               min="0"
               name="model-width"
               value={size[0]}
               onChange={(e) =>
-                setSize((size) => [parseInt(e.target.value), size[1], size[2]])
+                setsize((size) => [parseInt(e.target.value), size[1], size[2]])
               }
             />
           </div>
           <div>
-            <label htmlFor="model-height">Height</label>
+            <label htmlFor="model-height">Height:</label>
             <input
               type="number"
               min="0"
               name="model-height"
               value={size[1]}
               onChange={(e) =>
-                setSize((size) => [size[0], parseInt(e.target.value), size[2]])
+                setsize((size) => [size[0], parseInt(e.target.value), size[2]])
               }
             />
           </div>
           <div>
-            <label htmlFor="model-depth">Depth</label>
+            <label htmlFor="model-depth">Depth:</label>
             <input
               type="number"
               min="0"
               name="model-depth"
               value={size[2]}
               onChange={(e) =>
-                setSize((size) => [size[0], size[1], parseInt(e.target.value)])
+                setsize((size) => [size[0], size[1], parseInt(e.target.value)])
               }
             />
           </div>
@@ -87,38 +87,38 @@ function ModelSizeContorls(props: Props) {
       {modelType === "Sphere" && (
         <div>
           <div>
-            <label htmlFor="model-radius">Radius</label>
+            <label htmlFor="model-radius">Radius:</label>
             <input
               type="number"
               min="0"
               name="model-radius"
               value={size[0]}
               onChange={(e) =>
-                setSize((size) => [parseInt(e.target.value), size[1], size[2]])
+                setsize((size) => [parseInt(e.target.value), size[1], size[2]])
               }
             />
           </div>
           <div>
-            <label htmlFor="model-width-segments">Width Segments</label>
+            <label htmlFor="model-width-segments">Width Segments:</label>
             <input
               type="number"
               min="0"
               name="model-width-segments"
               value={size[1]}
               onChange={(e) =>
-                setSize((size) => [size[0], parseInt(e.target.value), size[2]])
+                setsize((size) => [size[0], parseInt(e.target.value), size[2]])
               }
             />
           </div>
           <div>
-            <label htmlFor="model-height-segments">Height Segments</label>
+            <label htmlFor="model-height-segments">Height Segments:</label>
             <input
               type="number"
               min="0"
               name="model-height-segments"
               value={size[2]}
               onChange={(e) =>
-                setSize((size) => [size[0], size[1], parseInt(e.target.value)])
+                setsize((size) => [size[0], size[1], parseInt(e.target.value)])
               }
             />
           </div>
