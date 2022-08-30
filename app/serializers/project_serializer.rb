@@ -1,3 +1,3 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id, :created_by, :name, :on_market, :price, :sold_count
+  attributes :id, :created_by, :name, :tags, :description, :on_market, :price, :sold_count
 end
