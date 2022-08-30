@@ -31,8 +31,10 @@ function DesignPage() {
   console.log(selectedModel);
 
   useEffect(() => {
-    if (modelType === "Box") {
-      setsize([0.5, 0.5, 0.5]);
+    if (modelType === "Plane") {
+      setplaneSize([1000, 1000]);
+    } else if (modelType === "Box") {
+      setsize([1, 1, 1]);
     } else if (modelType === "Sphere") {
       setsize([1, 32, 16]);
     }
@@ -46,6 +48,7 @@ function DesignPage() {
           setshowGridMain={setshowGridMain}
           modelType={modelType}
           setmodelType={setmodelType}
+          selectedModel={selectedModel}
           planeSize={planeSize}
           setplaneSize={setplaneSize}
           size={size}

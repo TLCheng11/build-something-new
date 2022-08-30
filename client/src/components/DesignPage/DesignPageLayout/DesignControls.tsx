@@ -10,10 +10,14 @@ interface Props {
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
   modelType: string;
   setmodelType: Dispatch<SetStateAction<string>>;
-  size: [number, number, number];
-  setsize: Dispatch<SetStateAction<[number, number, number]>>;
+  selectedModel: {
+    type: string;
+    id: number;
+  };
   planeSize: [number, number];
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
+  size: [number, number, number];
+  setsize: Dispatch<SetStateAction<[number, number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -26,6 +30,7 @@ function DesignControls(props: Props) {
     setshowGridMain,
     modelType,
     setmodelType,
+    selectedModel,
     planeSize,
     setplaneSize,
     size,
@@ -43,7 +48,7 @@ function DesignControls(props: Props) {
       />
       <ModelTypesControls modelType={modelType} setmodelType={setmodelType} />
       <ModelSizeContorls
-        modelType={modelType}
+        selectedModel={selectedModel}
         size={size}
         setsize={setsize}
         planeSize={planeSize}

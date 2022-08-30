@@ -1,7 +1,10 @@
 import { Dispatch, SetStateAction, useState } from "react";
 
 interface Props {
-  modelType: string;
+  selectedModel: {
+    type: string;
+    id: number;
+  };
   size: [number, number, number];
   setsize: Dispatch<SetStateAction<[number, number, number]>>;
   planeSize: [number, number];
@@ -9,15 +12,16 @@ interface Props {
 }
 
 function ModelSizeContorls(props: Props) {
-  const { modelType, size, setsize, planeSize, setplaneSize } = props;
+  const { selectedModel, size, setsize, planeSize, setplaneSize } = props;
   const [step, setstep] = useState<string>("0.1");
 
   return (
     <div id="model-size-controls" className="h-full w-full bg-gray-600">
       <div>
+        <h1>Selected {selectedModel.type}</h1>
         <h1>Model Size:</h1>
       </div>
-      {modelType === "Plane" && (
+      {selectedModel.type === "Plane" && (
         <div>
           <div>
             <label htmlFor="model-width">Width:</label>
@@ -47,7 +51,7 @@ function ModelSizeContorls(props: Props) {
           </div>
         </div>
       )}
-      {modelType === "Box" && (
+      {selectedModel.type === "Box" && (
         <div>
           <div>
             <label htmlFor="model-width">Width:</label>
@@ -102,7 +106,7 @@ function ModelSizeContorls(props: Props) {
           </div>
         </div>
       )}
-      {modelType === "Sphere" && (
+      {selectedModel.type === "Sphere" && (
         <div>
           <div>
             <label htmlFor="model-radius">Radius:</label>
