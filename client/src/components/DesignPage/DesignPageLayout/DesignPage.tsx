@@ -99,7 +99,8 @@ function DesignPage(props: Props) {
           showGridMain={showGridMain}
           gridModel={gridModel}
           showGridModel={showGridModel}
-          setshowGridModel={setshowGridModel}
+          planeSize={planeSize}
+          setplaneSize={setplaneSize}
           boxSize={boxSize}
           setboxSize={setboxSize}
           selectedModel={selectedModel}

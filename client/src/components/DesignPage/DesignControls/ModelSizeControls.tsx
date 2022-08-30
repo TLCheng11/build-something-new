@@ -26,7 +26,7 @@ function ModelSizeContorls(props: Props) {
           <div>
             <label htmlFor="model-width">Width:</label>
             <input
-              type="float"
+              type="number"
               min="0.1"
               step={step}
               name="model-width"

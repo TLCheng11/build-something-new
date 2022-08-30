@@ -2,13 +2,15 @@ import { OrbitControls } from "@react-three/drei";
 import { applyProps, Canvas } from "react-three-fiber";
 import GridLayout from "../DesignUtility/GridLayout";
 import ModelBox from "../../commons/Models/ModelBox";
+import ModelPlane from "../../commons/Models/ModelPlane";
 
 interface Props {
   gridMain: [number, number, string, string];
   showGridMain: boolean;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
-  setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
+  planeSize: [number, number];
+  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   boxSize: [number, number, number];
   setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   selectedModel: {
@@ -33,7 +35,8 @@ function DesignCanvas(props: Props) {
     showGridMain,
     gridModel,
     showGridModel,
-    setshowGridModel,
+    planeSize,
+    setplaneSize,
     boxSize,
     setboxSize,
     selectedModel,
@@ -49,10 +52,22 @@ function DesignCanvas(props: Props) {
       <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
         <OrbitControls />
         {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
-        <ModelBox
+        <ModelPlane
           gridModel={gridModel}
           showGridModel={showGridModel}
-          setshowGridModel={setshowGridModel}
+          planeSize={planeSize}
+          setplaneSize={setplaneSize}
+          selectedModel={selectedModel}
+          setselectedModel={setselectedModel}
+          position={position}
+          setposition={setposition}
+          rotation={rotation}
+          setrotation={setrotation}
+          id={1}
+        />
+        {/* <ModelBox
+          gridModel={gridModel}
+          showGridModel={showGridModel}
           boxSize={boxSize}
           setboxSize={setboxSize}
           selectedModel={selectedModel}
@@ -66,7 +81,6 @@ function DesignCanvas(props: Props) {
         <ModelBox
           gridModel={gridModel}
           showGridModel={showGridModel}
-          setshowGridModel={setshowGridModel}
           boxSize={boxSize}
           setboxSize={setboxSize}
           selectedModel={selectedModel}
@@ -76,7 +90,7 @@ function DesignCanvas(props: Props) {
           rotation={rotation}
           setrotation={setrotation}
           id={2}
-        />
+        /> */}
       </Canvas>
     </div>
   );

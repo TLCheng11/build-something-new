@@ -5,7 +5,6 @@ import GridLayout from "../../DesignPage/DesignUtility/GridLayout";
 interface Props {
   gridModel: [number, number, string, string];
   showGridModel: boolean;
-  setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
   boxSize: [number, number, number];
   setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   selectedModel: {
@@ -29,7 +28,6 @@ function ModelBox(props: Props) {
   const {
     gridModel,
     showGridModel,
-    setshowGridModel,
     boxSize,
     setboxSize,
     selectedModel,
@@ -106,7 +104,11 @@ function ModelBox(props: Props) {
       <Box
         args={selfSize}
         onClick={handleOnClick}
-        position={selfPosition}
+        position={[
+          selfPosition[0],
+          selfPosition[1] + selfSize[1] / 2,
+          selfPosition[2],
+        ]}
         rotation={[
           (selfRotation[0] / 360) * Math.PI * 2,
           (selfRotation[1] / 360) * Math.PI * 2,
