@@ -1,8 +1,26 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
-function DesignPage() {
+interface Props {
+  currentUser: {
+    id?: number | undefined;
+    email?: string | undefined;
+    username?: string | undefined;
+    first_name?: string | undefined;
+    last_name?: string | undefined;
+    dob?: Date | undefined;
+    profile_img?: string | undefined;
+    introduction?: string | undefined;
+    is_login?: boolean | undefined;
+  };
+}
+
+function DesignPage(props: Props) {
+  const { currentUser } = props;
+  let navigate = useNavigate();
+
   // const selectedModel
   const [selectedModel, setselectedModel] = useState<{
     type: string;
@@ -47,6 +65,12 @@ function DesignPage() {
   //     setsphereSize([1, 32, 16]);
   //   }
   // }, [modelType]);
+
+  useEffect(() => {
+    if (!currentUser.id) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div id="design-page" className="flex h-screen w-screen bg-black">

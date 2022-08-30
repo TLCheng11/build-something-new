@@ -43,7 +43,10 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<h1>Page Count: </h1>} />
-          <Route path="/design-page" element={<DesignPage />} />
+          <Route
+            path="/design-page"
+            element={<DesignPage currentUser={currentUser} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>
