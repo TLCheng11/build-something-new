@@ -11,6 +11,8 @@ interface Props {
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
   showGridModel: boolean;
   setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
+  selectedGroup: number;
+  setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -41,6 +43,8 @@ function DesignControls(props: Props) {
     setshowGridMain,
     showGridModel,
     setshowGridModel,
+    selectedGroup,
+    setselectedGroup,
     groupPosition,
     setgroupPosition,
     groupRotation,

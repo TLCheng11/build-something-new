@@ -3,16 +3,23 @@ import { applyProps, Canvas } from "react-three-fiber";
 import GridLayout from "../DesignUtility/GridLayout";
 import ModelBox from "../../commons/Models/ModelBox";
 import ModelPlane from "../../commons/Models/ModelPlane";
+import ModelGroup from "../../commons/Models/ModelGroup";
 
 interface Props {
   gridMain: [number, number, string, string];
   showGridMain: boolean;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
-  planeSize: [number, number];
-  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
-  boxSize: [number, number, number];
-  setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  selectedGroup: number;
+  setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
+  groupPosition: [number, number, number];
+  setgroupPosition: React.Dispatch<
+    React.SetStateAction<[number, number, number]>
+  >;
+  groupRotation: [number, number, number];
+  setgroupRotation: React.Dispatch<
+    React.SetStateAction<[number, number, number]>
+  >;
   selectedModel: {
     type: string;
     id: number;
@@ -23,6 +30,10 @@ interface Props {
       id: number;
     }>
   >;
+  planeSize: [number, number];
+  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
+  boxSize: [number, number, number];
+  setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -35,12 +46,18 @@ function DesignCanvas(props: Props) {
     showGridMain,
     gridModel,
     showGridModel,
+    selectedGroup,
+    setselectedGroup,
+    groupPosition,
+    setgroupPosition,
+    groupRotation,
+    setgroupRotation,
+    selectedModel,
+    setselectedModel,
     planeSize,
     setplaneSize,
     boxSize,
     setboxSize,
-    selectedModel,
-    setselectedModel,
     position,
     setposition,
     rotation,
@@ -52,18 +69,25 @@ function DesignCanvas(props: Props) {
       <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
         <OrbitControls />
         {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
-        <ModelPlane
+        <ModelGroup
           gridModel={gridModel}
           showGridModel={showGridModel}
-          planeSize={planeSize}
-          setplaneSize={setplaneSize}
+          selectedGroup={selectedGroup}
+          setselectedGroup={setselectedGroup}
+          groupPosition={groupPosition}
+          setgroupPosition={setgroupPosition}
+          groupRotation={groupRotation}
+          setgroupRotation={setgroupRotation}
           selectedModel={selectedModel}
           setselectedModel={setselectedModel}
+          planeSize={planeSize}
+          setplaneSize={setplaneSize}
+          boxSize={boxSize}
+          setboxSize={setboxSize}
           position={position}
           setposition={setposition}
           rotation={rotation}
           setrotation={setrotation}
-          id={1}
         />
         {/* <ModelBox
           gridModel={gridModel}
