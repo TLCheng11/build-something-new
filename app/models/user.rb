@@ -4,4 +4,7 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, presence: true
   validates :password_digest, presence: true
   validates :email, uniqueness: true
+
+  has_many :user_projects
+  has_many :projects, through: :user_projects
 end

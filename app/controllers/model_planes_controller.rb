@@ -1,0 +1,2 @@
+class ModelPlanesController < ApplicationController
+end

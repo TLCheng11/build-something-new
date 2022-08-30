@@ -1,0 +1,2 @@
+class ModelShperesController < ApplicationController
+end

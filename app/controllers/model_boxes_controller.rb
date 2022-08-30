@@ -1,0 +1,2 @@
+class ModelBoxesController < ApplicationController
+end
