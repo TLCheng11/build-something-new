@@ -126,7 +126,7 @@ function ModelPlane(props: Props) {
           <GridLayout
             type="Model"
             gridArgs={gridModel}
-            gridPosition={selfPosition}
+            gridPosition={[0, 0, 0]}
           />
         )}
         <meshBasicMaterial color={selfColor} />

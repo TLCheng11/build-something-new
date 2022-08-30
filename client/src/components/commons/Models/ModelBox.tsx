@@ -114,11 +114,7 @@ function ModelBox(props: Props) {
       <Box
         args={selfSize}
         onClick={handleOnClick}
-        position={[
-          selfPosition[0],
-          selfPosition[1] + selfSize[1] / 2,
-          selfPosition[2],
-        ]}
+        position={[selfPosition[0], selfPosition[1], selfPosition[2]]}
         rotation={[
           (selfRotation[0] / 360) * Math.PI * 2,
           (selfRotation[1] / 360) * Math.PI * 2,
@@ -129,7 +125,7 @@ function ModelBox(props: Props) {
           <GridLayout
             type="Model"
             gridArgs={gridModel}
-            gridPosition={selfPosition}
+            gridPosition={[0, 0, 0]}
           />
         )}
         <meshBasicMaterial color={selfColor} />

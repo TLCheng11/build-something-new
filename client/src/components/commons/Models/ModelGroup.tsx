@@ -135,7 +135,7 @@ function ModelGroup(props: Props) {
           <GridLayout
             type="Group"
             gridArgs={gridGroup}
-            gridPosition={selfPosition}
+            gridPosition={[0, 0, 0]}
           />
         )}
         <ModelPlane
