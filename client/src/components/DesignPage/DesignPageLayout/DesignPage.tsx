@@ -30,22 +30,23 @@ function DesignPage() {
 
   // properties for selected model
   const [planeSize, setplaneSize] = useState<[number, number]>([1000, 1000]);
-  const [size, setsize] = useState<[number, number, number]>([1, 1, 1]);
+  const [boxSize, setboxSize] = useState<[number, number, number]>([1, 1, 1]);
+  const [sphereSize, setsphereSize] = useState<[number, number, number]>([
+    1, 32, 16,
+  ]);
   const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
   const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("blue");
 
-  console.log(selectedModel);
-
-  useEffect(() => {
-    if (modelType === "Plane") {
-      setplaneSize([1000, 1000]);
-    } else if (modelType === "Box") {
-      setsize([1, 1, 1]);
-    } else if (modelType === "Sphere") {
-      setsize([1, 32, 16]);
-    }
-  }, [modelType]);
+  // useEffect(() => {
+  //   if (modelType === "Plane") {
+  //     setplaneSize([1000, 1000]);
+  //   } else if (modelType === "Box") {
+  //     setboxSize([1, 1, 1]);
+  //   } else if (modelType === "Sphere") {
+  //     setsphereSize([1, 32, 16]);
+  //   }
+  // }, [modelType]);
 
   return (
     <div id="design-page" className="flex h-screen w-screen bg-black">
@@ -60,8 +61,8 @@ function DesignPage() {
           selectedModel={selectedModel}
           planeSize={planeSize}
           setplaneSize={setplaneSize}
-          size={size}
-          setsize={setsize}
+          boxSize={boxSize}
+          setboxSize={setboxSize}
           position={position}
           setposition={setposition}
           rotation={rotation}
@@ -75,8 +76,8 @@ function DesignPage() {
           gridModel={gridModel}
           showGridModel={showGridModel}
           setshowGridModel={setshowGridModel}
-          size={size}
-          setsize={setsize}
+          boxSize={boxSize}
+          setboxSize={setboxSize}
           selectedModel={selectedModel}
           setselectedModel={setselectedModel}
           position={position}

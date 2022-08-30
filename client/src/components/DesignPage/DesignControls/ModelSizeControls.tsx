@@ -5,14 +5,14 @@ interface Props {
     type: string;
     id: number;
   };
-  size: [number, number, number];
-  setsize: Dispatch<SetStateAction<[number, number, number]>>;
+  boxSize: [number, number, number];
+  setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
   planeSize: [number, number];
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
 }
 
 function ModelSizeContorls(props: Props) {
-  const { selectedModel, size, setsize, planeSize, setplaneSize } = props;
+  const { selectedModel, boxSize, setboxSize, planeSize, setplaneSize } = props;
   const [step, setstep] = useState<string>("0.1");
 
   return (
@@ -60,9 +60,9 @@ function ModelSizeContorls(props: Props) {
               min="0.1"
               step={step}
               name="model-width"
-              value={size[0]}
+              value={boxSize[0]}
               onChange={(e) =>
-                setsize((size) => [
+                setboxSize((size) => [
                   parseFloat(e.target.value),
                   size[1],
                   size[2],
@@ -77,9 +77,9 @@ function ModelSizeContorls(props: Props) {
               min="0.1"
               step={step}
               name="model-height"
-              value={size[1]}
+              value={boxSize[1]}
               onChange={(e) =>
-                setsize((size) => [
+                setboxSize((size) => [
                   size[0],
                   parseFloat(e.target.value),
                   size[2],
@@ -94,9 +94,9 @@ function ModelSizeContorls(props: Props) {
               min="0.1"
               step={step}
               name="model-depth"
-              value={size[2]}
+              value={boxSize[2]}
               onChange={(e) =>
-                setsize((size) => [
+                setboxSize((size) => [
                   size[0],
                   size[1],
                   parseFloat(e.target.value),
@@ -106,7 +106,7 @@ function ModelSizeContorls(props: Props) {
           </div>
         </div>
       )}
-      {selectedModel.type === "Sphere" && (
+      {/* {selectedModel.type === "Sphere" && (
         <div>
           <div>
             <label htmlFor="model-radius">Radius:</label>
@@ -160,7 +160,7 @@ function ModelSizeContorls(props: Props) {
             />
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

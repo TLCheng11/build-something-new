@@ -18,8 +18,8 @@ interface Props {
   };
   planeSize: [number, number];
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
-  size: [number, number, number];
-  setsize: Dispatch<SetStateAction<[number, number, number]>>;
+  boxSize: [number, number, number];
+  setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -37,8 +37,8 @@ function DesignControls(props: Props) {
     selectedModel,
     planeSize,
     setplaneSize,
-    size,
-    setsize,
+    boxSize,
+    setboxSize,
     position,
     setposition,
     rotation,
@@ -53,15 +53,25 @@ function DesignControls(props: Props) {
         setshowGridModel={setshowGridModel}
       />
       <ModelTypesControls modelType={modelType} setmodelType={setmodelType} />
-      <ModelSizeContorls
-        selectedModel={selectedModel}
-        size={size}
-        setsize={setsize}
-        planeSize={planeSize}
-        setplaneSize={setplaneSize}
-      />
-      <ModelPositionControls position={position} setposition={setposition} />
-      <ModelRotationControls rotation={rotation} setrotation={setrotation} />
+      {selectedModel.type && (
+        <div>
+          <ModelSizeContorls
+            selectedModel={selectedModel}
+            boxSize={boxSize}
+            setboxSize={setboxSize}
+            planeSize={planeSize}
+            setplaneSize={setplaneSize}
+          />
+          <ModelPositionControls
+            position={position}
+            setposition={setposition}
+          />
+          <ModelRotationControls
+            rotation={rotation}
+            setrotation={setrotation}
+          />
+        </div>
+      )}
     </div>
   );
 }

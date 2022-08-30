@@ -9,8 +9,8 @@ interface Props {
   gridModel: [number, number, string, string];
   showGridModel: boolean;
   setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
-  size: [number, number, number];
-  setsize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  boxSize: [number, number, number];
+  setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   selectedModel: {
     type: string;
     id: number;
@@ -34,8 +34,8 @@ function DesignCanvas(props: Props) {
     gridModel,
     showGridModel,
     setshowGridModel,
-    size,
-    setsize,
+    boxSize,
+    setboxSize,
     selectedModel,
     setselectedModel,
     position,
@@ -53,8 +53,8 @@ function DesignCanvas(props: Props) {
           gridModel={gridModel}
           showGridModel={showGridModel}
           setshowGridModel={setshowGridModel}
-          size={size}
-          setsize={setsize}
+          boxSize={boxSize}
+          setboxSize={setboxSize}
           selectedModel={selectedModel}
           setselectedModel={setselectedModel}
           position={position}
@@ -67,8 +67,8 @@ function DesignCanvas(props: Props) {
           gridModel={gridModel}
           showGridModel={showGridModel}
           setshowGridModel={setshowGridModel}
-          size={size}
-          setsize={setsize}
+          boxSize={boxSize}
+          setboxSize={setboxSize}
           selectedModel={selectedModel}
           setselectedModel={setselectedModel}
           position={position}

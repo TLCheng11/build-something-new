@@ -6,8 +6,8 @@ interface Props {
   gridModel: [number, number, string, string];
   showGridModel: boolean;
   setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
-  size: [number, number, number];
-  setsize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  boxSize: [number, number, number];
+  setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   selectedModel: {
     type: string;
     id: number;
@@ -30,8 +30,8 @@ function ModelBox(props: Props) {
     gridModel,
     showGridModel,
     setshowGridModel,
-    size,
-    setsize,
+    boxSize,
+    setboxSize,
     selectedModel,
     setselectedModel,
     position,
@@ -49,33 +49,38 @@ function ModelBox(props: Props) {
   ]);
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
 
+  // set size
   useEffect(() => {
     if (selectedModel.type === "Box" && selectedModel.id === id) {
-      setselfSize(size);
+      setselfSize(boxSize);
     }
-  }, [size]);
+  }, [boxSize]);
 
+  // set position
   useEffect(() => {
     if (selectedModel.type === "Box" && selectedModel.id === id) {
       setSelfPosition(position);
     }
   }, [position]);
 
+  // set rotation
   useEffect(() => {
     if (selectedModel.type === "Box" && selectedModel.id === id) {
       setselfRotation(rotation);
     }
   }, [rotation]);
 
+  // toggle grids
   useEffect(() => {
     if (selectedModel.type === "Box" && selectedModel.id === id) {
       setselfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
+  // set all self properties from history when selection
   useEffect(() => {
     if (selectedModel.type === "Box" && selectedModel.id === id) {
-      setsize(selfSize);
+      setboxSize(selfSize);
       setposition(selfPosition);
       setrotation(selfRotation);
       setselfShowGrid(showGridModel);
@@ -84,6 +89,7 @@ function ModelBox(props: Props) {
     }
   }, [selectedModel]);
 
+  // lock self as selected item when clicked
   function handleOnClick() {
     setselectedModel({ type: "Box", id });
   }
