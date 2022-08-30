@@ -124,8 +124,8 @@ function ModelPlane(props: Props) {
         position={selfPosition}
         rotation={[
           ((selfRotation[0] - 90) / 360) * Math.PI * 2,
-          (selfRotation[1] / 360) * Math.PI * 2,
           (selfRotation[2] / 360) * Math.PI * 2,
+          (selfRotation[1] / 360) * Math.PI * 2,
         ]}
         receiveShadow
       >

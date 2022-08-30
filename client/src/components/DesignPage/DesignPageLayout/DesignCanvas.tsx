@@ -8,6 +8,8 @@ import ModelGroup from "../../commons/Models/ModelGroup";
 interface Props {
   gridMain: [number, number, string, string];
   showGridMain: boolean;
+  gridGroup: [number, number, string, string];
+  showGridGroup: boolean;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
   selectedGroup: number;
@@ -50,6 +52,8 @@ function DesignCanvas(props: Props) {
     showGridMain,
     gridModel,
     showGridModel,
+    gridGroup,
+    showGridGroup,
     selectedGroup,
     setselectedGroup,
     groupPosition,
@@ -78,6 +82,8 @@ function DesignCanvas(props: Props) {
         <OrbitControls />
         {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
         <ModelGroup
+          gridGroup={gridGroup}
+          showGridGroup={showGridGroup}
           gridModel={gridModel}
           showGridModel={showGridModel}
           selectedGroup={selectedGroup}

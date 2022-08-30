@@ -3,13 +3,21 @@ import { Dispatch, SetStateAction } from "react";
 interface Props {
   showGridMain: boolean;
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
+  showGridGroup: boolean;
+  setshowGridGroup: React.Dispatch<React.SetStateAction<boolean>>;
   showGridModel: boolean;
   setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function GridControls(props: Props) {
-  const { showGridMain, setshowGridMain, showGridModel, setshowGridModel } =
-    props;
+  const {
+    showGridMain,
+    setshowGridMain,
+    showGridGroup,
+    setshowGridGroup,
+    showGridModel,
+    setshowGridModel,
+  } = props;
 
   return (
     <div id="design-controls" className="h-full w-full bg-gray-600">
@@ -26,9 +34,18 @@ function GridControls(props: Props) {
             />
           </div>
           <div>
-            <label htmlFor="show-main-grid">Model</label>
+            <label htmlFor="show-group-grid">Group</label>
             <input
-              name="show-main-grid"
+              name="show-group-grid"
+              type="checkbox"
+              checked={showGridGroup}
+              onChange={(e) => setshowGridGroup(e.target.checked)}
+            />
+          </div>
+          <div>
+            <label htmlFor="show-model-grid">Model</label>
+            <input
+              name="show-model-grid"
               type="checkbox"
               checked={showGridModel}
               onChange={(e) => setshowGridModel(e.target.checked)}

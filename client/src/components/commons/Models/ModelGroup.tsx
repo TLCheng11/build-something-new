@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import GridLayout from "../../DesignPage/DesignUtility/GridLayout";
 import ModelBox from "./ModelBox";
 import ModelPlane from "./ModelPlane";
 import ModelSphere from "./ModelSphere";
 
 interface Props {
-  gridMain?: [number, number, string, string];
-  showGridMain?: boolean;
+  gridGroup: [number, number, string, string];
+  showGridGroup: boolean;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
   selectedGroup: number;
@@ -44,8 +45,8 @@ interface Props {
 
 function ModelGroup(props: Props) {
   const {
-    gridMain,
-    showGridMain,
+    gridGroup,
+    showGridGroup,
     gridModel,
     showGridModel,
     selectedGroup,
@@ -70,7 +71,10 @@ function ModelGroup(props: Props) {
     setmodelColor,
   } = props;
 
+  const id = 0;
+
   // states for all self properties
+  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
@@ -80,33 +84,33 @@ function ModelGroup(props: Props) {
 
   // set position
   useEffect(() => {
-    if (selectedGroup === 0) {
+    if (selectedGroup === id) {
       setSelfPosition(groupPosition);
     }
   }, [groupPosition]);
 
   // set rotation
   useEffect(() => {
-    if (selectedGroup === 0) {
+    if (selectedGroup === id) {
       setselfRotation(groupRotation);
     }
   }, [groupRotation]);
 
   // toggle grids
-  // useEffect(() => {
-  //   if (selectedModel.type === "Plane" && selectedModel.id === id) {
-  //     setselfShowGrid(showGridModel);
-  //   }
-  // }, [showGridModel]);
+  useEffect(() => {
+    if (selectedGroup === id) {
+      setselfShowGrid(showGridGroup);
+    }
+  }, [showGridGroup]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedGroup === 0) {
+    if (selectedGroup === id) {
       setgroupPosition(selfPosition);
       setgroupRotation(selfRotation);
-      // setselfShowGrid(showGridModel);
+      setselfShowGrid(showGridGroup);
     } else {
-      // setselfShowGrid(false);
+      setselfShowGrid(false);
     }
   }, [selectedGroup]);
 
@@ -117,61 +121,70 @@ function ModelGroup(props: Props) {
   // }
 
   return (
-    <group
-      // onClick={handleOnClick}
-      position={selfPosition}
-      rotation={[
-        (selfRotation[0] / 360) * Math.PI * 2,
-        (selfRotation[1] / 360) * Math.PI * 2,
-        (selfRotation[2] / 360) * Math.PI * 2,
-      ]}
-    >
-      <ModelPlane
-        gridModel={gridModel}
-        showGridModel={showGridModel}
-        planeSize={planeSize}
-        setplaneSize={setplaneSize}
-        selectedModel={selectedModel}
-        setselectedModel={setselectedModel}
-        position={position}
-        setposition={setposition}
-        rotation={rotation}
-        setrotation={setrotation}
-        modelColor={modelColor}
-        setmodelColor={setmodelColor}
-        id={1}
-      />
-      <ModelBox
-        gridModel={gridModel}
-        showGridModel={showGridModel}
-        boxSize={boxSize}
-        setboxSize={setboxSize}
-        selectedModel={selectedModel}
-        setselectedModel={setselectedModel}
-        position={position}
-        setposition={setposition}
-        rotation={rotation}
-        setrotation={setrotation}
-        modelColor={modelColor}
-        setmodelColor={setmodelColor}
-        id={1}
-      />
-      <ModelSphere
-        gridModel={gridModel}
-        showGridModel={showGridModel}
-        sphereSize={sphereSize}
-        setsphereSize={setsphereSize}
-        selectedModel={selectedModel}
-        setselectedModel={setselectedModel}
-        position={position}
-        setposition={setposition}
-        rotation={rotation}
-        setrotation={setrotation}
-        modelColor={modelColor}
-        setmodelColor={setmodelColor}
-        id={1}
-      />
-    </group>
+    <>
+      {selfShowGrid && (
+        <GridLayout
+          type="Group"
+          gridArgs={gridGroup}
+          gridPosition={selfPosition}
+        />
+      )}
+      <group
+        // onClick={handleOnClick}
+        position={selfPosition}
+        rotation={[
+          (selfRotation[0] / 360) * Math.PI * 2,
+          (selfRotation[1] / 360) * Math.PI * 2,
+          (selfRotation[2] / 360) * Math.PI * 2,
+        ]}
+      >
+        <ModelPlane
+          gridModel={gridModel}
+          showGridModel={showGridModel}
+          planeSize={planeSize}
+          setplaneSize={setplaneSize}
+          selectedModel={selectedModel}
+          setselectedModel={setselectedModel}
+          position={position}
+          setposition={setposition}
+          rotation={rotation}
+          setrotation={setrotation}
+          modelColor={modelColor}
+          setmodelColor={setmodelColor}
+          id={1}
+        />
+        <ModelBox
+          gridModel={gridModel}
+          showGridModel={showGridModel}
+          boxSize={boxSize}
+          setboxSize={setboxSize}
+          selectedModel={selectedModel}
+          setselectedModel={setselectedModel}
+          position={position}
+          setposition={setposition}
+          rotation={rotation}
+          setrotation={setrotation}
+          modelColor={modelColor}
+          setmodelColor={setmodelColor}
+          id={1}
+        />
+        <ModelSphere
+          gridModel={gridModel}
+          showGridModel={showGridModel}
+          sphereSize={sphereSize}
+          setsphereSize={setsphereSize}
+          selectedModel={selectedModel}
+          setselectedModel={setselectedModel}
+          position={position}
+          setposition={setposition}
+          rotation={rotation}
+          setrotation={setrotation}
+          modelColor={modelColor}
+          setmodelColor={setmodelColor}
+          id={1}
+        />
+      </group>
+    </>
   );
 }
 

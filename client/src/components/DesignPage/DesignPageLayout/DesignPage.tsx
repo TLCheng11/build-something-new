@@ -29,11 +29,18 @@ function DesignPage(props: Props) {
     "gray",
   ]);
   const [showGridMain, setshowGridMain] = useState<boolean>(true);
+  const [gridGroup, setgridGroup] = useState<[number, number, string, string]>([
+    7,
+    14,
+    "red",
+    "orange",
+  ]);
+  const [showGridGroup, setshowGridGroup] = useState<boolean>(false);
   const [gridModel, setgridModel] = useState<[number, number, string, string]>([
     5,
     10,
+    "purple",
     "blue",
-    "yellow",
   ]);
   const [showGridModel, setshowGridModel] = useState<boolean>(false);
 
@@ -87,6 +94,8 @@ function DesignPage(props: Props) {
         <DesignControls
           showGridMain={showGridMain}
           setshowGridMain={setshowGridMain}
+          showGridGroup={showGridGroup}
+          setshowGridGroup={setshowGridGroup}
           showGridModel={showGridModel}
           setshowGridModel={setshowGridModel}
           selectedGroup={selectedGroup}
@@ -116,6 +125,8 @@ function DesignPage(props: Props) {
         <DesignCanvas
           gridMain={gridMain}
           showGridMain={showGridMain}
+          gridGroup={gridGroup}
+          showGridGroup={showGridGroup}
           gridModel={gridModel}
           showGridModel={showGridModel}
           selectedGroup={selectedGroup}

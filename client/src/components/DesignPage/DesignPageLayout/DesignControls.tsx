@@ -10,6 +10,8 @@ import ModelTypesControls from "../DesignControls/ModelTypeControls";
 interface Props {
   showGridMain: boolean;
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
+  showGridGroup: boolean;
+  setshowGridGroup: React.Dispatch<React.SetStateAction<boolean>>;
   showGridModel: boolean;
   setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
   selectedGroup: number;
@@ -46,6 +48,8 @@ function DesignControls(props: Props) {
   const {
     showGridMain,
     setshowGridMain,
+    showGridGroup,
+    setshowGridGroup,
     showGridModel,
     setshowGridModel,
     selectedGroup,
@@ -75,6 +79,8 @@ function DesignControls(props: Props) {
       <GridControls
         showGridMain={showGridMain}
         setshowGridMain={setshowGridMain}
+        showGridGroup={showGridGroup}
+        setshowGridGroup={setshowGridGroup}
         showGridModel={showGridModel}
         setshowGridModel={setshowGridModel}
       />
