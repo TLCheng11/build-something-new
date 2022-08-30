@@ -38,7 +38,7 @@ function ModelPlane(props: Props) {
     setrotation,
     id,
   } = props;
-  const [selfSize, setselfSize] = useState<[number, number]>([1000, 1000]);
+  const [selfSize, setselfSize] = useState<[number, number]>([10, 10]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     0, 0, 0,
   ]);

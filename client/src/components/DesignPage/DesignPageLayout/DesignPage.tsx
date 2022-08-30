@@ -47,7 +47,7 @@ function DesignPage(props: Props) {
   const [modelType, setmodelType] = useState<string>("Plane");
 
   // properties for selected model
-  const [planeSize, setplaneSize] = useState<[number, number]>([1000, 1000]);
+  const [planeSize, setplaneSize] = useState<[number, number]>([10, 10]);
   const [boxSize, setboxSize] = useState<[number, number, number]>([1, 1, 1]);
   const [sphereSize, setsphereSize] = useState<[number, number, number]>([
     1, 32, 16,
@@ -58,7 +58,7 @@ function DesignPage(props: Props) {
 
   // useEffect(() => {
   //   if (modelType === "Plane") {
-  //     setplaneSize([1000, 1000]);
+  //     setplaneSize([10, 10]);
   //   } else if (modelType === "Box") {
   //     setboxSize([1, 1, 1]);
   //   } else if (modelType === "Sphere") {
