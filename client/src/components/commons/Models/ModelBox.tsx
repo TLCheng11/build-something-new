@@ -48,12 +48,12 @@ function ModelBox(props: Props) {
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
   const [selfSize, setselfSize] = useState<[number, number, number]>([1, 1, 1]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
-    0, 0, 0,
+    0, 4, 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>("#000");
+  const [selfColor, setselfColor] = useState<string>("#396BA7");
 
   // set size
   useEffect(() => {

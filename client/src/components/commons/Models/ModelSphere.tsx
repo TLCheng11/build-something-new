@@ -50,12 +50,12 @@ function ModelSphere(props: Props) {
     1, 32, 16,
   ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
-    0, 0, 0,
+    0, 4, 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>("#000");
+  const [selfColor, setselfColor] = useState<string>("#396BA7");
 
   // set size
   useEffect(() => {
@@ -116,11 +116,7 @@ function ModelSphere(props: Props) {
       <Sphere
         args={selfSize}
         onClick={handleOnClick}
-        position={[
-          selfPosition[0],
-          selfPosition[1] + selfSize[0],
-          selfPosition[2],
-        ]}
+        position={[selfPosition[0], selfPosition[1], selfPosition[2]]}
         rotation={[
           (selfRotation[0] / 360) * Math.PI * 2,
           (selfRotation[1] / 360) * Math.PI * 2,

@@ -70,7 +70,7 @@ function DesignPage(props: Props) {
   ]);
   const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
   const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
-  const [modelColor, setmodelColor] = useState<string>("#fff");
+  const [modelColor, setmodelColor] = useState<string>("#396BA7");
 
   // useEffect(() => {
   //   if (modelType === "Plane") {
