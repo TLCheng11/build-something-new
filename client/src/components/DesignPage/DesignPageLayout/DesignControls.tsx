@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import GridControls from "../DesignControls/GridControls";
+import ModelColorControls from "../DesignControls/ModelColorControls";
 import ModelGroupControls from "../DesignControls/ModelGroupControls";
 import ModelPositionControls from "../DesignControls/ModelPositionContorls";
 import ModelRotationControls from "../DesignControls/ModelRotationControls";
@@ -35,6 +36,8 @@ interface Props {
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
   setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  modelColor: string;
+  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function DesignControls(props: Props) {
@@ -60,6 +63,8 @@ function DesignControls(props: Props) {
     setposition,
     rotation,
     setrotation,
+    modelColor,
+    setmodelColor,
   } = props;
   return (
     <div>
@@ -94,6 +99,10 @@ function DesignControls(props: Props) {
             type="Model"
             rotation={rotation}
             setrotation={setrotation}
+          />
+          <ModelColorControls
+            modelColor={modelColor}
+            setmodelColor={setmodelColor}
           />
         </div>
       )}

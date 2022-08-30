@@ -22,6 +22,8 @@ interface Props {
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
   setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  modelColor: string;
+  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
   id: number;
 }
 
@@ -37,8 +39,13 @@ function ModelPlane(props: Props) {
     setposition,
     rotation,
     setrotation,
+    modelColor,
+    setmodelColor,
     id,
   } = props;
+
+  // states for all self properties
+  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
   const [selfSize, setselfSize] = useState<[number, number]>([10, 10]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     0, 0, 0,
@@ -46,7 +53,7 @@ function ModelPlane(props: Props) {
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
-  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
+  const [selfColor, setselfColor] = useState<string>("#000");
 
   // set size
   useEffect(() => {
@@ -69,6 +76,13 @@ function ModelPlane(props: Props) {
     }
   }, [rotation]);
 
+  // set color
+  useEffect(() => {
+    if (selectedModel.type === "Plane" && selectedModel.id === id) {
+      setselfColor(modelColor);
+    }
+  }, [modelColor]);
+
   // toggle grids
   useEffect(() => {
     if (selectedModel.type === "Plane" && selectedModel.id === id) {
@@ -79,10 +93,11 @@ function ModelPlane(props: Props) {
   // set all self properties from history when selection
   useEffect(() => {
     if (selectedModel.type === "Plane" && selectedModel.id === id) {
+      setselfShowGrid(showGridModel);
       setplaneSize(selfSize);
       setposition(selfPosition);
       setrotation(selfRotation);
-      setselfShowGrid(showGridModel);
+      setmodelColor(selfColor);
     } else {
       setselfShowGrid(false);
     }
@@ -114,7 +129,7 @@ function ModelPlane(props: Props) {
         ]}
         receiveShadow
       >
-        <meshBasicMaterial />
+        <meshBasicMaterial color={selfColor} />
       </Plane>
     </>
   );

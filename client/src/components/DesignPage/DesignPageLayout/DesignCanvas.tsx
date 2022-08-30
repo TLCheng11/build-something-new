@@ -38,6 +38,8 @@ interface Props {
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
   setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  modelColor: string;
+  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function DesignCanvas(props: Props) {
@@ -62,6 +64,8 @@ function DesignCanvas(props: Props) {
     setposition,
     rotation,
     setrotation,
+    modelColor,
+    setmodelColor,
   } = props;
 
   return (
@@ -88,33 +92,9 @@ function DesignCanvas(props: Props) {
           setposition={setposition}
           rotation={rotation}
           setrotation={setrotation}
+          modelColor={modelColor}
+          setmodelColor={setmodelColor}
         />
-        {/* <ModelBox
-          gridModel={gridModel}
-          showGridModel={showGridModel}
-          boxSize={boxSize}
-          setboxSize={setboxSize}
-          selectedModel={selectedModel}
-          setselectedModel={setselectedModel}
-          position={position}
-          setposition={setposition}
-          rotation={rotation}
-          setrotation={setrotation}
-          id={1}
-        />
-        <ModelBox
-          gridModel={gridModel}
-          showGridModel={showGridModel}
-          boxSize={boxSize}
-          setboxSize={setboxSize}
-          selectedModel={selectedModel}
-          setselectedModel={setselectedModel}
-          position={position}
-          setposition={setposition}
-          rotation={rotation}
-          setrotation={setrotation}
-          id={2}
-        /> */}
       </Canvas>
     </div>
   );

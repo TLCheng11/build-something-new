@@ -63,7 +63,7 @@ function DesignPage(props: Props) {
   ]);
   const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
   const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
-  const [modelColor, setmodelColor] = useState<string>("blue");
+  const [modelColor, setmodelColor] = useState<string>("#fff");
 
   // useEffect(() => {
   //   if (modelType === "Plane") {
@@ -106,6 +106,8 @@ function DesignPage(props: Props) {
           setposition={setposition}
           rotation={rotation}
           setrotation={setrotation}
+          modelColor={modelColor}
+          setmodelColor={setmodelColor}
         />
       </div>
       <div id="design-canvas-holder" className="h-full w-3/4 border">
@@ -130,6 +132,8 @@ function DesignPage(props: Props) {
           setposition={setposition}
           rotation={rotation}
           setrotation={setrotation}
+          modelColor={modelColor}
+          setmodelColor={setmodelColor}
         />
       </div>
     </div>

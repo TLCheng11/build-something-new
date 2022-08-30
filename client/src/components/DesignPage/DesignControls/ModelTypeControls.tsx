@@ -9,7 +9,7 @@ function ModelTypesControls(props: Props) {
   const { modelType, setmodelType } = props;
 
   return (
-    <div id="model-controls" className="h-full w-full bg-gray-600">
+    <div id="model-type-controls" className="h-full w-full bg-gray-600">
       <h1>Model Control:</h1>
       <div id="model-type-selection" className="flex">
         <h1>Model Type:</h1>

@@ -36,6 +36,8 @@ interface Props {
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
   setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  modelColor: string;
+  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function ModelGroup(props: Props) {
@@ -60,8 +62,11 @@ function ModelGroup(props: Props) {
     setposition,
     rotation,
     setrotation,
+    modelColor,
+    setmodelColor,
   } = props;
 
+  // states for all self properties
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
@@ -128,6 +133,8 @@ function ModelGroup(props: Props) {
         setposition={setposition}
         rotation={rotation}
         setrotation={setrotation}
+        modelColor={modelColor}
+        setmodelColor={setmodelColor}
         id={1}
       />
       <ModelPlane
@@ -141,6 +148,8 @@ function ModelGroup(props: Props) {
         setposition={setposition}
         rotation={rotation}
         setrotation={setrotation}
+        modelColor={modelColor}
+        setmodelColor={setmodelColor}
         id={1}
       />
     </group>

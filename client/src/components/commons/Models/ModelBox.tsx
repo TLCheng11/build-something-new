@@ -22,6 +22,8 @@ interface Props {
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
   setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  modelColor: string;
+  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
   id: number;
 }
 
@@ -37,8 +39,13 @@ function ModelBox(props: Props) {
     setposition,
     rotation,
     setrotation,
+    modelColor,
+    setmodelColor,
     id,
   } = props;
+
+  // states for all self properties
+  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
   const [selfSize, setselfSize] = useState<[number, number, number]>([1, 1, 1]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     0, 0, 0,
@@ -46,7 +53,7 @@ function ModelBox(props: Props) {
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
-  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
+  const [selfColor, setselfColor] = useState<string>("#000");
 
   // set size
   useEffect(() => {
@@ -69,6 +76,13 @@ function ModelBox(props: Props) {
     }
   }, [rotation]);
 
+  // set color
+  useEffect(() => {
+    if (selectedModel.type === "Box" && selectedModel.id === id) {
+      setselfColor(modelColor);
+    }
+  }, [modelColor]);
+
   // toggle grids
   useEffect(() => {
     if (selectedModel.type === "Box" && selectedModel.id === id) {
@@ -79,10 +93,11 @@ function ModelBox(props: Props) {
   // set all self properties from history when selection
   useEffect(() => {
     if (selectedModel.type === "Box" && selectedModel.id === id) {
+      setselfShowGrid(showGridModel);
       setboxSize(selfSize);
       setposition(selfPosition);
       setrotation(selfRotation);
-      setselfShowGrid(showGridModel);
+      setmodelColor(selfColor);
     } else {
       setselfShowGrid(false);
     }
@@ -117,7 +132,7 @@ function ModelBox(props: Props) {
           (selfRotation[2] / 360) * Math.PI * 2,
         ]}
       >
-        <meshNormalMaterial />
+        <meshBasicMaterial color={selfColor} />
       </Box>
     </>
   );
