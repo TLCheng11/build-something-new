@@ -19,9 +19,9 @@ function ModelTypesControls(props: Props) {
             value={modelType}
             onChange={(e) => setmodelType(e.target.value)}
           >
-            <option>Plane</option>
-            <option>Box</option>
-            <option>Sphere</option>
+            <option value="plane">Plane</option>
+            <option value="box">Box</option>
+            <option value="sphere">Sphere</option>
           </select>
         </div>
         <button id="add-model" className="border">

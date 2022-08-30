@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { ThreeEvent } from "react-three-fiber";
 import ModelBox from "./ModelBox";
 import ModelPlane from "./ModelPlane";
+import ModelSphere from "./ModelSphere";
 
 interface Props {
   gridMain?: [number, number, string, string];
@@ -32,6 +32,8 @@ interface Props {
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   boxSize: [number, number, number];
   setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  sphereSize: [number, number, number];
+  setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -58,6 +60,8 @@ function ModelGroup(props: Props) {
     setplaneSize,
     boxSize,
     setboxSize,
+    sphereSize,
+    setsphereSize,
     position,
     setposition,
     rotation,
@@ -122,6 +126,21 @@ function ModelGroup(props: Props) {
         (selfRotation[2] / 360) * Math.PI * 2,
       ]}
     >
+      <ModelPlane
+        gridModel={gridModel}
+        showGridModel={showGridModel}
+        planeSize={planeSize}
+        setplaneSize={setplaneSize}
+        selectedModel={selectedModel}
+        setselectedModel={setselectedModel}
+        position={position}
+        setposition={setposition}
+        rotation={rotation}
+        setrotation={setrotation}
+        modelColor={modelColor}
+        setmodelColor={setmodelColor}
+        id={1}
+      />
       <ModelBox
         gridModel={gridModel}
         showGridModel={showGridModel}
@@ -137,11 +156,11 @@ function ModelGroup(props: Props) {
         setmodelColor={setmodelColor}
         id={1}
       />
-      <ModelPlane
+      <ModelSphere
         gridModel={gridModel}
         showGridModel={showGridModel}
-        planeSize={planeSize}
-        setplaneSize={setplaneSize}
+        sphereSize={sphereSize}
+        setsphereSize={setsphereSize}
         selectedModel={selectedModel}
         setselectedModel={setselectedModel}
         position={position}

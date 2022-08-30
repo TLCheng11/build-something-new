@@ -1,4 +1,4 @@
-import { Box } from "@react-three/drei";
+import { Sphere } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import GridLayout from "../../DesignPage/DesignUtility/GridLayout";
@@ -16,8 +16,8 @@ interface Props {
       id: number;
     }>
   >;
-  boxSize: [number, number, number];
-  setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  sphereSize: [number, number, number];
+  setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -27,14 +27,14 @@ interface Props {
   id: number;
 }
 
-function ModelBox(props: Props) {
+function ModelSphere(props: Props) {
   const {
     gridModel,
     showGridModel,
     selectedModel,
     setselectedModel,
-    boxSize,
-    setboxSize,
+    sphereSize,
+    setsphereSize,
     position,
     setposition,
     rotation,
@@ -46,7 +46,9 @@ function ModelBox(props: Props) {
 
   // states for all self properties
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
-  const [selfSize, setselfSize] = useState<[number, number, number]>([1, 1, 1]);
+  const [selfSize, setselfSize] = useState<[number, number, number]>([
+    1, 32, 16,
+  ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
@@ -57,44 +59,44 @@ function ModelBox(props: Props) {
 
   // set size
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
-      setselfSize(boxSize);
+    if (selectedModel.type === "sphere" && selectedModel.id === id) {
+      setselfSize(sphereSize);
     }
-  }, [boxSize]);
+  }, [sphereSize]);
 
   // set position
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "sphere" && selectedModel.id === id) {
       setSelfPosition(position);
     }
   }, [position]);
 
   // set rotation
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "sphere" && selectedModel.id === id) {
       setselfRotation(rotation);
     }
   }, [rotation]);
 
   // set color
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "sphere" && selectedModel.id === id) {
       setselfColor(modelColor);
     }
   }, [modelColor]);
 
   // toggle grids
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "sphere" && selectedModel.id === id) {
       setselfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "sphere" && selectedModel.id === id) {
       setselfShowGrid(showGridModel);
-      setboxSize(selfSize);
+      setsphereSize(selfSize);
       setposition(selfPosition);
       setrotation(selfRotation);
       setmodelColor(selfColor);
@@ -106,7 +108,7 @@ function ModelBox(props: Props) {
   // lock self as selected item when clicked
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
-    setselectedModel({ type: "box", id });
+    setselectedModel({ type: "sphere", id });
   }
 
   return (
@@ -118,12 +120,12 @@ function ModelBox(props: Props) {
           gridPosition={selfPosition}
         />
       )}
-      <Box
+      <Sphere
         args={selfSize}
         onClick={handleOnClick}
         position={[
           selfPosition[0],
-          selfPosition[1] + selfSize[1] / 2,
+          selfPosition[1] + selfSize[0],
           selfPosition[2],
         ]}
         rotation={[
@@ -133,9 +135,9 @@ function ModelBox(props: Props) {
         ]}
       >
         <meshBasicMaterial color={selfColor} />
-      </Box>
+      </Sphere>
     </>
   );
 }
 
-export default ModelBox;
+export default ModelSphere;

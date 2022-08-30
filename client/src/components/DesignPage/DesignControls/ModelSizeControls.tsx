@@ -5,14 +5,24 @@ interface Props {
     type: string;
     id: number;
   };
-  boxSize: [number, number, number];
-  setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
   planeSize: [number, number];
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
+  boxSize: [number, number, number];
+  setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
+  sphereSize: [number, number, number];
+  setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function ModelSizeContorls(props: Props) {
-  const { selectedModel, boxSize, setboxSize, planeSize, setplaneSize } = props;
+  const {
+    selectedModel,
+    boxSize,
+    setboxSize,
+    planeSize,
+    setplaneSize,
+    sphereSize,
+    setsphereSize,
+  } = props;
   const [step, setstep] = useState<string>("0.1");
 
   return (
@@ -21,7 +31,7 @@ function ModelSizeContorls(props: Props) {
         <h1>Selected {selectedModel.type}</h1>
         <h1>Model Size:</h1>
       </div>
-      {selectedModel.type === "Plane" && (
+      {selectedModel.type === "plane" && (
         <div>
           <div>
             <label htmlFor="model-width">Width:</label>
@@ -51,7 +61,7 @@ function ModelSizeContorls(props: Props) {
           </div>
         </div>
       )}
-      {selectedModel.type === "Box" && (
+      {selectedModel.type === "box" && (
         <div>
           <div>
             <label htmlFor="model-width">Width:</label>
@@ -106,7 +116,7 @@ function ModelSizeContorls(props: Props) {
           </div>
         </div>
       )}
-      {/* {selectedModel.type === "Sphere" && (
+      {selectedModel.type === "sphere" && (
         <div>
           <div>
             <label htmlFor="model-radius">Radius:</label>
@@ -115,9 +125,9 @@ function ModelSizeContorls(props: Props) {
               min="0.1"
               step={step}
               name="model-radius"
-              value={size[0]}
+              value={sphereSize[0]}
               onChange={(e) =>
-                setsize((size) => [
+                setsphereSize((size) => [
                   parseFloat(e.target.value),
                   size[1],
                   size[2],
@@ -129,12 +139,11 @@ function ModelSizeContorls(props: Props) {
             <label htmlFor="model-width-segments">Width Segments:</label>
             <input
               type="number"
-              min="0.1"
-              step={step}
+              min="0"
               name="model-width-segments"
-              value={size[1]}
+              value={sphereSize[1]}
               onChange={(e) =>
-                setsize((size) => [
+                setsphereSize((size) => [
                   size[0],
                   parseFloat(e.target.value),
                   size[2],
@@ -146,12 +155,11 @@ function ModelSizeContorls(props: Props) {
             <label htmlFor="model-height-segments">Height Segments:</label>
             <input
               type="number"
-              min="0.1"
-              step={step}
+              min="0"
               name="model-height-segments"
-              value={size[2]}
+              value={sphereSize[2]}
               onChange={(e) =>
-                setsize((size) => [
+                setsphereSize((size) => [
                   size[0],
                   size[1],
                   parseFloat(e.target.value),
@@ -160,7 +168,7 @@ function ModelSizeContorls(props: Props) {
             />
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 }

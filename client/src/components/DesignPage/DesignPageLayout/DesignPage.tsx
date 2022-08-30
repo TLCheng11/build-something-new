@@ -53,7 +53,7 @@ function DesignPage(props: Props) {
   }>({ type: "", id: 0 });
 
   // states for model type selection
-  const [modelType, setmodelType] = useState<string>("Plane");
+  const [modelType, setmodelType] = useState<string>("plane");
 
   // properties for selected model
   const [planeSize, setplaneSize] = useState<[number, number]>([10, 10]);
@@ -102,6 +102,8 @@ function DesignPage(props: Props) {
           setplaneSize={setplaneSize}
           boxSize={boxSize}
           setboxSize={setboxSize}
+          sphereSize={sphereSize}
+          setsphereSize={setsphereSize}
           position={position}
           setposition={setposition}
           rotation={rotation}
@@ -128,6 +130,8 @@ function DesignPage(props: Props) {
           setplaneSize={setplaneSize}
           boxSize={boxSize}
           setboxSize={setboxSize}
+          sphereSize={sphereSize}
+          setsphereSize={setsphereSize}
           position={position}
           setposition={setposition}
           rotation={rotation}

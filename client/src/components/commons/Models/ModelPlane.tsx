@@ -6,8 +6,6 @@ import GridLayout from "../../DesignPage/DesignUtility/GridLayout";
 interface Props {
   gridModel: [number, number, string, string];
   showGridModel: boolean;
-  planeSize: [number, number];
-  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   selectedModel: {
     type: string;
     id: number;
@@ -18,6 +16,8 @@ interface Props {
       id: number;
     }>
   >;
+  planeSize: [number, number];
+  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -31,10 +31,10 @@ function ModelPlane(props: Props) {
   const {
     gridModel,
     showGridModel,
-    planeSize,
-    setplaneSize,
     selectedModel,
     setselectedModel,
+    planeSize,
+    setplaneSize,
     position,
     setposition,
     rotation,
@@ -57,42 +57,42 @@ function ModelPlane(props: Props) {
 
   // set size
   useEffect(() => {
-    if (selectedModel.type === "Plane" && selectedModel.id === id) {
+    if (selectedModel.type === "plane" && selectedModel.id === id) {
       setselfSize(planeSize);
     }
   }, [planeSize]);
 
   // set position
   useEffect(() => {
-    if (selectedModel.type === "Plane" && selectedModel.id === id) {
+    if (selectedModel.type === "plane" && selectedModel.id === id) {
       setSelfPosition(position);
     }
   }, [position]);
 
   // set rotation
   useEffect(() => {
-    if (selectedModel.type === "Plane" && selectedModel.id === id) {
+    if (selectedModel.type === "plane" && selectedModel.id === id) {
       setselfRotation(rotation);
     }
   }, [rotation]);
 
   // set color
   useEffect(() => {
-    if (selectedModel.type === "Plane" && selectedModel.id === id) {
+    if (selectedModel.type === "plane" && selectedModel.id === id) {
       setselfColor(modelColor);
     }
   }, [modelColor]);
 
   // toggle grids
   useEffect(() => {
-    if (selectedModel.type === "Plane" && selectedModel.id === id) {
+    if (selectedModel.type === "plane" && selectedModel.id === id) {
       setselfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedModel.type === "Plane" && selectedModel.id === id) {
+    if (selectedModel.type === "plane" && selectedModel.id === id) {
       setselfShowGrid(showGridModel);
       setplaneSize(selfSize);
       setposition(selfPosition);
@@ -106,7 +106,7 @@ function ModelPlane(props: Props) {
   // lock self as selected item when clicked
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
-    setselectedModel({ type: "Plane", id });
+    setselectedModel({ type: "plane", id });
   }
 
   return (
