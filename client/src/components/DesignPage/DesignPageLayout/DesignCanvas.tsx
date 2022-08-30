@@ -1,7 +1,7 @@
 import { OrbitControls } from "@react-three/drei";
 import { applyProps, Canvas } from "react-three-fiber";
 import GridLayout from "../DesignUtility/GridLayout";
-import ModelBox from "../Models/ModelBox";
+import ModelBox from "../../commons/Models/ModelBox";
 
 interface Props {
   gridMain: [number, number, string, string];

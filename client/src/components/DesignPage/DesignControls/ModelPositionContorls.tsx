@@ -9,6 +9,9 @@ function ModelPositionControls(props: Props) {
   return (
     <div id="model-position-controls" className="h-full w-full bg-gray-600">
       <div>
+        <h1>Model Positions:</h1>
+      </div>
+      <div>
         <label htmlFor="model-position-x">Position-x:</label>
         <input
           type="number"

@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import GridControls from "../DesignControls/GridControls";
 import ModelPositionControls from "../DesignControls/ModelPositionContorls";
+import ModelRotationControls from "../DesignControls/ModelRotationControls";
 import ModelSizeContorls from "../DesignControls/ModelSizeControls";
 import ModelTypesControls from "../DesignControls/ModelTypeControls";
 
@@ -15,6 +16,8 @@ interface Props {
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  rotation: [number, number, number];
+  setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function DesignControls(props: Props) {
@@ -29,6 +32,8 @@ function DesignControls(props: Props) {
     setsize,
     position,
     setposition,
+    rotation,
+    setrotation,
   } = props;
   return (
     <div>
@@ -45,6 +50,7 @@ function DesignControls(props: Props) {
         setplaneSize={setplaneSize}
       />
       <ModelPositionControls position={position} setposition={setposition} />
+      <ModelRotationControls rotation={rotation} setrotation={setrotation} />
     </div>
   );
 }

@@ -52,6 +52,8 @@ function DesignPage() {
           setsize={setsize}
           position={position}
           setposition={setposition}
+          rotation={rotation}
+          setrotation={setrotation}
         />
       </div>
       <div id="design-canvas-holder" className="h-full w-3/4 border">
