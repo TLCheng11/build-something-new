@@ -33,6 +33,7 @@ function SignUpForm(props: Props) {
 
   const [formInput, setFormInput] = useState({
     username: "",
+    email: "",
     password: "",
     password_confirmation: "",
   });
@@ -46,10 +47,14 @@ function SignUpForm(props: Props) {
     second:
       formInput.username.match(/^[\w]*$/g) &&
       formInput.username.match(/^[A-Za-z]/g),
-    third: formInput.password.match(/^.{8,18}$/g),
-    fourth: formInput.password.match(/(?=.*[a-z])(?=.*[A-Z])/g),
-    fifth: formInput.password.match(/^[\w\d~!@#$%^&*-=+?]+$/g),
-    sixth:
+    third: formInput.email.match(
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g
+    ),
+    fourth: formInput.password.match(/^.{8,18}$/g),
+    fifth: formInput.password.match(/(?=.*[a-z])(?=.*[A-Z])/g),
+    sixth: formInput.password.match(/^[\w\d~!@#$%^&*-=+?]+$/g),
+
+    seventh:
       formInput.password === formInput.password_confirmation &&
       formInput.password.length > 0,
   };
@@ -61,7 +66,8 @@ function SignUpForm(props: Props) {
       conditions.third &&
       conditions.fourth &&
       conditions.fifth &&
-      conditions.sixth
+      conditions.sixth &&
+      conditions.seventh
     ) {
       setDisable({ class: "", disable: false });
     } else {
@@ -136,6 +142,21 @@ function SignUpForm(props: Props) {
               />
             </div>
             <div>
+              <label htmlFor="email" className="sr-only">
+                Username
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="text"
+                required
+                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="xyz@email.com"
+                value={formInput.email}
+                onChange={onFormChange}
+              />
+            </div>
+            <div>
               <label htmlFor="password" className="sr-only">
                 Password
               </label>
@@ -177,19 +198,24 @@ function SignUpForm(props: Props) {
               * username must start with a letter and cannot have space
             </p>
             <p className={conditions.third ? "text-green-600" : "text-red-600"}>
-              * password must be between 8 - 20 charaters
+              * please enter a valid email address
             </p>
             <p
               className={conditions.fourth ? "text-green-600" : "text-red-600"}
             >
+              * password must be between 8 - 20 charaters
+            </p>
+            <p className={conditions.fifth ? "text-green-600" : "text-red-600"}>
               * password must contain at least one Uppercase and lowercase
               letter
             </p>
-            <p className={conditions.fifth ? "text-green-600" : "text-red-600"}>
+            <p className={conditions.sixth ? "text-green-600" : "text-red-600"}>
               * password can only include alphabet letters, numbers, one of this
               special charater ~!@#$%^&*-=+?_ and cannot have space
             </p>
-            <p className={conditions.sixth ? "text-green-600" : "text-red-600"}>
+            <p
+              className={conditions.seventh ? "text-green-600" : "text-red-600"}
+            >
               * please confirm your password
             </p>
           </div>

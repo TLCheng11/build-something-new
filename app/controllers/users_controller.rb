@@ -39,6 +39,6 @@ class UsersController < ApplicationController
 
     # Only for user signup
     def user_signup_params
-      params.permit(:username, :password)
+      params.permit(:username, :password, :email)
     end
 end
