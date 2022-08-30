@@ -16,6 +16,8 @@ interface Props {
   >;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  rotation: [number, number, number];
+  setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   id: number;
 }
 
@@ -27,40 +29,59 @@ function ModelBox(props: Props) {
     setselectedModel,
     position,
     setposition,
+    rotation,
+    setrotation,
     id,
   } = props;
   const [selfSize, setselfSize] = useState<[number, number, number]>([1, 1, 1]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
-
-  const type: string = "Box";
+  const [selfRotation, setselfRotation] = useState<[number, number, number]>([
+    0, 0, 0,
+  ]);
 
   useEffect(() => {
-    if (selectedModel.type === type && selectedModel.id === id) {
+    if (selectedModel.type === "Box" && selectedModel.id === id) {
       setselfSize(size);
     }
   }, [size]);
 
   useEffect(() => {
-    if (selectedModel.type === type && selectedModel.id === id) {
+    if (selectedModel.type === "Box" && selectedModel.id === id) {
       setSelfPosition(position);
     }
   }, [position]);
 
   useEffect(() => {
-    if (selectedModel.type === type && selectedModel.id === id) {
+    if (selectedModel.type === "Box" && selectedModel.id === id) {
+      setselfRotation(rotation);
+    }
+  }, [rotation]);
+
+  useEffect(() => {
+    if (selectedModel.type === "Box" && selectedModel.id === id) {
       setsize(selfSize);
       setposition(selfPosition);
+      setrotation(selfRotation);
     }
   }, [selectedModel]);
 
   function handleOnClick() {
-    setselectedModel({ type, id });
+    setselectedModel({ type: "Box", id });
   }
 
   return (
-    <Box args={selfSize} onClick={handleOnClick} position={selfPosition}>
+    <Box
+      args={selfSize}
+      onClick={handleOnClick}
+      position={selfPosition}
+      rotation={[
+        (selfRotation[0] / 360) * Math.PI * 2,
+        (selfRotation[1] / 360) * Math.PI * 2,
+        (selfRotation[2] / 360) * Math.PI * 2,
+      ]}
+    >
       <meshNormalMaterial />
     </Box>
   );

@@ -66,6 +66,8 @@ function DesignPage() {
           setselectedModel={setselectedModel}
           position={position}
           setposition={setposition}
+          rotation={rotation}
+          setrotation={setrotation}
         />
       </div>
     </div>

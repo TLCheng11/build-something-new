@@ -12,10 +12,10 @@ function ModelPositionControls(props: Props) {
         <h1>Model Positions:</h1>
       </div>
       <div>
-        <label htmlFor="model-position-x">Position-x:</label>
+        <label htmlFor="model-X-position">X-Position:</label>
         <input
           type="number"
-          name="model-position-x"
+          name="model-X-position"
           value={position[0]}
           onChange={(e) =>
             setposition((position) => [
@@ -27,10 +27,10 @@ function ModelPositionControls(props: Props) {
         />
       </div>
       <div>
-        <label htmlFor="model-position-y">Position-y:</label>
+        <label htmlFor="model-Y-position">Y-Position:</label>
         <input
           type="number"
-          name="model-position-y"
+          name="model-Y-position"
           value={position[1]}
           onChange={(e) =>
             setposition((position) => [
@@ -42,10 +42,10 @@ function ModelPositionControls(props: Props) {
         />
       </div>
       <div>
-        <label htmlFor="model-position-z">Position-z:</label>
+        <label htmlFor="model-Z-position">Z-Position:</label>
         <input
           type="number"
-          name="model-position-z"
+          name="model-Z-position"
           value={position[2]}
           onChange={(e) =>
             setposition((position) => [

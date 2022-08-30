@@ -9,13 +9,13 @@ function ModelRotationControls(props: Props) {
   return (
     <div id="model-rotation-controls" className="h-full w-full bg-gray-600">
       <div>
-        <h1>Model Rotations:</h1>
+        <h1>Model Rotations: (Degrees)</h1>
       </div>
       <div>
-        <label htmlFor="model-rotation-x">Rotation-x:</label>
+        <label htmlFor="model-X-rotation">X-Rotation:</label>
         <input
           type="number"
-          name="model-rotation-x"
+          name="model-X-rotation"
           value={rotation[0]}
           onChange={(e) =>
             setrotation((rotation) => [
@@ -27,10 +27,10 @@ function ModelRotationControls(props: Props) {
         />
       </div>
       <div>
-        <label htmlFor="model-rotation-y">Rotation-y:</label>
+        <label htmlFor="model-Y-rotation">Y-Rotation:</label>
         <input
           type="number"
-          name="model-rotation-y"
+          name="model-Y-rotation"
           value={rotation[1]}
           onChange={(e) =>
             setrotation((rotation) => [
@@ -42,10 +42,10 @@ function ModelRotationControls(props: Props) {
         />
       </div>
       <div>
-        <label htmlFor="model-rotation-z">Rotation-z:</label>
+        <label htmlFor="model-Z-rotation">Z-Rotation:</label>
         <input
           type="number"
-          name="model-rotation-z"
+          name="model-Z-rotation"
           value={rotation[2]}
           onChange={(e) =>
             setrotation((rotation) => [
