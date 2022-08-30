@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ThreeEvent } from "react-three-fiber";
 import ModelBox from "./ModelBox";
 import ModelPlane from "./ModelPlane";
 
@@ -101,7 +102,8 @@ function ModelGroup(props: Props) {
   }, [selectedGroup]);
 
   // lock self as selected item when clicked
-  // function handleOnClick() {
+  // function handleOnClick(e: ThreeEvent<MouseEvent>) {
+  //   e.stopPropagation();
   //   setselectedGroup(0);
   // }
 
@@ -115,11 +117,11 @@ function ModelGroup(props: Props) {
         (selfRotation[2] / 360) * Math.PI * 2,
       ]}
     >
-      <ModelPlane
+      <ModelBox
         gridModel={gridModel}
         showGridModel={showGridModel}
-        planeSize={planeSize}
-        setplaneSize={setplaneSize}
+        boxSize={boxSize}
+        setboxSize={setboxSize}
         selectedModel={selectedModel}
         setselectedModel={setselectedModel}
         position={position}
@@ -128,11 +130,11 @@ function ModelGroup(props: Props) {
         setrotation={setrotation}
         id={1}
       />
-      <ModelBox
+      <ModelPlane
         gridModel={gridModel}
         showGridModel={showGridModel}
-        boxSize={boxSize}
-        setboxSize={setboxSize}
+        planeSize={planeSize}
+        setplaneSize={setplaneSize}
         selectedModel={selectedModel}
         setselectedModel={setselectedModel}
         position={position}

@@ -1,5 +1,6 @@
 import { Box } from "@react-three/drei";
 import { useEffect, useState } from "react";
+import { ThreeEvent } from "react-three-fiber";
 import GridLayout from "../../DesignPage/DesignUtility/GridLayout";
 
 interface Props {
@@ -88,7 +89,8 @@ function ModelBox(props: Props) {
   }, [selectedModel]);
 
   // lock self as selected item when clicked
-  function handleOnClick() {
+  function handleOnClick(e: ThreeEvent<MouseEvent>) {
+    e.stopPropagation();
     setselectedModel({ type: "Box", id });
   }
 

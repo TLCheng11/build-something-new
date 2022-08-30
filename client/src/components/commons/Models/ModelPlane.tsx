@@ -1,5 +1,6 @@
 import { Plane } from "@react-three/drei";
 import { useEffect, useState } from "react";
+import { ThreeEvent } from "react-three-fiber";
 import GridLayout from "../../DesignPage/DesignUtility/GridLayout";
 
 interface Props {
@@ -88,7 +89,8 @@ function ModelPlane(props: Props) {
   }, [selectedModel]);
 
   // lock self as selected item when clicked
-  function handleOnClick() {
+  function handleOnClick(e: ThreeEvent<MouseEvent>) {
+    e.stopPropagation();
     setselectedModel({ type: "Plane", id });
   }
 
@@ -110,8 +112,9 @@ function ModelPlane(props: Props) {
           (selfRotation[1] / 360) * Math.PI * 2,
           (selfRotation[2] / 360) * Math.PI * 2,
         ]}
+        receiveShadow
       >
-        <meshNormalMaterial />
+        <meshBasicMaterial />
       </Plane>
     </>
   );
