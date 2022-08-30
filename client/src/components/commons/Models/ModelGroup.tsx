@@ -122,13 +122,6 @@ function ModelGroup(props: Props) {
 
   return (
     <>
-      {selfShowGrid && (
-        <GridLayout
-          type="Group"
-          gridArgs={gridGroup}
-          gridPosition={selfPosition}
-        />
-      )}
       <group
         // onClick={handleOnClick}
         position={selfPosition}
@@ -138,6 +131,13 @@ function ModelGroup(props: Props) {
           (selfRotation[2] / 360) * Math.PI * 2,
         ]}
       >
+        {selfShowGrid && (
+          <GridLayout
+            type="Group"
+            gridArgs={gridGroup}
+            gridPosition={selfPosition}
+          />
+        )}
         <ModelPlane
           gridModel={gridModel}
           showGridModel={showGridModel}

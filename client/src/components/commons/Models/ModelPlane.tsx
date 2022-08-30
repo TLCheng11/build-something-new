@@ -111,13 +111,6 @@ function ModelPlane(props: Props) {
 
   return (
     <>
-      {selfShowGrid && (
-        <GridLayout
-          type="Model"
-          gridArgs={gridModel}
-          gridPosition={selfPosition}
-        />
-      )}
       <Plane
         args={selfSize}
         onClick={handleOnClick}
@@ -129,6 +122,13 @@ function ModelPlane(props: Props) {
         ]}
         receiveShadow
       >
+        {selfShowGrid && (
+          <GridLayout
+            type="Model"
+            gridArgs={gridModel}
+            gridPosition={selfPosition}
+          />
+        )}
         <meshBasicMaterial color={selfColor} />
       </Plane>
     </>

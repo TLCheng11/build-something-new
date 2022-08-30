@@ -113,13 +113,6 @@ function ModelSphere(props: Props) {
 
   return (
     <>
-      {selfShowGrid && (
-        <GridLayout
-          type="Model"
-          gridArgs={gridModel}
-          gridPosition={selfPosition}
-        />
-      )}
       <Sphere
         args={selfSize}
         onClick={handleOnClick}
@@ -134,6 +127,13 @@ function ModelSphere(props: Props) {
           (selfRotation[2] / 360) * Math.PI * 2,
         ]}
       >
+        {selfShowGrid && (
+          <GridLayout
+            type="Model"
+            gridArgs={gridModel}
+            gridPosition={selfPosition}
+          />
+        )}
         <meshBasicMaterial color={selfColor} />
       </Sphere>
     </>

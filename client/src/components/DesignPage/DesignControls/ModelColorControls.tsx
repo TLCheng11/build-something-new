@@ -1,4 +1,4 @@
-import { ChromePicker } from "react-color";
+import { SketchPicker } from "react-color";
 
 interface Props {
   modelColor: string;
@@ -8,8 +8,6 @@ interface Props {
 function ModelColorControls(props: Props) {
   const { modelColor, setmodelColor } = props;
 
-  console.log(modelColor);
-
   return (
     <div id="model-color-controls" className="h-full w-full bg-gray-600">
       <div id="model-color-selection" className="flex flex-col">
@@ -17,7 +15,7 @@ function ModelColorControls(props: Props) {
           <h1>Model Color:</h1>
         </div>
         <div>
-          <ChromePicker
+          <SketchPicker
             color={modelColor}
             onChangeComplete={(color) => setmodelColor(color.hex)}
           />
