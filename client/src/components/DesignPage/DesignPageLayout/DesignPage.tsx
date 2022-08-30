@@ -21,12 +21,6 @@ function DesignPage(props: Props) {
   const { currentUser } = props;
   let navigate = useNavigate();
 
-  // const selectedModel
-  const [selectedModel, setselectedModel] = useState<{
-    type: string;
-    id: number;
-  }>({ type: "", id: 0 });
-
   // states for grid controls
   const [gridMain, setgridMain] = useState<[number, number, string, string]>([
     10,
@@ -42,6 +36,21 @@ function DesignPage(props: Props) {
     "yellow",
   ]);
   const [showGridModel, setshowGridModel] = useState<boolean>(false);
+
+  // states for Model Group
+  const [selectedGroup, setselectedGroup] = useState<number>(0);
+  const [groupPosition, setgroupPosition] = useState<[number, number, number]>([
+    0, 0, 0,
+  ]);
+  const [groupRotation, setgroupRotation] = useState<[number, number, number]>([
+    0, 0, 0,
+  ]);
+
+  // states for Models
+  const [selectedModel, setselectedModel] = useState<{
+    type: string;
+    id: number;
+  }>({ type: "", id: 0 });
 
   // states for model type selection
   const [modelType, setmodelType] = useState<string>("Plane");
@@ -80,6 +89,10 @@ function DesignPage(props: Props) {
           setshowGridMain={setshowGridMain}
           showGridModel={showGridModel}
           setshowGridModel={setshowGridModel}
+          groupPosition={groupPosition}
+          setgroupPosition={setgroupPosition}
+          groupRotation={groupRotation}
+          setgroupRotation={setgroupRotation}
           modelType={modelType}
           setmodelType={setmodelType}
           selectedModel={selectedModel}

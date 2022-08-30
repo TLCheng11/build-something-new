@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import GridControls from "../DesignControls/GridControls";
+import ModelGroupControls from "../DesignControls/ModelGroupControls";
 import ModelPositionControls from "../DesignControls/ModelPositionContorls";
 import ModelRotationControls from "../DesignControls/ModelRotationControls";
 import ModelSizeContorls from "../DesignControls/ModelSizeControls";
@@ -10,6 +11,14 @@ interface Props {
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
   showGridModel: boolean;
   setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
+  groupPosition: [number, number, number];
+  setgroupPosition: React.Dispatch<
+    React.SetStateAction<[number, number, number]>
+  >;
+  groupRotation: [number, number, number];
+  setgroupRotation: React.Dispatch<
+    React.SetStateAction<[number, number, number]>
+  >;
   modelType: string;
   setmodelType: Dispatch<SetStateAction<string>>;
   selectedModel: {
@@ -32,6 +41,10 @@ function DesignControls(props: Props) {
     setshowGridMain,
     showGridModel,
     setshowGridModel,
+    groupPosition,
+    setgroupPosition,
+    groupRotation,
+    setgroupRotation,
     modelType,
     setmodelType,
     selectedModel,
@@ -52,6 +65,12 @@ function DesignControls(props: Props) {
         showGridModel={showGridModel}
         setshowGridModel={setshowGridModel}
       />
+      <ModelGroupControls
+        groupPosition={groupPosition}
+        setgroupPosition={setgroupPosition}
+        groupRotation={groupRotation}
+        setgroupRotation={setgroupRotation}
+      />
       <ModelTypesControls modelType={modelType} setmodelType={setmodelType} />
       {selectedModel.type && (
         <div>
@@ -63,10 +82,12 @@ function DesignControls(props: Props) {
             setplaneSize={setplaneSize}
           />
           <ModelPositionControls
+            type="Model"
             position={position}
             setposition={setposition}
           />
           <ModelRotationControls
+            type="Model"
             rotation={rotation}
             setrotation={setrotation}
           />

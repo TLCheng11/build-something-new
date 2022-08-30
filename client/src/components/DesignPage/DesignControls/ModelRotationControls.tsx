@@ -1,15 +1,16 @@
 interface Props {
+  type: string;
   rotation: [number, number, number];
   setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function ModelRotationControls(props: Props) {
-  const { rotation, setrotation } = props;
+  const { type, rotation, setrotation } = props;
 
   return (
     <div id="model-rotation-controls" className="h-full w-full bg-gray-600">
       <div>
-        <h1>Model Rotations: (Degrees)</h1>
+        <h1>{type} Rotations: (Degrees)</h1>
       </div>
       <div>
         <label htmlFor="model-X-rotation">X-Rotation:</label>

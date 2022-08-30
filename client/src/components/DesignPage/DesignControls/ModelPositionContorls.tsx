@@ -1,18 +1,19 @@
 import { useState } from "react";
 
 interface Props {
+  type: string;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function ModelPositionControls(props: Props) {
-  const { position, setposition } = props;
+  const { type, position, setposition } = props;
   const [step, setstep] = useState<string>("0.1");
 
   return (
     <div id="model-position-controls" className="h-full w-full bg-gray-600">
       <div>
-        <h1>Model Positions:</h1>
+        <h1>{type} Positions:</h1>
       </div>
       <div>
         <label htmlFor="model-X-position">X-Position:</label>
