@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import GridLayout from "../../DesignPage/DesignUtility/GridLayout";
+import GridLayout from "./GridLayout";
 import ModelBox from "./ModelBox";
 import ModelPlane from "./ModelPlane";
 import ModelSphere from "./ModelSphere";

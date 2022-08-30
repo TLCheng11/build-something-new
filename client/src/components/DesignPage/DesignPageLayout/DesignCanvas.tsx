@@ -1,6 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
 import { applyProps, Canvas } from "react-three-fiber";
-import GridLayout from "../DesignUtility/GridLayout";
+import GridLayout from "../../commons/Models/GridLayout";
 import ModelBox from "../../commons/Models/ModelBox";
 import ModelPlane from "../../commons/Models/ModelPlane";
 import ModelGroup from "../../commons/Models/ModelGroup";

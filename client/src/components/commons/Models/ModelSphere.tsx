@@ -1,7 +1,7 @@
 import { Sphere } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
-import GridLayout from "../../DesignPage/DesignUtility/GridLayout";
+import GridLayout from "./GridLayout";
 
 interface Props {
   gridModel: [number, number, string, string];
