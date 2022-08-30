@@ -34,6 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
 
   create_table "model_groups", force: :cascade do |t|
     t.bigint "project_id", null: false
+    t.string "group_name", default: "Group 1"
     t.float "xposition"
     t.float "yposition"
     t.float "zposition"

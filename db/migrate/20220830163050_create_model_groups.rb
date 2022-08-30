@@ -2,6 +2,7 @@ class CreateModelGroups < ActiveRecord::Migration[7.0]
   def change
     create_table :model_groups do |t|
       t.belongs_to :project, null: false, foreign_key: true
+      t.string :group_name, default: "Group 1"
       t.float :xposition
       t.float :yposition
       t.float :zposition
