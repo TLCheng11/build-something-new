@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
 import DesignPage from "./components/DesignPage/DesignPageLayout/DesignPage";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   const [currentUser, setcurrentUser] = useState<{
@@ -15,8 +16,6 @@ function App() {
     introduction?: string;
     is_login?: boolean;
   }>({});
-
-  console.log(currentUser);
 
   // only authorize logged in users
   useEffect(() => {
@@ -42,7 +41,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<h1>Page Count: </h1>} />
+          <Route path="/" element={<Dashboard currentUser={currentUser} />} />
           <Route
             path="/design-page"
             element={<DesignPage currentUser={currentUser} />}
