@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration[7.0]
       t.string :title
       t.string :tags
       t.string :description
-      t.boolean :on_market
+      t.boolean :on_market, default: false
       t.float :price
       t.integer :sold_count
 

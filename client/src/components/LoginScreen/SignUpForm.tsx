@@ -31,7 +31,7 @@ interface Props {
 function SignUpForm(props: Props) {
   const { currentUser, setcurrentUser, setSignUp } = props;
 
-  const [formInput, setFormInput] = useState({
+  const [formInput, setformInput] = useState({
     username: "",
     email: "",
     password: "",
@@ -85,7 +85,7 @@ function SignUpForm(props: Props) {
       ...formInput,
       [e.target.name]: e.target.value,
     };
-    setFormInput(newInput);
+    setformInput(newInput);
   }
 
   function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
@@ -124,7 +124,6 @@ function SignUpForm(props: Props) {
           method="POST"
           onSubmit={handleSignUp}
         >
-          <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div>
               <label htmlFor="username" className="sr-only">

@@ -86,7 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
     t.string "title"
     t.string "tags"
     t.string "description"
-    t.boolean "on_market"
+    t.boolean "on_market", default: false
     t.float "price"
     t.integer "sold_count"
     t.datetime "created_at", null: false

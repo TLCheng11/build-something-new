@@ -24,7 +24,10 @@ function Dashboard(props: Props) {
   return (
     <div id="dashboard" className="h-screen w-full bg-gray-800 text-white">
       {showProjectForm && (
-        <ProjectInfoForm setshowProjectForm={setshowProjectForm} />
+        <ProjectInfoForm
+          currentUser={currentUser}
+          setshowProjectForm={setshowProjectForm}
+        />
       )}
       <h1>Hi {currentUser.username}</h1>
       <button
