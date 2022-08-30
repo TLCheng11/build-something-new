@@ -65,7 +65,15 @@ function ProjectInfoForm(props: Props) {
       id="project-info-form"
       className="fixed h-full w-full flex items-center justify-center bg-black opacity-70"
     >
-      <div>
+      <div className="border p-3">
+        <div className="flex justify-end">
+          <p
+            className="cursor-pointer hover:text-red-500"
+            onClick={() => setshowProjectForm(false)}
+          >
+            X
+          </p>
+        </div>
         <div>
           <h1>Enter Project Info:</h1>
         </div>
@@ -83,15 +91,18 @@ function ProjectInfoForm(props: Props) {
           <div>
             <label htmlFor="description">Description</label>
             <textarea
-              className="block text-black"
+              className="block text-black w-full"
               name="description"
+              maxLength={255}
               value={formInput.description}
               onChange={onFormChange}
             />
           </div>
-          <button type="submit" className="border">
-            Create
-          </button>
+          <div className="flex justify-center pt-2">
+            <button type="submit" className="border">
+              Create
+            </button>
+          </div>
         </form>
       </div>
     </div>

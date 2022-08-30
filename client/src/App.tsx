@@ -43,7 +43,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard currentUser={currentUser} />} />
           <Route
-            path="/design-page"
+            path="/design-page/:project_id"
             element={<DesignPage currentUser={currentUser} />}
           />
         </Routes>
