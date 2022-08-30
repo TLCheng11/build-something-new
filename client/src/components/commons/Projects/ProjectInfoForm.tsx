@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   currentUser: {
@@ -12,13 +13,11 @@ interface Props {
     introduction?: string | undefined;
     is_login?: boolean | undefined;
   };
-}
-
-interface Props {
   setshowProjectForm: Dispatch<SetStateAction<boolean>>;
 }
 
 function ProjectInfoForm(props: Props) {
+  let navigate = useNavigate();
   const { currentUser, setshowProjectForm } = props;
   const [formInput, setformInput] = useState({
     title: "",
@@ -51,7 +50,7 @@ function ProjectInfoForm(props: Props) {
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          console.log(data);
+          navigate(`/design-page/${data.id}`);
           setshowProjectForm(false);
         });
       } else {
