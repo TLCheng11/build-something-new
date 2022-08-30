@@ -11,6 +11,7 @@ class CreateModelShperes < ActiveRecord::Migration[7.0]
       t.float :yrotation
       t.float :zrotation
       t.string :color
+      t.string :image_url
       t.float :mass
 
       t.timestamps
