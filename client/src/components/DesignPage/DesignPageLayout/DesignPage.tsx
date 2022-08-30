@@ -32,7 +32,7 @@ function DesignPage() {
 
   useEffect(() => {
     if (modelType === "Box") {
-      setsize([1, 1, 1]);
+      setsize([0.5, 0.5, 0.5]);
     } else if (modelType === "Sphere") {
       setsize([1, 32, 16]);
     }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 interface Props {
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
@@ -5,6 +7,7 @@ interface Props {
 
 function ModelPositionControls(props: Props) {
   const { position, setposition } = props;
+  const [step, setstep] = useState<string>("0.1");
 
   return (
     <div id="model-position-controls" className="h-full w-full bg-gray-600">
@@ -15,11 +18,12 @@ function ModelPositionControls(props: Props) {
         <label htmlFor="model-X-position">X-Position:</label>
         <input
           type="number"
+          step={step}
           name="model-X-position"
           value={position[0]}
           onChange={(e) =>
             setposition((position) => [
-              parseInt(e.target.value),
+              parseFloat(e.target.value),
               position[1],
               position[2],
             ])
@@ -30,12 +34,13 @@ function ModelPositionControls(props: Props) {
         <label htmlFor="model-Y-position">Y-Position:</label>
         <input
           type="number"
+          step={step}
           name="model-Y-position"
           value={position[1]}
           onChange={(e) =>
             setposition((position) => [
               position[0],
-              parseInt(e.target.value),
+              parseFloat(e.target.value),
               position[2],
             ])
           }
@@ -45,13 +50,14 @@ function ModelPositionControls(props: Props) {
         <label htmlFor="model-Z-position">Z-Position:</label>
         <input
           type="number"
+          step={step}
           name="model-Z-position"
           value={position[2]}
           onChange={(e) =>
             setposition((position) => [
               position[0],
               position[1],
-              parseInt(e.target.value),
+              parseFloat(e.target.value),
             ])
           }
         />
