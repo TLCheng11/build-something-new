@@ -8,6 +8,8 @@ import ModelTypesControls from "../DesignControls/ModelTypeControls";
 interface Props {
   showGridMain: boolean;
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
+  showGridModel: boolean;
+  setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
   modelType: string;
   setmodelType: Dispatch<SetStateAction<string>>;
   selectedModel: {
@@ -28,6 +30,8 @@ function DesignControls(props: Props) {
   const {
     showGridMain,
     setshowGridMain,
+    showGridModel,
+    setshowGridModel,
     modelType,
     setmodelType,
     selectedModel,
@@ -45,6 +49,8 @@ function DesignControls(props: Props) {
       <GridControls
         showGridMain={showGridMain}
         setshowGridMain={setshowGridMain}
+        showGridModel={showGridModel}
+        setshowGridModel={setshowGridModel}
       />
       <ModelTypesControls modelType={modelType} setmodelType={setmodelType} />
       <ModelSizeContorls

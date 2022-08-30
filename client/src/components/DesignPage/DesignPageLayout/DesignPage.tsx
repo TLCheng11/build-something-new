@@ -17,6 +17,13 @@ function DesignPage() {
     "gray",
   ]);
   const [showGridMain, setshowGridMain] = useState<boolean>(true);
+  const [gridModel, setgridModel] = useState<[number, number, string, string]>([
+    5,
+    10,
+    "blue",
+    "yellow",
+  ]);
+  const [showGridModel, setshowGridModel] = useState<boolean>(false);
 
   // states for model type selection
   const [modelType, setmodelType] = useState<string>("Plane");
@@ -46,6 +53,8 @@ function DesignPage() {
         <DesignControls
           showGridMain={showGridMain}
           setshowGridMain={setshowGridMain}
+          showGridModel={showGridModel}
+          setshowGridModel={setshowGridModel}
           modelType={modelType}
           setmodelType={setmodelType}
           selectedModel={selectedModel}
@@ -63,6 +72,9 @@ function DesignPage() {
         <DesignCanvas
           gridMain={gridMain}
           showGridMain={showGridMain}
+          gridModel={gridModel}
+          showGridModel={showGridModel}
+          setshowGridModel={setshowGridModel}
           size={size}
           setsize={setsize}
           selectedModel={selectedModel}

@@ -1,7 +1,11 @@
 import { Box } from "@react-three/drei";
 import { useEffect, useState } from "react";
+import GridLayout from "../../DesignPage/DesignUtility/GridLayout";
 
 interface Props {
+  gridModel: [number, number, string, string];
+  showGridModel: boolean;
+  setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
   size: [number, number, number];
   setsize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   selectedModel: {
@@ -23,6 +27,9 @@ interface Props {
 
 function ModelBox(props: Props) {
   const {
+    gridModel,
+    showGridModel,
+    setshowGridModel,
     size,
     setsize,
     selectedModel,
@@ -40,6 +47,7 @@ function ModelBox(props: Props) {
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
+  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
 
   useEffect(() => {
     if (selectedModel.type === "Box" && selectedModel.id === id) {
@@ -61,9 +69,18 @@ function ModelBox(props: Props) {
 
   useEffect(() => {
     if (selectedModel.type === "Box" && selectedModel.id === id) {
+      setselfShowGrid(showGridModel);
+    }
+  }, [showGridModel]);
+
+  useEffect(() => {
+    if (selectedModel.type === "Box" && selectedModel.id === id) {
       setsize(selfSize);
       setposition(selfPosition);
       setrotation(selfRotation);
+      setselfShowGrid(showGridModel);
+    } else {
+      setselfShowGrid(false);
     }
   }, [selectedModel]);
 
@@ -72,18 +89,27 @@ function ModelBox(props: Props) {
   }
 
   return (
-    <Box
-      args={selfSize}
-      onClick={handleOnClick}
-      position={selfPosition}
-      rotation={[
-        (selfRotation[0] / 360) * Math.PI * 2,
-        (selfRotation[1] / 360) * Math.PI * 2,
-        (selfRotation[2] / 360) * Math.PI * 2,
-      ]}
-    >
-      <meshNormalMaterial />
-    </Box>
+    <>
+      {selfShowGrid && (
+        <GridLayout
+          type="Model"
+          gridArgs={gridModel}
+          gridPosition={selfPosition}
+        />
+      )}
+      <Box
+        args={selfSize}
+        onClick={handleOnClick}
+        position={selfPosition}
+        rotation={[
+          (selfRotation[0] / 360) * Math.PI * 2,
+          (selfRotation[1] / 360) * Math.PI * 2,
+          (selfRotation[2] / 360) * Math.PI * 2,
+        ]}
+      >
+        <meshNormalMaterial />
+      </Box>
+    </>
   );
 }
 

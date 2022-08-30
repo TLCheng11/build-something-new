@@ -6,6 +6,9 @@ import ModelBox from "../../commons/Models/ModelBox";
 interface Props {
   gridMain: [number, number, string, string];
   showGridMain: boolean;
+  gridModel: [number, number, string, string];
+  showGridModel: boolean;
+  setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
   size: [number, number, number];
   setsize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   selectedModel: {
@@ -28,6 +31,9 @@ function DesignCanvas(props: Props) {
   const {
     gridMain,
     showGridMain,
+    gridModel,
+    showGridModel,
+    setshowGridModel,
     size,
     setsize,
     selectedModel,
@@ -42,8 +48,11 @@ function DesignCanvas(props: Props) {
     <div id="design-canvas" className="h-full w-full bg-gray-400">
       <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
         <OrbitControls />
-        {showGridMain && <GridLayout gridMain={gridMain} />}
+        {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
         <ModelBox
+          gridModel={gridModel}
+          showGridModel={showGridModel}
+          setshowGridModel={setshowGridModel}
           size={size}
           setsize={setsize}
           selectedModel={selectedModel}
@@ -55,6 +64,9 @@ function DesignCanvas(props: Props) {
           id={1}
         />
         <ModelBox
+          gridModel={gridModel}
+          showGridModel={showGridModel}
+          setshowGridModel={setshowGridModel}
           size={size}
           setsize={setsize}
           selectedModel={selectedModel}
