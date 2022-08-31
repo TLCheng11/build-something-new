@@ -85,6 +85,7 @@ function DesignCanvas(props: Props) {
 
   const showModelGroups = currentProject.model_groups.map((group) => (
     <ModelGroup
+      key={group.id}
       group={group}
       gridGroup={gridGroup}
       showGridGroup={showGridGroup}
@@ -119,32 +120,6 @@ function DesignCanvas(props: Props) {
         <OrbitControls />
         {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
         {showModelGroups}
-        {/* <ModelGroup
-          gridGroup={gridGroup}
-          showGridGroup={showGridGroup}
-          gridModel={gridModel}
-          showGridModel={showGridModel}
-          selectedGroup={selectedGroup}
-          setselectedGroup={setselectedGroup}
-          groupPosition={groupPosition}
-          setgroupPosition={setgroupPosition}
-          groupRotation={groupRotation}
-          setgroupRotation={setgroupRotation}
-          selectedModel={selectedModel}
-          setselectedModel={setselectedModel}
-          planeSize={planeSize}
-          setplaneSize={setplaneSize}
-          boxSize={boxSize}
-          setboxSize={setboxSize}
-          sphereSize={sphereSize}
-          setsphereSize={setsphereSize}
-          position={position}
-          setposition={setposition}
-          rotation={rotation}
-          setrotation={setrotation}
-          modelColor={modelColor}
-          setmodelColor={setmodelColor}
-        /> */}
       </Canvas>
     </div>
   );

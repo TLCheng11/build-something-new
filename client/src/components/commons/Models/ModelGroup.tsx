@@ -77,14 +77,19 @@ function ModelGroup(props: Props) {
   // states for all self properties
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
-    0, 0, 0,
+    group.xposition || 0,
+    group.yposition || 0,
+    group.zposition || 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
-    0, 0, 0,
+    group.xrotation || 0,
+    group.yrotation || 0,
+    group.zrotation || 0,
   ]);
 
   const showModelPlanes = group.model_planes?.map((plane) => (
     <ModelPlane
+      key={plane.id}
       plane={plane}
       gridModel={gridModel}
       showGridModel={showGridModel}
@@ -103,6 +108,7 @@ function ModelGroup(props: Props) {
 
   const showModelBoxes = group.model_boxes?.map((box) => (
     <ModelBox
+      key={box.id}
       box={box}
       gridModel={gridModel}
       showGridModel={showGridModel}
@@ -121,6 +127,7 @@ function ModelGroup(props: Props) {
 
   const showModelSpheres = group.model_spheres?.map((sphere) => (
     <ModelSphere
+      key={sphere.id}
       sphere={sphere}
       gridModel={gridModel}
       showGridModel={showGridModel}
@@ -140,14 +147,14 @@ function ModelGroup(props: Props) {
   // set position
   useEffect(() => {
     if (selectedGroup === group.id) {
-      setSelfPosition(groupPosition);
+      setSelfPosition([groupPosition[0], groupPosition[1], groupPosition[2]]);
     }
   }, [groupPosition]);
 
   // set rotation
   useEffect(() => {
     if (selectedGroup === group.id) {
-      setselfRotation(groupRotation);
+      setselfRotation([groupRotation[0], groupRotation[1], groupRotation[2]]);
     }
   }, [groupRotation]);
 
@@ -166,8 +173,34 @@ function ModelGroup(props: Props) {
       setselfShowGrid(showGridGroup);
     } else {
       setselfShowGrid(false);
+      saveGroup();
     }
   }, [selectedGroup]);
+
+  // save on leaving page
+  // useEffect(() => {
+  //   return () => saveGroup();
+  // }, []);
+
+  function saveGroup() {
+    fetch(`/model_groups/${group.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        xposition: selfPosition[0],
+        yposition: selfPosition[1],
+        zposition: selfPosition[2],
+        xrotation: selfRotation[0],
+        yrotation: selfRotation[1],
+        zrotation: selfRotation[2],
+      }),
+    })
+      .then((res) => res.json())
+      .then(console.log)
+      .catch(console.error);
+  }
 
   return (
     <>

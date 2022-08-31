@@ -80,6 +80,7 @@ function DesignPage(props: Props) {
   const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("#396BA7");
 
+  // to protect this page route
   useEffect(() => {
     if (!currentUser.id) {
       navigate("/");
