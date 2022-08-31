@@ -24,8 +24,22 @@ function DesignPage(props: Props) {
   const [currentProject, setcurrentProject] = useState<{
     id?: number;
     title?: string;
-    model_groups?: [{}];
-  }>({});
+    model_groups: [
+      {
+        id?: number;
+        group_name?: string;
+        xposition?: number;
+        yposition?: number;
+        zposition?: number;
+        xrotation?: number;
+        yrotation?: number;
+        zrotation?: number;
+        model_boxed?: [];
+        model_planes?: [];
+        model_sphere?: [];
+      }
+    ];
+  }>({ model_groups: [{}] });
 
   // states for grid controls
   const [gridMain, setgridMain] = useState<[number, number, string, string]>([
@@ -141,6 +155,7 @@ function DesignPage(props: Props) {
       </div>
       <div id="design-canvas-holder" className="h-full w-3/4 border">
         <DesignCanvas
+          currentProject={currentProject}
           gridMain={gridMain}
           showGridMain={showGridMain}
           gridGroup={gridGroup}

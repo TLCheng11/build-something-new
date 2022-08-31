@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { ModelGroupProps } from "../../../Interface";
 import GridLayout from "./GridLayout";
 import ModelBox from "./ModelBox";
 import ModelPlane from "./ModelPlane";
 import ModelSphere from "./ModelSphere";
 
 interface Props {
+  group: ModelGroupProps;
   gridGroup: [number, number, string, string];
   showGridGroup: boolean;
   gridModel: [number, number, string, string];
@@ -45,6 +47,7 @@ interface Props {
 
 function ModelGroup(props: Props) {
   const {
+    group,
     gridGroup,
     showGridGroup,
     gridModel,
@@ -71,8 +74,6 @@ function ModelGroup(props: Props) {
     setmodelColor,
   } = props;
 
-  const name = "";
-
   // states for all self properties
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
@@ -84,28 +85,28 @@ function ModelGroup(props: Props) {
 
   // set position
   useEffect(() => {
-    if (selectedGroup === name) {
+    if (selectedGroup === group.group_name) {
       setSelfPosition(groupPosition);
     }
   }, [groupPosition]);
 
   // set rotation
   useEffect(() => {
-    if (selectedGroup === name) {
+    if (selectedGroup === group.group_name) {
       setselfRotation(groupRotation);
     }
   }, [groupRotation]);
 
   // toggle grids
   useEffect(() => {
-    if (selectedGroup === name) {
+    if (selectedGroup === group.group_name) {
       setselfShowGrid(showGridGroup);
     }
   }, [showGridGroup]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedGroup === name) {
+    if (selectedGroup === group.group_name) {
       setgroupPosition(selfPosition);
       setgroupRotation(selfRotation);
       setselfShowGrid(showGridGroup);

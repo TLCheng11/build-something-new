@@ -4,8 +4,14 @@ import GridLayout from "../../commons/Models/GridLayout";
 import ModelBox from "../../commons/Models/ModelBox";
 import ModelPlane from "../../commons/Models/ModelPlane";
 import ModelGroup from "../../commons/Models/ModelGroup";
+import { ModelGroupProps } from "../../../Interface";
 
 interface Props {
+  currentProject: {
+    id?: number | undefined;
+    title?: string | undefined;
+    model_groups: [ModelGroupProps];
+  };
   gridMain: [number, number, string, string];
   showGridMain: boolean;
   gridGroup: [number, number, string, string];
@@ -48,6 +54,7 @@ interface Props {
 
 function DesignCanvas(props: Props) {
   const {
+    currentProject,
     gridMain,
     showGridMain,
     gridModel,
@@ -76,12 +83,43 @@ function DesignCanvas(props: Props) {
     setmodelColor,
   } = props;
 
+  const showModelGroups = currentProject.model_groups.map((group) => (
+    <ModelGroup
+      group={group}
+      gridGroup={gridGroup}
+      showGridGroup={showGridGroup}
+      gridModel={gridModel}
+      showGridModel={showGridModel}
+      selectedGroup={selectedGroup}
+      setselectedGroup={setselectedGroup}
+      groupPosition={groupPosition}
+      setgroupPosition={setgroupPosition}
+      groupRotation={groupRotation}
+      setgroupRotation={setgroupRotation}
+      selectedModel={selectedModel}
+      setselectedModel={setselectedModel}
+      planeSize={planeSize}
+      setplaneSize={setplaneSize}
+      boxSize={boxSize}
+      setboxSize={setboxSize}
+      sphereSize={sphereSize}
+      setsphereSize={setsphereSize}
+      position={position}
+      setposition={setposition}
+      rotation={rotation}
+      setrotation={setrotation}
+      modelColor={modelColor}
+      setmodelColor={setmodelColor}
+    />
+  ));
+
   return (
     <div id="design-canvas" className="h-full w-full bg-gray-400">
       <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
         <OrbitControls />
         {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
-        <ModelGroup
+        {showModelGroups}
+        {/* <ModelGroup
           gridGroup={gridGroup}
           showGridGroup={showGridGroup}
           gridModel={gridModel}
@@ -106,7 +144,7 @@ function DesignCanvas(props: Props) {
           setrotation={setrotation}
           modelColor={modelColor}
           setmodelColor={setmodelColor}
-        />
+        /> */}
       </Canvas>
     </div>
   );
