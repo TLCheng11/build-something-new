@@ -1,7 +1,16 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ModelPositionControls from "./ModelPositionContorls";
 import ModelRotationControls from "./ModelRotationControls";
 
 interface Props {
+  currentProject: {
+    id?: number | undefined;
+    title?: string | undefined;
+    model_groups?: [any] | undefined;
+  };
+  selectedGroup: string;
+  setselectedGroup: React.Dispatch<React.SetStateAction<string>>;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -13,11 +22,70 @@ interface Props {
 }
 
 function ModelGroupControls(props: Props) {
-  const { groupPosition, setgroupPosition, groupRotation, setgroupRotation } =
-    props;
+  const {
+    currentProject,
+    selectedGroup,
+    setselectedGroup,
+    groupPosition,
+    setgroupPosition,
+    groupRotation,
+    setgroupRotation,
+  } = props;
+  const [groupName, setgroupName] = useState<string>("");
+  const params = useParams();
+
+  const groupList = currentProject.model_groups?.map((group) => (
+    <option key={group.id} value={group.group_name}>
+      {group.group_name}
+    </option>
+  ));
+
+  function createGroup(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    fetch("/model_groups", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        project_id: params.project_id,
+        group_name: groupName,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((data) => setselectedGroup(data.group_name));
+        } else {
+          res.json().then((message) => alert(message.errors));
+        }
+      })
+      .catch(console.error);
+  }
 
   return (
-    <div>
+    <div className="h-full w-full bg-gray-600 border">
+      <div className="flex">
+        <h1>New Group:</h1>
+        <form onSubmit={createGroup}>
+          <input
+            name="group-name"
+            placeholder="Enter Group Name"
+            value={groupName}
+            onChange={(e) => setgroupName(e.target.value)}
+            required
+          />
+          <button type="submit">Create</button>
+        </form>
+      </div>
+      <div className="flex">
+        <h1>Select Group</h1>
+        <select
+          value={selectedGroup}
+          onChange={(e) => setselectedGroup(e.target.value)}
+        >
+          {groupList}
+        </select>
+      </div>
       <ModelPositionControls
         type="Group"
         position={groupPosition}

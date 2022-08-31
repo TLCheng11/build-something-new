@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       resources :projects, only: [:index]
     end
     resources :projects, only: [:show, :create]
-    # resources :model_groups
+    resources :model_groups, only: [:create]
     # resources :model_planes
     # resources :model_boxes
     # resources :model_spheres

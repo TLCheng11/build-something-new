@@ -9,14 +9,19 @@ import ModelSizeContorls from "../DesignControls/ModelSizeControls";
 import ModelTypesControls from "../DesignControls/ModelTypeControls";
 
 interface Props {
+  currentProject: {
+    id?: number | undefined;
+    title?: string | undefined;
+    model_groups?: [any] | undefined;
+  };
   showGridMain: boolean;
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
   showGridGroup: boolean;
   setshowGridGroup: React.Dispatch<React.SetStateAction<boolean>>;
   showGridModel: boolean;
   setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedGroup: number;
-  setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
+  selectedGroup: string;
+  setselectedGroup: React.Dispatch<React.SetStateAction<string>>;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -48,6 +53,7 @@ interface Props {
 function DesignControls(props: Props) {
   let navigate = useNavigate();
   const {
+    currentProject,
     showGridMain,
     setshowGridMain,
     showGridGroup,
@@ -91,6 +97,9 @@ function DesignControls(props: Props) {
         setshowGridModel={setshowGridModel}
       />
       <ModelGroupControls
+        currentProject={currentProject}
+        selectedGroup={selectedGroup}
+        setselectedGroup={setselectedGroup}
         groupPosition={groupPosition}
         setgroupPosition={setgroupPosition}
         groupRotation={groupRotation}

@@ -9,8 +9,8 @@ interface Props {
   showGridGroup: boolean;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
-  selectedGroup: number;
-  setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
+  selectedGroup: string;
+  setselectedGroup: React.Dispatch<React.SetStateAction<string>>;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -71,7 +71,7 @@ function ModelGroup(props: Props) {
     setmodelColor,
   } = props;
 
-  const id = 0;
+  const name = "";
 
   // states for all self properties
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
@@ -84,28 +84,28 @@ function ModelGroup(props: Props) {
 
   // set position
   useEffect(() => {
-    if (selectedGroup === id) {
+    if (selectedGroup === name) {
       setSelfPosition(groupPosition);
     }
   }, [groupPosition]);
 
   // set rotation
   useEffect(() => {
-    if (selectedGroup === id) {
+    if (selectedGroup === name) {
       setselfRotation(groupRotation);
     }
   }, [groupRotation]);
 
   // toggle grids
   useEffect(() => {
-    if (selectedGroup === id) {
+    if (selectedGroup === name) {
       setselfShowGrid(showGridGroup);
     }
   }, [showGridGroup]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedGroup === id) {
+    if (selectedGroup === name) {
       setgroupPosition(selfPosition);
       setgroupRotation(selfRotation);
       setselfShowGrid(showGridGroup);

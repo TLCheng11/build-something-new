@@ -21,6 +21,11 @@ function DesignPage(props: Props) {
   const { currentUser } = props;
   let navigate = useNavigate();
   const params = useParams();
+  const [currentProject, setcurrentProject] = useState<{
+    id?: number;
+    title?: string;
+    model_groups?: [any];
+  }>({});
 
   // states for grid controls
   const [gridMain, setgridMain] = useState<[number, number, string, string]>([
@@ -46,7 +51,7 @@ function DesignPage(props: Props) {
   const [showGridModel, setshowGridModel] = useState<boolean>(false);
 
   // states for Model Group
-  const [selectedGroup, setselectedGroup] = useState<number>(0);
+  const [selectedGroup, setselectedGroup] = useState<string>("");
   const [groupPosition, setgroupPosition] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
@@ -92,13 +97,19 @@ function DesignPage(props: Props) {
   useEffect(() => {
     fetch(`/projects/${params.project_id}`)
       .then((res) => res.json())
-      .then(console.log);
+      .then((data) => {
+        setcurrentProject(data);
+        setselectedGroup(data.model_groups[0].group_name);
+      });
   }, []);
+
+  console.log(currentProject);
 
   return (
     <div id="design-page" className="flex h-screen w-screen bg-black">
       <div id="design-controls-holder" className="h-full w-1/4">
         <DesignControls
+          currentProject={currentProject}
           showGridMain={showGridMain}
           setshowGridMain={setshowGridMain}
           showGridGroup={showGridGroup}

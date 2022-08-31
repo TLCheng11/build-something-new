@@ -38,7 +38,7 @@ function ProjectInfoForm(props: Props) {
 
   function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    fetch("projects", {
+    fetch("/projects", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
