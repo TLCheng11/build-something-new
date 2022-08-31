@@ -18,8 +18,8 @@ interface Props {
   showGridGroup: boolean;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
-  selectedGroup: string;
-  setselectedGroup: React.Dispatch<React.SetStateAction<string>>;
+  selectedGroup: number;
+  setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>

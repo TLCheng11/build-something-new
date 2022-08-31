@@ -57,42 +57,42 @@ function ModelBox(props: Props) {
 
   // set size
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === id) {
       setselfSize(boxSize);
     }
   }, [boxSize]);
 
   // set position
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === id) {
       setSelfPosition(position);
     }
   }, [position]);
 
   // set rotation
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === id) {
       setselfRotation(rotation);
     }
   }, [rotation]);
 
   // set color
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === id) {
       setselfColor(modelColor);
     }
   }, [modelColor]);
 
   // toggle grids
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === id) {
       setselfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedModel.type === "box" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === id) {
       setselfShowGrid(showGridModel);
       setboxSize(selfSize);
       setposition(selfPosition);
@@ -106,20 +106,20 @@ function ModelBox(props: Props) {
   // lock self as selected item when clicked
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
-    setselectedModel({ type: "box", id });
+    setselectedModel({ type: "boxes", id });
   }
 
   return (
     <>
       <Box
         args={selfSize}
-        onClick={handleOnClick}
         position={[selfPosition[0], selfPosition[1], selfPosition[2]]}
         rotation={[
           (selfRotation[0] / 360) * Math.PI * 2,
           (selfRotation[1] / 360) * Math.PI * 2,
           (selfRotation[2] / 360) * Math.PI * 2,
         ]}
+        onClick={handleOnClick}
       >
         {selfShowGrid && (
           <GridLayout

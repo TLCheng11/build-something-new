@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ModelGroupProps } from "../../../Interface";
 import ModelPositionControls from "./ModelPositionContorls";
 import ModelRotationControls from "./ModelRotationControls";
 
@@ -7,10 +8,10 @@ interface Props {
   currentProject: {
     id?: number | undefined;
     title?: string | undefined;
-    model_groups?: [any] | undefined;
+    model_groups?: [ModelGroupProps] | undefined;
   };
-  selectedGroup: string;
-  setselectedGroup: React.Dispatch<React.SetStateAction<string>>;
+  selectedGroup: number;
+  setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -35,7 +36,7 @@ function ModelGroupControls(props: Props) {
   const params = useParams();
 
   const groupList = currentProject.model_groups?.map((group) => (
-    <option key={group.id} value={group.group_name}>
+    <option key={group.id} value={group.id}>
       {group.group_name}
     </option>
   ));
@@ -54,7 +55,7 @@ function ModelGroupControls(props: Props) {
     })
       .then((res) => {
         if (res.ok) {
-          res.json().then((data) => setselectedGroup(data.group_name));
+          res.json().then((data) => setselectedGroup(data.id));
         } else {
           res.json().then((message) => alert(message.errors));
         }
@@ -81,7 +82,7 @@ function ModelGroupControls(props: Props) {
         <h1>Select Group</h1>
         <select
           value={selectedGroup}
-          onChange={(e) => setselectedGroup(e.target.value)}
+          onChange={(e) => setselectedGroup(parseInt(e.target.value))}
         >
           {groupList}
         </select>

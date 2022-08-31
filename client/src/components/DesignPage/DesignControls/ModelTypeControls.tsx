@@ -8,6 +8,16 @@ interface Props {
 function ModelTypesControls(props: Props) {
   const { modelType, setmodelType } = props;
 
+  function addModel() {
+    fetch(`/${modelType}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    });
+  }
+
   return (
     <div id="model-type-controls" className="h-full w-full bg-gray-600">
       <h1>Model Control:</h1>
@@ -19,9 +29,9 @@ function ModelTypesControls(props: Props) {
             value={modelType}
             onChange={(e) => setmodelType(e.target.value)}
           >
-            <option value="plane">Plane</option>
-            <option value="box">Box</option>
-            <option value="sphere">Sphere</option>
+            <option value="planes">Plane</option>
+            <option value="boxes">Box</option>
+            <option value="spheres">Sphere</option>
           </select>
         </div>
         <button id="add-model" className="border">

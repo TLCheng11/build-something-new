@@ -11,8 +11,8 @@ interface Props {
   showGridGroup: boolean;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
-  selectedGroup: string;
-  setselectedGroup: React.Dispatch<React.SetStateAction<string>>;
+  selectedGroup: number;
+  setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -83,30 +83,48 @@ function ModelGroup(props: Props) {
     0, 0, 0,
   ]);
 
+  const showModelPlane = group.model_planes?.map((plane) => (
+    <ModelPlane
+      plane={plane}
+      gridModel={gridModel}
+      showGridModel={showGridModel}
+      planeSize={planeSize}
+      setplaneSize={setplaneSize}
+      selectedModel={selectedModel}
+      setselectedModel={setselectedModel}
+      position={position}
+      setposition={setposition}
+      rotation={rotation}
+      setrotation={setrotation}
+      modelColor={modelColor}
+      setmodelColor={setmodelColor}
+    />
+  ));
+
   // set position
   useEffect(() => {
-    if (selectedGroup === group.group_name) {
+    if (selectedGroup === group.id) {
       setSelfPosition(groupPosition);
     }
   }, [groupPosition]);
 
   // set rotation
   useEffect(() => {
-    if (selectedGroup === group.group_name) {
+    if (selectedGroup === group.id) {
       setselfRotation(groupRotation);
     }
   }, [groupRotation]);
 
   // toggle grids
   useEffect(() => {
-    if (selectedGroup === group.group_name) {
+    if (selectedGroup === group.id) {
       setselfShowGrid(showGridGroup);
     }
   }, [showGridGroup]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedGroup === group.group_name) {
+    if (selectedGroup === group.id) {
       setgroupPosition(selfPosition);
       setgroupRotation(selfRotation);
       setselfShowGrid(showGridGroup);
@@ -114,12 +132,6 @@ function ModelGroup(props: Props) {
       setselfShowGrid(false);
     }
   }, [selectedGroup]);
-
-  // lock self as selected item when clicked
-  // function handleOnClick(e: ThreeEvent<MouseEvent>) {
-  //   e.stopPropagation();
-  //   setselectedGroup(0);
-  // }
 
   return (
     <>
@@ -139,21 +151,7 @@ function ModelGroup(props: Props) {
             gridPosition={[0, 0, 0]}
           />
         )}
-        <ModelPlane
-          gridModel={gridModel}
-          showGridModel={showGridModel}
-          planeSize={planeSize}
-          setplaneSize={setplaneSize}
-          selectedModel={selectedModel}
-          setselectedModel={setselectedModel}
-          position={position}
-          setposition={setposition}
-          rotation={rotation}
-          setrotation={setrotation}
-          modelColor={modelColor}
-          setmodelColor={setmodelColor}
-          id={1}
-        />
+
         <ModelBox
           gridModel={gridModel}
           showGridModel={showGridModel}

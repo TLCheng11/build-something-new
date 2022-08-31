@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { ModelGroupProps } from "../../../Interface";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
@@ -24,21 +25,7 @@ function DesignPage(props: Props) {
   const [currentProject, setcurrentProject] = useState<{
     id?: number;
     title?: string;
-    model_groups: [
-      {
-        id?: number;
-        group_name?: string;
-        xposition?: number;
-        yposition?: number;
-        zposition?: number;
-        xrotation?: number;
-        yrotation?: number;
-        zrotation?: number;
-        model_boxed?: [];
-        model_planes?: [];
-        model_sphere?: [];
-      }
-    ];
+    model_groups: [ModelGroupProps];
   }>({ model_groups: [{}] });
 
   // states for grid controls
@@ -65,7 +52,7 @@ function DesignPage(props: Props) {
   const [showGridModel, setshowGridModel] = useState<boolean>(false);
 
   // states for Model Group
-  const [selectedGroup, setselectedGroup] = useState<string>("");
+  const [selectedGroup, setselectedGroup] = useState<number>(0);
   const [groupPosition, setgroupPosition] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
@@ -113,11 +100,9 @@ function DesignPage(props: Props) {
       .then((res) => res.json())
       .then((data) => {
         setcurrentProject(data);
-        setselectedGroup((group) => group || data.model_groups[0].group_name);
+        setselectedGroup((group) => group || data.model_groups[0].id);
       });
   }, [selectedGroup]);
-
-  console.log(currentProject);
 
   return (
     <div id="design-page" className="flex h-screen w-screen bg-black">

@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
+import { ModelGroupProps } from "../../../Interface";
 import GridControls from "../DesignControls/GridControls";
 import ModelColorControls from "../DesignControls/ModelColorControls";
 import ModelGroupControls from "../DesignControls/ModelGroupControls";
@@ -12,7 +13,7 @@ interface Props {
   currentProject: {
     id?: number | undefined;
     title?: string | undefined;
-    model_groups?: [any] | undefined;
+    model_groups: [ModelGroupProps];
   };
   showGridMain: boolean;
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
@@ -20,8 +21,8 @@ interface Props {
   setshowGridGroup: React.Dispatch<React.SetStateAction<boolean>>;
   showGridModel: boolean;
   setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedGroup: string;
-  setselectedGroup: React.Dispatch<React.SetStateAction<string>>;
+  selectedGroup: number;
+  setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
