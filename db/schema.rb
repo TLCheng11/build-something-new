@@ -49,10 +49,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
 
   create_table "model_planes", force: :cascade do |t|
     t.bigint "model_group_id", null: false
-    t.float "width", default: 10.0
-    t.float "depth", default: 10.0
+    t.float "width", default: 5.0
+    t.float "depth", default: 5.0
     t.float "xposition", default: 0.0
-    t.float "yposition", default: 4.0
+    t.float "yposition", default: 0.0
     t.float "zposition", default: 0.0
     t.float "xrotation", default: 0.0
     t.float "yrotation", default: 0.0

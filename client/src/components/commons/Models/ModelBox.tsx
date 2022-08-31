@@ -1,9 +1,11 @@
 import { Box } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
+import { ModelBoxProps } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
+  box: ModelBoxProps;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
   selectedModel: {
@@ -24,11 +26,11 @@ interface Props {
   setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   modelColor: string;
   setmodelColor: React.Dispatch<React.SetStateAction<string>>;
-  id: number;
 }
 
 function ModelBox(props: Props) {
   const {
+    box,
     gridModel,
     showGridModel,
     selectedModel,
@@ -41,58 +43,65 @@ function ModelBox(props: Props) {
     setrotation,
     modelColor,
     setmodelColor,
-    id,
   } = props;
 
   // states for all self properties
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
-  const [selfSize, setselfSize] = useState<[number, number, number]>([1, 1, 1]);
+  const [selfSize, setselfSize] = useState<[number, number, number]>([
+    box.width || 1,
+    box.height || 1,
+    box.depth || 1,
+  ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
-    0, 4, 0,
+    box.xposition || 0,
+    box.yposition || 4,
+    box.zposition || 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
-    0, 0, 0,
+    box.xrotation || 0,
+    box.yrotation || 0,
+    box.zrotation || 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>("#D0021B");
+  const [selfColor, setselfColor] = useState<string>(box.color || "#D0021B");
 
   // set size
   useEffect(() => {
-    if (selectedModel.type === "boxes" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setselfSize(boxSize);
     }
   }, [boxSize]);
 
   // set position
   useEffect(() => {
-    if (selectedModel.type === "boxes" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setSelfPosition(position);
     }
   }, [position]);
 
   // set rotation
   useEffect(() => {
-    if (selectedModel.type === "boxes" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setselfRotation(rotation);
     }
   }, [rotation]);
 
   // set color
   useEffect(() => {
-    if (selectedModel.type === "boxes" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setselfColor(modelColor);
     }
   }, [modelColor]);
 
   // toggle grids
   useEffect(() => {
-    if (selectedModel.type === "boxes" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setselfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedModel.type === "boxes" && selectedModel.id === id) {
+    if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setselfShowGrid(showGridModel);
       setboxSize(selfSize);
       setposition(selfPosition);
@@ -106,7 +115,7 @@ function ModelBox(props: Props) {
   // lock self as selected item when clicked
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
-    setselectedModel({ type: "boxes", id });
+    setselectedModel({ type: "boxes", id: box.id || 0 });
   }
 
   return (

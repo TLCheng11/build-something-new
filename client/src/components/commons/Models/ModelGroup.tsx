@@ -101,6 +101,24 @@ function ModelGroup(props: Props) {
     />
   ));
 
+  const showModelBoxes = group.model_boxed?.map((box) => (
+    <ModelBox
+      box={box}
+      gridModel={gridModel}
+      showGridModel={showGridModel}
+      boxSize={boxSize}
+      setboxSize={setboxSize}
+      selectedModel={selectedModel}
+      setselectedModel={setselectedModel}
+      position={position}
+      setposition={setposition}
+      rotation={rotation}
+      setrotation={setrotation}
+      modelColor={modelColor}
+      setmodelColor={setmodelColor}
+    />
+  ));
+
   // set position
   useEffect(() => {
     if (selectedGroup === group.id) {
@@ -152,21 +170,7 @@ function ModelGroup(props: Props) {
           />
         )}
         {showModelPlanes}
-        <ModelBox
-          gridModel={gridModel}
-          showGridModel={showGridModel}
-          boxSize={boxSize}
-          setboxSize={setboxSize}
-          selectedModel={selectedModel}
-          setselectedModel={setselectedModel}
-          position={position}
-          setposition={setposition}
-          rotation={rotation}
-          setrotation={setrotation}
-          modelColor={modelColor}
-          setmodelColor={setmodelColor}
-          id={1}
-        />
+
         <ModelSphere
           gridModel={gridModel}
           showGridModel={showGridModel}

@@ -22,6 +22,7 @@ function DesignPage(props: Props) {
   const { currentUser } = props;
   let navigate = useNavigate();
   const params = useParams();
+  const [notFound, setnotFound] = useState<boolean>(false);
   const [currentProject, setcurrentProject] = useState<{
     id?: number;
     title?: string;
@@ -86,13 +87,27 @@ function DesignPage(props: Props) {
   }, []);
 
   useEffect(() => {
-    fetch(`/projects/${params.project_id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setcurrentProject(data);
-        setselectedGroup((group) => group || data.model_groups[0].id);
-      });
+    fetch(`/projects/${params.project_id}`).then((res) => {
+      if (res.ok) {
+        res
+          .json()
+          .then((data) => {
+            setcurrentProject(data);
+            setselectedGroup((group) => group || data.model_groups[0].id);
+          })
+          .catch(console.error);
+      } else {
+        const id = setTimeout(() => {
+          navigate("/");
+        }, 2000);
+        setnotFound(true);
+
+        return () => clearInterval(id);
+      }
+    });
   }, [selectedGroup, selectedModel]);
+
+  if (notFound) return <h1>Page Not Found</h1>;
 
   return (
     <div id="design-page" className="flex h-screen w-screen bg-black">
