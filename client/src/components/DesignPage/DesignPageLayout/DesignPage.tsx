@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
@@ -20,6 +20,7 @@ interface Props {
 function DesignPage(props: Props) {
   const { currentUser } = props;
   let navigate = useNavigate();
+  const params = useParams();
 
   // states for grid controls
   const [gridMain, setgridMain] = useState<[number, number, string, string]>([
@@ -86,6 +87,12 @@ function DesignPage(props: Props) {
     if (!currentUser.id) {
       navigate("/");
     }
+  }, []);
+
+  useEffect(() => {
+    fetch(`/projects/${params.project_id}`)
+      .then((res) => res.json())
+      .then(console.log);
   }, []);
 
   return (

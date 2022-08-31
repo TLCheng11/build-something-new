@@ -64,7 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
     t.index ["model_group_id"], name: "index_model_planes_on_model_group_id"
   end
 
-  create_table "model_shperes", force: :cascade do |t|
+  create_table "model_spheres", force: :cascade do |t|
     t.bigint "model_group_id", null: false
     t.float "width"
     t.float "depth"
@@ -79,7 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
     t.float "mass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["model_group_id"], name: "index_model_shperes_on_model_group_id"
+    t.index ["model_group_id"], name: "index_model_spheres_on_model_group_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -122,7 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
   add_foreign_key "model_boxes", "model_groups"
   add_foreign_key "model_groups", "projects"
   add_foreign_key "model_planes", "model_groups"
-  add_foreign_key "model_shperes", "model_groups"
+  add_foreign_key "model_spheres", "model_groups"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
 end

@@ -10,6 +10,11 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # GET /projects/1
+  def show
+    render json: @project, serializer: ProjectShowSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
+  end
+
   # POST /projects
   def create
     @project = Project.create!(project_params)

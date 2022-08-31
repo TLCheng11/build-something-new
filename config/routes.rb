@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     # resources :model_groups
     # resources :model_planes
     # resources :model_boxes
-    # resources :model_shperes
+    # resources :model_spheres
 
   # redirect to frontend routing
     get '*path',
