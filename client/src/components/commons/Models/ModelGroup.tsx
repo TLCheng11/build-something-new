@@ -101,7 +101,7 @@ function ModelGroup(props: Props) {
     />
   ));
 
-  const showModelBoxes = group.model_boxed?.map((box) => (
+  const showModelBoxes = group.model_boxes?.map((box) => (
     <ModelBox
       box={box}
       gridModel={gridModel}
@@ -118,6 +118,9 @@ function ModelGroup(props: Props) {
       setmodelColor={setmodelColor}
     />
   ));
+
+  console.log(group);
+  console.log(showModelBoxes);
 
   // set position
   useEffect(() => {
@@ -170,7 +173,7 @@ function ModelGroup(props: Props) {
           />
         )}
         {showModelPlanes}
-
+        {showModelBoxes}
         <ModelSphere
           gridModel={gridModel}
           showGridModel={showGridModel}

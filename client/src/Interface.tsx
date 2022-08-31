@@ -8,7 +8,7 @@ export interface ModelGroupProps {
   yrotation?: number | undefined;
   zrotation?: number | undefined;
   model_planes?: [ModelPlaneProps] | undefined;
-  model_boxed?: [ModelBoxProps] | undefined;
+  model_boxes?: [ModelBoxProps] | undefined;
   model_sphere?: [ModelSphereProps] | undefined;
 }
 

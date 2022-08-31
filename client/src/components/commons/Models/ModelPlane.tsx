@@ -63,8 +63,6 @@ function ModelPlane(props: Props) {
   ]);
   const [selfColor, setselfColor] = useState<string>(plane.color || "#678546");
 
-  useEffect(() => {}, []);
-
   // set size
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
