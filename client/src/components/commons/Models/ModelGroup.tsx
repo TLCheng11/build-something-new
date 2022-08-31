@@ -119,8 +119,23 @@ function ModelGroup(props: Props) {
     />
   ));
 
-  console.log(group);
-  console.log(showModelBoxes);
+  const showModelSpheres = group.model_spheres?.map((sphere) => (
+    <ModelSphere
+      sphere={sphere}
+      gridModel={gridModel}
+      showGridModel={showGridModel}
+      sphereSize={sphereSize}
+      setsphereSize={setsphereSize}
+      selectedModel={selectedModel}
+      setselectedModel={setselectedModel}
+      position={position}
+      setposition={setposition}
+      rotation={rotation}
+      setrotation={setrotation}
+      modelColor={modelColor}
+      setmodelColor={setmodelColor}
+    />
+  ));
 
   // set position
   useEffect(() => {
@@ -174,21 +189,7 @@ function ModelGroup(props: Props) {
         )}
         {showModelPlanes}
         {showModelBoxes}
-        <ModelSphere
-          gridModel={gridModel}
-          showGridModel={showGridModel}
-          sphereSize={sphereSize}
-          setsphereSize={setsphereSize}
-          selectedModel={selectedModel}
-          setselectedModel={setselectedModel}
-          position={position}
-          setposition={setposition}
-          rotation={rotation}
-          setrotation={setrotation}
-          modelColor={modelColor}
-          setmodelColor={setmodelColor}
-          id={1}
-        />
+        {showModelSpheres}
       </group>
     </>
   );
