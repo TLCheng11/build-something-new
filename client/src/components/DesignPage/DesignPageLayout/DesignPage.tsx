@@ -92,7 +92,7 @@ function DesignPage(props: Props) {
         setcurrentProject(data);
         setselectedGroup((group) => group || data.model_groups[0].id);
       });
-  }, [selectedGroup]);
+  }, [selectedGroup, selectedModel]);
 
   return (
     <div id="design-page" className="flex h-screen w-screen bg-black">
@@ -114,6 +114,7 @@ function DesignPage(props: Props) {
           modelType={modelType}
           setmodelType={setmodelType}
           selectedModel={selectedModel}
+          setselectedModel={setselectedModel}
           planeSize={planeSize}
           setplaneSize={setplaneSize}
           boxSize={boxSize}

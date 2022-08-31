@@ -31,7 +31,7 @@ function ModelSizeContorls(props: Props) {
         <h1>Selected {selectedModel.type}</h1>
         <h1>Model Size:</h1>
       </div>
-      {selectedModel.type === "plane" && (
+      {selectedModel.type === "planes" && (
         <div>
           <div>
             <label htmlFor="model-width">Width:</label>
@@ -61,7 +61,7 @@ function ModelSizeContorls(props: Props) {
           </div>
         </div>
       )}
-      {selectedModel.type === "box" && (
+      {selectedModel.type === "boxes" && (
         <div>
           <div>
             <label htmlFor="model-width">Width:</label>
@@ -116,7 +116,7 @@ function ModelSizeContorls(props: Props) {
           </div>
         </div>
       )}
-      {selectedModel.type === "sphere" && (
+      {selectedModel.type === "spheres" && (
         <div>
           <div>
             <label htmlFor="model-radius">Radius:</label>

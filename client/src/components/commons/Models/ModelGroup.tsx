@@ -83,7 +83,7 @@ function ModelGroup(props: Props) {
     0, 0, 0,
   ]);
 
-  const showModelPlane = group.model_planes?.map((plane) => (
+  const showModelPlanes = group.model_planes?.map((plane) => (
     <ModelPlane
       plane={plane}
       gridModel={gridModel}
@@ -151,7 +151,7 @@ function ModelGroup(props: Props) {
             gridPosition={[0, 0, 0]}
           />
         )}
-
+        {showModelPlanes}
         <ModelBox
           gridModel={gridModel}
           showGridModel={showGridModel}

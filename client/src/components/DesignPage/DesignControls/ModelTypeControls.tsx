@@ -2,12 +2,18 @@ import { Dispatch, SetStateAction } from "react";
 
 interface Props {
   selectedGroup: number;
+  setselectedModel: React.Dispatch<
+    React.SetStateAction<{
+      type: string;
+      id: number;
+    }>
+  >;
   modelType: string;
   setmodelType: Dispatch<SetStateAction<string>>;
 }
 
 function ModelTypesControls(props: Props) {
-  const { selectedGroup, modelType, setmodelType } = props;
+  const { selectedGroup, setselectedModel, modelType, setmodelType } = props;
 
   function addModel() {
     fetch(`/model_${modelType}`, {
@@ -18,7 +24,9 @@ function ModelTypesControls(props: Props) {
       body: JSON.stringify({ model_group_id: selectedGroup }),
     })
       .then((res) => res.json())
-      .then(console.log);
+      .then((data) => {
+        setselectedModel({ type: modelType, id: data.id });
+      });
   }
 
   return (

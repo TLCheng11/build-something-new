@@ -37,6 +37,12 @@ interface Props {
     type: string;
     id: number;
   };
+  setselectedModel: React.Dispatch<
+    React.SetStateAction<{
+      type: string;
+      id: number;
+    }>
+  >;
   planeSize: [number, number];
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   boxSize: [number, number, number];
@@ -70,6 +76,7 @@ function DesignControls(props: Props) {
     modelType,
     setmodelType,
     selectedModel,
+    setselectedModel,
     planeSize,
     setplaneSize,
     boxSize,
@@ -108,6 +115,7 @@ function DesignControls(props: Props) {
       />
       <ModelTypesControls
         selectedGroup={selectedGroup}
+        setselectedModel={setselectedModel}
         modelType={modelType}
         setmodelType={setmodelType}
       />

@@ -47,14 +47,23 @@ function ModelPlane(props: Props) {
 
   // states for all self properties
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
-  const [selfSize, setselfSize] = useState<[number, number]>([10, 10]);
+  const [selfSize, setselfSize] = useState<[number, number]>([
+    plane.width || 10,
+    plane.depth || 10,
+  ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
-    0, 0, 0,
+    plane.xposition || 0,
+    plane.yposition || 0,
+    plane.zposition || 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
-    0, 0, 0,
+    plane.xrotation || 0,
+    plane.yrotation || 0,
+    plane.zrotation || 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>("#678546");
+  const [selfColor, setselfColor] = useState<string>(plane.color || "#678546");
+
+  useEffect(() => {}, []);
 
   // set size
   useEffect(() => {
