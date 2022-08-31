@@ -47,7 +47,7 @@ function ModelSphere(props: Props) {
   // states for all self properties
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
   const [selfSize, setselfSize] = useState<[number, number, number]>([
-    1, 32, 16,
+    0.5, 32, 16,
   ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     0, 4, 0,

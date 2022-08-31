@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.datetime :dob
       t.string :profile_img
       t.string :introduction
-      t.boolean :is_login
+      t.boolean :is_login, default: true
 
       t.timestamps
     end

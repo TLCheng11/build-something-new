@@ -72,7 +72,7 @@ function DesignPage(props: Props) {
   const [planeSize, setplaneSize] = useState<[number, number]>([10, 10]);
   const [boxSize, setboxSize] = useState<[number, number, number]>([1, 1, 1]);
   const [sphereSize, setsphereSize] = useState<[number, number, number]>([
-    1, 32, 16,
+    0.5, 32, 16,
   ]);
   const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
   const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
@@ -107,7 +107,7 @@ function DesignPage(props: Props) {
 
   return (
     <div id="design-page" className="flex h-screen w-screen bg-black">
-      <div id="design-controls-holder" className="h-full w-1/4">
+      <div id="design-controls-holder" className="h-full w-1/4 overflow-auto">
         <DesignControls
           currentProject={currentProject}
           showGridMain={showGridMain}

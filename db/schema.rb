@@ -16,17 +16,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
 
   create_table "model_boxes", force: :cascade do |t|
     t.bigint "model_group_id", null: false
-    t.float "width"
-    t.float "depth"
-    t.float "xposition"
-    t.float "yposition"
-    t.float "zposition"
-    t.float "xrotation"
-    t.float "yrotation"
-    t.float "zrotation"
+    t.float "width", default: 1.0
+    t.float "height", default: 1.0
+    t.float "depth", default: 1.0
+    t.float "xposition", default: 0.0
+    t.float "yposition", default: 4.0
+    t.float "zposition", default: 0.0
+    t.float "xrotation", default: 0.0
+    t.float "yrotation", default: 0.0
+    t.float "zrotation", default: 0.0
     t.string "color"
     t.string "image_url"
-    t.float "mass"
+    t.float "mass", default: 1.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["model_group_id"], name: "index_model_boxes_on_model_group_id"
@@ -48,17 +49,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
 
   create_table "model_planes", force: :cascade do |t|
     t.bigint "model_group_id", null: false
-    t.float "width"
-    t.float "depth"
-    t.float "xposition"
-    t.float "yposition"
-    t.float "zposition"
-    t.float "xrotation"
-    t.float "yrotation"
-    t.float "zrotation"
+    t.float "width", default: 10.0
+    t.float "depth", default: 10.0
+    t.float "xposition", default: 0.0
+    t.float "yposition", default: 4.0
+    t.float "zposition", default: 0.0
+    t.float "xrotation", default: 0.0
+    t.float "yrotation", default: 0.0
+    t.float "zrotation", default: 0.0
     t.string "color"
     t.string "image_url"
-    t.float "mass"
+    t.float "mass", default: 1.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["model_group_id"], name: "index_model_planes_on_model_group_id"
@@ -66,17 +67,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
 
   create_table "model_spheres", force: :cascade do |t|
     t.bigint "model_group_id", null: false
-    t.float "width"
-    t.float "depth"
-    t.float "xposition"
-    t.float "yposition"
-    t.float "zposition"
-    t.float "xrotation"
-    t.float "yrotation"
-    t.float "zrotation"
+    t.float "radius", default: 0.5
+    t.float "width_segments", default: 32.0
+    t.float "height_segments", default: 16.0
+    t.float "xposition", default: 0.0
+    t.float "yposition", default: 4.0
+    t.float "zposition", default: 0.0
+    t.float "xrotation", default: 0.0
+    t.float "yrotation", default: 0.0
+    t.float "zrotation", default: 0.0
     t.string "color"
     t.string "image_url"
-    t.float "mass"
+    t.float "mass", default: 1.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["model_group_id"], name: "index_model_spheres_on_model_group_id"
@@ -114,7 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
     t.datetime "dob"
     t.string "profile_img"
     t.string "introduction"
-    t.boolean "is_login"
+    t.boolean "is_login", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
