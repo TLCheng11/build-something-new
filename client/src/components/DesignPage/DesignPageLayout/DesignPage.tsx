@@ -24,7 +24,7 @@ function DesignPage(props: Props) {
   const [currentProject, setcurrentProject] = useState<{
     id?: number;
     title?: string;
-    model_groups?: [any];
+    model_groups?: [{}];
   }>({});
 
   // states for grid controls
@@ -99,9 +99,9 @@ function DesignPage(props: Props) {
       .then((res) => res.json())
       .then((data) => {
         setcurrentProject(data);
-        setselectedGroup(data.model_groups[0].group_name);
+        setselectedGroup((group) => group || data.model_groups[0].group_name);
       });
-  }, []);
+  }, [selectedGroup]);
 
   console.log(currentProject);
 
