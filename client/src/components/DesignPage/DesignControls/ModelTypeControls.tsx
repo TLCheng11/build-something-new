@@ -1,21 +1,24 @@
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
+  selectedGroup: number;
   modelType: string;
   setmodelType: Dispatch<SetStateAction<string>>;
 }
 
 function ModelTypesControls(props: Props) {
-  const { modelType, setmodelType } = props;
+  const { selectedGroup, modelType, setmodelType } = props;
 
   function addModel() {
-    fetch(`/${modelType}`, {
+    fetch(`/model_${modelType}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}),
-    });
+      body: JSON.stringify({ model_group_id: selectedGroup }),
+    })
+      .then((res) => res.json())
+      .then(console.log);
   }
 
   return (
@@ -34,7 +37,7 @@ function ModelTypesControls(props: Props) {
             <option value="spheres">Sphere</option>
           </select>
         </div>
-        <button id="add-model" className="border">
+        <button id="add-model" className="border" onClick={addModel}>
           Add
         </button>
       </div>

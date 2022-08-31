@@ -106,7 +106,11 @@ function DesignControls(props: Props) {
         groupRotation={groupRotation}
         setgroupRotation={setgroupRotation}
       />
-      <ModelTypesControls modelType={modelType} setmodelType={setmodelType} />
+      <ModelTypesControls
+        selectedGroup={selectedGroup}
+        modelType={modelType}
+        setmodelType={setmodelType}
+      />
       {selectedModel.type && (
         <div>
           <ModelSizeContorls

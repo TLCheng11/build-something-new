@@ -67,7 +67,7 @@ function DesignPage(props: Props) {
   }>({ type: "", id: 0 });
 
   // states for model type selection
-  const [modelType, setmodelType] = useState<string>("plane");
+  const [modelType, setmodelType] = useState<string>("planes");
 
   // properties for selected model
   const [planeSize, setplaneSize] = useState<[number, number]>([10, 10]);
@@ -78,16 +78,6 @@ function DesignPage(props: Props) {
   const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
   const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("#396BA7");
-
-  // useEffect(() => {
-  //   if (modelType === "Plane") {
-  //     setplaneSize([10, 10]);
-  //   } else if (modelType === "Box") {
-  //     setboxSize([1, 1, 1]);
-  //   } else if (modelType === "Sphere") {
-  //     setsphereSize([1, 32, 16]);
-  //   }
-  // }, [modelType]);
 
   useEffect(() => {
     if (!currentUser.id) {
