@@ -53,7 +53,7 @@ function ModelPlane(props: Props) {
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>("#396BA7");
+  const [selfColor, setselfColor] = useState<string>("#678546");
 
   // set size
   useEffect(() => {

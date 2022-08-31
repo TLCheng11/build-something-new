@@ -53,7 +53,7 @@ function ModelBox(props: Props) {
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>("#396BA7");
+  const [selfColor, setselfColor] = useState<string>("#D0021B");
 
   // set size
   useEffect(() => {

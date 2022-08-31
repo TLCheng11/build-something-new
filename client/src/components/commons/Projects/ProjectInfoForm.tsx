@@ -50,7 +50,7 @@ function ProjectInfoForm(props: Props) {
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          navigate(`/design-page/${data.id}`);
+          navigate(`/project-design/${data.id}`);
           setshowProjectForm(false);
         });
       } else {

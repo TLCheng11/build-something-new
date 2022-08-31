@@ -41,9 +41,17 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Dashboard currentUser={currentUser} />} />
           <Route
-            path="/design-page/:project_id"
+            path="/"
+            element={
+              <Dashboard
+                currentUser={currentUser}
+                setcurrentUser={setcurrentUser}
+              />
+            }
+          />
+          <Route
+            path="/project-design/:project_id"
             element={<DesignPage currentUser={currentUser} />}
           />
         </Routes>

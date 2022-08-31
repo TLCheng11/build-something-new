@@ -1,4 +1,15 @@
 class ProjectsController < ApplicationController
+  before_action :find_project, only: %i[ show update destroy ]
+
+  # GET /projects
+  def index
+    if params[:user_id]
+      render json: User.find(params[:user_id]).projects
+    else
+      render json: Project.all
+    end
+  end
+
   # POST /projects
   def create
     @project = Project.create!(project_params)
@@ -8,6 +19,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def find_project
+      @project = Project.find(params[:id])
+    end
+
     def project_params
       params.permit(:title, :description, :created_by)
     end

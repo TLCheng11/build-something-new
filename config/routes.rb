@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   
   # routes for all model controllers
     resources :users, only: [:create]
+    resources :users, only: [:show] do
+      resources :projects, only: [:index]
+    end
     resources :projects, only: [:show, :create]
     # resources :model_groups
     # resources :model_planes

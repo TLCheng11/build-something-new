@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { useNavigate } from "react-router-dom";
 import GridControls from "../DesignControls/GridControls";
 import ModelColorControls from "../DesignControls/ModelColorControls";
 import ModelGroupControls from "../DesignControls/ModelGroupControls";
@@ -45,6 +46,7 @@ interface Props {
 }
 
 function DesignControls(props: Props) {
+  let navigate = useNavigate();
   const {
     showGridMain,
     setshowGridMain,
@@ -74,8 +76,12 @@ function DesignControls(props: Props) {
     modelColor,
     setmodelColor,
   } = props;
+
   return (
     <div>
+      <div className="h-full w-full bg-gray-600">
+        <h1 onClick={() => navigate("/")}>Back</h1>
+      </div>
       <GridControls
         showGridMain={showGridMain}
         setshowGridMain={setshowGridMain}
