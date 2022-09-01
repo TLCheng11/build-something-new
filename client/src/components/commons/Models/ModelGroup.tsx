@@ -87,7 +87,7 @@ function ModelGroup(props: Props) {
     group.zrotation || 0,
   ]);
 
-  // useing ref to override the useEffect clean up original state problem
+  // using ref to override the useEffect clean up original state problem
   const positionRef = useRef<[number, number, number]>(selfPosition);
   const rotationRef = useRef<[number, number, number]>(selfRotation);
 
