@@ -28,7 +28,11 @@ function ModelSizeContorls(props: Props) {
   return (
     <div id="model-size-controls" className="h-full w-full bg-gray-600">
       <div>
-        <h1>Selected {selectedModel.type}</h1>
+        <h1>
+          Selected {selectedModel.type === "planes" && "Plane"}
+          {selectedModel.type === "boxes" && "Box"}
+          {selectedModel.type === "spheres" && "Sphere"}
+        </h1>
         <h1>Model Size:</h1>
       </div>
       {selectedModel.type === "planes" && (
