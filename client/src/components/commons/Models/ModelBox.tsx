@@ -1,5 +1,5 @@
 import { Box } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { ModelBoxProps } from "../../../Interface";
 import GridLayout from "./GridLayout";
@@ -64,10 +64,18 @@ function ModelBox(props: Props) {
   ]);
   const [selfColor, setselfColor] = useState<string>(box.color || "#D0021B");
 
+  // using ref to override the useEffect clean up original state problem
+  const sizeRef = useRef<[number, number, number]>(selfSize);
+  const positionRef = useRef<[number, number, number]>(selfPosition);
+  const rotationRef = useRef<[number, number, number]>(selfRotation);
+  const colorRef = useRef<String>(selfColor);
+  const selectedRef = useRef<boolean>(false);
+
   // set size
   useEffect(() => {
     if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setselfSize(boxSize);
+      sizeRef.current = boxSize;
     }
   }, [boxSize]);
 
@@ -75,6 +83,7 @@ function ModelBox(props: Props) {
   useEffect(() => {
     if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setSelfPosition(position);
+      positionRef.current = position;
     }
   }, [position]);
 
@@ -82,6 +91,7 @@ function ModelBox(props: Props) {
   useEffect(() => {
     if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setselfRotation(rotation);
+      rotationRef.current = rotation;
     }
   }, [rotation]);
 
@@ -89,6 +99,7 @@ function ModelBox(props: Props) {
   useEffect(() => {
     if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
       setselfColor(modelColor);
+      colorRef.current = modelColor;
     }
   }, [modelColor]);
 
@@ -107,8 +118,11 @@ function ModelBox(props: Props) {
       setposition(selfPosition);
       setrotation(selfRotation);
       setmodelColor(selfColor);
-    } else {
+      selectedRef.current = true;
+    } else if (selectedRef.current) {
       setselfShowGrid(false);
+      saveModel();
+      selectedRef.current = false;
     }
   }, [selectedModel]);
 
@@ -116,6 +130,37 @@ function ModelBox(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "boxes", id: box.id || 0 });
+  }
+
+  // save on leaving page
+  useEffect(() => {
+    return () => {
+      if (selectedRef.current) saveModel();
+    };
+  }, []);
+
+  function saveModel() {
+    if (box.id) {
+      // console.log(box.id, "saving box");
+      fetch(`/model_boxes/${box.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          width: sizeRef.current[0],
+          height: sizeRef.current[1],
+          depth: sizeRef.current[2],
+          xposition: positionRef.current[0],
+          yposition: positionRef.current[1],
+          zposition: positionRef.current[2],
+          xrotation: rotationRef.current[0],
+          yrotation: rotationRef.current[1],
+          zrotation: rotationRef.current[2],
+          color: colorRef,
+        }),
+      });
+    }
   }
 
   return (

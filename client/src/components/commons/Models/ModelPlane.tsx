@@ -63,7 +63,6 @@ function ModelPlane(props: Props) {
     plane.zrotation || 0,
   ]);
   const [selfColor, setselfColor] = useState<string>(plane.color || "#678546");
-  const [selfSelected, setselfSelected] = useState<boolean>(false);
 
   // using ref to override the useEffect clean up original state problem
   const sizeRef = useRef<[number, number]>(selfSize);
@@ -119,14 +118,12 @@ function ModelPlane(props: Props) {
       setposition(selfPosition);
       setrotation(selfRotation);
       setmodelColor(selfColor);
-      setselfSelected(true);
       selectedRef.current = true;
     } else if (selectedRef.current) {
       setselfShowGrid(false);
       saveModel();
       selectedRef.current = false;
     }
-    // console.log(plane.id, selectedRef);
   }, [selectedModel]);
 
   // lock self as selected item when clicked

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :projects, only: [:show, :create]
     resources :model_groups, only: [:create, :update]
     resources :model_planes, only: [:create, :update]
-    resources :model_boxes, only: [:create]
+    resources :model_boxes, only: [:create, :update]
     resources :model_spheres, only: [:create]
 
   # redirect to frontend routing
