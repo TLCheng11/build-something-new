@@ -1,6 +1,7 @@
 import { Plane } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
+import { DoubleSide } from "three";
 import { ModelPlaneProps } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
@@ -137,7 +138,7 @@ function ModelPlane(props: Props) {
             gridPosition={[0, 0, 0]}
           />
         )}
-        <meshBasicMaterial color={selfColor} />
+        <meshBasicMaterial color={selfColor} side={DoubleSide} />
       </Plane>
     </>
   );
