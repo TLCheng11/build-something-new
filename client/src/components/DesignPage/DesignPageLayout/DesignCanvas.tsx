@@ -1,8 +1,6 @@
 import { OrbitControls } from "@react-three/drei";
-import { applyProps, Canvas } from "react-three-fiber";
+import { Canvas } from "react-three-fiber";
 import GridLayout from "../../commons/Models/GridLayout";
-import ModelBox from "../../commons/Models/ModelBox";
-import ModelPlane from "../../commons/Models/ModelPlane";
 import ModelGroup from "../../commons/Models/ModelGroup";
 import { ModelGroupProps } from "../../../Interface";
 
@@ -92,7 +90,6 @@ function DesignCanvas(props: Props) {
       gridModel={gridModel}
       showGridModel={showGridModel}
       selectedGroup={selectedGroup}
-      setselectedGroup={setselectedGroup}
       groupPosition={groupPosition}
       setgroupPosition={setgroupPosition}
       groupRotation={groupRotation}
