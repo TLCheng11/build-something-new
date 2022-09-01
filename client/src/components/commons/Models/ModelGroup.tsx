@@ -90,6 +90,7 @@ function ModelGroup(props: Props) {
   // using ref to override the useEffect clean up original state problem
   const positionRef = useRef<[number, number, number]>(selfPosition);
   const rotationRef = useRef<[number, number, number]>(selfRotation);
+  const selectedRef = useRef<boolean>(false);
 
   const showModelPlanes = group.model_planes?.map((plane) => (
     <ModelPlane
@@ -177,19 +178,25 @@ function ModelGroup(props: Props) {
       setgroupPosition(selfPosition);
       setgroupRotation(selfRotation);
       setselfShowGrid(showGridGroup);
-    } else {
+      selectedRef.current = true;
+    } else if (selectedRef.current) {
       setselfShowGrid(false);
       saveGroup();
+      selectedRef.current = false;
     }
+    console.log(group.group_name, selectedRef);
   }, [selectedGroup]);
 
   // save on leaving page
   useEffect(() => {
-    return () => saveGroup();
+    return () => {
+      if (selectedRef.current) saveGroup();
+    };
   }, []);
 
   function saveGroup() {
     if (group.id) {
+      console.log(group.group_name, "saving group");
       fetch(`/model_groups/${group.id}`, {
         method: "PATCH",
         headers: {

@@ -1,5 +1,5 @@
 import { Plane } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";
 import { ModelPlaneProps } from "../../../Interface";
@@ -63,11 +63,19 @@ function ModelPlane(props: Props) {
     plane.zrotation || 0,
   ]);
   const [selfColor, setselfColor] = useState<string>(plane.color || "#678546");
+  const [selfSelected, setselfSelected] = useState<boolean>(false);
+
+  // using ref to override the useEffect clean up original state problem
+  const sizeRef = useRef<[number, number]>(selfSize);
+  const positionRef = useRef<[number, number, number]>(selfPosition);
+  const rotationRef = useRef<[number, number, number]>(selfRotation);
+  const colorRef = useRef<String>(selfColor);
 
   // set size
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
       setselfSize(planeSize);
+      sizeRef.current = planeSize;
     }
   }, [planeSize]);
 
@@ -75,6 +83,7 @@ function ModelPlane(props: Props) {
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
       setSelfPosition(position);
+      positionRef.current = position;
     }
   }, [position]);
 
@@ -82,6 +91,7 @@ function ModelPlane(props: Props) {
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
       setselfRotation(rotation);
+      rotationRef.current = rotation;
     }
   }, [rotation]);
 
@@ -89,6 +99,7 @@ function ModelPlane(props: Props) {
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
       setselfColor(modelColor);
+      colorRef.current = modelColor;
     }
   }, [modelColor]);
 
@@ -107,8 +118,11 @@ function ModelPlane(props: Props) {
       setposition(selfPosition);
       setrotation(selfRotation);
       setmodelColor(selfColor);
-    } else {
+      setselfSelected(true);
+    } else if (selfSelected) {
       setselfShowGrid(false);
+      saveModel();
+      setselfSelected(false);
     }
   }, [selectedModel]);
 
@@ -116,6 +130,34 @@ function ModelPlane(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "planes", id: plane.id || 0 });
+  }
+
+  // save on leaving page
+  useEffect(() => {
+    if (selfSelected) return () => saveModel();
+  }, []);
+
+  function saveModel() {
+    if (plane.id) {
+      console.log("save plane");
+      fetch(`/model_planes/${plane.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          width: sizeRef.current[0],
+          depth: sizeRef.current[1],
+          xposition: positionRef.current[0],
+          yposition: positionRef.current[1],
+          zposition: positionRef.current[2],
+          xrotation: rotationRef.current[0],
+          yrotation: rotationRef.current[1],
+          zrotation: rotationRef.current[2],
+          color: colorRef,
+        }),
+      });
+    }
   }
 
   return (
