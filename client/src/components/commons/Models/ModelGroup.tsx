@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ModelGroupProps } from "../../../Interface";
 import GridLayout from "./GridLayout";
 import ModelBox from "./ModelBox";
@@ -87,6 +87,10 @@ function ModelGroup(props: Props) {
     group.zrotation || 0,
   ]);
 
+  // useing ref to override the useEffect clean up original state problem
+  const positionRef = useRef<[number, number, number]>(selfPosition);
+  const rotationRef = useRef<[number, number, number]>(selfRotation);
+
   const showModelPlanes = group.model_planes?.map((plane) => (
     <ModelPlane
       key={plane.id}
@@ -147,14 +151,16 @@ function ModelGroup(props: Props) {
   // set position
   useEffect(() => {
     if (selectedGroup === group.id) {
-      setSelfPosition([groupPosition[0], groupPosition[1], groupPosition[2]]);
+      setSelfPosition(groupPosition);
+      positionRef.current = groupPosition;
     }
   }, [groupPosition]);
 
   // set rotation
   useEffect(() => {
     if (selectedGroup === group.id) {
-      setselfRotation([groupRotation[0], groupRotation[1], groupRotation[2]]);
+      setselfRotation(groupRotation);
+      rotationRef.current = groupRotation;
     }
   }, [groupRotation]);
 
@@ -178,34 +184,32 @@ function ModelGroup(props: Props) {
   }, [selectedGroup]);
 
   // save on leaving page
-  // useEffect(() => {
-  //   return () => saveGroup();
-  // }, []);
+  useEffect(() => {
+    return () => saveGroup();
+  }, []);
 
   function saveGroup() {
-    fetch(`/model_groups/${group.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        xposition: selfPosition[0],
-        yposition: selfPosition[1],
-        zposition: selfPosition[2],
-        xrotation: selfRotation[0],
-        yrotation: selfRotation[1],
-        zrotation: selfRotation[2],
-      }),
-    })
-      .then((res) => res.json())
-      .then(console.log)
-      .catch(console.error);
+    if (group.id) {
+      fetch(`/model_groups/${group.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          xposition: positionRef.current[0],
+          yposition: positionRef.current[1],
+          zposition: positionRef.current[2],
+          xrotation: rotationRef.current[0],
+          yrotation: rotationRef.current[1],
+          zrotation: rotationRef.current[2],
+        }),
+      });
+    }
   }
 
   return (
     <>
       <group
-        // onClick={handleOnClick}
         position={selfPosition}
         rotation={[
           (selfRotation[0] / 360) * Math.PI * 2,
