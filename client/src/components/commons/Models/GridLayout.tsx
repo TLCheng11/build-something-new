@@ -23,32 +23,32 @@ function GridLayout(props: Props) {
       >
         <gridHelper args={gridArgs} />
       </Box>
-      <Html position={[gridArgs[0] / 2 + 0.2, 0.2, 0.2]}>
+      <Html position={[gridArgs[0] / 2 + 0.2, 0.4, 0.2]} distanceFactor={20}>
         <div>
           <h1 className="text-4xl">X+</h1>
         </div>
       </Html>
-      <Html position={[-gridArgs[0] / 2 - 0.7, 0.2, 0.2]}>
+      <Html position={[-gridArgs[0] / 2 - 0.7, 0.4, 0.2]} distanceFactor={20}>
         <div>
           <h1 className="text-4xl">X-</h1>
         </div>
       </Html>
-      <Html position={[-0.2, gridArgs[0] / 2 + 0.7, 0.2]}>
+      <Html position={[-0.2, gridArgs[0] / 2 + 0.7, 0.2]} distanceFactor={20}>
         <div>
           <h1 className="text-4xl">Y+</h1>
         </div>
       </Html>
-      <Html position={[-0.2, -gridArgs[0] / 2, 0.2]}>
+      <Html position={[-0.2, -gridArgs[0] / 2, 0.2]} distanceFactor={20}>
         <div>
           <h1 className="text-4xl">Y-</h1>
         </div>
       </Html>
-      <Html position={[-0.2, 0.2, gridArgs[0] / 2 + 0.7]}>
+      <Html position={[-0.2, 0.4, gridArgs[0] / 2 + 0.7]} distanceFactor={20}>
         <div>
           <h1 className="text-4xl">Z+</h1>
         </div>
       </Html>
-      <Html position={[-0.2, 0.2, -gridArgs[0] / 2 - 0.2]}>
+      <Html position={[-0.2, 0.4, -gridArgs[0] / 2 - 0.2]} distanceFactor={20}>
         <div>
           <h1 className="text-4xl">Z-</h1>
         </div>
