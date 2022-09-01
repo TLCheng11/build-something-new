@@ -156,7 +156,7 @@ function ModelPlane(props: Props) {
           xrotation: rotationRef.current[0],
           yrotation: rotationRef.current[1],
           zrotation: rotationRef.current[2],
-          color: colorRef,
+          color: colorRef.current,
         }),
       });
     }

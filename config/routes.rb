@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :model_groups, only: [:create, :update]
     resources :model_planes, only: [:create, :update]
     resources :model_boxes, only: [:create, :update]
-    resources :model_spheres, only: [:create]
+    resources :model_spheres, only: [:create, :update]
 
   # redirect to frontend routing
     get '*path',

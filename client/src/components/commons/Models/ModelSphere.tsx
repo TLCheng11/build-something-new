@@ -1,5 +1,5 @@
 import { Sphere } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { ModelSphereProps } from "../../../Interface";
 import GridLayout from "./GridLayout";
@@ -64,10 +64,18 @@ function ModelSphere(props: Props) {
   ]);
   const [selfColor, setselfColor] = useState<string>(sphere.color || "#396BA7");
 
+  // using ref to override the useEffect clean up original state problem
+  const sizeRef = useRef<[number, number, number]>(selfSize);
+  const positionRef = useRef<[number, number, number]>(selfPosition);
+  const rotationRef = useRef<[number, number, number]>(selfRotation);
+  const colorRef = useRef<String>(selfColor);
+  const selectedRef = useRef<boolean>(false);
+
   // set size
   useEffect(() => {
     if (selectedModel.type === "spheres" && selectedModel.id === sphere.id) {
       setselfSize(sphereSize);
+      sizeRef.current = sphereSize;
     }
   }, [sphereSize]);
 
@@ -75,6 +83,7 @@ function ModelSphere(props: Props) {
   useEffect(() => {
     if (selectedModel.type === "spheres" && selectedModel.id === sphere.id) {
       setSelfPosition(position);
+      positionRef.current = position;
     }
   }, [position]);
 
@@ -82,6 +91,7 @@ function ModelSphere(props: Props) {
   useEffect(() => {
     if (selectedModel.type === "spheres" && selectedModel.id === sphere.id) {
       setselfRotation(rotation);
+      rotationRef.current = rotation;
     }
   }, [rotation]);
 
@@ -89,6 +99,7 @@ function ModelSphere(props: Props) {
   useEffect(() => {
     if (selectedModel.type === "spheres" && selectedModel.id === sphere.id) {
       setselfColor(modelColor);
+      colorRef.current = modelColor;
     }
   }, [modelColor]);
 
@@ -107,8 +118,11 @@ function ModelSphere(props: Props) {
       setposition(selfPosition);
       setrotation(selfRotation);
       setmodelColor(selfColor);
-    } else {
+      selectedRef.current = true;
+    } else if (selectedRef.current) {
       setselfShowGrid(false);
+      saveModel();
+      selectedRef.current = false;
     }
   }, [selectedModel]);
 
@@ -116,6 +130,37 @@ function ModelSphere(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "spheres", id: sphere.id || 0 });
+  }
+
+  // save on leaving page
+  useEffect(() => {
+    return () => {
+      if (selectedRef.current) saveModel();
+    };
+  }, []);
+
+  function saveModel() {
+    if (sphere.id) {
+      // console.log(sphere.id, "saving sphere");
+      fetch(`/model_spheres/${sphere.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          radius: sizeRef.current[0],
+          width_segments: sizeRef.current[1],
+          height_segments: sizeRef.current[2],
+          xposition: positionRef.current[0],
+          yposition: positionRef.current[1],
+          zposition: positionRef.current[2],
+          xrotation: rotationRef.current[0],
+          yrotation: rotationRef.current[1],
+          zrotation: rotationRef.current[2],
+          color: colorRef.current,
+        }),
+      });
+    }
   }
 
   return (
