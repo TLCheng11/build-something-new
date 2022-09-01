@@ -123,6 +123,7 @@ function DesignControls(props: Props) {
         <div>
           <ModelSizeContorls
             selectedModel={selectedModel}
+            setselectedModel={setselectedModel}
             planeSize={planeSize}
             setplaneSize={setplaneSize}
             boxSize={boxSize}

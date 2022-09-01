@@ -1,15 +1,22 @@
 class ModelSpheresController < ApplicationController
-  before_action :find_model_sphere, only: [:update]
+  before_action :find_model_sphere, only: [:update, :destroy]
   
+  # GET /model_spheres/1
   def create
     @model_sphere = ModelSphere.create!(model_sphere_params)
     render json: @model_sphere, status: :created
   end
 
-  # PATCH/PUT /model_sphere/1
+  # PATCH/PUT /model_spheres/1
   def update
     @model_sphere.update(model_sphere_update_params)
     render json: @model_sphere, status: :accepted
+  end
+
+  # DELETE /model_spheres/1
+  def destroy
+    @model_sphere.destroy
+    render json: {message: "shpere deleted"}, status: :accepted
   end
 
   private

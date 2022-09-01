@@ -5,6 +5,12 @@ interface Props {
     type: string;
     id: number;
   };
+  setselectedModel: Dispatch<
+    SetStateAction<{
+      type: string;
+      id: number;
+    }>
+  >;
   planeSize: [number, number];
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   boxSize: [number, number, number];
@@ -16,6 +22,7 @@ interface Props {
 function ModelSizeContorls(props: Props) {
   const {
     selectedModel,
+    setselectedModel,
     boxSize,
     setboxSize,
     planeSize,
@@ -30,8 +37,12 @@ function ModelSizeContorls(props: Props) {
       fetch(`/model_${selectedModel.type}/${selectedModel.id}`, {
         method: "DELETE",
       })
-        .then((res) => res.json())
-        .then(console.log);
+        .then((res) => {
+          if (res.ok) {
+            res.json().then(() => setselectedModel({ type: "", id: 0 }));
+          } else res.json().then(console.log);
+        })
+        .catch(console.error);
     }
   }
 
