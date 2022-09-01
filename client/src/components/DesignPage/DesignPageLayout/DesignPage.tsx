@@ -155,7 +155,6 @@ function DesignPage(props: Props) {
           gridModel={gridModel}
           showGridModel={showGridModel}
           selectedGroup={selectedGroup}
-          setselectedGroup={setselectedGroup}
           groupPosition={groupPosition}
           setgroupPosition={setgroupPosition}
           groupRotation={groupRotation}
