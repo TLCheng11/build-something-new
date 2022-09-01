@@ -184,7 +184,7 @@ function ModelGroup(props: Props) {
       saveGroup();
       selectedRef.current = false;
     }
-    console.log(group.group_name, selectedRef);
+    // console.log(group.group_name, selectedRef);
   }, [selectedGroup]);
 
   // save on leaving page
@@ -196,7 +196,7 @@ function ModelGroup(props: Props) {
 
   function saveGroup() {
     if (group.id) {
-      console.log(group.group_name, "saving group");
+      // console.log(group.group_name, "saving group");
       fetch(`/model_groups/${group.id}`, {
         method: "PATCH",
         headers: {

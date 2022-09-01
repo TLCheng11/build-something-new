@@ -70,6 +70,7 @@ function ModelPlane(props: Props) {
   const positionRef = useRef<[number, number, number]>(selfPosition);
   const rotationRef = useRef<[number, number, number]>(selfRotation);
   const colorRef = useRef<String>(selfColor);
+  const selectedRef = useRef<boolean>(false);
 
   // set size
   useEffect(() => {
@@ -119,11 +120,13 @@ function ModelPlane(props: Props) {
       setrotation(selfRotation);
       setmodelColor(selfColor);
       setselfSelected(true);
-    } else if (selfSelected) {
+      selectedRef.current = true;
+    } else if (selectedRef.current) {
       setselfShowGrid(false);
       saveModel();
-      setselfSelected(false);
+      selectedRef.current = false;
     }
+    // console.log(plane.id, selectedRef);
   }, [selectedModel]);
 
   // lock self as selected item when clicked
@@ -134,12 +137,14 @@ function ModelPlane(props: Props) {
 
   // save on leaving page
   useEffect(() => {
-    if (selfSelected) return () => saveModel();
+    return () => {
+      if (selectedRef.current) saveModel();
+    };
   }, []);
 
   function saveModel() {
     if (plane.id) {
-      console.log("save plane");
+      // console.log(plane.id, "saving plane");
       fetch(`/model_planes/${plane.id}`, {
         method: "PATCH",
         headers: {
