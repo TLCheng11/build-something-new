@@ -1,4 +1,4 @@
-import { Box } from "@react-three/drei";
+import { Box, Html } from "@react-three/drei";
 
 interface Props {
   type: string;
@@ -23,6 +23,36 @@ function GridLayout(props: Props) {
       >
         <gridHelper args={gridArgs} />
       </Box>
+      <Html position={[gridArgs[0] / 2 + 0.2, 0.2, 0.2]}>
+        <div>
+          <h1 className="text-4xl">X+</h1>
+        </div>
+      </Html>
+      <Html position={[-gridArgs[0] / 2 - 0.7, 0.2, 0.2]}>
+        <div>
+          <h1 className="text-4xl">X-</h1>
+        </div>
+      </Html>
+      <Html position={[-0.2, gridArgs[0] / 2 + 0.7, 0.2]}>
+        <div>
+          <h1 className="text-4xl">Y+</h1>
+        </div>
+      </Html>
+      <Html position={[-0.2, -gridArgs[0] / 2, 0.2]}>
+        <div>
+          <h1 className="text-4xl">Y-</h1>
+        </div>
+      </Html>
+      <Html position={[-0.2, 0.2, gridArgs[0] / 2 + 0.7]}>
+        <div>
+          <h1 className="text-4xl">Z+</h1>
+        </div>
+      </Html>
+      <Html position={[-0.2, 0.2, -gridArgs[0] / 2 - 0.2]}>
+        <div>
+          <h1 className="text-4xl">Z-</h1>
+        </div>
+      </Html>
     </group>
   );
 }
