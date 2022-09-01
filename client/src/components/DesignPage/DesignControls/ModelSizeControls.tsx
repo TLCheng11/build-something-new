@@ -25,16 +25,29 @@ function ModelSizeContorls(props: Props) {
   } = props;
   const [step, setstep] = useState<string>("0.1");
 
+  function deleteModel() {
+    if (selectedModel.id > 0) {
+      fetch(`/model_${selectedModel.type}/${selectedModel.id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then(console.log);
+    }
+  }
+
   return (
     <div id="model-size-controls" className="h-full w-full bg-gray-600">
-      <div>
+      <div className="flex">
         <h1>
           Selected {selectedModel.type === "planes" && "Plane"}
           {selectedModel.type === "boxes" && "Box"}
           {selectedModel.type === "spheres" && "Sphere"}
         </h1>
-        <h1>Model Size:</h1>
+        <button id="delete-model" className="border" onClick={deleteModel}>
+          Delete
+        </button>
       </div>
+      <h1>Model Size:</h1>
       {selectedModel.type === "planes" && (
         <div>
           <div>
