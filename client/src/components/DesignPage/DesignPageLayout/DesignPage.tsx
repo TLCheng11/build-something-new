@@ -40,8 +40,8 @@ function DesignPage(props: Props) {
   const [gridGroup, setgridGroup] = useState<[number, number, string, string]>([
     7,
     14,
+    "crimson",
     "red",
-    "orange",
   ]);
   const [showGridGroup, setshowGridGroup] = useState<boolean>(false);
   const [gridModel, setgridModel] = useState<[number, number, string, string]>([

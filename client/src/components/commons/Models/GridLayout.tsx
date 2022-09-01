@@ -8,6 +8,8 @@ interface Props {
 
 function GridLayout(props: Props) {
   const { type, gridArgs, gridPosition } = props;
+  const factor: number = type === "Main" ? 20 : 10;
+
   return (
     <group position={type === "Main" ? [0, 0, 0] : gridPosition}>
       <gridHelper args={gridArgs} />
@@ -23,34 +25,49 @@ function GridLayout(props: Props) {
       >
         <gridHelper args={gridArgs} />
       </Box>
-      <Html position={[gridArgs[0] / 2 + 0.2, 0.4, 0.2]} distanceFactor={20}>
+      <Html
+        position={[gridArgs[0] / 2 + 0.2, 0.4, 0.2]}
+        distanceFactor={factor}
+      >
         <div>
-          <h1 className="text-4xl">X+</h1>
+          <h1 className="text-4xl select-none">X+</h1>
         </div>
       </Html>
-      <Html position={[-gridArgs[0] / 2 - 0.7, 0.4, 0.2]} distanceFactor={20}>
+      <Html
+        position={[-gridArgs[0] / 2 - factor / 25, 0.4, 0.2]}
+        distanceFactor={factor}
+      >
         <div>
-          <h1 className="text-4xl">X-</h1>
+          <h1 className="text-4xl select-none">X-</h1>
         </div>
       </Html>
-      <Html position={[-0.2, gridArgs[0] / 2 + 0.7, 0.2]} distanceFactor={20}>
+      <Html
+        position={[-0.2, gridArgs[0] / 2 + factor / 25, 0.2]}
+        distanceFactor={factor}
+      >
         <div>
-          <h1 className="text-4xl">Y+</h1>
+          <h1 className="text-4xl select-none">Y+</h1>
         </div>
       </Html>
-      <Html position={[-0.2, -gridArgs[0] / 2, 0.2]} distanceFactor={20}>
+      <Html position={[-0.2, -gridArgs[0] / 2, 0.2]} distanceFactor={factor}>
         <div>
-          <h1 className="text-4xl">Y-</h1>
+          <h1 className="text-4xl select-none">Y-</h1>
         </div>
       </Html>
-      <Html position={[-0.2, 0.4, gridArgs[0] / 2 + 0.7]} distanceFactor={20}>
+      <Html
+        position={[-0.2, 0.4, gridArgs[0] / 2 + factor / 25]}
+        distanceFactor={factor}
+      >
         <div>
-          <h1 className="text-4xl">Z+</h1>
+          <h1 className="text-4xl select-none">Z+</h1>
         </div>
       </Html>
-      <Html position={[-0.2, 0.4, -gridArgs[0] / 2 - 0.2]} distanceFactor={20}>
+      <Html
+        position={[-0.2, 0.4, -gridArgs[0] / 2 - 0.2]}
+        distanceFactor={factor}
+      >
         <div>
-          <h1 className="text-4xl">Z-</h1>
+          <h1 className="text-4xl select-none">Z-</h1>
         </div>
       </Html>
     </group>
