@@ -53,7 +53,7 @@ function ProjectInfoForm(props: Props) {
   return (
     <div
       id="project-info-form"
-      className="fixed h-full w-full flex items-center justify-center bg-black opacity-70"
+      className="fixed h-full w-full z-20 flex items-center justify-center bg-black bg-opacity-70"
     >
       <div className="border p-3">
         <div className="flex justify-end">

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { ICurrentUser } from "../../Interface";
 import MenuSide from "../commons/Menus/MenuSide";
 import ProjectInfoForm from "../commons/Projects/ProjectInfoForm";
@@ -11,21 +10,14 @@ interface Props {
 }
 
 function Dashboard(props: Props) {
-  let navigate = useNavigate();
   const { currentUser, setcurrentUser } = props;
   const [showProjectForm, setshowProjectForm] = useState<boolean>(false);
-  const [myProjects, setmyProjects] = useState<
-    [{ id: number; title?: string }]
-  >([{ id: 0 }]);
-
-  useEffect(() => {
-    fetch(`/users/${currentUser.id}/projects`)
-      .then((res) => res.json())
-      .then(setmyProjects);
-  }, []);
 
   return (
-    <div id="dashboard" className="flex h-screen w-full bg-gray-800 text-white">
+    <div
+      id="dashboard"
+      className="flex h-screen w-screen bg-gray-800 text-white"
+    >
       {showProjectForm && (
         <ProjectInfoForm
           currentUser={currentUser}
@@ -39,11 +31,11 @@ function Dashboard(props: Props) {
           setshowProjectForm={setshowProjectForm}
         />
       </div>
-      <div id="my-projects-showcase" className="h-full w-4/5">
-        <ProjectShowcase
-          myProjects={myProjects}
-          setmyProjects={setmyProjects}
-        />
+      <div
+        id="my-projects-showcase"
+        className="h-full w-4/5 left-1/5 overflow-auto"
+      >
+        <ProjectShowcase currentUser={currentUser} />
       </div>
     </div>
   );

@@ -1,47 +1,29 @@
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { ICurrentUser } from "../../../Interface";
+import ProjectCard from "./ProjectCard";
 
 interface Props {
-  myProjects: [
-    {
-      id: number;
-      title?: string | undefined;
-    }
-  ];
-  setmyProjects: React.Dispatch<
-    React.SetStateAction<
-      [
-        {
-          id: number;
-          title?: string | undefined;
-        }
-      ]
-    >
-  >;
+  currentUser: ICurrentUser;
 }
 
 function ProjectShowcase(props: Props) {
-  let navigate = useNavigate();
-  const { myProjects, setmyProjects } = props;
+  const { currentUser } = props;
+  const [myProjects, setmyProjects] = useState<
+    [{ id: number; title?: string }]
+  >([{ id: 0 }]);
 
   const showMyProjects = myProjects.map((project) => (
-    <div
-      className="cursor-pointer"
-      key={project.id}
-      onClick={() => toProjectDesign(project.id)}
-    >
-      {project.title}
-    </div>
+    <ProjectCard key={project.id} project={project} />
   ));
 
-  function toProjectDesign(id?: number) {
-    navigate(`/project-design/${id}`);
-  }
+  useEffect(() => {
+    fetch(`/users/${currentUser.id}/projects`)
+      .then((res) => res.json())
+      .then(setmyProjects);
+  }, []);
 
   return (
-    <div
-      id="project-showcase"
-      className="grid grid-cols-2 gap-5 p-5 overflow-y-auto"
-    >
+    <div id="project-showcase" className="grid grid-cols-2 gap-10 p-10">
       {showMyProjects}
     </div>
   );
