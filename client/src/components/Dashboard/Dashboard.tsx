@@ -15,18 +15,8 @@ function Dashboard(props: Props) {
   const { currentUser, setcurrentUser } = props;
   const [showProjectForm, setshowProjectForm] = useState<boolean>(false);
   const [myProjects, setmyProjects] = useState<
-    [{ id?: number; title?: string }]
-  >([{}]);
-
-  const showMyProjects = myProjects.map((project) => (
-    <div
-      className="cursor-pointer"
-      key={project.id}
-      onClick={() => toProjectDesign(project.id)}
-    >
-      {project.title}
-    </div>
-  ));
+    [{ id: number; title?: string }]
+  >([{ id: 0 }]);
 
   useEffect(() => {
     fetch(`/users/${currentUser.id}/projects`)
@@ -34,12 +24,8 @@ function Dashboard(props: Props) {
       .then(setmyProjects);
   }, []);
 
-  function toProjectDesign(id?: number) {
-    navigate(`/project-design/${id}`);
-  }
-
   return (
-    <div id="dashboard" className="h-screen w-full bg-gray-800 text-white">
+    <div id="dashboard" className="flex h-screen w-full bg-gray-800 text-white">
       {showProjectForm && (
         <ProjectInfoForm
           currentUser={currentUser}
@@ -54,10 +40,11 @@ function Dashboard(props: Props) {
         />
       </div>
       <div id="my-projects-showcase" className="h-full w-4/5">
-        <ProjectShowcase />
+        <ProjectShowcase
+          myProjects={myProjects}
+          setmyProjects={setmyProjects}
+        />
       </div>
-
-      {showMyProjects}
     </div>
   );
 }
