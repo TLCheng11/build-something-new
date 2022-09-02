@@ -2,15 +2,11 @@ import { Loader, OrbitControls } from "@react-three/drei";
 import { Canvas } from "react-three-fiber";
 import GridLayout from "../../commons/Models/GridLayout";
 import ModelGroup from "../../commons/Models/ModelGroup";
-import { IModelGroup } from "../../../Interface";
+import { ICurrentProject } from "../../../Interface";
 import { Suspense } from "react";
 
 interface Props {
-  currentProject: {
-    id?: number | undefined;
-    title?: string | undefined;
-    model_groups: [IModelGroup];
-  };
+  currentProject: ICurrentProject;
   gridMain: [number, number, string, string];
   showGridMain: boolean;
   gridGroup: [number, number, string, string];

@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { IModelGroup } from "../../../Interface";
+import { ICurrentProject } from "../../../Interface";
 import ModelPositionControls from "./ModelPositionContorls";
 import ModelRotationControls from "./ModelRotationControls";
 
 interface Props {
-  currentProject: {
-    id?: number | undefined;
-    title?: string | undefined;
-    model_groups: [IModelGroup];
-  };
+  currentProject: ICurrentProject;
   selectedGroup: {
     id: number;
     name: string;

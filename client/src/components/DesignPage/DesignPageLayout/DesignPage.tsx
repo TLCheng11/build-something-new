@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ICurrentUser, IModelGroup } from "../../../Interface";
+import { ICurrentProject, ICurrentUser, IModelGroup } from "../../../Interface";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
@@ -13,11 +13,9 @@ function DesignPage(props: Props) {
   let navigate = useNavigate();
   const params = useParams();
   const [notFound, setnotFound] = useState<boolean>(false);
-  const [currentProject, setcurrentProject] = useState<{
-    id?: number;
-    title?: string;
-    model_groups: [IModelGroup];
-  }>({ model_groups: [{ id: 0, group_name: "" }] });
+  const [currentProject, setcurrentProject] = useState<ICurrentProject>({
+    model_groups: [{ id: 0, group_name: "" }],
+  });
 
   // states for grid controls
   const [gridMain, setgridMain] = useState<[number, number, string, string]>([

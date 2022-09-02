@@ -10,6 +10,12 @@ export interface ICurrentUser {
   is_login?: boolean | undefined;
 }
 
+export interface ICurrentProject {
+  id?: number | undefined;
+  title?: string | undefined;
+  model_groups: [IModelGroup];
+}
+
 export interface IModelGroup {
   id: number;
   group_name: string;
