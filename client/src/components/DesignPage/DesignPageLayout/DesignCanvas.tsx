@@ -1,8 +1,9 @@
-import { OrbitControls } from "@react-three/drei";
+import { Loader, OrbitControls } from "@react-three/drei";
 import { Canvas } from "react-three-fiber";
 import GridLayout from "../../commons/Models/GridLayout";
 import ModelGroup from "../../commons/Models/ModelGroup";
 import { ModelGroupProps } from "../../../Interface";
+import { Suspense } from "react";
 
 interface Props {
   currentProject: {
@@ -127,9 +128,12 @@ function DesignCanvas(props: Props) {
         {/* <ambientLight intensity={0.3} /> */}
         {/* <directionalLight position={[10, 10, 5]} intensity={1} /> */}
         {/* <spotLight position={[0, 1000, 0]} intensity={1} /> */}
-        {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
-        {showModelGroups}
+        <Suspense fallback={null}>
+          {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
+          {showModelGroups}
+        </Suspense>
       </Canvas>
+      <Loader />
     </div>
   );
 }
