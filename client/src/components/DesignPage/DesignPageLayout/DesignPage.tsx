@@ -27,7 +27,7 @@ function DesignPage(props: Props) {
     id?: number;
     title?: string;
     model_groups: [ModelGroupProps];
-  }>({ model_groups: [{}] });
+  }>({ model_groups: [{ id: 0 }] });
 
   // states for grid controls
   const [gridMain, setgridMain] = useState<[number, number, string, string]>([

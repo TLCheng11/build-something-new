@@ -33,6 +33,6 @@ class ModelGroupsController < ApplicationController
     end
 
     def model_group_update_params
-      params.permit(:xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation)
+      params.permit(:group_name, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation)
     end
 end

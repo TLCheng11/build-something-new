@@ -8,7 +8,7 @@ interface Props {
   currentProject: {
     id?: number | undefined;
     title?: string | undefined;
-    model_groups?: [ModelGroupProps] | undefined;
+    model_groups: [ModelGroupProps];
   };
   selectedGroup: number;
   setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
@@ -34,6 +34,7 @@ function ModelGroupControls(props: Props) {
   } = props;
   const [groupName, setgroupName] = useState<string>("");
   const params = useParams();
+  const [editName, seteditName] = useState<string>("");
 
   const groupList = currentProject.model_groups?.map((group) => (
     <option key={group.id} value={group.id}>
@@ -63,6 +64,27 @@ function ModelGroupControls(props: Props) {
       .catch(console.error);
   }
 
+  function editGroupName(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    fetch(`/model_groups/${selectedGroup}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        group_name: editName,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          res.json().then((data) => setselectedGroup(data.id));
+        } else {
+          res.json().then((message) => alert(message.errors));
+        }
+      })
+      .catch(console.error);
+  }
+
   function deleteGroup() {
     if (selectedGroup > 0) {
       fetch(`/model_groups/${selectedGroup}`, {
@@ -70,7 +92,11 @@ function ModelGroupControls(props: Props) {
       })
         .then((res) => {
           if (res.ok) {
-            res.json().then(() => setselectedGroup(0));
+            res.json().then(() => {
+              if (currentProject.model_groups) {
+                setselectedGroup(currentProject.model_groups[0].id);
+              }
+            });
           } else res.json().then((data) => alert(data.message));
         })
         .catch(console.error);
@@ -103,6 +129,19 @@ function ModelGroupControls(props: Props) {
         <button className="border" onClick={deleteGroup}>
           Delete
         </button>
+      </div>
+      <div className="flex">
+        <h1>Group Name:</h1>
+        <form onSubmit={editGroupName}>
+          <input
+            name="edit-group-name"
+            placeholder=""
+            value={editName}
+            onChange={(e) => seteditName(e.target.value)}
+            required
+          />
+          <button type="submit">Edit</button>
+        </form>
       </div>
       <ModelPositionControls
         type="Group"
