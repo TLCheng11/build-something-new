@@ -71,7 +71,7 @@ function DesignPage(props: Props) {
   const [modelType, setmodelType] = useState<string>("planes");
 
   // properties for selected model
-  const [planeSize, setplaneSize] = useState<[number, number]>([10, 10]);
+  const [planeSize, setplaneSize] = useState<[number, number]>([5, 5]);
   const [boxSize, setboxSize] = useState<[number, number, number]>([1, 1, 1]);
   const [sphereSize, setsphereSize] = useState<[number, number, number]>([
     0.5, 32, 16,

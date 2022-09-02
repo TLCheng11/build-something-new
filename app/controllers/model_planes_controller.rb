@@ -16,7 +16,7 @@ class ModelPlanesController < ApplicationController
   # DELETE /model_planes/1
   def destroy
     @model_plane.destroy
-    render json: {message: "plane deleted"}, status: :accepted
+    render json: {message: "Plane deleted"}, status: :accepted
   end
 
   private

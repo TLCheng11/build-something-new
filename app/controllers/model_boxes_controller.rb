@@ -16,7 +16,7 @@ class ModelBoxesController < ApplicationController
   # DELETE /model_boxes/1
   def destroy
     @model_box.destroy
-    render json: {message: "box deleted"}, status: :accepted
+    render json: {message: "Box deleted"}, status: :accepted
   end
 
   private

@@ -16,7 +16,7 @@ class ModelSpheresController < ApplicationController
   # DELETE /model_spheres/1
   def destroy
     @model_sphere.destroy
-    render json: {message: "shpere deleted"}, status: :accepted
+    render json: {message: "Shpere deleted"}, status: :accepted
   end
 
   private

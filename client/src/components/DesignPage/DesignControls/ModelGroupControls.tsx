@@ -63,6 +63,20 @@ function ModelGroupControls(props: Props) {
       .catch(console.error);
   }
 
+  function deleteGroup() {
+    if (selectedGroup > 0) {
+      fetch(`/model_groups/${selectedGroup}`, {
+        method: "DELETE",
+      })
+        .then((res) => {
+          if (res.ok) {
+            res.json().then(() => setselectedGroup(0));
+          } else res.json().then((data) => alert(data.message));
+        })
+        .catch(console.error);
+    }
+  }
+
   return (
     <div className="h-full w-full bg-gray-600 border">
       <div className="flex">
@@ -86,6 +100,9 @@ function ModelGroupControls(props: Props) {
         >
           {groupList}
         </select>
+        <button className="border" onClick={deleteGroup}>
+          Delete
+        </button>
       </div>
       <ModelPositionControls
         type="Group"
