@@ -9,6 +9,16 @@ interface Props {
   plane: ModelPlaneProps;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
+  selectedGroup: {
+    id: number;
+    name: string;
+  };
+  setselectedGroup: React.Dispatch<
+    React.SetStateAction<{
+      id: number;
+      name: string;
+    }>
+  >;
   selectedModel: {
     type: string;
     id: number;
@@ -34,6 +44,8 @@ function ModelPlane(props: Props) {
     plane,
     gridModel,
     showGridModel,
+    selectedGroup,
+    setselectedGroup,
     selectedModel,
     setselectedModel,
     planeSize,
@@ -130,6 +142,9 @@ function ModelPlane(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "planes", id: plane.id || 0 });
+    if (selectedGroup.id !== plane.group.id) {
+      setselectedGroup({ id: plane.group.id, name: plane.group.group_name });
+    }
   }
 
   // save on leaving page

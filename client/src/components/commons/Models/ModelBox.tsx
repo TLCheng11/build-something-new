@@ -7,6 +7,16 @@ import GridLayout from "./GridLayout";
 interface Props {
   box: ModelBoxProps;
   gridModel: [number, number, string, string];
+  selectedGroup: {
+    id: number;
+    name: string;
+  };
+  setselectedGroup: React.Dispatch<
+    React.SetStateAction<{
+      id: number;
+      name: string;
+    }>
+  >;
   showGridModel: boolean;
   selectedModel: {
     type: string;
@@ -33,6 +43,8 @@ function ModelBox(props: Props) {
     box,
     gridModel,
     showGridModel,
+    selectedGroup,
+    setselectedGroup,
     selectedModel,
     setselectedModel,
     boxSize,
@@ -130,6 +142,9 @@ function ModelBox(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "boxes", id: box.id || 0 });
+    if (selectedGroup.id !== box.group.id) {
+      setselectedGroup({ id: box.group.id, name: box.group.group_name });
+    }
   }
 
   // save on leaving page

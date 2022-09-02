@@ -1,4 +1,3 @@
-import { group } from "console";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ModelGroupProps } from "../../../Interface";
@@ -20,7 +19,6 @@ interface Props {
 }
 
 function DesignPage(props: Props) {
-  console.log("rendering");
   const { currentUser } = props;
   let navigate = useNavigate();
   const params = useParams();
@@ -165,6 +163,7 @@ function DesignPage(props: Props) {
           gridModel={gridModel}
           showGridModel={showGridModel}
           selectedGroup={selectedGroup}
+          setselectedGroup={setselectedGroup}
           groupPosition={groupPosition}
           setgroupPosition={setgroupPosition}
           groupRotation={groupRotation}

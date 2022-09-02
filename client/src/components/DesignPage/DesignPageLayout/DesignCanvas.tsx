@@ -20,6 +20,12 @@ interface Props {
     id: number;
     name: string;
   };
+  setselectedGroup: React.Dispatch<
+    React.SetStateAction<{
+      id: number;
+      name: string;
+    }>
+  >;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -62,6 +68,7 @@ function DesignCanvas(props: Props) {
     gridGroup,
     showGridGroup,
     selectedGroup,
+    setselectedGroup,
     groupPosition,
     setgroupPosition,
     groupRotation,
@@ -91,6 +98,7 @@ function DesignCanvas(props: Props) {
       gridModel={gridModel}
       showGridModel={showGridModel}
       selectedGroup={selectedGroup}
+      setselectedGroup={setselectedGroup}
       groupPosition={groupPosition}
       setgroupPosition={setgroupPosition}
       groupRotation={groupRotation}

@@ -15,6 +15,12 @@ interface Props {
     id: number;
     name: string;
   };
+  setselectedGroup: React.Dispatch<
+    React.SetStateAction<{
+      id: number;
+      name: string;
+    }>
+  >;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -55,6 +61,7 @@ function ModelGroup(props: Props) {
     gridModel,
     showGridModel,
     selectedGroup,
+    setselectedGroup,
     groupPosition,
     setgroupPosition,
     groupRotation,
@@ -99,10 +106,12 @@ function ModelGroup(props: Props) {
       plane={plane}
       gridModel={gridModel}
       showGridModel={showGridModel}
-      planeSize={planeSize}
-      setplaneSize={setplaneSize}
+      selectedGroup={selectedGroup}
+      setselectedGroup={setselectedGroup}
       selectedModel={selectedModel}
       setselectedModel={setselectedModel}
+      planeSize={planeSize}
+      setplaneSize={setplaneSize}
       position={position}
       setposition={setposition}
       rotation={rotation}
@@ -118,10 +127,12 @@ function ModelGroup(props: Props) {
       box={box}
       gridModel={gridModel}
       showGridModel={showGridModel}
-      boxSize={boxSize}
-      setboxSize={setboxSize}
+      selectedGroup={selectedGroup}
+      setselectedGroup={setselectedGroup}
       selectedModel={selectedModel}
       setselectedModel={setselectedModel}
+      boxSize={boxSize}
+      setboxSize={setboxSize}
       position={position}
       setposition={setposition}
       rotation={rotation}
@@ -137,10 +148,12 @@ function ModelGroup(props: Props) {
       sphere={sphere}
       gridModel={gridModel}
       showGridModel={showGridModel}
-      sphereSize={sphereSize}
-      setsphereSize={setsphereSize}
+      selectedGroup={selectedGroup}
+      setselectedGroup={setselectedGroup}
       selectedModel={selectedModel}
       setselectedModel={setselectedModel}
+      sphereSize={sphereSize}
+      setsphereSize={setsphereSize}
       position={position}
       setposition={setposition}
       rotation={rotation}

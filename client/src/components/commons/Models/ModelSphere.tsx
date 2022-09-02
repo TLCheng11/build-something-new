@@ -8,6 +8,16 @@ interface Props {
   sphere: ModelSphereProps;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
+  selectedGroup: {
+    id: number;
+    name: string;
+  };
+  setselectedGroup: React.Dispatch<
+    React.SetStateAction<{
+      id: number;
+      name: string;
+    }>
+  >;
   selectedModel: {
     type: string;
     id: number;
@@ -33,6 +43,8 @@ function ModelSphere(props: Props) {
     sphere,
     gridModel,
     showGridModel,
+    selectedGroup,
+    setselectedGroup,
     selectedModel,
     setselectedModel,
     sphereSize,
@@ -130,6 +142,9 @@ function ModelSphere(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "spheres", id: sphere.id || 0 });
+    if (selectedGroup.id !== sphere.group.id) {
+      setselectedGroup({ id: sphere.group.id, name: sphere.group.group_name });
+    }
   }
 
   // save on leaving page

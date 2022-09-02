@@ -13,7 +13,7 @@ export interface ModelGroupProps {
 }
 
 export interface ModelPlaneProps {
-  id?: number | undefined;
+  id: number;
   width?: number | undefined;
   depth?: number | undefined;
   xposition?: number | undefined;
@@ -25,10 +25,14 @@ export interface ModelPlaneProps {
   color?: string | undefined;
   image_url?: string | undefined;
   mass?: number | undefined;
+  group: {
+    id: number;
+    group_name: string;
+  };
 }
 
 export interface ModelBoxProps {
-  id?: number | undefined;
+  id: number;
   width?: number | undefined;
   height?: number | undefined;
   depth?: number | undefined;
@@ -41,10 +45,14 @@ export interface ModelBoxProps {
   color?: string | undefined;
   image_url?: string | undefined;
   mass?: number | undefined;
+  group: {
+    id: number;
+    group_name: string;
+  };
 }
 
 export interface ModelSphereProps {
-  id?: number | undefined;
+  id: number;
   radius?: number | undefined;
   width_segments?: number | undefined;
   height_segments?: number | undefined;
@@ -57,4 +65,8 @@ export interface ModelSphereProps {
   color?: string | undefined;
   image_url?: string | undefined;
   mass?: number | undefined;
+  group: {
+    id: number;
+    group_name: string;
+  };
 }
