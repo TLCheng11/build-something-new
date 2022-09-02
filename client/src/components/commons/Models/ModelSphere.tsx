@@ -1,11 +1,11 @@
 import { Sphere } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
-import { ModelSphereProps } from "../../../Interface";
+import { IModelSphere } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
-  sphere: ModelSphereProps;
+  sphere: IModelSphere;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
   selectedGroup: {

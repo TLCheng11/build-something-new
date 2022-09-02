@@ -10,7 +10,7 @@ export interface ICurrentUser {
   is_login?: boolean | undefined;
 }
 
-export interface ModelGroupProps {
+export interface IModelGroup {
   id: number;
   group_name: string;
   xposition?: number | undefined;
@@ -19,12 +19,12 @@ export interface ModelGroupProps {
   xrotation?: number | undefined;
   yrotation?: number | undefined;
   zrotation?: number | undefined;
-  model_planes?: [ModelPlaneProps] | undefined;
-  model_boxes?: [ModelBoxProps] | undefined;
-  model_spheres?: [ModelSphereProps] | undefined;
+  model_planes?: [IModelPlane] | undefined;
+  model_boxes?: [IModelBox] | undefined;
+  model_spheres?: [IModelSphere] | undefined;
 }
 
-export interface ModelPlaneProps {
+export interface IModelPlane {
   id: number;
   width?: number | undefined;
   depth?: number | undefined;
@@ -43,7 +43,7 @@ export interface ModelPlaneProps {
   };
 }
 
-export interface ModelBoxProps {
+export interface IModelBox {
   id: number;
   width?: number | undefined;
   height?: number | undefined;
@@ -63,7 +63,7 @@ export interface ModelBoxProps {
   };
 }
 
-export interface ModelSphereProps {
+export interface IModelSphere {
   id: number;
   radius?: number | undefined;
   width_segments?: number | undefined;

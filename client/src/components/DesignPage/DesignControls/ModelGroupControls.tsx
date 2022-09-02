@@ -1,7 +1,6 @@
-import { group } from "console";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { ModelGroupProps } from "../../../Interface";
+import { IModelGroup } from "../../../Interface";
 import ModelPositionControls from "./ModelPositionContorls";
 import ModelRotationControls from "./ModelRotationControls";
 
@@ -9,7 +8,7 @@ interface Props {
   currentProject: {
     id?: number | undefined;
     title?: string | undefined;
-    model_groups: [ModelGroupProps];
+    model_groups: [IModelGroup];
   };
   selectedGroup: {
     id: number;

@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { ModelGroupProps } from "../../../Interface";
+import { IModelGroup } from "../../../Interface";
 import GridLayout from "./GridLayout";
 import ModelBox from "./ModelBox";
 import ModelPlane from "./ModelPlane";
 import ModelSphere from "./ModelSphere";
 
 interface Props {
-  group: ModelGroupProps;
+  group: IModelGroup;
   gridGroup: [number, number, string, string];
   showGridGroup: boolean;
   gridModel: [number, number, string, string];

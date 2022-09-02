@@ -2,11 +2,11 @@ import { Plane } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";
-import { ModelPlaneProps } from "../../../Interface";
+import { IModelPlane } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
-  plane: ModelPlaneProps;
+  plane: IModelPlane;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
   selectedGroup: {

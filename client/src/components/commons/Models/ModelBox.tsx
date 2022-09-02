@@ -1,11 +1,11 @@
 import { Box } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
-import { ModelBoxProps } from "../../../Interface";
+import { IModelBox } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
-  box: ModelBoxProps;
+  box: IModelBox;
   gridModel: [number, number, string, string];
   selectedGroup: {
     id: number;

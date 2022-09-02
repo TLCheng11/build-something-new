@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ICurrentUser, ModelGroupProps } from "../../../Interface";
+import { ICurrentUser, IModelGroup } from "../../../Interface";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
@@ -16,7 +16,7 @@ function DesignPage(props: Props) {
   const [currentProject, setcurrentProject] = useState<{
     id?: number;
     title?: string;
-    model_groups: [ModelGroupProps];
+    model_groups: [IModelGroup];
   }>({ model_groups: [{ id: 0, group_name: "" }] });
 
   // states for grid controls
