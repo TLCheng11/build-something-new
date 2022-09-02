@@ -1,30 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { ICurrentUser } from "../../Interface";
 
 interface Props {
-  currentUser: {
-    id?: number | undefined;
-    email?: string | undefined;
-    username?: string | undefined;
-    first_name?: string | undefined;
-    last_name?: string | undefined;
-    dob?: Date | undefined;
-    profile_img?: string | undefined;
-    introduction?: string | undefined;
-    is_login?: boolean | undefined;
-  };
-  setcurrentUser: React.Dispatch<
-    React.SetStateAction<{
-      id?: number | undefined;
-      email?: string | undefined;
-      username?: string | undefined;
-      first_name?: string | undefined;
-      last_name?: string | undefined;
-      dob?: Date | undefined;
-      profile_img?: string | undefined;
-      introduction?: string | undefined;
-      is_login?: boolean | undefined;
-    }>
-  >;
+  currentUser: ICurrentUser;
+  setcurrentUser: React.Dispatch<React.SetStateAction<ICurrentUser>>;
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

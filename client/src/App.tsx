@@ -3,19 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
 import DesignPage from "./components/DesignPage/DesignPageLayout/DesignPage";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { ICurrentUser } from "./Interface";
 
 function App() {
-  const [currentUser, setcurrentUser] = useState<{
-    id?: number;
-    email?: string;
-    username?: string;
-    first_name?: string;
-    last_name?: string;
-    dob?: Date;
-    profile_img?: string;
-    introduction?: string;
-    is_login?: boolean;
-  }>({});
+  const [currentUser, setcurrentUser] = useState<ICurrentUser>({});
 
   // only authorize logged in users
   useEffect(() => {

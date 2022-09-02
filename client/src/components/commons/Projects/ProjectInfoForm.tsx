@@ -1,18 +1,9 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ICurrentUser } from "../../../Interface";
 
 interface Props {
-  currentUser: {
-    id?: number | undefined;
-    email?: string | undefined;
-    username?: string | undefined;
-    first_name?: string | undefined;
-    last_name?: string | undefined;
-    dob?: Date | undefined;
-    profile_img?: string | undefined;
-    introduction?: string | undefined;
-    is_login?: boolean | undefined;
-  };
+  currentUser: ICurrentUser;
   setshowProjectForm: Dispatch<SetStateAction<boolean>>;
 }
 

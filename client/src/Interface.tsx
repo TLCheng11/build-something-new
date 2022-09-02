@@ -1,3 +1,15 @@
+export interface ICurrentUser {
+  id?: number | undefined;
+  email?: string | undefined;
+  username?: string | undefined;
+  first_name?: string | undefined;
+  last_name?: string | undefined;
+  dob?: Date | undefined;
+  profile_img?: string | undefined;
+  introduction?: string | undefined;
+  is_login?: boolean | undefined;
+}
+
 export interface ModelGroupProps {
   id: number;
   group_name: string;

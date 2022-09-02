@@ -1,21 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ModelGroupProps } from "../../../Interface";
+import { ICurrentUser, ModelGroupProps } from "../../../Interface";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
 interface Props {
-  currentUser: {
-    id?: number | undefined;
-    email?: string | undefined;
-    username?: string | undefined;
-    first_name?: string | undefined;
-    last_name?: string | undefined;
-    dob?: Date | undefined;
-    profile_img?: string | undefined;
-    introduction?: string | undefined;
-    is_login?: boolean | undefined;
-  };
+  currentUser: ICurrentUser;
 }
 
 function DesignPage(props: Props) {

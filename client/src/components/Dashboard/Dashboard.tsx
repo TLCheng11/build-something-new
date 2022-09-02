@@ -1,32 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ICurrentUser } from "../../Interface";
+import MenuSide from "../commons/Menus/MenuSide";
 import ProjectInfoForm from "../commons/Projects/ProjectInfoForm";
+import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 
 interface Props {
-  currentUser: {
-    id?: number | undefined;
-    email?: string | undefined;
-    username?: string | undefined;
-    first_name?: string | undefined;
-    last_name?: string | undefined;
-    dob?: Date | undefined;
-    profile_img?: string | undefined;
-    introduction?: string | undefined;
-    is_login?: boolean | undefined;
-  };
-  setcurrentUser: React.Dispatch<
-    React.SetStateAction<{
-      id?: number | undefined;
-      email?: string | undefined;
-      username?: string | undefined;
-      first_name?: string | undefined;
-      last_name?: string | undefined;
-      dob?: Date | undefined;
-      profile_img?: string | undefined;
-      introduction?: string | undefined;
-      is_login?: boolean | undefined;
-    }>
-  >;
+  currentUser: ICurrentUser;
+  setcurrentUser: React.Dispatch<React.SetStateAction<ICurrentUser>>;
 }
 
 function Dashboard(props: Props) {
@@ -53,16 +34,6 @@ function Dashboard(props: Props) {
       .then(setmyProjects);
   }, []);
 
-  function logout() {
-    fetch("/logout", {
-      method: "POST",
-    })
-      .then((res) => res.json())
-      .then(console.log);
-    setcurrentUser({});
-    navigate("/");
-  }
-
   function toProjectDesign(id?: number) {
     navigate(`/project-design/${id}`);
   }
@@ -75,17 +46,17 @@ function Dashboard(props: Props) {
           setshowProjectForm={setshowProjectForm}
         />
       )}
-      <h1>Hi {currentUser.username}</h1>
-      <button id="btn-logout" className="border" onClick={() => logout()}>
-        Logout
-      </button>
-      <button
-        id="btn-add-project"
-        className="border"
-        onClick={() => setshowProjectForm(true)}
-      >
-        Add Project
-      </button>
+      <div id="menu-side" className="h-full w-1/5 border">
+        <MenuSide
+          currentUser={currentUser}
+          setcurrentUser={setcurrentUser}
+          setshowProjectForm={setshowProjectForm}
+        />
+      </div>
+      <div id="my-projects-showcase" className="h-full w-4/5">
+        <ProjectShowcase />
+      </div>
+
       {showMyProjects}
     </div>
   );
