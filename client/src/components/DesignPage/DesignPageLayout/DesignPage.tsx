@@ -1,3 +1,4 @@
+import { group } from "console";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ModelGroupProps } from "../../../Interface";
@@ -19,6 +20,7 @@ interface Props {
 }
 
 function DesignPage(props: Props) {
+  console.log("rendering");
   const { currentUser } = props;
   let navigate = useNavigate();
   const params = useParams();
@@ -27,7 +29,7 @@ function DesignPage(props: Props) {
     id?: number;
     title?: string;
     model_groups: [ModelGroupProps];
-  }>({ model_groups: [{ id: 0 }] });
+  }>({ model_groups: [{ id: 0, group_name: "" }] });
 
   // states for grid controls
   const [gridMain, setgridMain] = useState<[number, number, string, string]>([
@@ -53,7 +55,10 @@ function DesignPage(props: Props) {
   const [showGridModel, setshowGridModel] = useState<boolean>(false);
 
   // states for Model Group
-  const [selectedGroup, setselectedGroup] = useState<number>(0);
+  const [selectedGroup, setselectedGroup] = useState<{
+    id: number;
+    name: string;
+  }>({ id: 0, name: "" });
   const [groupPosition, setgroupPosition] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
@@ -94,7 +99,12 @@ function DesignPage(props: Props) {
           .json()
           .then((data) => {
             setcurrentProject(data);
-            setselectedGroup((group) => group || data.model_groups[0].id);
+            if (selectedGroup.id === 0) {
+              setselectedGroup({
+                id: data.model_groups[0].id,
+                name: data.model_groups[0].group_name,
+              });
+            }
           })
           .catch(console.error);
       } else {

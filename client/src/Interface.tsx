@@ -1,6 +1,6 @@
 export interface ModelGroupProps {
   id: number;
-  group_name?: string | undefined;
+  group_name: string;
   xposition?: number | undefined;
   yposition?: number | undefined;
   zposition?: number | undefined;

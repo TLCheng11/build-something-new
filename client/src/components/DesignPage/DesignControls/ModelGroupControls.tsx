@@ -1,3 +1,4 @@
+import { group } from "console";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ModelGroupProps } from "../../../Interface";
@@ -10,8 +11,16 @@ interface Props {
     title?: string | undefined;
     model_groups: [ModelGroupProps];
   };
-  selectedGroup: number;
-  setselectedGroup: React.Dispatch<React.SetStateAction<number>>;
+  selectedGroup: {
+    id: number;
+    name: string;
+  };
+  setselectedGroup: React.Dispatch<
+    React.SetStateAction<{
+      id: number;
+      name: string;
+    }>
+  >;
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -56,7 +65,10 @@ function ModelGroupControls(props: Props) {
     })
       .then((res) => {
         if (res.ok) {
-          res.json().then((data) => setselectedGroup(data.id));
+          res.json().then((data) => {
+            setselectedGroup({ id: data.id, name: data.group_name });
+            setgroupName("");
+          });
         } else {
           res.json().then((message) => alert(message.errors));
         }
@@ -66,7 +78,7 @@ function ModelGroupControls(props: Props) {
 
   function editGroupName(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    fetch(`/model_groups/${selectedGroup}`, {
+    fetch(`/model_groups/${selectedGroup.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +89,10 @@ function ModelGroupControls(props: Props) {
     })
       .then((res) => {
         if (res.ok) {
-          res.json().then((data) => setselectedGroup(data.id));
+          res.json().then((data) => {
+            setselectedGroup({ id: data.id, name: data.group_name });
+            seteditName("");
+          });
         } else {
           res.json().then((message) => alert(message.errors));
         }
@@ -86,16 +101,17 @@ function ModelGroupControls(props: Props) {
   }
 
   function deleteGroup() {
-    if (selectedGroup > 0) {
-      fetch(`/model_groups/${selectedGroup}`, {
+    if (selectedGroup.id > 0) {
+      fetch(`/model_groups/${selectedGroup.id}`, {
         method: "DELETE",
       })
         .then((res) => {
           if (res.ok) {
             res.json().then(() => {
-              if (currentProject.model_groups) {
-                setselectedGroup(currentProject.model_groups[0].id);
-              }
+              setselectedGroup({
+                id: currentProject.model_groups[0].id,
+                name: currentProject.model_groups[0].group_name,
+              });
             });
           } else res.json().then((data) => alert(data.message));
         })
@@ -121,8 +137,13 @@ function ModelGroupControls(props: Props) {
       <div className="flex">
         <h1>Select Group</h1>
         <select
-          value={selectedGroup}
-          onChange={(e) => setselectedGroup(parseInt(e.target.value))}
+          value={selectedGroup.id}
+          onChange={(e) =>
+            setselectedGroup({
+              id: parseInt(e.target.value),
+              name: e.target.options[e.target.selectedIndex].text,
+            })
+          }
         >
           {groupList}
         </select>
@@ -135,7 +156,7 @@ function ModelGroupControls(props: Props) {
         <form onSubmit={editGroupName}>
           <input
             name="edit-group-name"
-            placeholder=""
+            placeholder={selectedGroup.name}
             value={editName}
             onChange={(e) => seteditName(e.target.value)}
             required

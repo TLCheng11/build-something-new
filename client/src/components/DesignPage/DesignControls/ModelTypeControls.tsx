@@ -1,7 +1,10 @@
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
-  selectedGroup: number;
+  selectedGroup: {
+    id: number;
+    name: string;
+  };
   setselectedModel: React.Dispatch<
     React.SetStateAction<{
       type: string;
@@ -21,7 +24,7 @@ function ModelTypesControls(props: Props) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ model_group_id: selectedGroup }),
+      body: JSON.stringify({ model_group_id: selectedGroup.id }),
     })
       .then((res) => res.json())
       .then((data) => {

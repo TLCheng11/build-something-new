@@ -11,7 +11,10 @@ interface Props {
   showGridGroup: boolean;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
-  selectedGroup: number;
+  selectedGroup: {
+    id: number;
+    name: string;
+  };
   groupPosition: [number, number, number];
   setgroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
@@ -149,7 +152,7 @@ function ModelGroup(props: Props) {
 
   // set position
   useEffect(() => {
-    if (selectedGroup === group.id) {
+    if (selectedGroup.id === group.id) {
       setSelfPosition(groupPosition);
       positionRef.current = groupPosition;
     }
@@ -157,7 +160,7 @@ function ModelGroup(props: Props) {
 
   // set rotation
   useEffect(() => {
-    if (selectedGroup === group.id) {
+    if (selectedGroup.id === group.id) {
       setselfRotation(groupRotation);
       rotationRef.current = groupRotation;
     }
@@ -165,14 +168,14 @@ function ModelGroup(props: Props) {
 
   // toggle grids
   useEffect(() => {
-    if (selectedGroup === group.id) {
+    if (selectedGroup.id === group.id) {
       setselfShowGrid(showGridGroup);
     }
   }, [showGridGroup]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedGroup === group.id) {
+    if (selectedGroup.id === group.id) {
       setgroupPosition(selfPosition);
       setgroupRotation(selfRotation);
       setselfShowGrid(showGridGroup);
