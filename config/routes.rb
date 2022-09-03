@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show] do
       resources :projects, only: [:index]
     end
+    get "/users/:user_id/projects/page_count", to: "projects#page_count"
     resources :projects, only: [:show, :create]
     resources :model_groups, only: [:create, :update, :destroy]
     resources :model_planes, only: [:create, :update, :destroy]

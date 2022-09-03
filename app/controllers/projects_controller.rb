@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
     if params[:page]
       position = (params[:page].to_i - 1) * 4
       if params[:user_id]
-        projects = User.find(params[:user_id]).projects
+        projects = User.find(params[:user_id]).projects.where(created_by: params[:user_id])
         if (position) < projects.length
           render json: projects.slice(position, position + 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
         else
@@ -22,6 +22,17 @@ class ProjectsController < ApplicationController
       end
     else
       render json: {message: "please enter a page number"}, status: 405
+    end
+  end
+
+  # GET /projects/page_count
+  def page_count
+    if params[:user_id]
+      page_count = (User.find(params[:user_id]).projects.where(created_by: params[:user_id]).count.to_f / 4).ceil
+      render json: {page_count: page_count}
+    else 
+      page_count = (Project.all.count.to_f / 4).ceil
+      render json: {page_count: page_count}
     end
   end
 
