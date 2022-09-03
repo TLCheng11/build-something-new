@@ -16,10 +16,15 @@ class ModelGroupsController < ApplicationController
   # PATCH/PUT /model_groups/1/attach
   def attach
     if ModelGroup.find(params[:parent_group_id])
-      @model_group.update!(params.permit(:parent_group_id))
-      render json: @model_group, status: :accepted
+      children = @model_group.child_groups_list
+      if !children.include?(params[:parent_group_id])
+        @model_group.update!(params.permit(:parent_group_id))
+        render json: @model_group, status: :accepted
+      else
+        render json: {error: "Group cannot be attached to its child or grandchild"}, status: 405
+      end
     else
-      render json: {message: "Parent group not found"}, status: 405
+      render json: {error: "Parent group not found"}, status: 405
     end
   end
 

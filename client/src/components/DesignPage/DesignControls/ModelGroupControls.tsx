@@ -122,7 +122,7 @@ function ModelGroupControls(props: Props) {
         if (res.ok) {
           res.json().then(() => setrefresh((state: boolean) => !state));
         } else {
-          res.json().then((message) => alert(message.errors));
+          res.json().then((message) => alert(message.error));
         }
       })
       .catch(console.error);
@@ -140,7 +140,7 @@ function ModelGroupControls(props: Props) {
         if (res.ok) {
           res.json().then(() => setrefresh((state: boolean) => !state));
         } else {
-          res.json().then((message) => alert(message.errors));
+          res.json().then((message) => alert(message.error));
         }
       })
       .catch(console.error);
