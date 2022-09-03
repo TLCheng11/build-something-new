@@ -16,6 +16,18 @@ export interface ICurrentProject {
   model_groups: [IModelGroup];
 }
 
+export interface IProject {
+  id: number;
+  title: string;
+  created_by?: number | undefined;
+  tags?: string | undefined;
+  description?: string | undefined;
+  on_market: boolean;
+  price?: number | undefined;
+  sold_count?: number | undefined;
+  model_groups: [IModelGroup];
+}
+
 export interface IModelGroup {
   id: number;
   group_name: string;

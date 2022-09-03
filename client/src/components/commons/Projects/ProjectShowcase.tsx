@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ICurrentUser } from "../../../Interface";
+import { ICurrentUser, IProject } from "../../../Interface";
 import ProjectCard from "./ProjectCard";
 
 interface Props {
@@ -8,9 +8,14 @@ interface Props {
 
 function ProjectShowcase(props: Props) {
   const { currentUser } = props;
-  const [myProjects, setmyProjects] = useState<
-    [{ id: number; title?: string }]
-  >([{ id: 0 }]);
+  const [myProjects, setmyProjects] = useState<[IProject]>([
+    {
+      id: 0,
+      title: "",
+      on_market: false,
+      model_groups: [{ id: 0, group_name: "" }],
+    },
+  ]);
 
   const showMyProjects = myProjects.map((project) => (
     <ProjectCard key={project.id} project={project} />

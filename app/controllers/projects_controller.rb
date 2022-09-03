@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     if params[:user_id]
-      render json: User.find(params[:user_id]).projects
+      render json: User.find(params[:user_id]).projects, each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
     else
       render json: Project.all
     end
