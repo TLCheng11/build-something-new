@@ -23,18 +23,37 @@ function Dashboard(props: Props) {
     },
   ]);
   const [pageCount, setpageCount] = useState(0);
+  const [currentPage, setcurrentPage] = useState<number>(1);
+
+  console.log(myProjects);
 
   useEffect(() => {
-    fetch(`/users/${currentUser.id}/projects/?page=1`).then((res) => {
+    fetch(`/users/${currentUser.id}/projects/page_count`).then((res) => {
       if (res.ok) {
-        res.json().then(setmyProjects);
+        res.json().then((data) => {
+          setpageCount(data.page_count);
+        });
       } else {
         res.json().then((data) => {
-          alert(data.message);
+          alert(data.error);
         });
       }
     });
   }, []);
+
+  useEffect(() => {
+    fetch(`/users/${currentUser.id}/projects/?page=${currentPage}`).then(
+      (res) => {
+        if (res.ok) {
+          res.json().then(setmyProjects);
+        } else {
+          res.json().then((data) => {
+            alert(data.message);
+          });
+        }
+      }
+    );
+  }, [currentPage]);
 
   return (
     <div
@@ -59,7 +78,11 @@ function Dashboard(props: Props) {
           <ProjectShowcase myProjects={myProjects} />
         </div>
         <div className="h-1/10">
-          <PagesNavBar />
+          <PagesNavBar
+            pageCount={pageCount}
+            currentPage={currentPage}
+            setcurrentPage={setcurrentPage}
+          />
         </div>
       </div>
     </div>

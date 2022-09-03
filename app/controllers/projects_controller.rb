@@ -8,14 +8,14 @@ class ProjectsController < ApplicationController
       if params[:user_id]
         projects = User.find(params[:user_id]).projects.where(created_by: params[:user_id])
         if (position) < projects.length
-          render json: projects.slice(position, position + 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
+          render json: projects.slice(position, 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
         else
           render json: {message: "page number excess searchable pages "}, status: 405
         end
       else
         projects = Project.all
         if (position) < projects.length
-          render json: projects.slice(position, position + 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
+          render json: projects.slice(position, 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
         else
           render json: {message: "page number excess searchable pages "}, status: 405
         end
