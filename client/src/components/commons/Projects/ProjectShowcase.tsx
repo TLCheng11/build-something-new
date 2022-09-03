@@ -10,7 +10,7 @@ function ProjectShowcase(props: Props) {
   const { type, myProjects } = props;
 
   const showMyProjects = myProjects.map((project) => (
-    <ProjectCard key={project.id} project={project} />
+    <ProjectCard key={project.id} type={type} project={project} />
   ));
 
   return (

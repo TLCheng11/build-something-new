@@ -7,12 +7,13 @@ import ShowContent from "../ShowRoom/ShowContent";
 import ShowStage from "../ShowRoom/ShowStage";
 
 interface Props {
+  type: string;
   project: IProject;
 }
 
 function ProjectCard(props: Props) {
   let navigate = useNavigate();
-  const { project } = props;
+  const { type, project } = props;
 
   const showProject = project.model_groups.map((group) => (
     <ShowContent key={group.id} group={group} />
@@ -32,13 +33,13 @@ function ProjectCard(props: Props) {
         </Canvas>
         <Loader />
       </div>
-      <div
-        className="cursor-pointer w-11/12"
-        onClick={() => toProjectDesign(project.id)}
-      >
+      <div className="w-11/12">
         <h1>{project.title}</h1>
-        <h1>Creator: {project.creator}</h1>
+        {type !== "myProject" && <h1>Creator: {project.creator}</h1>}
       </div>
+      {type === "myProject" && (
+        <button onClick={() => toProjectDesign(project.id)}>Edit</button>
+      )}
     </div>
   );
 }
