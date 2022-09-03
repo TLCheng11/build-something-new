@@ -75,7 +75,7 @@ function Dashboard(props: Props) {
       </div>
       <div id="my-projects-showcase" className="h-full w-4/5">
         <div className="h-9/10 w-full overflow-hidden">
-          <ProjectShowcase myProjects={myProjects} />
+          <ProjectShowcase type="myProject" myProjects={myProjects} />
         </div>
         <div className="h-1/10">
           <PagesNavBar

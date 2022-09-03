@@ -4,8 +4,8 @@ class ProjectsController < ApplicationController
   # GET /projects
   def index
     if params[:page]
-      position = (params[:page].to_i - 1) * 4
       if params[:user_id]
+        position = (params[:page].to_i - 1) * 4
         projects = User.find(params[:user_id]).projects.where(created_by: params[:user_id])
         if (position) < projects.length
           render json: projects.slice(position, 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
@@ -13,9 +13,10 @@ class ProjectsController < ApplicationController
           render json: {message: "page number excess searchable pages "}, status: 405
         end
       else
+        position = (params[:page].to_i - 1) * 6
         projects = Project.all
         if (position) < projects.length
-          render json: projects.slice(position, 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
+          render json: projects.slice(position, 6), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
         else
           render json: {message: "page number excess searchable pages "}, status: 405
         end
@@ -31,7 +32,7 @@ class ProjectsController < ApplicationController
       page_count = (User.find(params[:user_id]).projects.where(created_by: params[:user_id]).count.to_f / 4).ceil
       render json: {page_count: page_count}
     else 
-      page_count = (Project.all.count.to_f / 4).ceil
+      page_count = (Project.all.count.to_f / 6).ceil
       render json: {page_count: page_count}
     end
   end

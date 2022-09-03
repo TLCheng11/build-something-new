@@ -4,6 +4,7 @@ import LoginScreen from "./components/LoginScreen/LoginScreen";
 import DesignPage from "./components/DesignPage/DesignPageLayout/DesignPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { ICurrentUser } from "./Interface";
+import MarketPlace from "./components/MarketPlace/Marketplace";
 
 function App() {
   const [currentUser, setcurrentUser] = useState<ICurrentUser>({});
@@ -32,8 +33,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
+          <Route path="/" element={<MarketPlace />} />
           <Route
-            path="/"
+            path="/dashboard"
             element={
               <Dashboard
                 currentUser={currentUser}

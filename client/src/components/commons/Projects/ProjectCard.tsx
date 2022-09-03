@@ -107,7 +107,8 @@ function ProjectCard(props: Props) {
         className="cursor-pointer w-11/12"
         onClick={() => toProjectDesign(project.id)}
       >
-        {project.title}
+        <h1>{project.title}</h1>
+        <h1>Creator: {project.creator}</h1>
       </div>
     </div>
   );
