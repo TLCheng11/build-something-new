@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     # model_groups
     resources :model_groups, only: [:create, :update, :destroy]
     patch "/model_groups/:id/attach", to: "model_groups#attach"
+    patch "/model_groups/:id/detach", to: "model_groups#detach"
 
     # models
     resources :model_planes, only: [:create, :update, :destroy]

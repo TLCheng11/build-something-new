@@ -129,6 +129,24 @@ function ModelGroupControls(props: Props) {
       .catch(console.error);
   }
 
+  function detachFromParentGroup() {
+    fetch(`/model_groups/${selectedGroup.id}/detach`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    })
+      .then((res) => {
+        if (res.ok) {
+          res.json().then(console.log);
+        } else {
+          res.json().then((message) => alert(message.errors));
+        }
+      })
+      .catch(console.error);
+  }
+
   function deleteGroup() {
     if (selectedGroup.id > 0) {
       fetch(`/model_groups/${selectedGroup.id}`, {
@@ -183,7 +201,7 @@ function ModelGroupControls(props: Props) {
         </button>
       </div>
       {/* group assignment */}
-      <div>
+      <div className="flex">
         <h1>
           Parent Group:
           {
@@ -192,6 +210,9 @@ function ModelGroupControls(props: Props) {
             )[0].parent_group_name
           }
         </h1>
+        <button className="border" onClick={detachFromParentGroup}>
+          Detach
+        </button>
       </div>
       <div className="flex">
         <h1>Attach to Group:</h1>

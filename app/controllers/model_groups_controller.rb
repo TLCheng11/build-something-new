@@ -1,5 +1,5 @@
 class ModelGroupsController < ApplicationController
-  before_action :find_model_group, only: [:update, :destroy, :attach]
+  before_action :find_model_group, only: [:update, :destroy, :attach, :detach]
 
   # POST /model_groups
   def create
@@ -21,6 +21,12 @@ class ModelGroupsController < ApplicationController
     else
       render json: {message: "Parent group not found"}, status: 405
     end
+  end
+
+  # PATCH/PUT /model_groups/1/attach
+  def detach
+    @model_group.update!(parent_group_id: nil)
+    render json: @model_group, status: :accepted
   end
 
   # DELETE /model_groups/1
