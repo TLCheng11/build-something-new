@@ -1,37 +1,16 @@
-import { useEffect, useState } from "react";
 import { ICurrentUser, IProject } from "../../../Interface";
 import ProjectCard from "./ProjectCard";
 
 interface Props {
-  currentUser: ICurrentUser;
+  myProjects: [IProject];
 }
 
 function ProjectShowcase(props: Props) {
-  const { currentUser } = props;
-  const [myProjects, setmyProjects] = useState<[IProject]>([
-    {
-      id: 0,
-      title: "",
-      on_market: false,
-      model_groups: [{ id: 0, group_name: "" }],
-    },
-  ]);
+  const { myProjects } = props;
 
   const showMyProjects = myProjects.map((project) => (
     <ProjectCard key={project.id} project={project} />
   ));
-
-  useEffect(() => {
-    fetch(`/users/${currentUser.id}/projects/?page=1`).then((res) => {
-      if (res.ok) {
-        res.json().then(setmyProjects);
-      } else {
-        res.json().then((data) => {
-          alert(data.message);
-        });
-      }
-    });
-  }, []);
 
   return (
     <div

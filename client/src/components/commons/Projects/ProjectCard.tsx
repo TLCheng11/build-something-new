@@ -1,8 +1,8 @@
 import { Box, Loader, Plane, Sphere } from "@react-three/drei";
-import { Suspense, useRef, useState } from "react";
+import { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import { Canvas, useFrame } from "react-three-fiber";
-import { DoubleSide, Group } from "three";
+import { Canvas } from "react-three-fiber";
+import { DoubleSide } from "three";
 import { IProject } from "../../../Interface";
 import ProjectCardStage from "./ProjectCardStage";
 
@@ -16,6 +16,7 @@ function ProjectCard(props: Props) {
 
   const showProject = project.model_groups.map((group) => (
     <group
+      key={group.id}
       position={[
         group.xposition || 0,
         group.yposition || 0,
@@ -29,6 +30,7 @@ function ProjectCard(props: Props) {
     >
       {group.model_planes?.map((plane) => (
         <Plane
+          key={plane.id}
           args={[plane.width || 0, plane.depth || 0]}
           position={[
             plane.xposition || 0,
@@ -46,6 +48,7 @@ function ProjectCard(props: Props) {
       ))}
       {group.model_boxes?.map((box) => (
         <Box
+          key={box.id}
           args={[box.width || 0, box.height || 0, box.depth || 0]}
           position={[
             box.xposition || 0,
@@ -63,6 +66,7 @@ function ProjectCard(props: Props) {
       ))}
       {group.model_spheres?.map((sphere) => (
         <Sphere
+          key={sphere.id}
           args={[
             sphere.radius || 0,
             sphere.width_segments || 0,
