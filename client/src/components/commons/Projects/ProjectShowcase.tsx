@@ -22,14 +22,23 @@ function ProjectShowcase(props: Props) {
   ));
 
   useEffect(() => {
-    fetch(`/users/${currentUser.id}/projects`)
-      .then((res) => res.json())
-      .then(setmyProjects);
+    fetch(`/users/${currentUser.id}/projects/?page=1`).then((res) => {
+      if (res.ok) {
+        res.json().then(setmyProjects);
+      } else {
+        res.json().then((data) => {
+          alert(data.message);
+        });
+      }
+    });
   }, []);
 
   return (
-    <div id="project-showcase" className="grid grid-cols-2 gap-10 p-10">
-      {showMyProjects}
+    <div
+      id="project-showcase"
+      className="grid grid-cols-2 gap-10 p-10 h-full min-h-720px min-w-360px overflow-auto"
+    >
+      {myProjects[0].id !== 0 && showMyProjects}
     </div>
   );
 }

@@ -4,9 +4,18 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        "screen-40": "40vh",
         "1/10": "10%",
         "9/10": "90%",
+      },
+      minHeight: {
+        "360px": "360px",
+        "720px": "720px",
+      },
+      maxHeight: {
+        "400px": "400px",
+      },
+      minWidth: {
+        "360px": "360px",
       },
     },
   },

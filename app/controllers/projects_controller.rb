@@ -3,10 +3,15 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   def index
-    if params[:user_id]
-      render json: User.find(params[:user_id]).projects, each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
+    if params[:page]
+      position = (params[:page].to_i - 1) * 4
+      if params[:user_id]
+        render json: User.find(params[:user_id]).projects.slice(position, position + 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
+      else
+        render json: Project.all.slice(position, position + 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
+      end
     else
-      render json: Project.all
+      render json: {message: "please enter a page number"}, status: 405
     end
   end
 

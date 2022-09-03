@@ -90,7 +90,7 @@ function ProjectCard(props: Props) {
   }
 
   return (
-    <div className="col-span-1 flex flex-col items-center h-screen-40 rounded-xl border">
+    <div className="col-span-1 flex flex-col items-center min-h-360px max-h-400px rounded-xl border">
       <div className="h-4/5 w-full rounded-t-xl bg-gray-400">
         <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
           <Suspense fallback={null}>
