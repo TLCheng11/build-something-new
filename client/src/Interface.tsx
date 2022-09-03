@@ -20,6 +20,7 @@ export interface IProject {
   id: number;
   title: string;
   created_by?: number | undefined;
+  creator?: string | undefined;
   tags?: string | undefined;
   description?: string | undefined;
   on_market: boolean;
