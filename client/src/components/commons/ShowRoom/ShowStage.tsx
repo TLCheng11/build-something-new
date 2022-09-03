@@ -3,7 +3,7 @@ import { useFrame } from "react-three-fiber";
 import { Group } from "three";
 
 interface Props {
-  children: JSX.Element;
+  children: JSX.Element[];
 }
 
 function ShowStage({ children }: Props) {

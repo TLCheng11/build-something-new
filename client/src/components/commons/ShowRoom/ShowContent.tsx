@@ -1,15 +1,14 @@
 import { Box, Plane, Sphere } from "@react-three/drei";
 import { DoubleSide } from "three";
-import { IProject } from "../../../Interface";
+import { IModelGroup } from "../../../Interface";
 
 interface Props {
-  project: IProject;
+  group: IModelGroup;
 }
 
-function ShowContent({ project }: Props) {
-  const showProject = project.model_groups.map((group) => (
+function ShowContent({ group }: Props) {
+  return (
     <group
-      key={group.id}
       position={[
         group.xposition || 0,
         group.yposition || 0,
@@ -80,9 +79,7 @@ function ShowContent({ project }: Props) {
         </Sphere>
       ))}
     </group>
-  ));
-
-  return <group>{showProject}</group>;
+  );
 }
 
 export default ShowContent;

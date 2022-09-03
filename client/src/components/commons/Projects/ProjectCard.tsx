@@ -14,6 +14,10 @@ function ProjectCard(props: Props) {
   let navigate = useNavigate();
   const { project } = props;
 
+  const showProject = project.model_groups.map((group) => (
+    <ShowContent key={group.id} group={group} />
+  ));
+
   function toProjectDesign(id?: number) {
     navigate(`/project-design/${id}`);
   }
@@ -23,9 +27,7 @@ function ProjectCard(props: Props) {
       <div className="h-4/5 w-full rounded-t-xl bg-gray-400">
         <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
           <Suspense fallback={null}>
-            <ShowStage>
-              <ShowContent project={project} />
-            </ShowStage>
+            <ShowStage>{showProject}</ShowStage>
           </Suspense>
         </Canvas>
         <Loader />
