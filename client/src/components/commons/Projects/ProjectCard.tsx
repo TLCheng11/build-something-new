@@ -89,8 +89,6 @@ function ProjectCard(props: Props) {
     navigate(`/project-design/${id}`);
   }
 
-  console.log(project);
-
   return (
     <div className="col-span-1 flex flex-col items-center h-screen-40 rounded-xl border">
       <div className="h-4/5 w-full rounded-t-xl bg-gray-400">

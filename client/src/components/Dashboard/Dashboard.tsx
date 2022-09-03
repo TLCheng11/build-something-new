@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ICurrentUser } from "../../Interface";
 import MenuSide from "../commons/Menus/MenuSide";
+import PagesBar from "../commons/Projects/PageBar";
 import ProjectInfoForm from "../commons/Projects/ProjectInfoForm";
 import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 
@@ -31,11 +32,13 @@ function Dashboard(props: Props) {
           setshowProjectForm={setshowProjectForm}
         />
       </div>
-      <div
-        id="my-projects-showcase"
-        className="h-full w-4/5 left-1/5 overflow-auto"
-      >
-        <ProjectShowcase currentUser={currentUser} />
+      <div id="my-projects-showcase" className="h-full w-4/5">
+        <div className="h-9/10 w-full overflow-auto">
+          <ProjectShowcase currentUser={currentUser} />
+        </div>
+        <div className="h-1/10">
+          <PagesBar />
+        </div>
       </div>
     </div>
   );
