@@ -10,14 +10,22 @@ Rails.application.routes.draw do
     post "/logout", to: "sessions#logout"
   
   # routes for all model controllers
+    # users
     resources :users, only: [:create]
+
+    # projects
     resources :users, only: [:show] do
       resources :projects, only: [:index]
     end
+    resources :projects, only: [:index, :show, :create]
     get "/projects/page_count", to:"projects#page_count"
     get "/users/:user_id/projects/page_count", to: "projects#page_count"
-    resources :projects, only: [:index, :show, :create]
+
+    # model_groups
     resources :model_groups, only: [:create, :update, :destroy]
+    patch "/model_groups/:id/attach", to: "model_groups#attach"
+
+    # models
     resources :model_planes, only: [:create, :update, :destroy]
     resources :model_boxes, only: [:create, :update, :destroy]
     resources :model_spheres, only: [:create, :update, :destroy]

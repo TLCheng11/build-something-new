@@ -9,7 +9,7 @@ class ModelPlanesController < ApplicationController
 
   # PATCH/PUT /model_planes/1
   def update
-    @model_plane.update(model_plane_update_params)
+    @model_plane.update!(model_plane_update_params)
     render json: @model_plane, status: :accepted
   end
 

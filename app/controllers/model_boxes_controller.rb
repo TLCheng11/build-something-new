@@ -9,7 +9,7 @@ class ModelBoxesController < ApplicationController
 
   # PATCH/PUT /model_boxes/1
   def update
-    @model_box.update(model_box_update_params)
+    @model_box.update!(model_box_update_params)
     render json: @model_box, status: :accepted
   end
 

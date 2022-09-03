@@ -9,7 +9,7 @@ class ModelSpheresController < ApplicationController
 
   # PATCH/PUT /model_spheres/1
   def update
-    @model_sphere.update(model_sphere_update_params)
+    @model_sphere.update!(model_sphere_update_params)
     render json: @model_sphere, status: :accepted
   end
 

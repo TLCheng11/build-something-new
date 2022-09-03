@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_03_215503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_163228) do
     t.float "zrotation", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parent_group_id"
     t.index ["project_id"], name: "index_model_groups_on_project_id"
   end
 

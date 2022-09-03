@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    @user.update(user_params)
+    @user.update!(user_params)
     render json: @user, status: :accepted
   end
 

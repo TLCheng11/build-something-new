@@ -39,12 +39,26 @@ function ModelGroupControls(props: Props) {
   const [groupName, setgroupName] = useState<string>("");
   const params = useParams();
   const [editName, seteditName] = useState<string>("");
+  const [parentGroup, setparentGroup] = useState<number>(0);
 
+  // options for group selection
   const groupList = currentProject.model_groups?.map((group) => (
     <option key={group.id} value={group.id}>
       {group.group_name}
     </option>
   ));
+
+  // options for group attachment
+  const assignList = currentProject.model_groups
+    ?.filter(
+      (group) =>
+        group.id !== group.parent_group_id && group.id !== selectedGroup.id
+    )
+    .map((group) => (
+      <option key={group.id} value={group.id}>
+        {group.group_name}
+      </option>
+    ));
 
   function createGroup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -95,6 +109,26 @@ function ModelGroupControls(props: Props) {
       .catch(console.error);
   }
 
+  function attachToParentGroup() {
+    fetch(`/model_groups/${selectedGroup.id}/attach`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        parent_group_id: parentGroup,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          res.json().then(console.log);
+        } else {
+          res.json().then((message) => alert(message.errors));
+        }
+      })
+      .catch(console.error);
+  }
+
   function deleteGroup() {
     if (selectedGroup.id > 0) {
       fetch(`/model_groups/${selectedGroup.id}`, {
@@ -116,6 +150,7 @@ function ModelGroupControls(props: Props) {
 
   return (
     <div className="h-full w-full bg-gray-600 border">
+      {/* new group */}
       <div className="flex">
         <h1>New Group:</h1>
         <form onSubmit={createGroup}>
@@ -129,6 +164,7 @@ function ModelGroupControls(props: Props) {
           <button type="submit">Create</button>
         </form>
       </div>
+      {/* group selection */}
       <div className="flex">
         <h1>Select Group</h1>
         <select
@@ -146,6 +182,30 @@ function ModelGroupControls(props: Props) {
           Delete
         </button>
       </div>
+      {/* group assignment */}
+      <div>
+        <h1>
+          Parent Group:
+          {
+            currentProject.model_groups?.filter(
+              (group) => group.id === selectedGroup.id
+            )[0].parent_group_name
+          }
+        </h1>
+      </div>
+      <div className="flex">
+        <h1>Attach to Group:</h1>
+        <select
+          value={parentGroup}
+          onChange={(e) => setparentGroup(parseInt(e.target.value))}
+        >
+          {assignList}
+        </select>
+        <button className="border" onClick={attachToParentGroup}>
+          Attach
+        </button>
+      </div>
+      {/* edit group name */}
       <div className="flex">
         <h1>Group Name:</h1>
         <form onSubmit={editGroupName}>

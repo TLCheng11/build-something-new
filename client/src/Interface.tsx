@@ -32,6 +32,8 @@ export interface IProject {
 export interface IModelGroup {
   id: number;
   group_name: string;
+  parent_group_id?: number | undefined;
+  parent_group_name?: string | undefined;
   xposition?: number | undefined;
   yposition?: number | undefined;
   zposition?: number | undefined;
@@ -41,6 +43,7 @@ export interface IModelGroup {
   model_planes?: [IModelPlane] | undefined;
   model_boxes?: [IModelBox] | undefined;
   model_spheres?: [IModelSphere] | undefined;
+  child_group?: [IModelGroup] | undefined;
 }
 
 export interface IModelPlane {
