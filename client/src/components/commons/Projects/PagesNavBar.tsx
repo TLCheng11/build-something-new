@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function PagesBar() {
+function PagesNavBar() {
   const [currentPage, setcurrentPage] = useState<number>(16);
   const arr = 20;
   const totalPages = Array.from(Array(arr).keys());
@@ -28,4 +28,4 @@ function PagesBar() {
   );
 }
 
-export default PagesBar;
+export default PagesNavBar;

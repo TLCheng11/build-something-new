@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ICurrentUser } from "../../Interface";
 import MenuSide from "../commons/Menus/MenuSide";
-import PagesBar from "../commons/Projects/PageBar";
+import PagesNavBar from "../commons/Projects/PagesNavBar";
 import ProjectInfoForm from "../commons/Projects/ProjectInfoForm";
 import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 
@@ -37,7 +37,7 @@ function Dashboard(props: Props) {
           <ProjectShowcase currentUser={currentUser} />
         </div>
         <div className="h-1/10">
-          <PagesBar />
+          <PagesNavBar />
         </div>
       </div>
     </div>
