@@ -10,6 +10,7 @@ import ModelSizeContorls from "../DesignControls/ModelSizeControls";
 import ModelTypesControls from "../DesignControls/ModelTypeControls";
 
 interface Props {
+  setrefresh: Dispatch<SetStateAction<boolean>>;
   currentProject: ICurrentProject;
   showGridMain: boolean;
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
@@ -64,6 +65,7 @@ interface Props {
 function DesignControls(props: Props) {
   let navigate = useNavigate();
   const {
+    setrefresh,
     currentProject,
     showGridMain,
     setshowGridMain,
@@ -109,6 +111,7 @@ function DesignControls(props: Props) {
         setshowGridModel={setshowGridModel}
       />
       <ModelGroupControls
+        setrefresh={setrefresh}
         currentProject={currentProject}
         selectedGroup={selectedGroup}
         setselectedGroup={setselectedGroup}

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ICurrentProject } from "../../../Interface";
 import ModelPositionControls from "./ModelPositionContorls";
 import ModelRotationControls from "./ModelRotationControls";
 
 interface Props {
+  setrefresh: Dispatch<SetStateAction<boolean>>;
   currentProject: ICurrentProject;
   selectedGroup: {
     id: number;
@@ -28,6 +29,7 @@ interface Props {
 
 function ModelGroupControls(props: Props) {
   const {
+    setrefresh,
     currentProject,
     selectedGroup,
     setselectedGroup,
@@ -50,10 +52,7 @@ function ModelGroupControls(props: Props) {
 
   // options for group attachment
   const assignList = currentProject.model_groups
-    ?.filter(
-      (group) =>
-        group.id !== group.parent_group_id && group.id !== selectedGroup.id
-    )
+    ?.filter((group) => group.id !== selectedGroup.id)
     .map((group) => (
       <option key={group.id} value={group.id}>
         {group.group_name}
@@ -121,7 +120,7 @@ function ModelGroupControls(props: Props) {
     })
       .then((res) => {
         if (res.ok) {
-          res.json().then(console.log);
+          res.json().then(() => setrefresh((state: boolean) => !state));
         } else {
           res.json().then((message) => alert(message.errors));
         }
@@ -139,7 +138,7 @@ function ModelGroupControls(props: Props) {
     })
       .then((res) => {
         if (res.ok) {
-          res.json().then(console.log);
+          res.json().then(() => setrefresh((state: boolean) => !state));
         } else {
           res.json().then((message) => alert(message.errors));
         }

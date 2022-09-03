@@ -13,6 +13,7 @@ function DesignPage(props: Props) {
   let navigate = useNavigate();
   const params = useParams();
   const [notFound, setnotFound] = useState<boolean>(false);
+  const [refresh, setrefresh] = useState<boolean>(false);
   const [currentProject, setcurrentProject] = useState<ICurrentProject>({
     model_groups: [{ id: 0, group_name: "" }],
   });
@@ -102,7 +103,7 @@ function DesignPage(props: Props) {
         return () => clearInterval(id);
       }
     });
-  }, [selectedGroup, selectedModel]);
+  }, [selectedGroup, selectedModel, refresh]);
 
   if (notFound) return <h1>Page Not Found</h1>;
 
@@ -110,6 +111,7 @@ function DesignPage(props: Props) {
     <div id="design-page" className="flex h-screen w-screen bg-black">
       <div id="design-controls-holder" className="h-full w-1/4 overflow-auto">
         <DesignControls
+          setrefresh={setrefresh}
           currentProject={currentProject}
           showGridMain={showGridMain}
           setshowGridMain={setshowGridMain}
