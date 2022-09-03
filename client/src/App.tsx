@@ -5,6 +5,7 @@ import DesignPage from "./components/DesignPage/DesignPageLayout/DesignPage";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { ICurrentUser } from "./Interface";
 import MarketPlace from "./components/MarketPlace/Marketplace";
+import MenuTop from "./components/commons/Menus/MenuTop";
 
 function App() {
   const [currentUser, setcurrentUser] = useState<ICurrentUser>({});
@@ -30,26 +31,29 @@ function App() {
     );
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<MarketPlace />} />
-          <Route
-            path="/dashboard"
-            element={
-              <Dashboard
-                currentUser={currentUser}
-                setcurrentUser={setcurrentUser}
-              />
-            }
-          />
-          <Route
-            path="/project-design/:project_id"
-            element={<DesignPage currentUser={currentUser} />}
-          />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <MenuTop setcurrentUser={setcurrentUser} />
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<MarketPlace />} />
+            <Route
+              path="/dashboard"
+              element={
+                <Dashboard
+                  currentUser={currentUser}
+                  setcurrentUser={setcurrentUser}
+                />
+              }
+            />
+            <Route
+              path="/project-design/:project_id"
+              element={<DesignPage currentUser={currentUser} />}
+            />
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </>
   );
 }
 

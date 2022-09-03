@@ -20,8 +20,9 @@ function MenuSide(props: Props) {
     setcurrentUser({});
     navigate("/");
   }
+
   return (
-    <div>
+    <div id="menu-side">
       <h1>Hi {currentUser.username}</h1>
       <button id="btn-logout" className="border" onClick={() => logout()}>
         Logout
