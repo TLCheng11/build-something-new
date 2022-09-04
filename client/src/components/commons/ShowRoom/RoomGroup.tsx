@@ -11,7 +11,7 @@ function RoomGroup({ group }: Props) {
   const [childGroups, setchildGroups] = useState<IModelGroup[]>([]);
 
   const showChildGroups = childGroups.map((group) => (
-    <RoomGroup group={group} />
+    <RoomGroup key={group.id} group={group} />
   ));
 
   // get all child groups
