@@ -97,11 +97,13 @@ function ModelGroup(props: Props) {
     group.zrotation || 0,
   ]);
 
+  // states for child groups
+  const [childGroups, setchildGroups] = useState<IModelGroup[]>([]);
+
   // using ref to override the useEffect clean up original state problem
   const positionRef = useRef<[number, number, number]>(selfPosition);
   const rotationRef = useRef<[number, number, number]>(selfRotation);
   const selectedRef = useRef<boolean>(false);
-  const [childGroups, setchildGroups] = useState<IModelGroup[]>([]);
 
   const showChildGroups = childGroups.map((group) => (
     <ModelGroup
@@ -200,9 +202,11 @@ function ModelGroup(props: Props) {
 
   // get all child groups
   useEffect(() => {
-    fetch(`/model_groups/${group.id}`)
-      .then((res) => res.json())
-      .then((data) => setchildGroups(data.child_groups));
+    if (group.id > 0) {
+      fetch(`/model_groups/${group.id}`)
+        .then((res) => res.json())
+        .then((data) => setchildGroups(data.child_groups));
+    }
   }, [group]);
 
   // set position

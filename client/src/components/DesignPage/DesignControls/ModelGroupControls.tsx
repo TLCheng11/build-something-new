@@ -41,7 +41,10 @@ function ModelGroupControls(props: Props) {
   const [groupName, setgroupName] = useState<string>("");
   const params = useParams();
   const [editName, seteditName] = useState<string>("");
-  const [parentGroup, setparentGroup] = useState<number>(0);
+  const [parentGroupId, setparentGroupId] = useState<number>(0);
+  const [parentGroupName, setparentGroupName] = useState<string>("None");
+
+  console.log(selectedGroup);
 
   // options for group selection
   const groupList = currentProject.model_groups?.map((group) => (
@@ -60,10 +63,19 @@ function ModelGroupControls(props: Props) {
     ));
 
   useEffect(() => {
-    if (assignList.length > 0 && parentGroup === 0) {
-      setparentGroup(assignList[0].props.value);
+    if (assignList.length > 0 && parentGroupId === 0) {
+      setparentGroupId(assignList[0].props.value);
     }
   }, [assignList]);
+
+  useEffect(() => {
+    const currentGroup = currentProject.model_groups.filter(
+      (group) => group.id === selectedGroup.id
+    );
+    if (currentGroup.length > 0) {
+      setparentGroupName(currentGroup[0].parent_group_name || "None");
+    }
+  }, [currentProject, selectedGroup]);
 
   function createGroup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -121,7 +133,7 @@ function ModelGroupControls(props: Props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        parent_group_id: parentGroup,
+        parent_group_id: parentGroupId,
       }),
     })
       .then((res) => {
@@ -209,11 +221,7 @@ function ModelGroupControls(props: Props) {
       <div className="flex">
         <h1>
           Parent Group:
-          {/* {
-            currentProject.model_groups?.filter(
-              (group) => group.id === selectedGroup.id
-            )[0].parent_group_name
-          } */}
+          {parentGroupName}
         </h1>
         <button className="border" onClick={detachFromParentGroup}>
           Detach
@@ -222,8 +230,8 @@ function ModelGroupControls(props: Props) {
       <div className="flex">
         <h1>Attach to Group:</h1>
         <select
-          value={parentGroup}
-          onChange={(e) => setparentGroup(parseInt(e.target.value))}
+          value={parentGroupId}
+          onChange={(e) => setparentGroupId(parseInt(e.target.value))}
         >
           {assignList}
         </select>

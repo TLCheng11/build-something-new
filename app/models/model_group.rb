@@ -9,6 +9,14 @@ class ModelGroup < ApplicationRecord
   has_one :parent_group, :class_name => "ModelGroup"
   has_many :child_groups, :class_name => "ModelGroup", :foreign_key => "parent_group_id"
 
+  def attach_children_to_parent
+    if self.child_groups.count > 0
+      self.child_groups.each do |group|
+        group.update!(parent_group_id: self.parent_group_id)
+      end
+    end
+  end
+
   def child_groups_list
     list = [self.id]
     find_child_groups(list, self)

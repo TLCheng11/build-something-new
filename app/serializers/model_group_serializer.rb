@@ -6,10 +6,6 @@ class ModelGroupSerializer < ActiveModel::Serializer
   has_many :model_spheres
   has_many :child_groups
 
-  # def child_groups
-  #   ModelGroup.all.where(parent_group_id: self.object.id)
-  # end
-
   def parent_group_name
     if (self.object.parent_group_id)
       ModelGroup.find(self.object.parent_group_id).group_name

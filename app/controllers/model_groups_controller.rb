@@ -42,6 +42,7 @@ class ModelGroupsController < ApplicationController
   # DELETE /model_groups/1
   def destroy
     if @model_group.project.model_groups.count > 1
+      @model_group.attach_children_to_parent
       @model_group.destroy
       render json: {message: "Group deleted"}, status: :accepted
     else
