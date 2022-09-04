@@ -6,6 +6,7 @@ import ModelPlane from "./ModelPlane";
 import ModelSphere from "./ModelSphere";
 
 interface Props {
+  refresh: boolean;
   group: IModelGroup;
   gridGroup: [number, number, string, string];
   showGridGroup: boolean;
@@ -55,6 +56,7 @@ interface Props {
 
 function ModelGroup(props: Props) {
   const {
+    refresh,
     group,
     gridGroup,
     showGridGroup,
@@ -103,6 +105,7 @@ function ModelGroup(props: Props) {
 
   const showChildGroups = childGroups.map((group) => (
     <ModelGroup
+      refresh={refresh}
       key={group.id}
       group={group}
       gridGroup={gridGroup}
@@ -200,7 +203,7 @@ function ModelGroup(props: Props) {
     fetch(`/model_groups/${group.id}`)
       .then((res) => res.json())
       .then((data) => setchildGroups(data.child_groups));
-  }, []);
+  }, [refresh]);
 
   // set position
   useEffect(() => {

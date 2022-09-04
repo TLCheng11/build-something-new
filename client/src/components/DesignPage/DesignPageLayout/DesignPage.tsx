@@ -145,6 +145,7 @@ function DesignPage(props: Props) {
       </div>
       <div id="design-canvas-holder" className="h-full w-3/4 border">
         <DesignCanvas
+          refresh={refresh}
           currentProject={currentProject}
           gridMain={gridMain}
           showGridMain={showGridMain}

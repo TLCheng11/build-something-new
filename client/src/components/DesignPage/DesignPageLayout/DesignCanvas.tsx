@@ -6,6 +6,7 @@ import { ICurrentProject } from "../../../Interface";
 import { Suspense } from "react";
 
 interface Props {
+  refresh: boolean;
   currentProject: ICurrentProject;
   gridMain: [number, number, string, string];
   showGridMain: boolean;
@@ -57,6 +58,7 @@ interface Props {
 
 function DesignCanvas(props: Props) {
   const {
+    refresh,
     currentProject,
     gridMain,
     showGridMain,
@@ -91,6 +93,7 @@ function DesignCanvas(props: Props) {
     .map((group) => (
       <ModelGroup
         key={group.id}
+        refresh={refresh}
         group={group}
         gridGroup={gridGroup}
         showGridGroup={showGridGroup}
