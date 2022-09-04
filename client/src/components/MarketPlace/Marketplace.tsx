@@ -65,6 +65,7 @@ function MarketPlace(props: Props) {
         </div>
         <div className="h-1/10">
           <PagesNavBar
+            type="marketplace"
             pageCount={pageCount}
             currentPage={currentPage}
             setcurrentPage={setcurrentPage}

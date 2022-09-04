@@ -7,6 +7,7 @@ import { ICurrentUser } from "./Interface";
 import MarketPlace from "./components/MarketPlace/Marketplace";
 import MenuTop from "./components/commons/Menus/MenuTop";
 import DetailView from "./components/DetailView/DetailView";
+import MyProjects from "./components/Dashboard/MyProjects";
 
 function App() {
   const [currentUser, setcurrentUser] = useState<ICurrentUser>({});
@@ -74,7 +75,16 @@ function App() {
                   setcurrentUser={setcurrentUser}
                 />
               }
-            />
+            >
+              <Route
+                path="projects/:page"
+                element={<MyProjects currentUser={currentUser} />}
+              />
+              <Route
+                path="*"
+                element={<div className="text-6xl">Page Not Found</div>}
+              />
+            </Route>
             <Route
               path="/project-design/:project_id"
               element={<DesignPage currentUser={currentUser} />}

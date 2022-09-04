@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
+  type: string;
   pageCount: number;
   currentPage: number;
   setcurrentPage: Dispatch<SetStateAction<number>>;
@@ -9,7 +10,7 @@ interface Props {
 
 function PagesNavBar(props: Props) {
   let navigate = useNavigate();
-  const { pageCount, currentPage, setcurrentPage } = props;
+  const { type, pageCount, currentPage, setcurrentPage } = props;
   const totalPages = Array.from(Array(pageCount).keys());
 
   const pages = totalPages
@@ -35,7 +36,9 @@ function PagesNavBar(props: Props) {
     ));
 
   useEffect(() => {
-    navigate(`/marketplace/${currentPage}`);
+    if (type === "market") {
+      navigate(`/marketplace/${currentPage}`);
+    }
   }, [currentPage]);
 
   return (
