@@ -1,5 +1,5 @@
 import { Loader } from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
 import { IProject } from "../../../Interface";
@@ -15,6 +15,7 @@ interface Props {
 function ProjectCard(props: Props) {
   let navigate = useNavigate();
   const { setrefresh, type, project } = props;
+  const [onMarket, setonMarket] = useState<boolean>(project.on_market);
 
   const showProject = project.model_groups
     .filter((group) => !group.parent_group_id)
@@ -22,6 +23,22 @@ function ProjectCard(props: Props) {
 
   function toProjectDesign(id?: number) {
     navigate(`/project-design/${id}`);
+  }
+
+  function putOnMarket(e: React.ChangeEvent<HTMLInputElement>) {
+    fetch(`/projects/${project.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ on_market: e.target.checked }),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => setonMarket(data.on_market));
+      } else {
+        res.json().then((data) => alert(data.error));
+      }
+    });
   }
 
   function deleteProject() {
@@ -58,6 +75,23 @@ function ProjectCard(props: Props) {
       </div>
       {type === "myProject" && (
         <div>
+          <div className="flex items-center justify-center w-full mb-12">
+            <label className="flex items-center cursor-pointer">
+              <div className="relative">
+                <input
+                  className="sr-only"
+                  type="checkbox"
+                  checked={onMarket}
+                  onChange={(e) => {
+                    putOnMarket(e);
+                  }}
+                />
+                <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+              </div>
+              <div className="ml-3 text-white font-medium">On Market</div>
+            </label>
+          </div>
           <button
             className="border mx-1"
             onClick={() => toProjectDesign(project.id)}

@@ -50,6 +50,12 @@ class ProjectsController < ApplicationController
     render json: @project, status: :created
   end
 
+  # PATCH/PUT /projects/1
+  def update
+    @project.update!(project_update_params)
+    render json: @project, status: :accepted
+  end
+
   # DELETE /projects/1
   def destroy
     @project.destroy
@@ -63,5 +69,9 @@ class ProjectsController < ApplicationController
 
     def project_params
       params.permit(:title, :description, :created_by)
+    end
+
+    def project_update_params
+      params.permit(:on_market)
     end
 end
