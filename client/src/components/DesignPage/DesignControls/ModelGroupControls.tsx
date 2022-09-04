@@ -44,8 +44,6 @@ function ModelGroupControls(props: Props) {
   const [parentGroupId, setparentGroupId] = useState<number>(0);
   const [parentGroupName, setparentGroupName] = useState<string>("None");
 
-  console.log(selectedGroup);
-
   // options for group selection
   const groupList = currentProject.model_groups?.map((group) => (
     <option key={group.id} value={group.id}>
