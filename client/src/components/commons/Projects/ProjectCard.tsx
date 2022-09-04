@@ -1,6 +1,6 @@
 import { Loader } from "@react-three/drei";
 import { Suspense } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
 import { IProject } from "../../../Interface";
 import RoomContent from "../ShowRoom/RoomContent";
@@ -43,12 +43,14 @@ function ProjectCard(props: Props) {
   return (
     <div className="col-span-1 flex flex-col items-center min-h-360px max-h-400px rounded-xl border">
       <div className="h-4/5 w-full rounded-t-xl bg-gray-400">
-        <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
-          <Suspense fallback={null}>
-            <RoomStage>{showProject}</RoomStage>
-          </Suspense>
-        </Canvas>
-        <Loader />
+        <NavLink to={`/project-detail-view/${project.id}`}>
+          <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
+            <Suspense fallback={null}>
+              <RoomStage>{showProject}</RoomStage>
+            </Suspense>
+          </Canvas>
+          <Loader />
+        </NavLink>
       </div>
       <div className="w-11/12">
         <h1>{project.title}</h1>

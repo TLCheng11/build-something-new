@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import { ICurrentUser } from "./Interface";
 import MarketPlace from "./components/MarketPlace/Marketplace";
 import MenuTop from "./components/commons/Menus/MenuTop";
+import DetailView from "./components/DetailView/DetailView";
 
 function App() {
   const [currentUser, setcurrentUser] = useState<ICurrentUser>({});
@@ -49,6 +50,10 @@ function App() {
             <Route
               path="/project-design/:project_id"
               element={<DesignPage currentUser={currentUser} />}
+            />
+            <Route
+              path="/project-detail-view/:project_id"
+              element={<DetailView />}
             />
           </Routes>
         </div>
