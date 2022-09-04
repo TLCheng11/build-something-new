@@ -24,7 +24,7 @@ function MenuTop({ setcurrentUser }: Props) {
       className="fixed flex justify-center -top-9 h-10 w-screen bg-black text-white transition-all duration-300 ease-in hover:top-0"
     >
       <nav className="flex items-center">
-        <NavLink to="/dashboard">
+        <NavLink to="/dashboard/projects/1">
           <div className="mx-2">DashBoard</div>
         </NavLink>
         <NavLink to="/">

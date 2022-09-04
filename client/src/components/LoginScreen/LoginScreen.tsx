@@ -14,9 +14,11 @@ function LoginPage(props: Props) {
   const { currentUser, setcurrentUser } = props;
   const [signUp, setSignUp] = useState<boolean>(false);
 
-  if (currentUser.id) {
-    navigate("/marketplace/1");
-  }
+  useEffect(() => {
+    if (currentUser.id) {
+      navigate("/marketplace/1");
+    }
+  }, []);
 
   return (
     <div className="h-screen w-screen flex items-center justify-center">
