@@ -18,7 +18,7 @@ function MarketPlace() {
   console.log(myProjects);
 
   useEffect(() => {
-    fetch(`/projects/page_count`).then((res) => {
+    fetch(`/projects_page_count`).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
           setpageCount(data.page_count);
@@ -37,7 +37,7 @@ function MarketPlace() {
         res.json().then(setmyProjects);
       } else {
         res.json().then((data) => {
-          alert(data.message);
+          alert(data.error);
         });
       }
     });

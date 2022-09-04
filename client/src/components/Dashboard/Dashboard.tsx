@@ -28,7 +28,7 @@ function Dashboard(props: Props) {
   console.log(myProjects);
 
   useEffect(() => {
-    fetch(`/users/${currentUser.id}/projects/page_count`).then((res) => {
+    fetch(`/users/${currentUser.id}/projects_page_count`).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
           setpageCount(data.page_count);

@@ -18,8 +18,8 @@ Rails.application.routes.draw do
       resources :projects, only: [:index]
     end
     resources :projects, only: [:index, :show, :create]
-    get "/projects/page_count", to:"projects#page_count"
-    get "/users/:user_id/projects/page_count", to: "projects#page_count"
+    get "/projects_page_count", to:"projects#page_count"
+    get "/users/:user_id/projects_page_count", to: "projects#page_count"
 
     # model_groups
     resources :model_groups, only: [:create, :update, :destroy]
