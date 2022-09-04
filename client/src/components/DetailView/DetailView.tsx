@@ -41,7 +41,7 @@ function DetailView() {
 
   return (
     <div className="h-screen w-screen bg-black">
-      <div className="flex justify-center h-4/5 w-full">
+      <div className="flex justify-center h-4/5 w-full pt-2">
         <div className="h-full w-4/5 rounded-3xl bg-gray-400">
           <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
             <Suspense fallback={null}>{showProject}</Suspense>
