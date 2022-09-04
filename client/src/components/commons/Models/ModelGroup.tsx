@@ -99,6 +99,38 @@ function ModelGroup(props: Props) {
   const positionRef = useRef<[number, number, number]>(selfPosition);
   const rotationRef = useRef<[number, number, number]>(selfRotation);
   const selectedRef = useRef<boolean>(false);
+  const [childGroups, setchildGroups] = useState<IModelGroup[]>([]);
+
+  const showChildGroups = childGroups.map((group) => (
+    <ModelGroup
+      key={group.id}
+      group={group}
+      gridGroup={gridGroup}
+      showGridGroup={showGridGroup}
+      gridModel={gridModel}
+      showGridModel={showGridModel}
+      selectedGroup={selectedGroup}
+      setselectedGroup={setselectedGroup}
+      groupPosition={groupPosition}
+      setgroupPosition={setgroupPosition}
+      groupRotation={groupRotation}
+      setgroupRotation={setgroupRotation}
+      selectedModel={selectedModel}
+      setselectedModel={setselectedModel}
+      planeSize={planeSize}
+      setplaneSize={setplaneSize}
+      boxSize={boxSize}
+      setboxSize={setboxSize}
+      sphereSize={sphereSize}
+      setsphereSize={setsphereSize}
+      position={position}
+      setposition={setposition}
+      rotation={rotation}
+      setrotation={setrotation}
+      modelColor={modelColor}
+      setmodelColor={setmodelColor}
+    />
+  ));
 
   const showModelPlanes = group.model_planes?.map((plane) => (
     <ModelPlane
@@ -162,6 +194,13 @@ function ModelGroup(props: Props) {
       setmodelColor={setmodelColor}
     />
   ));
+
+  // get all child groups
+  useEffect(() => {
+    fetch(`/model_groups/${group.id}`)
+      .then((res) => res.json())
+      .then((data) => setchildGroups(data.child_groups));
+  }, []);
 
   // set position
   useEffect(() => {
@@ -245,6 +284,7 @@ function ModelGroup(props: Props) {
             gridPosition={[0, 0, 0]}
           />
         )}
+        {showChildGroups}
         {showModelPlanes}
         {showModelBoxes}
         {showModelSpheres}

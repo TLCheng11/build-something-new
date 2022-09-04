@@ -1,5 +1,10 @@
 class ModelGroupsController < ApplicationController
-  before_action :find_model_group, only: [:update, :destroy, :attach, :detach]
+  before_action :find_model_group, only: [:show, :update, :destroy, :attach, :detach]
+
+  # GET /model_groups/1
+  def show
+    render json: @model_group, include: ["child_groups", "child_groups.child_groups", "child_groups.model_planes", "child_groups.model_boxes", "child_groups.model_spheres"]
+  end
 
   # POST /model_groups
   def create

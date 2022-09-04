@@ -203,11 +203,11 @@ function ModelGroupControls(props: Props) {
       <div className="flex">
         <h1>
           Parent Group:
-          {
+          {/* {
             currentProject.model_groups?.filter(
               (group) => group.id === selectedGroup.id
             )[0].parent_group_name
-          }
+          } */}
         </h1>
         <button className="border" onClick={detachFromParentGroup}>
           Detach

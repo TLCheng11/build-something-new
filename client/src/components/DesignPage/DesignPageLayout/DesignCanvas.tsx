@@ -86,36 +86,38 @@ function DesignCanvas(props: Props) {
     setmodelColor,
   } = props;
 
-  const showModelGroups = currentProject.model_groups.map((group) => (
-    <ModelGroup
-      key={group.id}
-      group={group}
-      gridGroup={gridGroup}
-      showGridGroup={showGridGroup}
-      gridModel={gridModel}
-      showGridModel={showGridModel}
-      selectedGroup={selectedGroup}
-      setselectedGroup={setselectedGroup}
-      groupPosition={groupPosition}
-      setgroupPosition={setgroupPosition}
-      groupRotation={groupRotation}
-      setgroupRotation={setgroupRotation}
-      selectedModel={selectedModel}
-      setselectedModel={setselectedModel}
-      planeSize={planeSize}
-      setplaneSize={setplaneSize}
-      boxSize={boxSize}
-      setboxSize={setboxSize}
-      sphereSize={sphereSize}
-      setsphereSize={setsphereSize}
-      position={position}
-      setposition={setposition}
-      rotation={rotation}
-      setrotation={setrotation}
-      modelColor={modelColor}
-      setmodelColor={setmodelColor}
-    />
-  ));
+  const showModelGroups = currentProject.model_groups
+    .filter((group) => !group.parent_group_id)
+    .map((group) => (
+      <ModelGroup
+        key={group.id}
+        group={group}
+        gridGroup={gridGroup}
+        showGridGroup={showGridGroup}
+        gridModel={gridModel}
+        showGridModel={showGridModel}
+        selectedGroup={selectedGroup}
+        setselectedGroup={setselectedGroup}
+        groupPosition={groupPosition}
+        setgroupPosition={setgroupPosition}
+        groupRotation={groupRotation}
+        setgroupRotation={setgroupRotation}
+        selectedModel={selectedModel}
+        setselectedModel={setselectedModel}
+        planeSize={planeSize}
+        setplaneSize={setplaneSize}
+        boxSize={boxSize}
+        setboxSize={setboxSize}
+        sphereSize={sphereSize}
+        setsphereSize={setsphereSize}
+        position={position}
+        setposition={setposition}
+        rotation={rotation}
+        setrotation={setrotation}
+        modelColor={modelColor}
+        setmodelColor={setmodelColor}
+      />
+    ));
 
   return (
     <div id="design-canvas" className="h-full w-full bg-gray-400">

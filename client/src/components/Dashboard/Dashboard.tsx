@@ -25,8 +25,6 @@ function Dashboard(props: Props) {
   const [pageCount, setpageCount] = useState(0);
   const [currentPage, setcurrentPage] = useState<number>(1);
 
-  console.log(myProjects);
-
   useEffect(() => {
     fetch(`/users/${currentUser.id}/projects_page_count`).then((res) => {
       if (res.ok) {

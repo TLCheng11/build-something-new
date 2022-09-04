@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     get "/users/:user_id/projects_page_count", to: "projects#page_count"
 
     # model_groups
-    resources :model_groups, only: [:create, :update, :destroy]
+    resources :model_groups, only: [:show, :create, :update, :destroy]
     patch "/model_groups/:id/attach", to: "model_groups#attach"
     patch "/model_groups/:id/detach", to: "model_groups#detach"
 

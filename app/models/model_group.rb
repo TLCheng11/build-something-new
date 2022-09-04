@@ -6,6 +6,9 @@ class ModelGroup < ApplicationRecord
   has_many :model_boxes, dependent: :destroy
   has_many :model_spheres, dependent: :destroy
 
+  has_one :parent_group, :class_name => "ModelGroup"
+  has_many :child_groups, :class_name => "ModelGroup", :foreign_key => "parent_group_id"
+
   def child_groups_list
     list = [self.id]
     find_child_groups(list, self)
