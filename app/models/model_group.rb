@@ -15,6 +15,22 @@ class ModelGroup < ApplicationRecord
     list
   end
 
+  # wip
+  # def is_child?(id, group)
+  #   children = group.child_groups
+  #   if children.count > 0
+  #     children.each do |g|
+  #       puts id
+  #       puts g.id
+  #       if g.id == id
+  #         return true
+  #       end
+  #       return is_child?(id, g)
+  #     end
+  #   end
+  #   false
+  # end
+
   private
     def find_child_groups(list = [], group)
       children = ModelGroup.where(parent_group_id: group.id)
