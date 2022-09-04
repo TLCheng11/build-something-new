@@ -38,6 +38,8 @@ function PagesNavBar(props: Props) {
   useEffect(() => {
     if (type === "market") {
       navigate(`/marketplace/${currentPage}`);
+    } else if (type === "dashboard-projects") {
+      navigate(`/dashboard/projects/${currentPage}`);
     }
   }, [currentPage]);
 

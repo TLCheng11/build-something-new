@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { ICurrentUser, IProject } from "../../Interface";
 import PagesNavBar from "../commons/Projects/PagesNavBar";
 import ProjectShowcase from "../commons/Projects/ProjectShowcase";
@@ -8,6 +9,7 @@ interface Props {
 }
 
 function MyProjects({ currentUser }: Props) {
+  const params = useParams();
   const [refresh, setrefresh] = useState<boolean>(false);
   const [myProjects, setmyProjects] = useState<[IProject]>([
     {
@@ -19,6 +21,12 @@ function MyProjects({ currentUser }: Props) {
   ]);
   const [pageCount, setpageCount] = useState(0);
   const [currentPage, setcurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    if (params.page) {
+      setcurrentPage(parseInt(params.page));
+    }
+  }, []);
 
   useEffect(() => {
     fetch(`/users/${currentUser.id}/projects_page_count`).then((res) => {
@@ -67,7 +75,7 @@ function MyProjects({ currentUser }: Props) {
           </div>
           <div className="h-1/10">
             <PagesNavBar
-              type="dashboard-project"
+              type="dashboard-projects"
               pageCount={pageCount}
               currentPage={currentPage}
               setcurrentPage={setcurrentPage}

@@ -42,7 +42,7 @@ function MarketPlace(props: Props) {
         }
       });
 
-      fetch(`/projects/?page=${params.page}`).then((res) => {
+      fetch(`/projects/?page=${currentPage}`).then((res) => {
         if (res.ok) {
           res.json().then(setmyProjects);
         } else {
@@ -52,7 +52,7 @@ function MarketPlace(props: Props) {
         }
       });
     }
-  }, [params]);
+  }, [currentPage]);
 
   return (
     <div
