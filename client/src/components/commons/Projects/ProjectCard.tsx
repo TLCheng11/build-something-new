@@ -46,11 +46,16 @@ function ProjectCard(props: Props) {
       fetch(`/projects/${project.id}`, {
         method: "DELETE",
       })
-        .then((res) => res.json())
-        .then(() => {
-          alert("Project deleted");
-          if (setrefresh) {
-            setrefresh((state: boolean) => !state);
+        .then((res) => {
+          if (res.ok) {
+            res.json().then((data) => {
+              alert(data.message);
+              if (setrefresh) {
+                setrefresh((state: boolean) => !state);
+              }
+            });
+          } else {
+            res.json().then((data) => alert(data.error));
           }
         })
         .catch(console.error);
@@ -93,12 +98,17 @@ function ProjectCard(props: Props) {
             </label>
           </div>
           <button
-            className="border mx-1"
+            className="border mx-1 disabled:opacity-60"
             onClick={() => toProjectDesign(project.id)}
+            disabled={onMarket}
           >
             Edit
           </button>
-          <button className="border mx-1" onClick={deleteProject}>
+          <button
+            className="border mx-1 disabled:opacity-60"
+            onClick={deleteProject}
+            disabled={onMarket}
+          >
             Delete
           </button>
         </div>

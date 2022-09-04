@@ -55,11 +55,15 @@ class ProjectsController < ApplicationController
     @project.update!(project_update_params)
     render json: @project, status: :accepted
   end
-
+  
   # DELETE /projects/1
   def destroy
-    @project.destroy
-    render json: {message: "Project #{@project.title} deleted"}, status: :accepted
+    if !@project.on_market
+      @project.destroy
+      render json: {message: "Project #{@project.title} deleted"}, status: :accepted
+    else
+      render json: {error: "project must be taken off marketplace before you can delete"}, status: 405
+    end
   end
 
   private
