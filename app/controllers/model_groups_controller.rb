@@ -23,7 +23,7 @@ class ModelGroupsController < ApplicationController
     if ModelGroup.find(params[:parent_group_id])
       children = @model_group.child_groups_list
       if !children.include?(params[:parent_group_id])
-        @model_group.update!(params.permit(:parent_group_id))
+        @model_group.update!(parent_group_id: params[:parent_group_id], xposition: 0, yposition: 0, zposition: 0)
         render json: @model_group, status: :accepted
       else
         render json: {error: "Group cannot be attached to its child or grandchild"}, status: 405
@@ -35,7 +35,7 @@ class ModelGroupsController < ApplicationController
 
   # PATCH/PUT /model_groups/1/attach
   def detach
-    @model_group.update!(parent_group_id: nil)
+    @model_group.update!(parent_group_id: nil, xposition: 0, yposition: 0, zposition: 0)
     render json: @model_group, status: :accepted
   end
 

@@ -59,9 +59,8 @@ function ModelGroupControls(props: Props) {
       </option>
     ));
 
-  console.log(assignList);
   useEffect(() => {
-    if (assignList.length > 0) {
+    if (assignList.length > 0 && parentGroup === 0) {
       setparentGroup(assignList[0].props.value);
     }
   }, [assignList]);
