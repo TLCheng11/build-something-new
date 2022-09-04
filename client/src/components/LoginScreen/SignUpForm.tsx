@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ICurrentUser } from "../../Interface";
 
 interface Props {
-  currentUser: ICurrentUser;
   setcurrentUser: React.Dispatch<React.SetStateAction<ICurrentUser>>;
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function SignUpForm(props: Props) {
-  const { currentUser, setcurrentUser, setSignUp } = props;
+  let navigate = useNavigate();
+  const { setcurrentUser, setSignUp } = props;
 
   const [formInput, setformInput] = useState({
     username: "",
@@ -81,6 +82,7 @@ function SignUpForm(props: Props) {
           res.json().then((data) => {
             console.log(data);
             setcurrentUser(data);
+            navigate("/marketplace/1");
           });
         } else {
           res.json().then((e) => alert(e.errors));

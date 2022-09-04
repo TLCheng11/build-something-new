@@ -28,7 +28,23 @@ function App() {
 
   if (!currentUser.id)
     return (
-      <LoginScreen currentUser={currentUser} setcurrentUser={setcurrentUser} />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LoginScreen
+                currentUser={currentUser}
+                setcurrentUser={setcurrentUser}
+              />
+            }
+          />
+          <Route
+            path="*"
+            element={<div className="text-6xl">Page Not Found</div>}
+          />
+        </Routes>
+      </BrowserRouter>
     );
 
   return (
@@ -37,7 +53,19 @@ function App() {
         <MenuTop setcurrentUser={setcurrentUser} />
         <div className="App">
           <Routes>
-            <Route path="/" element={<MarketPlace />} />
+            <Route
+              path="/"
+              element={
+                <LoginScreen
+                  currentUser={currentUser}
+                  setcurrentUser={setcurrentUser}
+                />
+              }
+            />
+            <Route
+              path="/marketplace/:page"
+              element={<MarketPlace currentUser={currentUser} />}
+            />
             <Route
               path="/dashboard"
               element={
@@ -54,6 +82,10 @@ function App() {
             <Route
               path="/project-detail-view/:project_id"
               element={<DetailView />}
+            />
+            <Route
+              path="*"
+              element={<div className="text-6xl">Page Not Found</div>}
             />
           </Routes>
         </div>

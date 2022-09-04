@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
-import { IProject } from "../../Interface";
+import { useNavigate } from "react-router-dom";
+import { ICurrentUser, IProject } from "../../Interface";
 import PagesNavBar from "../commons/Projects/PagesNavBar";
 import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 
-function MarketPlace() {
+interface Props {
+  currentUser: ICurrentUser;
+}
+
+function MarketPlace(props: Props) {
+  let navigate = useNavigate();
+  const { currentUser } = props;
   const [myProjects, setmyProjects] = useState<[IProject]>([
     {
       id: 0,
@@ -15,30 +22,41 @@ function MarketPlace() {
   const [pageCount, setpageCount] = useState(0);
   const [currentPage, setcurrentPage] = useState<number>(1);
 
+  // to protect this page route
   useEffect(() => {
-    fetch(`/projects_page_count`).then((res) => {
-      if (res.ok) {
-        res.json().then((data) => {
-          setpageCount(data.page_count);
-        });
-      } else {
-        res.json().then((data) => {
-          alert(data.error);
-        });
-      }
-    });
+    if (!currentUser.id) {
+      navigate("/");
+    }
   }, []);
 
   useEffect(() => {
-    fetch(`/projects/?page=${currentPage}`).then((res) => {
-      if (res.ok) {
-        res.json().then(setmyProjects);
-      } else {
-        res.json().then((data) => {
-          alert(data.error);
-        });
-      }
-    });
+    if (currentUser.id) {
+      fetch(`/projects_page_count`).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            setpageCount(data.page_count);
+          });
+        } else {
+          res.json().then((data) => {
+            alert(data.error);
+          });
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (currentUser.id) {
+      fetch(`/projects/?page=${currentPage}`).then((res) => {
+        if (res.ok) {
+          res.json().then(setmyProjects);
+        } else {
+          res.json().then((data) => {
+            alert(data.error);
+          });
+        }
+      });
+    }
   }, [currentPage]);
 
   return (

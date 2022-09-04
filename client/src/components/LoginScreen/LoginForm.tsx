@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ICurrentUser } from "../../Interface";
 
 interface Props {
@@ -7,6 +8,7 @@ interface Props {
 }
 
 function LoginForm(props: Props) {
+  let navigate = useNavigate();
   const { setcurrentUser, setSignUp } = props;
   const [formInput, setFormInput] = useState({
     username: "",
@@ -34,6 +36,7 @@ function LoginForm(props: Props) {
         if (res.ok) {
           res.json().then((data) => {
             setcurrentUser(data);
+            navigate("/marketplace/1");
           });
         } else {
           res.json().then((e) => alert(e.error));
