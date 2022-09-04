@@ -40,18 +40,20 @@ function Dashboard(props: Props) {
   }, []);
 
   useEffect(() => {
-    fetch(`/users/${currentUser.id}/projects/?page=${currentPage}`).then(
-      (res) => {
-        if (res.ok) {
-          res.json().then(setmyProjects);
-        } else {
-          res.json().then((data) => {
-            alert(data.message);
-          });
+    if (pageCount > 0) {
+      fetch(`/users/${currentUser.id}/projects/?page=${currentPage}`).then(
+        (res) => {
+          if (res.ok) {
+            res.json().then(setmyProjects);
+          } else {
+            res.json().then((data) => {
+              alert(data.error);
+            });
+          }
         }
-      }
-    );
-  }, [currentPage]);
+      );
+    }
+  }, [pageCount, currentPage]);
 
   return (
     <div
@@ -71,18 +73,22 @@ function Dashboard(props: Props) {
           setshowProjectForm={setshowProjectForm}
         />
       </div>
-      <div id="my-projects-showcase" className="h-full w-4/5">
-        <div className="h-9/10 w-full overflow-hidden">
-          <ProjectShowcase type="myProject" myProjects={myProjects} />
+      {pageCount < 1 ? (
+        <div>No project yet, please create a new project</div>
+      ) : (
+        <div id="my-projects-showcase" className="h-full w-4/5">
+          <div className="h-9/10 w-full overflow-hidden">
+            <ProjectShowcase type="myProject" myProjects={myProjects} />
+          </div>
+          <div className="h-1/10">
+            <PagesNavBar
+              pageCount={pageCount}
+              currentPage={currentPage}
+              setcurrentPage={setcurrentPage}
+            />
+          </div>
         </div>
-        <div className="h-1/10">
-          <PagesNavBar
-            pageCount={pageCount}
-            currentPage={currentPage}
-            setcurrentPage={setcurrentPage}
-          />
-        </div>
-      </div>
+      )}
     </div>
   );
 }
