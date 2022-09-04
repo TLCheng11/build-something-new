@@ -50,6 +50,12 @@ class ProjectsController < ApplicationController
     render json: @project, status: :created
   end
 
+  # DELETE /projects/1
+  def destroy
+    @project.destroy
+    render json: {message: "Project #{@project.title} deleted"}, status: :accepted
+  end
+
   private
     def find_project
       @project = Project.find(params[:id])

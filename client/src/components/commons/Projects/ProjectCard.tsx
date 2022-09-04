@@ -7,13 +7,14 @@ import RoomContent from "../ShowRoom/RoomContent";
 import RoomStage from "../ShowRoom/RoomStage";
 
 interface Props {
+  setrefresh?: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
   project: IProject;
 }
 
 function ProjectCard(props: Props) {
   let navigate = useNavigate();
-  const { type, project } = props;
+  const { setrefresh, type, project } = props;
 
   const showProject = project.model_groups
     .filter((group) => !group.parent_group_id)
@@ -21,6 +22,22 @@ function ProjectCard(props: Props) {
 
   function toProjectDesign(id?: number) {
     navigate(`/project-design/${id}`);
+  }
+
+  function deleteProject() {
+    if (window.confirm("Are you sure?")) {
+      fetch(`/projects/${project.id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then(() => {
+          alert("Project deleted");
+          if (setrefresh) {
+            setrefresh((state: boolean) => !state);
+          }
+        })
+        .catch(console.error);
+    }
   }
 
   return (
@@ -38,7 +55,17 @@ function ProjectCard(props: Props) {
         {type !== "myProject" && <h1>Creator: {project.creator}</h1>}
       </div>
       {type === "myProject" && (
-        <button onClick={() => toProjectDesign(project.id)}>Edit</button>
+        <div>
+          <button
+            className="border mx-1"
+            onClick={() => toProjectDesign(project.id)}
+          >
+            Edit
+          </button>
+          <button className="border mx-1" onClick={deleteProject}>
+            Delete
+          </button>
+        </div>
       )}
     </div>
   );

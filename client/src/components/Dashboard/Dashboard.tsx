@@ -12,6 +12,7 @@ interface Props {
 
 function Dashboard(props: Props) {
   const { currentUser, setcurrentUser } = props;
+  const [refresh, setrefresh] = useState<boolean>(false);
   const [showProjectForm, setshowProjectForm] = useState<boolean>(false);
 
   const [myProjects, setmyProjects] = useState<[IProject]>([
@@ -37,7 +38,7 @@ function Dashboard(props: Props) {
         });
       }
     });
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
     if (pageCount > 0) {
@@ -53,7 +54,7 @@ function Dashboard(props: Props) {
         }
       );
     }
-  }, [pageCount, currentPage]);
+  }, [refresh, pageCount, currentPage]);
 
   return (
     <div
@@ -74,11 +75,17 @@ function Dashboard(props: Props) {
         />
       </div>
       {pageCount < 1 ? (
-        <div>No project yet, please create a new project</div>
+        <div className="flex items-center justify-center h-full w-4/5">
+          <h1>No project yet, please create a new project</h1>
+        </div>
       ) : (
         <div id="my-projects-showcase" className="h-full w-4/5">
           <div className="h-9/10 w-full overflow-hidden">
-            <ProjectShowcase type="myProject" myProjects={myProjects} />
+            <ProjectShowcase
+              setrefresh={setrefresh}
+              type="myProject"
+              myProjects={myProjects}
+            />
           </div>
           <div className="h-1/10">
             <PagesNavBar

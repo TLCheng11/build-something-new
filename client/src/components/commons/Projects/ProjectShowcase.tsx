@@ -2,15 +2,21 @@ import { ICurrentUser, IProject } from "../../../Interface";
 import ProjectCard from "./ProjectCard";
 
 interface Props {
+  setrefresh?: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
   myProjects: [IProject];
 }
 
 function ProjectShowcase(props: Props) {
-  const { type, myProjects } = props;
+  const { setrefresh, type, myProjects } = props;
 
   const showMyProjects = myProjects.map((project) => (
-    <ProjectCard key={project.id} type={type} project={project} />
+    <ProjectCard
+      key={project.id}
+      setrefresh={setrefresh}
+      type={type}
+      project={project}
+    />
   ));
 
   return (
