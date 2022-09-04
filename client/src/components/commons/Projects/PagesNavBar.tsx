@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   pageCount: number;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 function PagesNavBar(props: Props) {
+  let navigate = useNavigate();
   const { pageCount, currentPage, setcurrentPage } = props;
   const totalPages = Array.from(Array(pageCount).keys());
 
@@ -31,6 +33,10 @@ function PagesNavBar(props: Props) {
         {page + 1}
       </div>
     ));
+
+  useEffect(() => {
+    navigate(`/marketplace/${currentPage}`);
+  }, [currentPage]);
 
   return (
     <div>

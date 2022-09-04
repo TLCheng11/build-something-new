@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ICurrentUser, IProject } from "../../Interface";
 import PagesNavBar from "../commons/Projects/PagesNavBar";
 import ProjectShowcase from "../commons/Projects/ProjectShowcase";
@@ -9,7 +9,7 @@ interface Props {
 }
 
 function MarketPlace(props: Props) {
-  let navigate = useNavigate();
+  const params = useParams();
   const { currentUser } = props;
   const [myProjects, setmyProjects] = useState<[IProject]>([
     {
@@ -21,6 +21,12 @@ function MarketPlace(props: Props) {
   ]);
   const [pageCount, setpageCount] = useState(0);
   const [currentPage, setcurrentPage] = useState<number>(1);
+
+  useEffect(() => {
+    if (params.page) {
+      setcurrentPage(parseInt(params.page));
+    }
+  }, []);
 
   useEffect(() => {
     if (currentUser.id) {
@@ -35,12 +41,8 @@ function MarketPlace(props: Props) {
           });
         }
       });
-    }
-  }, []);
 
-  useEffect(() => {
-    if (currentUser.id) {
-      fetch(`/projects/?page=${currentPage}`).then((res) => {
+      fetch(`/projects/?page=${params.page}`).then((res) => {
         if (res.ok) {
           res.json().then(setmyProjects);
         } else {
@@ -50,7 +52,7 @@ function MarketPlace(props: Props) {
         }
       });
     }
-  }, [currentPage]);
+  }, [params]);
 
   return (
     <div
