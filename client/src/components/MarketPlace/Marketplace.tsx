@@ -63,19 +63,25 @@ function MarketPlace(props: Props) {
       id="dashboard"
       className="flex h-screen w-screen bg-gray-800 text-white"
     >
-      <div id="market-place-showcase" className="h-full w-full">
-        <div className="h-9/10 w-full overflow-hidden">
-          <ProjectShowcase type="market" myProjects={myProjects} />
+      {pageCount < 1 ? (
+        <div className="flex items-center justify-center h-full w-full">
+          <h1>No project on market</h1>
         </div>
-        <div className="h-1/10">
-          <PagesNavBar
-            type="marketplace"
-            pageCount={pageCount}
-            currentPage={currentPage}
-            setcurrentPage={setcurrentPage}
-          />
+      ) : (
+        <div id="market-place-showcase" className="h-full w-full">
+          <div className="h-9/10 w-full overflow-hidden">
+            <ProjectShowcase type="market" myProjects={myProjects} />
+          </div>
+          <div className="h-1/10">
+            <PagesNavBar
+              type="marketplace"
+              pageCount={pageCount}
+              currentPage={currentPage}
+              setcurrentPage={setcurrentPage}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
