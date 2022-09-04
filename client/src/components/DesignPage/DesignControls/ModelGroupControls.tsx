@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ICurrentProject } from "../../../Interface";
 import ModelPositionControls from "./ModelPositionContorls";
@@ -58,6 +58,13 @@ function ModelGroupControls(props: Props) {
         {group.group_name}
       </option>
     ));
+
+  console.log(assignList);
+  useEffect(() => {
+    if (assignList.length > 0) {
+      setparentGroup(assignList[0].props.value);
+    }
+  }, [assignList]);
 
   function createGroup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -203,11 +210,11 @@ function ModelGroupControls(props: Props) {
       <div className="flex">
         <h1>
           Parent Group:
-          {/* {
+          {
             currentProject.model_groups?.filter(
               (group) => group.id === selectedGroup.id
             )[0].parent_group_name
-          } */}
+          }
         </h1>
         <button className="border" onClick={detachFromParentGroup}>
           Detach
