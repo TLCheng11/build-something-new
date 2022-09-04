@@ -6,7 +6,7 @@ interface Props {
   children: JSX.Element[];
 }
 
-function ShowStage({ children }: Props) {
+function RoomStage({ children }: Props) {
   const turnRef = useRef<Group | null>(null);
 
   useFrame(() => {
@@ -18,4 +18,4 @@ function ShowStage({ children }: Props) {
   return <group ref={turnRef}>{children}</group>;
 }
 
-export default ShowStage;
+export default RoomStage;

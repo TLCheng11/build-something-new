@@ -1,4 +1,5 @@
 import { Box, Plane, Sphere } from "@react-three/drei";
+import { useEffect, useState } from "react";
 import { DoubleSide } from "three";
 import { IModelGroup } from "../../../Interface";
 
@@ -6,7 +7,20 @@ interface Props {
   group: IModelGroup;
 }
 
-function ShowContent({ group }: Props) {
+function RoomGroup({ group }: Props) {
+  const [childGroups, setchildGroups] = useState<IModelGroup[]>([]);
+
+  const showChildGroups = childGroups.map((group) => (
+    <RoomGroup group={group} />
+  ));
+
+  // get all child groups
+  useEffect(() => {
+    fetch(`/model_groups/${group.id}`)
+      .then((res) => res.json())
+      .then((data) => setchildGroups(data.child_groups));
+  }, [group]);
+
   return (
     <group
       position={[
@@ -20,6 +34,7 @@ function ShowContent({ group }: Props) {
         ((group.zrotation || 0) / 360) * Math.PI * 2,
       ]}
     >
+      {showChildGroups}
       {group.model_planes?.map((plane) => (
         <Plane
           key={plane.id}
@@ -82,4 +97,4 @@ function ShowContent({ group }: Props) {
   );
 }
 
-export default ShowContent;
+export default RoomGroup;
