@@ -29,21 +29,23 @@ function MyProjects({ currentUser }: Props) {
   }, []);
 
   useEffect(() => {
-    fetch(`/users/${currentUser.id}/projects_page_count`).then((res) => {
-      if (res.ok) {
-        res.json().then((data) => {
-          setpageCount(data.page_count);
-        });
-      } else {
-        res.json().then((data) => {
-          alert(data.error);
-        });
-      }
-    });
+    if (currentUser.id) {
+      fetch(`/users/${currentUser.id}/projects_page_count`).then((res) => {
+        if (res.ok) {
+          res.json().then((data) => {
+            setpageCount(data.page_count);
+          });
+        } else {
+          res.json().then((data) => {
+            alert(data.error);
+          });
+        }
+      });
+    }
   }, [refresh]);
 
   useEffect(() => {
-    if (pageCount > 0) {
+    if (currentUser.id && pageCount > 0) {
       fetch(`/users/${currentUser.id}/projects/?page=${currentPage}`).then(
         (res) => {
           if (res.ok) {

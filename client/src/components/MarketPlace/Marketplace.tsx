@@ -41,7 +41,11 @@ function MarketPlace(props: Props) {
           });
         }
       });
+    }
+  }, []);
 
+  useEffect(() => {
+    if (currentUser.id && pageCount > 0) {
       fetch(`/projects/?page=${currentPage}`).then((res) => {
         if (res.ok) {
           res.json().then(setmyProjects);
@@ -52,7 +56,7 @@ function MarketPlace(props: Props) {
         }
       });
     }
-  }, [currentPage]);
+  }, [pageCount, currentPage]);
 
   return (
     <div
