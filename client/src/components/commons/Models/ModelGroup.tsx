@@ -203,7 +203,7 @@ function ModelGroup(props: Props) {
     fetch(`/model_groups/${group.id}`)
       .then((res) => res.json())
       .then((data) => setchildGroups(data.child_groups));
-  }, [refresh]);
+  }, [group]);
 
   // set position
   useEffect(() => {

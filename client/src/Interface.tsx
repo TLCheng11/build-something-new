@@ -13,7 +13,7 @@ export interface ICurrentUser {
 export interface ICurrentProject {
   id?: number | undefined;
   title?: string | undefined;
-  model_groups: [IModelGroup];
+  model_groups: IModelGroup[];
 }
 
 export interface IProject {
@@ -26,7 +26,7 @@ export interface IProject {
   on_market: boolean;
   price?: number | undefined;
   sold_count?: number | undefined;
-  model_groups: [IModelGroup];
+  model_groups: IModelGroup[];
 }
 
 export interface IModelGroup {
@@ -40,10 +40,10 @@ export interface IModelGroup {
   xrotation?: number | undefined;
   yrotation?: number | undefined;
   zrotation?: number | undefined;
-  model_planes?: [IModelPlane] | undefined;
-  model_boxes?: [IModelBox] | undefined;
-  model_spheres?: [IModelSphere] | undefined;
-  child_group?: [IModelGroup] | undefined;
+  model_planes?: IModelPlane[] | undefined;
+  model_boxes?: IModelBox[] | undefined;
+  model_spheres?: IModelSphere[] | undefined;
+  child_group?: IModelGroup[] | undefined;
 }
 
 export interface IModelPlane {
