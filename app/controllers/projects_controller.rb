@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
     if params[:page]
       if params[:user_id]
         position = (params[:page].to_i - 1) * 4
-        projects = User.find(params[:user_id]).projects.where(created_by: params[:user_id])
+        projects = User.find(params[:user_id]).projects.where(created_by: params[:user_id]).order("updated_at DESC")
         if (position) < projects.length
           render json: projects.slice(position, 4), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.child_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
         else
@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
         end
       else
         position = (params[:page].to_i - 1) * 6
-        projects = Project.all
+        projects = Project.where(on_market: true).order("updated_at DESC")
         if (position) < projects.length
           render json: projects.slice(position, 6), each_serializer: ProjectPageSerializer, include: ["model_groups", "model_groups.child_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
         else
@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
       page_count = (User.find(params[:user_id]).projects.where(created_by: params[:user_id]).count.to_f / 4).ceil
       render json: {page_count: page_count}
     else 
-      page_count = (Project.all.count.to_f / 6).ceil
+      page_count = (Project.where(on_market: true).count.to_f / 6).ceil
       render json: {page_count: page_count}
     end
   end
