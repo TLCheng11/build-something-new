@@ -50,8 +50,8 @@ function DetailView() {
           Back
         </button>
       </div>
-      <div className="flex justify-center h-4/5 w-full">
-        <div className="h-full w-4/5 rounded-3xl bg-gray-400">
+      <div className="flex justify-center h-4/5 w-full pt-2 overflow-auto">
+        <div className="h-full w-4/5 min-h-360px min-w-360px rounded-3xl bg-gray-400">
           <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
             <OrbitControls />
             <ModelLight />
