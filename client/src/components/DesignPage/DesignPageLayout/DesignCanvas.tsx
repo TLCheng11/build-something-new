@@ -4,6 +4,7 @@ import GridLayout from "../../commons/Models/GridLayout";
 import ModelGroup from "../../commons/Models/ModelGroup";
 import { ICurrentProject } from "../../../Interface";
 import { Suspense } from "react";
+import ModelLight from "../../commons/Models/ModelLight";
 
 interface Props {
   refresh: boolean;
@@ -126,9 +127,7 @@ function DesignCanvas(props: Props) {
     <div id="design-canvas" className="h-full w-full bg-gray-400">
       <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
         <OrbitControls />
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[1000, 1000, 500]} intensity={1} />
-        <spotLight position={[0, 1000, 0]} intensity={0.5} />
+        <ModelLight />
         <Suspense fallback={null}>
           {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
           {showModelGroups}
