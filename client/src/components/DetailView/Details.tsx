@@ -12,8 +12,11 @@ function Details({ project }: Props) {
   const [addComment, setaddComment] = useState<boolean>(false);
 
   return (
-    <div id="reviews" className="flex justify-center h-fit w-full">
-      <div className="h-fit w-4/5 p-3 rounded-3xl border bg-white">
+    <div
+      id="reviews"
+      className="flex justify-center h-fit w-1/3 m-2 overflow-x-hidden"
+    >
+      <div className="h-fit w-full p-3 rounded-3xl border bg-white">
         <div>
           <h1 className="text-3xl">{project.title}</h1>
           <div className="flex">

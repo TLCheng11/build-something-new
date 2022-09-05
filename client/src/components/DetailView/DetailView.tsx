@@ -50,7 +50,7 @@ function DetailView() {
         id="detailview-background"
         className="fixed h-full w-full -z-10 bg-black"
       ></div>
-      <div className="fixed">
+      <div>
         <button
           className="text-white text-3xl m-2 border"
           onClick={() => navigate(-1)}
@@ -58,17 +58,19 @@ function DetailView() {
           Back
         </button>
       </div>
-      <div className="flex justify-center h-4/5 w-full my-2">
-        <div className="h-full w-4/5 min-h-360px min-w-360px rounded-3xl bg-gray-400">
-          <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
-            <OrbitControls />
-            <ModelLight />
-            <Suspense fallback={null}>{showProject}</Suspense>
-          </Canvas>
-          <Loader />
+      <div className="flex h-5/6 w-full">
+        <div className="flex justify-center h-full w-2/3 m-2">
+          <div className="h-full w-full min-h-360px min-w-360px rounded-3xl bg-gray-400">
+            <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
+              <OrbitControls />
+              <ModelLight />
+              <Suspense fallback={null}>{showProject}</Suspense>
+            </Canvas>
+            <Loader />
+          </div>
         </div>
+        <Details project={project} />
       </div>
-      <Details project={project} />
     </div>
   );
 }
