@@ -21,6 +21,7 @@ export interface IProject {
   price?: number | undefined;
   sold_count?: number | undefined;
   overall_rating?: number | undefined;
+  rating_count?: number | undefined;
   model_groups: IModelGroup[];
 }
 

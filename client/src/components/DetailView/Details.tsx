@@ -45,7 +45,10 @@ function Details({ project }: Props) {
               edit={false}
               value={project.overall_rating}
             />
-            <p>{project.overall_rating?.toFixed(2)} / 5</p>
+            <p>
+              {project.overall_rating?.toFixed(2)} / 5 ({project.rating_count}{" "}
+              ratings)
+            </p>
           </div>
         </div>
 

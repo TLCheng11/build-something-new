@@ -1,5 +1,5 @@
 class ProjectShowSerializer < ActiveModel::Serializer
-  attributes :id, :created_by, :creator, :title, :tags, :description, :on_market, :price, :sold_count, :overall_rating
+  attributes :id, :created_by, :creator, :title, :tags, :description, :on_market, :price, :sold_count, :overall_rating, :rating_count
 
   has_many :model_groups
 
@@ -9,5 +9,9 @@ class ProjectShowSerializer < ActiveModel::Serializer
 
   def overall_rating
     self.object.comments.average(:rating).to_f
+  end
+
+  def rating_count
+    self.object.comments.count
   end
 end
