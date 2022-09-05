@@ -5,7 +5,7 @@ import { Canvas } from "react-three-fiber";
 import { IProject } from "../../Interface";
 import ModelLight from "../commons/Models/ModelLight";
 import RoomContent from "../commons/ShowRoom/RoomContent";
-import Reviews from "./Reviews";
+import Details from "./Details";
 
 function DetailView() {
   let navigate = useNavigate();
@@ -68,7 +68,7 @@ function DetailView() {
           <Loader />
         </div>
       </div>
-      <Reviews project={project} />
+      <Details project={project} />
     </div>
   );
 }
