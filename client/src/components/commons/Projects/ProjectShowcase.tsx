@@ -1,4 +1,4 @@
-import { ICurrentUser, IProject } from "../../../Interface";
+import { IProject } from "../../../Interface";
 import ProjectCard from "./ProjectCard";
 
 interface Props {

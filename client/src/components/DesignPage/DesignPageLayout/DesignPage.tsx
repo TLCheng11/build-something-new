@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { IProject, ICurrentUser } from "../../../Interface";
+import { IProject } from "../../../Interface";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
-interface Props {
-  currentUser: ICurrentUser;
-}
-
-function DesignPage(props: Props) {
-  const { currentUser } = props;
+function DesignPage() {
   let navigate = useNavigate();
   const params = useParams();
   const [notFound, setnotFound] = useState<boolean>(false);

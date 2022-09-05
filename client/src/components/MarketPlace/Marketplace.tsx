@@ -1,16 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { ICurrentUser, IProject } from "../../Interface";
+import { UserContext } from "../contexts/UserContext";
+import { IProject } from "../../Interface";
 import PagesNavBar from "../commons/Projects/PagesNavBar";
 import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 
-interface Props {
-  currentUser: ICurrentUser;
-}
-
-function MarketPlace(props: Props) {
+function MarketPlace() {
   const params = useParams();
-  const { currentUser } = props;
+  const { currentUser } = useContext(UserContext);
   const [myProjects, setmyProjects] = useState<[IProject]>([
     {
       id: 0,

@@ -1,12 +1,10 @@
+import { useContext } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { ICurrentUser } from "../../../Interface";
+import { UserContext } from "../../contexts/UserContext";
 
-interface Props {
-  setcurrentUser: React.Dispatch<React.SetStateAction<ICurrentUser>>;
-}
-
-function MenuTop({ setcurrentUser }: Props) {
+function MenuTop() {
   let navigate = useNavigate();
+  const { setcurrentUser } = useContext(UserContext);
 
   function logout() {
     fetch("/logout", {

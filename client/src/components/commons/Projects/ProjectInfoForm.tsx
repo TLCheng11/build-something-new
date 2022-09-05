@@ -1,15 +1,15 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ICurrentUser } from "../../../Interface";
+import { UserContext } from "../../contexts/UserContext";
 
 interface Props {
-  currentUser: ICurrentUser;
   setshowProjectForm: Dispatch<SetStateAction<boolean>>;
 }
 
 function ProjectInfoForm(props: Props) {
   let navigate = useNavigate();
-  const { currentUser, setshowProjectForm } = props;
+  const { setshowProjectForm } = props;
+  const { currentUser } = useContext(UserContext);
   const [formInput, setformInput] = useState({
     title: "",
     description: "",

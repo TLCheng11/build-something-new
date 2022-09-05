@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ICurrentUser, IProject } from "../../Interface";
+import { UserContext } from "../contexts/UserContext";
 import PagesNavBar from "../commons/Projects/PagesNavBar";
 import ProjectShowcase from "../commons/Projects/ProjectShowcase";
+import { IProject } from "../../Interface";
 
-interface Props {
-  currentUser: ICurrentUser;
-}
-
-function MyProjects({ currentUser }: Props) {
+function MyProjects() {
   const params = useParams();
+  const { currentUser } = useContext(UserContext);
   const [refresh, setrefresh] = useState<boolean>(false);
   const [myProjects, setmyProjects] = useState<[IProject]>([
     {

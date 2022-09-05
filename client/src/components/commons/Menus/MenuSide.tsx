@@ -1,15 +1,15 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { ICurrentUser } from "../../../Interface";
+import { UserContext } from "../../contexts/UserContext";
 
 interface Props {
-  currentUser: ICurrentUser;
-  setcurrentUser: React.Dispatch<React.SetStateAction<ICurrentUser>>;
   setshowProjectForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function MenuSide(props: Props) {
   let navigate = useNavigate();
-  const { currentUser, setcurrentUser, setshowProjectForm } = props;
+  const { setshowProjectForm } = props;
+  const { currentUser, setcurrentUser } = useContext(UserContext);
 
   function logout() {
     fetch("/logout", {

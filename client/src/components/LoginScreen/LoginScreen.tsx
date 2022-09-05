@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ICurrentUser } from "../../Interface";
+import { UserContext } from "../contexts/UserContext";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
-interface Props {
-  currentUser: ICurrentUser;
-  setcurrentUser: React.Dispatch<React.SetStateAction<ICurrentUser>>;
-}
-
-function LoginPage(props: Props) {
+function LoginPage() {
   let navigate = useNavigate();
-  const { currentUser, setcurrentUser } = props;
+  const { currentUser, setcurrentUser } = useContext(UserContext);
   const [signUp, setSignUp] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,9 +18,9 @@ function LoginPage(props: Props) {
   return (
     <div className="h-screen w-screen flex items-center justify-center">
       {!signUp ? (
-        <LoginForm setcurrentUser={setcurrentUser} setSignUp={setSignUp} />
+        <LoginForm setSignUp={setSignUp} />
       ) : (
-        <SignUpForm setcurrentUser={setcurrentUser} setSignUp={setSignUp} />
+        <SignUpForm setSignUp={setSignUp} />
       )}
     </div>
   );

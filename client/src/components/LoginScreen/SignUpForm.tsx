@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ICurrentUser } from "../../Interface";
+import { UserContext } from "../contexts/UserContext";
 
 interface Props {
-  setcurrentUser: React.Dispatch<React.SetStateAction<ICurrentUser>>;
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function SignUpForm(props: Props) {
   let navigate = useNavigate();
-  const { setcurrentUser, setSignUp } = props;
+  const { setSignUp } = props;
+  const { setcurrentUser } = useContext(UserContext);
 
   const [formInput, setformInput] = useState({
     username: "",
