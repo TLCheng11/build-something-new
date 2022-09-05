@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
 import DesignPage from "./components/DesignPage/DesignPageLayout/DesignPage";
@@ -8,9 +8,11 @@ import MarketPlace from "./components/MarketPlace/Marketplace";
 import MenuTop from "./components/commons/Menus/MenuTop";
 import DetailView from "./components/DetailView/DetailView";
 import MyProjects from "./components/Dashboard/MyProjects";
+import { UserContext } from "./components/contexts/UserContext";
 
 function App() {
-  const [currentUser, setcurrentUser] = useState<ICurrentUser>({});
+  // const [currentUser, setcurrentUser] = useState<ICurrentUser>({});
+  const { currentUser, setcurrentUser } = useContext(UserContext);
 
   // only authorize logged in users
   useEffect(() => {
@@ -49,58 +51,56 @@ function App() {
     );
 
   return (
-    <>
-      <BrowserRouter>
-        <MenuTop setcurrentUser={setcurrentUser} />
-        <div className="App">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <LoginScreen
-                  currentUser={currentUser}
-                  setcurrentUser={setcurrentUser}
-                />
-              }
-            />
-            <Route
-              path="/marketplace/:page"
-              element={<MarketPlace currentUser={currentUser} />}
-            />
-            <Route
-              path="/dashboard"
-              element={
-                <Dashboard
-                  currentUser={currentUser}
-                  setcurrentUser={setcurrentUser}
-                />
-              }
-            >
-              <Route
-                path="projects/:page"
-                element={<MyProjects currentUser={currentUser} />}
+    <BrowserRouter>
+      <MenuTop setcurrentUser={setcurrentUser} />
+      <div className="App">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LoginScreen
+                currentUser={currentUser}
+                setcurrentUser={setcurrentUser}
               />
-              <Route
-                path="*"
-                element={<div className="text-6xl">Page Not Found</div>}
+            }
+          />
+          <Route
+            path="/marketplace/:page"
+            element={<MarketPlace currentUser={currentUser} />}
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <Dashboard
+                currentUser={currentUser}
+                setcurrentUser={setcurrentUser}
               />
-            </Route>
+            }
+          >
             <Route
-              path="/project-design/:project_id"
-              element={<DesignPage currentUser={currentUser} />}
-            />
-            <Route
-              path="/project-detail-view/:project_id"
-              element={<DetailView />}
+              path="projects/:page"
+              element={<MyProjects currentUser={currentUser} />}
             />
             <Route
               path="*"
               element={<div className="text-6xl">Page Not Found</div>}
             />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </>
+          </Route>
+          <Route
+            path="/project-design/:project_id"
+            element={<DesignPage currentUser={currentUser} />}
+          />
+          <Route
+            path="/project-detail-view/:project_id"
+            element={<DetailView />}
+          />
+          <Route
+            path="*"
+            element={<div className="text-6xl">Page Not Found</div>}
+          />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
