@@ -98,3 +98,16 @@ export interface IModelSphere {
     group_name: string;
   };
 }
+
+export interface IComment {
+  id: number;
+  rating: number;
+  title: string;
+  comment?: string | undefined;
+  user: {
+    id: number;
+    username: string;
+    profile_img?: string | undefined;
+    is_login: boolean;
+  };
+}

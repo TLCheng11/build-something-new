@@ -17,6 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_162044) do
   create_table "comments", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
+    t.string "title"
     t.string "comment"
     t.float "rating"
     t.datetime "created_at", null: false

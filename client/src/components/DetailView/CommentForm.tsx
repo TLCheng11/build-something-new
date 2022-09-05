@@ -10,6 +10,7 @@ interface Props {
 function CommentForm(props: Props) {
   const { action, setaddComment, projectId } = props;
   const [rating, setrating] = useState<number>(0);
+  const [title, settitle] = useState<string>("");
   const [comment, setcomment] = useState<string>("");
 
   function handleCommentSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -20,7 +21,7 @@ function CommentForm(props: Props) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ project_id: projectId, comment, rating }),
+        body: JSON.stringify({ project_id: projectId, title, comment, rating }),
       })
         .then((res) => {
           if (res.ok) {
@@ -41,11 +42,20 @@ function CommentForm(props: Props) {
     <div className="max-w-lg rounded-lg shadow-md shadow-blue-600/50">
       <form action="" className="w-full p-4" onSubmit={handleCommentSubmit}>
         <div className="mb-2">
-          <label htmlFor="comment" className="text-lg text-gray-600">
+          <label htmlFor="title" className="text-lg text-gray-600">
             Add a Comment:
           </label>
+          <input
+            className="w-full h-7 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
+            name="title"
+            placeholder="Title"
+            maxLength={255}
+            required
+            value={title}
+            onChange={(e) => settitle(e.target.value)}
+          />
           <textarea
-            className="w-full h-20 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
+            className="w-full h-20 mt-2 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
             name="comment"
             placeholder=""
             maxLength={255}

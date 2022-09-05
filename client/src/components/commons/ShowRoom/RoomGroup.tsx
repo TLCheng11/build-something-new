@@ -16,9 +16,11 @@ function RoomGroup({ group }: Props) {
 
   // get all child groups
   useEffect(() => {
-    fetch(`/model_groups/${group.id}`)
-      .then((res) => res.json())
-      .then((data) => setchildGroups(data.child_groups));
+    if (group.id > 0) {
+      fetch(`/model_groups/${group.id}`)
+        .then((res) => res.json())
+        .then((data) => setchildGroups(data.child_groups));
+    }
   }, [group]);
 
   return (

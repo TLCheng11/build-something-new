@@ -1,9 +1,18 @@
 class CommentsController < ApplicationController
   before_action :find_comment, only: %i[ show update destroy ]
 
+  # GET /comments
+  def index
+    if params[:project_id]
+      render json: Project.find(params[:project_id]).comments
+    else
+      render json: Comment.all
+    end
+  end
+
   # POST /comments
   def create
-    @comment = Comment.create!(user_id: session[:user_id], project_id: params[:project_id], comment: params[:comment], rating: params[:rating])
+    @comment = Comment.create!(user_id: session[:user_id], project_id: params[:project_id], title: params[:title], comment: params[:comment], rating: params[:rating])
     render json: @comment, status: :created
   end
 
@@ -25,6 +34,6 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.permit(:comment, :rating)
+      params.permit(:title, :comment, :rating)
     end
 end

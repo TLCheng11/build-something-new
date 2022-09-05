@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 
     # comments
     resources :comments, only: [:create, :update, :destroy]
+    resources :projects, only: [:show] do
+      resources :comments, only: [:index]
+    end
 
     # model_groups
     resources :model_groups, only: [:show, :create, :update, :destroy]

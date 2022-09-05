@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :comment, :rating
-  has_one :project
-  has_one :user
+  attributes :id, :title, :comment, :rating
+  # has_one :project
+  has_one :user, serializer: UserShowSerializer
 end
