@@ -1,4 +1,4 @@
-import { Plane } from "@react-three/drei";
+import { Plane, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";
@@ -75,6 +75,10 @@ function ModelPlane(props: Props) {
     plane.zrotation || 0,
   ]);
   const [selfColor, setselfColor] = useState<string>(plane.color || "#678546");
+
+  // hover pointer
+  const [hovered, setHovered] = useState(false);
+  useCursor(hovered);
 
   // using ref to override the useEffect clean up original state problem
   const sizeRef = useRef<[number, number]>(selfSize);
@@ -189,6 +193,8 @@ function ModelPlane(props: Props) {
         ]}
         receiveShadow
         onClick={handleOnClick}
+        onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
+        onPointerOut={(e) => setHovered(false)}
       >
         {selfShowGrid && (
           <GridLayout

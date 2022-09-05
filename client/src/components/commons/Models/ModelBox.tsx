@@ -1,4 +1,4 @@
-import { Box } from "@react-three/drei";
+import { Box, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { IModelBox } from "../../../Interface";
@@ -75,6 +75,10 @@ function ModelBox(props: Props) {
     box.zrotation || 0,
   ]);
   const [selfColor, setselfColor] = useState<string>(box.color || "#D0021B");
+
+  // hover pointer
+  const [hovered, setHovered] = useState(false);
+  useCursor(hovered);
 
   // using ref to override the useEffect clean up original state problem
   const sizeRef = useRef<[number, number, number]>(selfSize);
@@ -189,6 +193,8 @@ function ModelBox(props: Props) {
           (selfRotation[2] / 360) * Math.PI * 2,
         ]}
         onClick={handleOnClick}
+        onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
+        onPointerOut={(e) => setHovered(false)}
       >
         {selfShowGrid && (
           <GridLayout

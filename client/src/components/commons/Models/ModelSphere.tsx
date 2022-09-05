@@ -1,4 +1,4 @@
-import { Sphere } from "@react-three/drei";
+import { Sphere, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { IModelSphere } from "../../../Interface";
@@ -75,6 +75,10 @@ function ModelSphere(props: Props) {
     sphere.zrotation || 0,
   ]);
   const [selfColor, setselfColor] = useState<string>(sphere.color || "#396BA7");
+
+  // hover pointer
+  const [hovered, setHovered] = useState(false);
+  useCursor(hovered);
 
   // using ref to override the useEffect clean up original state problem
   const sizeRef = useRef<[number, number, number]>(selfSize);
@@ -189,6 +193,8 @@ function ModelSphere(props: Props) {
           (selfRotation[2] / 360) * Math.PI * 2,
         ]}
         onClick={handleOnClick}
+        onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
+        onPointerOut={(e) => setHovered(false)}
       >
         {selfShowGrid && (
           <GridLayout
