@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
-import { ICurrentProject } from "../../../Interface";
+import { IProject } from "../../../Interface";
 import GridControls from "../DesignControls/GridControls";
 import ModelColorControls from "../DesignControls/ModelColorControls";
 import ModelGroupControls from "../DesignControls/ModelGroupControls";
@@ -11,7 +11,7 @@ import ModelTypesControls from "../DesignControls/ModelTypeControls";
 
 interface Props {
   setrefresh: Dispatch<SetStateAction<boolean>>;
-  currentProject: ICurrentProject;
+  currentProject: IProject;
   showGridMain: boolean;
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
   showGridGroup: boolean;

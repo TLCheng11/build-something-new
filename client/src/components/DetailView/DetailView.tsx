@@ -2,19 +2,23 @@ import { Loader, OrbitControls } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
-import { ICurrentProject } from "../../Interface";
+import { IProject } from "../../Interface";
 import ModelLight from "../commons/Models/ModelLight";
 import RoomContent from "../commons/ShowRoom/RoomContent";
+import Reviews from "./Reviews";
 
 function DetailView() {
   let navigate = useNavigate();
   const params = useParams();
   const [notFound, setnotFound] = useState<boolean>(false);
-  const [currentProject, setcurrentProject] = useState<ICurrentProject>({
+  const [project, setproject] = useState<IProject>({
+    id: 0,
+    title: "",
+    on_market: false,
     model_groups: [{ id: 0, group_name: "" }],
   });
 
-  const showProject = currentProject.model_groups
+  const showProject = project.model_groups
     .filter((group) => !group.parent_group_id)
     .map((group) => <RoomContent key={group.id} group={group} />);
 
@@ -24,7 +28,7 @@ function DetailView() {
         res
           .json()
           .then((data) => {
-            setcurrentProject(data);
+            setproject(data);
           })
           .catch(console.error);
       } else {
@@ -41,7 +45,11 @@ function DetailView() {
   if (notFound) return <h1>Page Not Found</h1>;
 
   return (
-    <div className="h-screen w-screen bg-black">
+    <div className="h-screen w-screen overflow-x-hidden">
+      <div
+        id="detailview-background"
+        className="fixed h-full w-full -z-10 bg-black"
+      ></div>
       <div className="fixed">
         <button
           className="text-white text-3xl m-2 border"
@@ -50,7 +58,7 @@ function DetailView() {
           Back
         </button>
       </div>
-      <div className="flex justify-center h-4/5 w-full pt-2 overflow-auto">
+      <div className="flex justify-center h-4/5 w-full my-2">
         <div className="h-full w-4/5 min-h-360px min-w-360px rounded-3xl bg-gray-400">
           <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
             <OrbitControls />
@@ -60,6 +68,7 @@ function DetailView() {
           <Loader />
         </div>
       </div>
+      <Reviews project={project} />
     </div>
   );
 }

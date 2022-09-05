@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ICurrentProject } from "../../../Interface";
+import { IProject } from "../../../Interface";
 import ModelPositionControls from "./ModelPositionContorls";
 import ModelRotationControls from "./ModelRotationControls";
 
 interface Props {
   setrefresh: Dispatch<SetStateAction<boolean>>;
-  currentProject: ICurrentProject;
+  currentProject: IProject;
   selectedGroup: {
     id: number;
     name: string;

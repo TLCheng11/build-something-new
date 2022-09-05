@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ICurrentProject, ICurrentUser, IModelGroup } from "../../../Interface";
+import { IProject, ICurrentUser } from "../../../Interface";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
@@ -14,7 +14,10 @@ function DesignPage(props: Props) {
   const params = useParams();
   const [notFound, setnotFound] = useState<boolean>(false);
   const [refresh, setrefresh] = useState<boolean>(false);
-  const [currentProject, setcurrentProject] = useState<ICurrentProject>({
+  const [currentProject, setcurrentProject] = useState<IProject>({
+    id: 0,
+    title: "",
+    on_market: false,
     model_groups: [{ id: 0, group_name: "" }],
   });
 
