@@ -1,12 +1,45 @@
 import { useState } from "react";
 import ReactStars from "react-stars";
 
-function CommentForm() {
+interface Props {
+  action: string;
+  setaddComment: React.Dispatch<React.SetStateAction<boolean>>;
+  projectId: number;
+}
+
+function CommentForm(props: Props) {
+  const { action, setaddComment, projectId } = props;
   const [rating, setrating] = useState<number>(0);
+  const [comment, setcomment] = useState<string>("");
+
+  function handleCommentSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (action === "comment") {
+      fetch(`/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ project_id: projectId, comment, rating }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            res.json().then(() => setaddComment((state) => !state));
+          } else {
+            res
+              .json()
+              .then(() =>
+                alert("You can only leave one comment for each project")
+              );
+          }
+        })
+        .catch(console.error);
+    }
+  }
 
   return (
     <div className="max-w-lg rounded-lg shadow-md shadow-blue-600/50">
-      <form action="" className="w-full p-4">
+      <form action="" className="w-full p-4" onSubmit={handleCommentSubmit}>
         <div className="mb-2">
           <label htmlFor="comment" className="text-lg text-gray-600">
             Add a Comment:
@@ -16,6 +49,8 @@ function CommentForm() {
             name="comment"
             placeholder=""
             maxLength={255}
+            value={comment}
+            onChange={(e) => setcomment(e.target.value)}
           ></textarea>
         </div>
         <div className="flex items-center">
@@ -29,10 +64,19 @@ function CommentForm() {
           />
         </div>
         <div>
-          <button className="px-3 py-2 text-sm text-blue-100 bg-blue-600 rounded">
+          <button
+            className="px-3 py-2 text-sm text-blue-100 bg-blue-600 rounded"
+            type="submit"
+          >
             Comment
           </button>
-          <button className="px-3 py-2 mx-2 text-sm text-blue-600 border border-blue-500 rounded">
+          <button
+            className="px-3 py-2 mx-2 text-sm text-blue-600 border border-blue-500 rounded"
+            onClick={(e) => {
+              e.preventDefault();
+              setaddComment((state) => !state);
+            }}
+          >
             Cancel
           </button>
         </div>

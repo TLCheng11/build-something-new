@@ -16,9 +16,12 @@ function Details({ project }: Props) {
       <div className="h-fit w-4/5 p-3 rounded-3xl border bg-white">
         <div>
           <h1 className="text-3xl">{project.title}</h1>
-          <p>{project.creator}</p>
+          <div className="flex">
+            <p className="mr-2">Created by:</p>
+            <p>{project.creator}</p>
+          </div>
           <div className="flex items-center">
-            <p className="mr-2">Rating:</p>
+            <p className="mr-2">Overall Rating:</p>
             <ReactStars count={5} size={24} color2={"#ffd700"} edit={false} />
           </div>
           <div>
@@ -30,7 +33,13 @@ function Details({ project }: Props) {
             </button>
           </div>
         </div>
-        {addComment && <CommentForm />}
+        {addComment && (
+          <CommentForm
+            action="comment"
+            setaddComment={setaddComment}
+            projectId={project.id}
+          />
+        )}
       </div>
     </div>
   );

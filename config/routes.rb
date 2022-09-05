@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :comments
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   
   # Defines the root path route ("/")
@@ -21,6 +20,9 @@ Rails.application.routes.draw do
     resources :projects, only: [:index, :show, :create, :update, :destroy]
     get "/projects_page_count", to:"projects#page_count"
     get "/users/:user_id/projects_page_count", to: "projects#page_count"
+
+    # comments
+    resources :comments, only: [:create, :update, :destroy]
 
     # model_groups
     resources :model_groups, only: [:show, :create, :update, :destroy]
