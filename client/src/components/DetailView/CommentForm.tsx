@@ -2,13 +2,14 @@ import { useState } from "react";
 import ReactStars from "react-stars";
 
 interface Props {
+  setrefresh: React.Dispatch<React.SetStateAction<boolean>>;
   action: string;
   setaddComment: React.Dispatch<React.SetStateAction<boolean>>;
   projectId: number;
 }
 
 function CommentForm(props: Props) {
-  const { action, setaddComment, projectId } = props;
+  const { setrefresh, action, setaddComment, projectId } = props;
   const [rating, setrating] = useState<number>(0);
   const [title, settitle] = useState<string>("");
   const [comment, setcomment] = useState<string>("");
@@ -25,7 +26,10 @@ function CommentForm(props: Props) {
       })
         .then((res) => {
           if (res.ok) {
-            res.json().then(() => setaddComment((state) => !state));
+            res.json().then(() => {
+              setaddComment((state) => !state);
+              setrefresh((state) => !state);
+            });
           } else {
             res
               .json()
@@ -49,7 +53,7 @@ function CommentForm(props: Props) {
             className="w-full h-7 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
             name="title"
             placeholder="Title"
-            maxLength={255}
+            maxLength={100}
             required
             value={title}
             onChange={(e) => settitle(e.target.value)}
@@ -64,14 +68,16 @@ function CommentForm(props: Props) {
           ></textarea>
         </div>
         <div className="flex items-center">
-          <p className="mr-2">Rate: </p>
+          <p>Rate: </p>
           <ReactStars
+            className="px-2 pb-1"
             count={5}
             size={24}
             color2={"#ffd700"}
             value={rating}
             onChange={setrating}
           />
+          <p>{rating}</p>
         </div>
         <div>
           <button

@@ -9,6 +9,7 @@ interface Props {
 }
 
 function Details({ project }: Props) {
+  const [refresh, setrefresh] = useState<boolean>(false);
   const [addComment, setaddComment] = useState<boolean>(false);
   const [comments, setcomments] = useState<IComment[]>([]);
 
@@ -23,14 +24,11 @@ function Details({ project }: Props) {
         .then(setcomments)
         .catch(console.error);
     }
-  }, [project]);
+  }, [refresh, project]);
 
   return (
-    <div
-      id="reviews"
-      className="flex justify-center h-fit w-1/3 m-2 overflow-x-hidden"
-    >
-      <div className="h-fit w-full p-3 rounded-3xl border bg-white">
+    <div id="reviews" className="flex justify-center h-full w-1/3 m-2">
+      <div className="h-full w-full p-3 rounded-3xl border bg-white overflow-auto">
         <div>
           <h1 className="text-3xl">{project.title}</h1>
           <div className="flex">
@@ -38,8 +36,16 @@ function Details({ project }: Props) {
             <p>{project.creator}</p>
           </div>
           <div className="flex items-center">
-            <p className="mr-2">Overall Rating:</p>
-            <ReactStars count={5} size={24} color2={"#ffd700"} edit={false} />
+            <p>Overall Rating:</p>
+            <ReactStars
+              className="px-2 pb-1"
+              count={5}
+              size={24}
+              color2={"#ffd700"}
+              edit={false}
+              value={project.overall_rating}
+            />
+            <p>{project.overall_rating?.toFixed(2)} / 5</p>
           </div>
         </div>
 
@@ -57,6 +63,7 @@ function Details({ project }: Props) {
           </div>
           {addComment && (
             <CommentForm
+              setrefresh={setrefresh}
               action="comment"
               setaddComment={setaddComment}
               projectId={project.id}

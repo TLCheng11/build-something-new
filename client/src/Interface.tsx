@@ -20,6 +20,7 @@ export interface IProject {
   on_market: boolean;
   price?: number | undefined;
   sold_count?: number | undefined;
+  overall_rating?: number | undefined;
   model_groups: IModelGroup[];
 }
 

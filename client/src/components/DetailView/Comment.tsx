@@ -18,8 +18,8 @@ function Comment({ comment }: Props) {
         />
       </div>
       <div>
-        <p className="text-md font-bold">{comment.title}</p>
-        <p className="px-2">{comment.comment}</p>
+        <p className="text-md font-bold break-words">{comment.title}</p>
+        <p className="px-2 break-words">{comment.comment}</p>
       </div>
     </div>
   );
