@@ -197,7 +197,7 @@ function ModelBox(props: Props) {
             gridPosition={[0, 0, 0]}
           />
         )}
-        <meshBasicMaterial color={selfColor} />
+        <meshStandardMaterial color={selfColor} />
       </Box>
     </>
   );

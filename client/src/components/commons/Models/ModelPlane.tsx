@@ -197,7 +197,7 @@ function ModelPlane(props: Props) {
             gridPosition={[0, 0, 0]}
           />
         )}
-        <meshBasicMaterial color={selfColor} side={DoubleSide} />
+        <meshStandardMaterial color={selfColor} side={DoubleSide} />
       </Plane>
     </>
   );
