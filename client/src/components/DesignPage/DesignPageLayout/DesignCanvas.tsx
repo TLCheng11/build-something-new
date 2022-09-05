@@ -127,8 +127,8 @@ function DesignCanvas(props: Props) {
       <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
         <OrbitControls />
         <ambientLight intensity={0.3} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
-        <spotLight position={[1000, 1000, 0]} intensity={1} />
+        <directionalLight position={[1000, 1000, 500]} intensity={1} />
+        <spotLight position={[0, 1000, 0]} intensity={0.5} />
         <Suspense fallback={null}>
           {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
           {showModelGroups}

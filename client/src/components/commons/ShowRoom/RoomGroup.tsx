@@ -50,7 +50,10 @@ function RoomGroup({ group }: Props) {
             ((plane.zrotation || 0) / 360) * Math.PI * 2,
           ]}
         >
-          <meshBasicMaterial color={plane.color || "#fff"} side={DoubleSide} />
+          <meshStandardMaterial
+            color={plane.color || "#fff"}
+            side={DoubleSide}
+          />
         </Plane>
       ))}
       {group.model_boxes?.map((box) => (
@@ -68,7 +71,7 @@ function RoomGroup({ group }: Props) {
             ((box.zrotation || 0) / 360) * Math.PI * 2,
           ]}
         >
-          <meshBasicMaterial color={box.color || "#fff"} />
+          <meshStandardMaterial color={box.color || "#fff"} />
         </Box>
       ))}
       {group.model_spheres?.map((sphere) => (
@@ -90,7 +93,7 @@ function RoomGroup({ group }: Props) {
             ((sphere.zrotation || 0) / 360) * Math.PI * 2,
           ]}
         >
-          <meshBasicMaterial color={sphere.color || "#fff"} />
+          <meshStandardMaterial color={sphere.color || "#fff"} />
         </Sphere>
       ))}
     </group>

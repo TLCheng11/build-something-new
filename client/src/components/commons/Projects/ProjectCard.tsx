@@ -67,6 +67,9 @@ function ProjectCard(props: Props) {
       <div className="h-4/5 w-full rounded-t-xl bg-gray-400">
         <NavLink to={`/project-detail-view/${project.id}`}>
           <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
+            <ambientLight intensity={0.3} />
+            <directionalLight position={[1000, 1000, 500]} intensity={1} />
+            <spotLight position={[0, 1000, 0]} intensity={0.5} />
             <Suspense fallback={null}>
               <RoomStage>{showProject}</RoomStage>
             </Suspense>
