@@ -13,6 +13,14 @@ function Comment({ setrefresh, comment }: Props) {
   const { currentUser } = useContext(UserContext);
   const [editing, setediting] = useState<boolean>(false);
 
+  function deleteComment() {
+    fetch(`/comments/${comment.id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then(() => setrefresh((state) => !state));
+  }
+
   return editing ? (
     <CommentForm
       setrefresh={setrefresh}
@@ -56,6 +64,7 @@ function Comment({ setrefresh, comment }: Props) {
             <img
               className="cursor-pointer h-7"
               src="https://img.icons8.com/plasticine/100/000000/filled-trash.png"
+              onClick={() => deleteComment()}
             />
           </div>
         )}
