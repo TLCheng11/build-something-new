@@ -65,10 +65,10 @@ function CommentForm(props: Props) {
 
   return (
     <div className="max-w-lg rounded-lg shadow-md shadow-blue-600/50">
-      <form action="" className="w-full p-4" onSubmit={handleCommentSubmit}>
+      <form className="w-full p-4" onSubmit={handleCommentSubmit}>
         <div className="mb-2">
           <label htmlFor="title" className="text-lg text-gray-600">
-            {action === "add" ? "Add a Comment:" : "Edit Comment:"}
+            {action === "post" ? "Add a Comment:" : "Edit Comment:"}
           </label>
           <input
             className="w-full h-7 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
@@ -105,7 +105,7 @@ function CommentForm(props: Props) {
             className="px-3 py-2 text-sm text-blue-100 bg-blue-600 rounded"
             type="submit"
           >
-            {action === "add" ? "Comment" : "Edit"}
+            {action === "post" ? "Comment" : "Edit"}
           </button>
           <button
             className="px-3 py-2 mx-2 text-sm text-blue-600 border border-blue-500 rounded"
