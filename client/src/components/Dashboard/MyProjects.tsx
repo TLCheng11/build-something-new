@@ -76,7 +76,7 @@ function MyProjects() {
         </div>
       ) : (
         <div id="my-projects-showcase" className="h-full w-full">
-          <div className="h-9/10 w-full overflow-hidden">
+          <div className="h-9/10 overflow-auto">
             <ProjectShowcase
               setrefresh={setrefresh}
               type="myProject"

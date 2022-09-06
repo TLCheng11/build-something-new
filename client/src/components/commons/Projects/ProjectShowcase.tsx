@@ -34,7 +34,7 @@ function ProjectShowcase(props: Props) {
       id="project-showcase"
       className={`grid ${
         type === "market" ? "grid-cols-3" : "grid-cols-2"
-      } gap-10 p-10 h-full min-h-720px min-w-360px overflow-auto`}
+      } gap-10 p-10 h-full min-h-fit min-w-360px`}
     >
       {showMyProjects}
     </div>

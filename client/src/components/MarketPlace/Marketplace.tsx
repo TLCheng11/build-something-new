@@ -59,7 +59,7 @@ function MarketPlace() {
         </div>
       ) : (
         <div id="market-place-showcase" className="h-full w-full">
-          <div className="h-9/10 w-full overflow-hidden">
+          <div className="h-9/10 w-full overflow-auto">
             <ProjectShowcase type="market" myProjects={myProjects} />
           </div>
           <div className="h-1/10">
