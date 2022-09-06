@@ -101,10 +101,16 @@ function ProjectCard(props: Props) {
           </div>
           <button
             className="border mx-1 disabled:opacity-60"
-            onClick={() => toProjectDesign(project.id)}
             disabled={onMarket}
           >
             Edit
+          </button>
+          <button
+            className="border mx-1 disabled:opacity-60"
+            onClick={() => toProjectDesign(project.id)}
+            disabled={onMarket}
+          >
+            Build
           </button>
           <button
             className="border mx-1 disabled:opacity-60"

@@ -61,6 +61,12 @@ function Details({ project }: Props) {
               ratings)
             </p>
           </div>
+          {project.description && (
+            <div>
+              <p>Description:</p>
+              <p className="px-2">{project.description}</p>
+            </div>
+          )}
         </div>
 
         <div>
@@ -85,7 +91,7 @@ function Details({ project }: Props) {
               id={project.id}
             />
           )}
-          {showComments}
+          {showComments.length > 0 ? showComments : "No Comments"}
         </div>
       </div>
     </div>
