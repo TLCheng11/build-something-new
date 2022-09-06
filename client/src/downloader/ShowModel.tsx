@@ -1,4 +1,8 @@
-export const showModelComponent = `
+export const showModelComponent = `import { Box, Loader, OrbitControls, Plane, Sphere } from "@react-three/drei";
+import { useState, useEffect, Suspense } from "react";
+import { Canvas } from "react-three-fiber";
+import { DoubleSide } from "three";
+
 function Group({ group }: any) {
   const showChildGroups = group.child_groups.map((group: any) => (
     <Group key={group.id} group={group} />
@@ -113,4 +117,4 @@ function ShowModel() {
 }
 
 export default ShowModel;
-`;
+// `;
