@@ -14,6 +14,10 @@ function Details({ project }: Props) {
   const [refresh, setrefresh] = useState<boolean>(false);
   const [addComment, setaddComment] = useState<boolean>(false);
   const [comments, setcomments] = useState<IComment[]>([]);
+  const [overallRating, setoverallRating] = useState<{
+    rating: number;
+    count: number;
+  }>({ rating: 0, count: 0 });
 
   const showComments = comments.map((comment) => (
     <Comment key={comment.id} setrefresh={setrefresh} comment={comment} />
@@ -24,6 +28,11 @@ function Details({ project }: Props) {
       fetch(`/projects/${project.id}/comments`)
         .then((res) => res.json())
         .then(setcomments)
+        .catch(console.error);
+
+      fetch(`/projects_ratings/${project.id}`)
+        .then((res) => res.json())
+        .then(setoverallRating)
         .catch(console.error);
     }
   }, [refresh, project]);
@@ -48,7 +57,7 @@ function Details({ project }: Props) {
               value={project.overall_rating}
             />
             <p>
-              {project.overall_rating?.toFixed(2)} / 5 ({project.rating_count}{" "}
+              {overallRating.rating?.toFixed(2)} / 5 ({overallRating.count}{" "}
               ratings)
             </p>
           </div>

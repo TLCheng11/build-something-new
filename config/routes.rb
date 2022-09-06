@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :projects, only: [:index, :show, :create, :update, :destroy]
     get "/projects_page_count", to:"projects#page_count"
     get "/users/:user_id/projects_page_count", to: "projects#page_count"
+    get "/projects_ratings/:id", to:"projects#ratings"
 
     # comments
     resources :comments, only: [:create, :update, :destroy]

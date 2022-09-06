@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   # GET /comments
   def index
     if params[:project_id]
-      render json: Project.find(params[:project_id]).comments
+      render json: Project.find(params[:project_id]).comments.order("updated_at DESC")
     else
       render json: Comment.all
     end

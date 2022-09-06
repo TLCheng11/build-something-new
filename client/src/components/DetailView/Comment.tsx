@@ -31,25 +31,34 @@ function Comment({ setrefresh, comment }: Props) {
               "https://img.icons8.com/office/40/000000/test-account.png"
             }
           />
-          <h1 className="text-lg mx-3">{comment.user?.username}</h1>
-          <ReactStars
-            count={5}
-            color2={"#ffd700"}
-            edit={false}
-            value={comment.rating}
-          />
+          <div className="ml-3">
+            <h1 className="text-lg">{comment.user?.username}</h1>
+            <div className="flex">
+              <ReactStars
+                count={5}
+                color2={"#ffd700"}
+                edit={false}
+                value={comment.rating}
+              />
+              <p className="ml-2 pt-1 text-xs">
+                {comment.updated_at.slice(0, 10)}
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="flex">
-          <img
-            className="cursor-pointer h-7"
-            src="https://img.icons8.com/nolan/64/edit--v1.png"
-            onClick={() => setediting(true)}
-          />
-          <img
-            className="cursor-pointer h-7"
-            src="https://img.icons8.com/plasticine/100/000000/filled-trash.png"
-          />
-        </div>
+        {currentUser.id === comment.user.id && (
+          <div className="flex">
+            <img
+              className="cursor-pointer h-7"
+              src="https://img.icons8.com/nolan/64/edit--v1.png"
+              onClick={() => setediting(true)}
+            />
+            <img
+              className="cursor-pointer h-7"
+              src="https://img.icons8.com/plasticine/100/000000/filled-trash.png"
+            />
+          </div>
+        )}
       </div>
       <div>
         <p className="text-md font-bold break-words">{comment.title}</p>

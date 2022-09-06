@@ -106,6 +106,7 @@ export interface IComment {
   rating: number;
   title: string;
   comment?: string | undefined;
+  updated_at: string;
   user: {
     id: number;
     username: string;
