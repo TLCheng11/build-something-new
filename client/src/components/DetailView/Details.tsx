@@ -48,18 +48,24 @@ function Details({ project }: Props) {
           </div>
           <div className="flex items-center">
             <p>Overall Rating:</p>
-            <ReactStars
-              className="px-2 pb-1"
-              count={5}
-              size={24}
-              color2={"#ffd700"}
-              edit={false}
-              value={project.overall_rating}
-            />
-            <p>
-              {overallRating.rating?.toFixed(2)} / 5 ({overallRating.count}{" "}
-              ratings)
-            </p>
+            {overallRating.count > 0 ? (
+              <div className="flex items-center">
+                <ReactStars
+                  className="px-2 pb-1"
+                  count={5}
+                  size={24}
+                  color2={"#ffd700"}
+                  edit={false}
+                  value={project.overall_rating}
+                />
+                <p>
+                  {overallRating.rating?.toFixed(2)} / 5 ({overallRating.count}{" "}
+                  ratings)
+                </p>
+              </div>
+            ) : (
+              <p className="ml-2">Not Rated Yet.</p>
+            )}
           </div>
           {project.description && (
             <div>
