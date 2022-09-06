@@ -1,6 +1,6 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import { showModelComponent } from "./ShowModel";
+import { showModelComponent } from "./ShowModel.jsx";
 import { readmeText } from "./README";
 
 function useDownload() {
@@ -14,7 +14,7 @@ function useDownload() {
     const folder = zip.folder(`model`);
     if (folder) {
       folder.file("model.json", jsonData);
-      folder.file("ShowModel.tsx", showModelComponent);
+      folder.file("ShowModel.jsx", showModelComponent);
     }
 
     // console.log("zipping");

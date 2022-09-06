@@ -4,8 +4,8 @@ import React, { useState, useEffect, Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import { DoubleSide } from "three";
 
-function Group({ group }: any) {
-  const showChildGroups = group.child_groups.map((group: any) => (
+function Group({ group }) {
+  const showChildGroups = group.child_groups.map((group) => (
     <Group key={group.id} group={group} />
   ));
 
@@ -23,7 +23,7 @@ function Group({ group }: any) {
       ]}
     >
       {showChildGroups}
-      {group.model_planes?.map((plane: any) => (
+      {group.model_planes?.map((plane) => (
         <Plane
           key={plane.id}
           args={[plane.width || 0, plane.depth || 0]}
@@ -44,7 +44,7 @@ function Group({ group }: any) {
           />
         </Plane>
       ))}
-      {group.model_boxes?.map((box: any) => (
+      {group.model_boxes?.map((box) => (
         <Box
           key={box.id}
           args={[box.width || 0, box.height || 0, box.depth || 0]}
@@ -62,7 +62,7 @@ function Group({ group }: any) {
           <meshStandardMaterial color={box.color || "#fff"} />
         </Box>
       ))}
-      {group.model_spheres?.map((sphere: any) => (
+      {group.model_spheres?.map((sphere) => (
         <Sphere
           key={sphere.id}
           args={[
@@ -89,9 +89,9 @@ function Group({ group }: any) {
 }
 
 function ShowModel() {
-  const [model, setmodel] = useState<any>({ model_groups: [] });
+  const [model, setmodel] = useState({ model_groups: [] });
 
-  const showModel = model.model_groups.map((group: any) => (
+  const showModel = model.model_groups.map((group) => (
     <Group key={group.id} group={group} />
   ));
 
@@ -122,4 +122,4 @@ function ShowModel() {
 }
 
 export default ShowModel;
-// `;
+`;

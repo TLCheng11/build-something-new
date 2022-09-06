@@ -1,5 +1,5 @@
 export const readmeText = `1. Please use the following comment to install required packages:
-    npm i @react-three/cannon @react-three/drei react-three-fiber three
+    npm i @react-three/cannon @react-three/drei react-three-fiber three @types/three
 
 2. Move the model.json into the public folder in your React App.
 
