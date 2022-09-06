@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import { UserContext } from "../../contexts/UserContext";
+import useDownload from "../../downloader/useDownload";
 
 interface Props {
   project: IProject;
@@ -18,6 +19,9 @@ function Details({ project }: Props) {
     rating: number;
     count: number;
   }>({ rating: 0, count: 0 });
+
+  //testing downloader
+  const [handleZip] = useDownload(project.title);
 
   const showComments = comments.map((comment) => (
     <Comment key={comment.id} setrefresh={setrefresh} comment={comment} />
@@ -41,7 +45,12 @@ function Details({ project }: Props) {
     <div id="reviews" className="flex justify-center h-full w-1/3 m-2">
       <div className="h-full w-full p-3 rounded-3xl border bg-white overflow-auto">
         <div>
-          <h1 className="text-3xl">{project.title}</h1>
+          <div className="flex justify-between">
+            <h1 className="text-3xl">{project.title}</h1>
+            <button className="border" onClick={() => handleZip()}>
+              Download
+            </button>
+          </div>
           <div className="flex">
             <p className="mr-2">Created by:</p>
             <p>{project.creator}</p>
