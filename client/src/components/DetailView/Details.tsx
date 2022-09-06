@@ -21,7 +21,7 @@ function Details({ project }: Props) {
   }>({ rating: 0, count: 0 });
 
   //testing downloader
-  const [handleZip] = useDownload(project.title);
+  const [handleZip] = useDownload();
 
   const showComments = comments.map((comment) => (
     <Comment key={comment.id} setrefresh={setrefresh} comment={comment} />
@@ -44,7 +44,7 @@ function Details({ project }: Props) {
   function downloadModel() {
     fetch(`/projects_data/${project.id}`).then((res) => {
       if (res.ok) {
-        res.json().then(console.log);
+        res.json().then((data) => handleZip(project.title, data));
       } else {
         res.json().then((data) => alert(data.error));
       }
