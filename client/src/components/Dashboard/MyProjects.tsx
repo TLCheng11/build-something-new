@@ -4,21 +4,22 @@ import { UserContext } from "../../contexts/UserContext";
 import PagesNavBar from "../commons/Projects/PagesNavBar";
 import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 import { IProject } from "../../Interface";
+import ProjectInfoForm from "../commons/Projects/ProjectInfoForm";
 
 function MyProjects() {
   const params = useParams();
   const { currentUser } = useContext(UserContext);
   const [refresh, setrefresh] = useState<boolean>(false);
-  const [myProjects, setmyProjects] = useState<[IProject]>([
-    {
-      id: 0,
-      title: "",
-      on_market: false,
-      model_groups: [{ id: 0, group_name: "" }],
-    },
-  ]);
+  const [myProjects, setmyProjects] = useState<IProject[]>([]);
   const [pageCount, setpageCount] = useState(0);
   const [currentPage, setcurrentPage] = useState<number>(1);
+  const [showProjectForm, setshowProjectForm] = useState<boolean>(false);
+  const [currentProject, setcurrentProject] = useState<IProject>({
+    id: 0,
+    title: "",
+    on_market: false,
+    model_groups: [{ id: 0, group_name: "" }],
+  });
 
   useEffect(() => {
     if (params.page) {
@@ -60,6 +61,15 @@ function MyProjects() {
 
   return (
     <div className="h-full w-full">
+      {showProjectForm && (
+        <ProjectInfoForm
+          setshowProjectForm={setshowProjectForm}
+          action="edit"
+          currentProject={currentProject}
+          setrefresh={setrefresh}
+          setcurrentPage={setcurrentPage}
+        />
+      )}
       {pageCount < 1 ? (
         <div className="flex items-center justify-center h-full w-full">
           <h1>No project yet, please create a new project</h1>
@@ -71,6 +81,8 @@ function MyProjects() {
               setrefresh={setrefresh}
               type="myProject"
               myProjects={myProjects}
+              setshowProjectForm={setshowProjectForm}
+              setcurrentProject={setcurrentProject}
             />
           </div>
           <div className="h-1/10">

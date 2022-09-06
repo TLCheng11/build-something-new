@@ -11,11 +11,14 @@ interface Props {
   setrefresh?: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
   project: IProject;
+  setshowProjectForm?: React.Dispatch<React.SetStateAction<boolean>>;
+  setcurrentProject?: React.Dispatch<React.SetStateAction<IProject>>;
 }
 
 function ProjectCard(props: Props) {
   let navigate = useNavigate();
-  const { setrefresh, type, project } = props;
+  const { setrefresh, type, project, setshowProjectForm, setcurrentProject } =
+    props;
   const [onMarket, setonMarket] = useState<boolean>(project.on_market);
 
   const showProject = project.model_groups
@@ -101,6 +104,12 @@ function ProjectCard(props: Props) {
           </div>
           <button
             className="border mx-1 disabled:opacity-60"
+            onClick={() => {
+              if (setshowProjectForm && setcurrentProject) {
+                setshowProjectForm(true);
+                setcurrentProject(project);
+              }
+            }}
             disabled={onMarket}
           >
             Edit

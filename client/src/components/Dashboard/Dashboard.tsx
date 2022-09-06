@@ -12,7 +12,10 @@ function Dashboard() {
       className="flex h-screen w-screen bg-gray-800 text-white"
     >
       {showProjectForm && (
-        <ProjectInfoForm setshowProjectForm={setshowProjectForm} />
+        <ProjectInfoForm
+          setshowProjectForm={setshowProjectForm}
+          action="post"
+        />
       )}
       <div id="menu-side" className="h-full w-1/5 border">
         <MenuSide setshowProjectForm={setshowProjectForm} />

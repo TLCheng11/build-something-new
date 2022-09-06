@@ -82,6 +82,6 @@ class ProjectsController < ApplicationController
     end
 
     def project_update_params
-      params.permit(:on_market)
+      params.permit(:title, :description, :on_market)
     end
 end

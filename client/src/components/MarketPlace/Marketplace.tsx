@@ -8,14 +8,7 @@ import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 function MarketPlace() {
   const params = useParams();
   const { currentUser } = useContext(UserContext);
-  const [myProjects, setmyProjects] = useState<[IProject]>([
-    {
-      id: 0,
-      title: "",
-      on_market: false,
-      model_groups: [{ id: 0, group_name: "" }],
-    },
-  ]);
+  const [myProjects, setmyProjects] = useState<IProject[]>([]);
   const [pageCount, setpageCount] = useState(0);
   const [currentPage, setcurrentPage] = useState<number>(1);
 
