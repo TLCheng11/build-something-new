@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :find_project, only: %i[ show update destroy ratings ]
+  before_action :find_project, only: %i[ show update destroy ratings data]
 
   # GET /projects
   def index
@@ -42,10 +42,21 @@ class ProjectsController < ApplicationController
     render json: @project, serializer: ProjectShowSerializer, include: ["model_groups", "model_groups.child_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres"]
   end
 
-  # GET /projects/1
+  # GET /projects_ratings/1
   def ratings
     comments = @project.comments
     render json: {rating: comments.average(:rating).to_f, count:comments.count}
+  end
+
+  # GET /projects_data/1
+  def data
+    top_level_groups = @project.model_groups.where(parent_group_id: nil)
+    groups_data = []
+    top_level_groups.each do |group|
+      groups_data.push(group.get_all_children)
+    end
+    data = {title: @project.title, model_groups:groups_data}
+    render json: data
   end
 
   # POST /projects

@@ -23,6 +23,20 @@ class ModelGroup < ApplicationRecord
     list
   end
 
+  def get_all_children
+    group = {id: self.id, group_name: self.group_name, parent_group_id: self.parent_group_id, xposition: self.xposition, yposition: self.yposition, zposition: zposition, xrotation: xrotation, yrotation: yrotation, zrotation: zrotation}
+    group[:model_planes] = self.model_planes
+    group[:model_boxes] = self.model_boxes
+    group[:model_spheres] = self.model_spheres
+    group[:child_groups] = []
+      if self.child_groups.count > 0
+        self.child_groups.each do |child|
+          group[:child_groups].push(child.get_all_children)
+        end
+      end
+    return group
+  end
+
   # wip
   # def is_child?(id, group)
   #   children = group.child_groups

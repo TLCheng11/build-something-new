@@ -41,13 +41,23 @@ function Details({ project }: Props) {
     }
   }, [refresh, project]);
 
+  function downloadModel() {
+    fetch(`/projects_data/${project.id}`).then((res) => {
+      if (res.ok) {
+        res.json().then(console.log);
+      } else {
+        res.json().then((data) => alert(data.error));
+      }
+    });
+  }
+
   return (
     <div id="reviews" className="flex justify-center h-full w-1/3 m-2">
       <div className="h-full w-full p-3 rounded-3xl border bg-white overflow-auto">
         <div>
           <div className="flex justify-between">
             <h1 className="text-3xl">{project.title}</h1>
-            <button className="border" onClick={() => handleZip()}>
+            <button className="border" onClick={() => downloadModel()}>
               Download
             </button>
           </div>

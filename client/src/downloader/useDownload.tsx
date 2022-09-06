@@ -18,7 +18,7 @@ function useDownload(fileName: string) {
   }
 
   function handleZip() {
-    console.log("zipping");
+    // console.log("zipping");
     zip.generateAsync({ type: "blob" }).then((content) => {
       // see FileSaver.js
       saveAs(content, `${fileName}.zip`);
