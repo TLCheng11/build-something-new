@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { UserContext } from "./contexts/UserContext";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
 import DesignPage from "./components/DesignPage/DesignPageLayout/DesignPage";
 import Dashboard from "./components/Dashboard/Dashboard";
@@ -7,7 +8,6 @@ import MarketPlace from "./components/MarketPlace/Marketplace";
 import MenuTop from "./components/commons/Menus/MenuTop";
 import DetailView from "./components/DetailView/DetailView";
 import MyProjects from "./components/Dashboard/MyProjects";
-import { UserContext } from "./components/contexts/UserContext";
 
 function App() {
   const { currentUser, setcurrentUser } = useContext(UserContext);

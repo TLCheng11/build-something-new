@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import { IProject } from "../../Interface";
 import PagesNavBar from "../commons/Projects/PagesNavBar";
 import ProjectShowcase from "../commons/Projects/ProjectShowcase";

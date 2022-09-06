@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
-import { ICurrentUser } from "../../Interface";
+import { ICurrentUser } from "../Interface";
 
 interface Props {
   children: ReactNode;
