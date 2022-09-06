@@ -1,20 +1,22 @@
 import { IComment, IProject } from "../../Interface";
 import ReactStars from "react-stars";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
+import { UserContext } from "../../contexts/UserContext";
 
 interface Props {
   project: IProject;
 }
 
 function Details({ project }: Props) {
+  const { currentUser } = useContext(UserContext);
   const [refresh, setrefresh] = useState<boolean>(false);
   const [addComment, setaddComment] = useState<boolean>(false);
   const [comments, setcomments] = useState<IComment[]>([]);
 
   const showComments = comments.map((comment) => (
-    <Comment key={comment.id} comment={comment} />
+    <Comment key={comment.id} setrefresh={setrefresh} comment={comment} />
   ));
 
   useEffect(() => {
@@ -55,21 +57,23 @@ function Details({ project }: Props) {
         <div>
           <div className="flex justify-between">
             <h1>Comments:</h1>
-            <div>
-              <button
-                className="px-1 border"
-                onClick={() => setaddComment((state) => !state)}
-              >
-                Add a Comment
-              </button>
-            </div>
+            {currentUser.id !== project.created_by && (
+              <div>
+                <button
+                  className="px-1 border"
+                  onClick={() => setaddComment((state) => !state)}
+                >
+                  Add a Comment
+                </button>
+              </div>
+            )}
           </div>
           {addComment && (
             <CommentForm
               setrefresh={setrefresh}
-              action="comment"
+              action="post"
               setaddComment={setaddComment}
-              projectId={project.id}
+              id={project.id}
             />
           )}
           {showComments}
