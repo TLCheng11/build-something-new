@@ -105,7 +105,7 @@ function ProjectInfoForm(props: Props) {
       id="project-info-form"
       className="fixed h-screen w-screen z-20 left-0 flex items-center justify-center bg-black bg-opacity-70"
     >
-      <div className="border p-3">
+      {/* <div className="border p-3">
         <div className="flex justify-end">
           <p
             className="cursor-pointer hover:text-red-500"
@@ -140,6 +140,48 @@ function ProjectInfoForm(props: Props) {
           </div>
           <div className="flex justify-center pt-2">
             <button type="submit" className="border">
+              {action === "post" ? "Create" : "Edit"}
+            </button>
+          </div>
+        </form>
+      </div> */}
+      <div className="max-w-lg text-xl rounded-lg bg-white shadow-md shadow-blue-600/50">
+        <div className="flex justify-end">
+          <p
+            className="cursor-pointer text-xl mx-2 hover:text-red-500"
+            onClick={() => setshowProjectForm(false)}
+          >
+            X
+          </p>
+        </div>
+        <form className="w-full p-4" onSubmit={handleFormSubmit}>
+          <div className="mb-2">
+            <label htmlFor="title" className="text-gray-600">
+              {action === "post" ? "Enter Project info:" : "Edit Project:"}
+            </label>
+            <input
+              className="w-full h-10 my-2 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
+              name="title"
+              placeholder="Title"
+              maxLength={50}
+              required
+              value={formInput.title}
+              onChange={onFormChange}
+            />
+            <textarea
+              className="w-full h-20 mt-2 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
+              name="description"
+              placeholder=""
+              maxLength={255}
+              value={formInput.description}
+              onChange={onFormChange}
+            ></textarea>
+          </div>
+          <div className="flex justify-center">
+            <button
+              className="px-3 py-2 text-sm text-blue-100 bg-blue-600 rounded"
+              type="submit"
+            >
               {action === "post" ? "Create" : "Edit"}
             </button>
           </div>
