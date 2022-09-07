@@ -18,12 +18,13 @@ function DetailView() {
     model_groups: [{ id: 0, group_name: "" }],
   });
 
-  const showProject = project.model_groups
-    .filter((group) => !group.parent_group_id)
-    .map((group) => <RoomContent key={group.id} group={group} />);
+  const showProject = project.model_groups.map((group) => (
+    <RoomContent key={group.id} group={group} />
+  ));
+  // .filter((group) => !group.parent_group_id)
 
   useEffect(() => {
-    fetch(`/projects/${params.project_id}`).then((res) => {
+    fetch(`/projects_data/${params.project_id}`).then((res) => {
       if (res.ok) {
         res
           .json()

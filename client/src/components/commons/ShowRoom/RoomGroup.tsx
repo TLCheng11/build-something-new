@@ -8,20 +8,20 @@ interface Props {
 }
 
 function RoomGroup({ group }: Props) {
-  const [childGroups, setchildGroups] = useState<IModelGroup[]>([]);
+  // const [childGroups, setchildGroups] = useState<IModelGroup[]>([]);
 
-  const showChildGroups = childGroups.map((group) => (
+  const showChildGroups = group.child_groups?.map((group) => (
     <RoomGroup key={group.id} group={group} />
   ));
 
   // get all child groups
-  useEffect(() => {
-    if (group.id > 0) {
-      fetch(`/model_groups/${group.id}`)
-        .then((res) => res.json())
-        .then((data) => setchildGroups(data.child_groups));
-    }
-  }, [group]);
+  // useEffect(() => {
+  //   if (group.id > 0) {
+  //     fetch(`/model_groups/${group.id}`)
+  //       .then((res) => res.json())
+  //       .then((data) => setchildGroups(data.child_groups));
+  //   }
+  // }, [group]);
 
   return (
     <group

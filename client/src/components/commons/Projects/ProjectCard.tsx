@@ -1,5 +1,5 @@
 import { Loader } from "@react-three/drei";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
 import { IProject } from "../../../Interface";
@@ -20,10 +20,31 @@ function ProjectCard(props: Props) {
   const { setrefresh, type, project, setshowProjectForm, setcurrentProject } =
     props;
   const [onMarket, setonMarket] = useState<boolean>(project.on_market);
+  const [cardProject, setcardProject] = useState<IProject>({
+    id: 0,
+    title: "",
+    on_market: false,
+    model_groups: [{ id: 0, group_name: "" }],
+  });
 
-  const showProject = project.model_groups
-    .filter((group) => !group.parent_group_id)
-    .map((group) => <RoomContent key={group.id} group={group} />);
+  const showProject = cardProject.model_groups.map((group) => (
+    <RoomContent key={group.id} group={group} />
+  ));
+
+  useEffect(() => {
+    fetch(`/projects_data/${project.id}`).then((res) => {
+      if (res.ok) {
+        res
+          .json()
+          .then((data) => {
+            setcardProject(data);
+          })
+          .catch(console.error);
+      } else {
+        res.json().then(console.log);
+      }
+    });
+  }, []);
 
   function toProjectDesign(id?: number) {
     navigate(`/project-design/${id}`);

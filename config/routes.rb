@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get "/projects_page_count", to:"projects#page_count"
     get "/users/:user_id/projects_page_count", to: "projects#page_count"
     get "/projects_ratings/:id", to:"projects#ratings"
+    get "/projects_data/:id", to:"projects#data"
     get "/projects_download/:id", to:"projects#download"
 
     # comments
