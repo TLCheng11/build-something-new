@@ -34,7 +34,7 @@ function DetailView() {
           .catch(console.error);
       } else {
         const id = setTimeout(() => {
-          navigate("/");
+          navigate(-1);
         }, 2000);
         setnotFound(true);
 

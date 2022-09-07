@@ -26,6 +26,9 @@ class ModelGroup < ApplicationRecord
   def get_all_children
     group = {id: self.id, group_name: self.group_name, parent_group_id: self.parent_group_id, xposition: self.xposition, yposition: self.yposition, zposition: zposition, xrotation: xrotation, yrotation: yrotation, zrotation: zrotation}
     group[:model_planes] = self.model_planes
+    # group[:model_planes].each do |plane|
+    #   plane.except!(:created_at, :updated_at)
+    # end
     group[:model_boxes] = self.model_boxes
     group[:model_spheres] = self.model_spheres
     group[:child_groups] = []
