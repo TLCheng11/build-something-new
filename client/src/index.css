@@ -9,5 +9,9 @@ input:checked ~ .dot {
 }
 
 .side-menu-items {
-  @apply cursor-pointer m-2 px-2 hover:bg-blue-300
+  @apply cursor-pointer m-2 px-2 hover:text-blue-300
+}
+
+.project-card-btn {
+  @apply text-lg mx-1 px-2 border rounded-md disabled:opacity-60
 }

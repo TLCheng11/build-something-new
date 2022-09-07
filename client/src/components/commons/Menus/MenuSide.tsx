@@ -26,7 +26,7 @@ function MenuSide(props: Props) {
     <div
       id="menu-side"
       className="h-full
-     bg-blue-500 text-white p-3"
+     bg-slate-900 text-white p-3"
     >
       <div className="mb-3 text-5xl font-bold">
         <h1 className="text-3xl">Welcome:</h1>

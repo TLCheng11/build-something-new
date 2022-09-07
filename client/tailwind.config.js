@@ -8,14 +8,15 @@ module.exports = {
         "9/10": "90%",
       },
       minHeight: {
-        "360px": "360px",
-        "720px": "720px",
+        "100": "100px",
+        "360": "360px",
+        "720": "720px",
       },
       maxHeight: {
-        "400px": "400px",
+        "1/2screen": "50vh",
       },
       minWidth: {
-        "360px": "360px",
+        "360": "360px",
       },
     },
   },

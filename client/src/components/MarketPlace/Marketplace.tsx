@@ -49,7 +49,7 @@ function MarketPlace() {
   }, [pageCount, currentPage]);
 
   return (
-    <div id="dashboard" className="flex h-screen w-screen bg-black text-white">
+    <div id="dashboard" className="flex h-screen w-screen bg-white text-black">
       {pageCount < 1 ? (
         <div className="flex items-center justify-center h-full w-full">
           <h1>No project on market</h1>

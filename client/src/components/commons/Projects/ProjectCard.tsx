@@ -88,8 +88,8 @@ function ProjectCard(props: Props) {
   }
 
   return (
-    <div className="col-span-1 flex flex-col items-center min-h-360px max-h-400px rounded-xl border">
-      <div className="h-4/5 w-full rounded-t-xl bg-gray-400">
+    <div className="col-span-1 flex flex-col items-center min-h-360 min-h-1/2screen bg-slate-900 border border-blue-200 rounded-xl">
+      <div className="h-4/5 min-h-100 w-full rounded-t-xl bg-blue-100">
         <NavLink to={`/project-detail-view/${project.id}`}>
           <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
             <ModelLight />
@@ -100,57 +100,61 @@ function ProjectCard(props: Props) {
           <Loader />
         </NavLink>
       </div>
-      <div className="w-11/12">
-        <h1>{project.title}</h1>
-        {type !== "myProject" && <h1>Creator: {project.creator}</h1>}
-      </div>
-      {type === "myProject" && (
-        <div>
-          <div className="flex items-center justify-center w-full mb-12">
-            <label className="flex items-center cursor-pointer">
-              <div className="relative">
-                <input
-                  className="sr-only"
-                  type="checkbox"
-                  checked={onMarket}
-                  onChange={(e) => {
-                    putOnMarket(e);
-                  }}
-                />
-                <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
-                <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-              </div>
-              <div className="ml-3 text-white font-medium">On Market</div>
-            </label>
-          </div>
-          <button
-            className="border mx-1 disabled:opacity-60"
-            onClick={() => {
-              if (setshowProjectForm && setcurrentProject) {
-                setshowProjectForm(true);
-                setcurrentProject(project);
-              }
-            }}
-            disabled={onMarket}
-          >
-            Edit
-          </button>
-          <button
-            className="border mx-1 disabled:opacity-60"
-            onClick={() => toProjectDesign(project.id)}
-            disabled={onMarket}
-          >
-            Build
-          </button>
-          <button
-            className="border mx-1 disabled:opacity-60"
-            onClick={deleteProject}
-            disabled={onMarket}
-          >
-            Delete
-          </button>
+      <div className="w-full px-3 pb-2 text-white">
+        <div className="py-2">
+          <h1 className="text-3xl">{project.title}</h1>
+          {type !== "myProject" && <h1>Creator: {project.creator}</h1>}
         </div>
-      )}
+        {type === "myProject" && (
+          <div className="flex items-center justify-between">
+            <div>
+              <button
+                className="project-card-btn hover:bg-blue-300"
+                onClick={() => {
+                  if (setshowProjectForm && setcurrentProject) {
+                    setshowProjectForm(true);
+                    setcurrentProject(project);
+                  }
+                }}
+                disabled={onMarket}
+              >
+                Edit
+              </button>
+              <button
+                className="project-card-btn hover:bg-green-600"
+                onClick={() => toProjectDesign(project.id)}
+                disabled={onMarket}
+              >
+                Build
+              </button>
+              <button
+                className="project-card-btn hover:bg-red-600"
+                onClick={deleteProject}
+                disabled={onMarket}
+              >
+                Delete
+              </button>
+            </div>
+            <div className="flex items-center">
+              <label className="flex items-center cursor-pointer">
+                <div className="relative">
+                  <input
+                    className="sr-only"
+                    type="checkbox"
+                    checked={onMarket}
+                    onChange={(e) => {
+                      putOnMarket(e);
+                    }}
+                  />
+                  <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
+                  <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                </div>
+                <div className="ml-3 text-white font-medium">On Market</div>
+              </label>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
