@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
       groups_data.push(group.get_all_children)
     end
     creator = User.find(@project.created_by).username
-    data = {id: @project.id, title: @project.title, creator: creator, description: @project.description, on_market: @project.on_market, price: @project.price, sold_count: @project.sold_count, model_groups:groups_data}
+    data = {id: @project.id, title: @project.title, created_by:@project.created_by, creator: creator, description: @project.description, on_market: @project.on_market, price: @project.price, sold_count: @project.sold_count, model_groups:groups_data}
     render json: data
   end
 
