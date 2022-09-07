@@ -19,7 +19,7 @@ function MenuTop() {
   return (
     <div
       id="menu-top"
-      className="fixed flex justify-center -top-9 h-10 w-screen z-30 bg-black text-white transition-all duration-300 ease-in hover:top-0"
+      className="fixed flex justify-center -top-9 h-10 w-screen z-30 bg-blue-500 text-white transition-all duration-300 ease-in hover:top-0"
     >
       <nav className="flex items-center">
         <NavLink to="/dashboard/projects/1">
