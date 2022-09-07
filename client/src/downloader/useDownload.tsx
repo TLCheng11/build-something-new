@@ -1,10 +1,11 @@
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
-import { showModelComponent } from "./ShowModel.jsx";
+import { showModelComponentJsx } from "./ShowModelJsx";
+import { showModelComponentTsx } from "./ShowModelTsx";
 import { readmeText } from "./README";
 
 function useDownload() {
-  function handleZip(fileName: string, data: any) {
+  function handleZip(fileName: string, data: any, downloadType: string) {
     const jsonData = JSON.stringify(data);
 
     // zipping files
@@ -14,7 +15,11 @@ function useDownload() {
     const folder = zip.folder(`model`);
     if (folder) {
       folder.file("model.json", jsonData);
-      folder.file("ShowModel.jsx", showModelComponent);
+      if (downloadType === "jsx") {
+        folder.file("ShowModel.jsx", showModelComponentJsx);
+      } else if (downloadType === "tsx") {
+        folder.file("ShowModel.tsx", showModelComponentTsx);
+      }
     }
 
     // console.log("zipping");

@@ -1,11 +1,11 @@
-export const showModelComponent = `
+export const showModelComponentTsx = `
 import { Box, Loader, OrbitControls, Plane, Sphere } from "@react-three/drei";
-import React, { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import { DoubleSide } from "three";
 
-function Group({ group }) {
-  const showChildGroups = group.child_groups.map((group) => (
+function Group({ group }: any) {
+  const showChildGroups = group.child_groups.map((group: any) => (
     <Group key={group.id} group={group} />
   ));
 
@@ -23,7 +23,7 @@ function Group({ group }) {
       ]}
     >
       {showChildGroups}
-      {group.model_planes?.map((plane) => (
+      {group.model_planes?.map((plane: any) => (
         <Plane
           key={plane.id}
           args={[plane.width || 0, plane.depth || 0]}
@@ -44,7 +44,7 @@ function Group({ group }) {
           />
         </Plane>
       ))}
-      {group.model_boxes?.map((box) => (
+      {group.model_boxes?.map((box: any) => (
         <Box
           key={box.id}
           args={[box.width || 0, box.height || 0, box.depth || 0]}
@@ -62,7 +62,7 @@ function Group({ group }) {
           <meshStandardMaterial color={box.color || "#fff"} />
         </Box>
       ))}
-      {group.model_spheres?.map((sphere) => (
+      {group.model_spheres?.map((sphere: any) => (
         <Sphere
           key={sphere.id}
           args={[
@@ -89,9 +89,9 @@ function Group({ group }) {
 }
 
 function ShowModel() {
-  const [model, setmodel] = useState({ model_groups: [] });
+  const [model, setmodel] = useState<any>({ model_groups: [] });
 
-  const showModel = model.model_groups.map((group) => (
+  const showModel = model.model_groups.map((group: any) => (
     <Group key={group.id} group={group} />
   ));
 

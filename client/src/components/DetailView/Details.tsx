@@ -22,6 +22,7 @@ function Details({ project }: Props) {
 
   //testing downloader
   const [handleZip] = useDownload();
+  const [downloadType, setdownloadType] = useState<string>("jsx");
 
   const showComments = comments.map((comment) => (
     <Comment key={comment.id} setrefresh={setrefresh} comment={comment} />
@@ -44,7 +45,7 @@ function Details({ project }: Props) {
   function downloadModel() {
     fetch(`/projects_data/${project.id}`).then((res) => {
       if (res.ok) {
-        res.json().then((data) => handleZip(project.title, data));
+        res.json().then((data) => handleZip(project.title, data, downloadType));
       } else {
         res.json().then((data) => alert(data.error));
       }
@@ -57,9 +58,47 @@ function Details({ project }: Props) {
         <div>
           <div className="flex justify-between">
             <h1 className="text-3xl">{project.title}</h1>
-            <button className="border" onClick={() => downloadModel()}>
-              Download
-            </button>
+            {/* radio buttons for download */}
+            <div className="flex items-center">
+              <div>
+                <input
+                  id="radio-jsx"
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  type="radio"
+                  name="radio-download"
+                  value="jsx"
+                  checked={downloadType === "jsx"}
+                  onChange={(e) => setdownloadType(e.target.value)}
+                />
+                <label
+                  htmlFor="radio-jsx"
+                  className="mx-2 text-sm font-medium text-gray-900 dark:text-gray-800"
+                >
+                  .jsx
+                </label>
+                <input
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                  id="radio-tsx"
+                  type="radio"
+                  name="radio-download"
+                  value="tsx"
+                  checked={downloadType === "tsx"}
+                  onChange={(e) => setdownloadType(e.target.value)}
+                />
+                <label
+                  htmlFor="radio-tsx"
+                  className="mx-2 text-sm font-medium text-gray-900 dark:text-gray-800"
+                >
+                  .tsx
+                </label>
+              </div>
+              <button
+                className="px-1 border rounded-md"
+                onClick={() => downloadModel()}
+              >
+                Download
+              </button>
+            </div>
           </div>
           <div className="flex">
             <p className="mr-2">Created by:</p>
