@@ -55,75 +55,74 @@ function Details({ project }: Props) {
   return (
     <div id="reviews" className="flex justify-center h-full w-1/3 m-2">
       <div className="h-full w-full p-3 rounded-3xl border bg-white overflow-auto">
-        <div>
-          <div className="flex justify-between">
-            <h1 className="text-3xl">{project.title}</h1>
-            {/* radio buttons for download */}
-            <div className="flex items-center">
-              <div>
-                <input
-                  id="radio-jsx"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  type="radio"
-                  name="radio-download"
-                  value="jsx"
-                  checked={downloadType === "jsx"}
-                  onChange={(e) => setdownloadType(e.target.value)}
-                />
-                <label
-                  htmlFor="radio-jsx"
-                  className="mx-2 text-sm font-medium text-gray-900 dark:text-gray-800"
-                >
-                  .jsx
-                </label>
-                <input
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                  id="radio-tsx"
-                  type="radio"
-                  name="radio-download"
-                  value="tsx"
-                  checked={downloadType === "tsx"}
-                  onChange={(e) => setdownloadType(e.target.value)}
-                />
-                <label
-                  htmlFor="radio-tsx"
-                  className="mx-2 text-sm font-medium text-gray-900 dark:text-gray-800"
-                >
-                  .tsx
-                </label>
-              </div>
-              <button
-                className="px-1 border rounded-md"
-                onClick={() => downloadModel()}
-              >
-                Download
-              </button>
-            </div>
+        {/* radio buttons for download */}
+        <div className="flex items-center justify-end">
+          <div>
+            <input
+              id="radio-jsx"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              type="radio"
+              name="radio-download"
+              value="jsx"
+              checked={downloadType === "jsx"}
+              onChange={(e) => setdownloadType(e.target.value)}
+            />
+            <label
+              htmlFor="radio-jsx"
+              className="mx-2 text-sm font-medium text-gray-900 dark:text-gray-800"
+            >
+              Javascript
+            </label>
+            <input
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              id="radio-tsx"
+              type="radio"
+              name="radio-download"
+              value="tsx"
+              checked={downloadType === "tsx"}
+              onChange={(e) => setdownloadType(e.target.value)}
+            />
+            <label
+              htmlFor="radio-tsx"
+              className="mx-2 text-sm font-medium text-gray-900 dark:text-gray-800"
+            >
+              Typescript
+            </label>
           </div>
+          <button
+            className="px-1 border rounded-md"
+            onClick={() => downloadModel()}
+          >
+            Download
+          </button>
+        </div>
+
+        <div className="mb-5">
+          <h1 className="text-3xl">{project.title}</h1>
           <div className="flex">
             <p className="mr-2">Created by:</p>
             <p>{project.creator}</p>
           </div>
           <div className="flex items-center">
             <p>Overall Rating:</p>
-            {overallRating.count > 0 ? (
-              <div className="flex items-center">
-                <ReactStars
-                  className="px-2 pb-1"
-                  count={5}
-                  size={24}
-                  color2={"#ffd700"}
-                  edit={false}
-                  value={overallRating.rating}
-                />
+            <div className="flex items-center">
+              <ReactStars
+                className="px-2 pb-1"
+                count={5}
+                size={24}
+                color2={"#ffd700"}
+                edit={false}
+                value={overallRating.rating}
+              />
+              {overallRating.count > 0 ? (
                 <p>
                   {overallRating.rating?.toFixed(2)} / 5 ({overallRating.count}{" "}
                   ratings)
                 </p>
-              </div>
-            ) : (
-              <p className="ml-2">Not Rated Yet.</p>
-            )}
+              ) : (
+                <p className="ml-2">Not Rated Yet.</p>
+              )}
+            </div>
           </div>
           {project.description && (
             <div>

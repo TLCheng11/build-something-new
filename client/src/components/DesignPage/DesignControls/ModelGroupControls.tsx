@@ -61,7 +61,7 @@ function ModelGroupControls(props: Props) {
     ));
 
   useEffect(() => {
-    if (assignList.length > 0 && parentGroupId === 0) {
+    if (assignList.length > 0) {
       setparentGroupId(assignList[0].props.value);
     }
   }, [assignList]);
