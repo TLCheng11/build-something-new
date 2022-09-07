@@ -49,19 +49,17 @@ function DetailView() {
     <div className="h-screen w-screen overflow-x-hidden">
       <div
         id="detailview-background"
-        className="fixed h-full w-full -z-10 bg-black"
+        className="fixed h-full w-full -z-10 bg-white"
       ></div>
       <div>
         <button
-          className="text-white text-3xl m-2 border"
+          className="text-white text-3xl m-2"
           onClick={() => navigate(-1)}
-        >
-          Back
-        </button>
+        ></button>
       </div>
       <div className="flex h-5/6 w-full">
         <div className="flex justify-center h-full w-2/3 m-2">
-          <div className="h-full w-full min-h-360px min-w-360px rounded-3xl bg-gray-400">
+          <div className="h-full w-full mx-5 min-h-360px min-w-360px rounded-3xl bg-blue-200">
             <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
               <OrbitControls />
               <ModelLight />

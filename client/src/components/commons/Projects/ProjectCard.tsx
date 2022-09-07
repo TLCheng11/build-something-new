@@ -88,7 +88,7 @@ function ProjectCard(props: Props) {
   }
 
   return (
-    <div className="col-span-1 flex flex-col items-center min-h-360 min-h-1/2screen bg-slate-900 border border-blue-200 rounded-xl">
+    <div className="col-span-1 flex flex-col items-center min-h-360 max-h-1/2screen bg-slate-900 border border-blue-200 rounded-xl">
       <div className="h-4/5 min-h-100 w-full rounded-t-xl bg-blue-100">
         <NavLink to={`/project-detail-view/${project.id}`}>
           <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>

@@ -53,7 +53,7 @@ function Details({ project }: Props) {
   }
 
   return (
-    <div id="reviews" className="flex justify-center h-full w-1/3 m-2">
+    <div id="reviews" className="flex justify-center h-full w-1/3 my-2 mx-5">
       <div className="h-full w-full p-3 rounded-3xl border bg-white overflow-auto">
         {/* radio buttons for download */}
         <div className="flex items-center justify-end">
