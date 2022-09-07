@@ -43,7 +43,7 @@ function Details({ project }: Props) {
   }, [refresh, project]);
 
   function downloadModel() {
-    fetch(`/projects_data/${project.id}`).then((res) => {
+    fetch(`/projects_download/${project.id}`).then((res) => {
       if (res.ok) {
         res.json().then((data) => handleZip(project.title, data, downloadType));
       } else {

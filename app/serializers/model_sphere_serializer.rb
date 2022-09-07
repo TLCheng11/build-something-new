@@ -3,6 +3,7 @@ class ModelSphereSerializer < ActiveModel::Serializer
   # has_one :model_group
 
   def group
-    {id: self.object.model_group.id, group_name: self.object.model_group.group_name}
+    group = self.object.model_group
+    {id: group.id, group_name: group.group_name}
   end
 end

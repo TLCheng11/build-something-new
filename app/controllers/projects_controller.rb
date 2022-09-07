@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :find_project, only: %i[ show update destroy ratings data]
+  before_action :find_project, only: %i[ show update destroy ratings data download]
 
   # GET /projects
   def index
@@ -48,8 +48,8 @@ class ProjectsController < ApplicationController
     render json: {rating: comments.average(:rating).to_f, count:comments.count}
   end
 
-  # GET /projects_data/1
-  def data
+  # GET /projects_download/1
+  def download
     top_level_groups = @project.model_groups.where(parent_group_id: nil)
     groups_data = []
     top_level_groups.each do |group|
