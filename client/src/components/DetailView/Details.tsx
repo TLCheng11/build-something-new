@@ -114,7 +114,7 @@ function Details({ project }: Props) {
                   size={24}
                   color2={"#ffd700"}
                   edit={false}
-                  value={project.overall_rating}
+                  value={overallRating.rating}
                 />
                 <p>
                   {overallRating.rating?.toFixed(2)} / 5 ({overallRating.count}{" "}
