@@ -182,25 +182,29 @@ function ModelGroupControls(props: Props) {
   }
 
   return (
-    <div className="h-full w-full bg-gray-600 border">
+    <div className="h-full w-full py-2 mb-2 bg-gray-600 border-t border-b border-black">
       {/* new group */}
       <div className="flex">
-        <h1>New Group:</h1>
+        <h1 className="w-1/3">New Group:</h1>
         <form onSubmit={createGroup}>
           <input
+            className="design-input"
             name="group-name"
             placeholder="Enter Group Name"
             value={groupName}
             onChange={(e) => setgroupName(e.target.value)}
             required
           />
-          <button type="submit">Create</button>
+          <button className="design-btn" type="submit">
+            Create
+          </button>
         </form>
       </div>
       {/* group selection */}
       <div className="flex">
-        <h1>Select Group</h1>
+        <h1 className="w-1/3">Select Group</h1>
         <select
+          className="design-input"
           value={selectedGroup.id}
           onChange={(e) =>
             setselectedGroup({
@@ -211,45 +215,47 @@ function ModelGroupControls(props: Props) {
         >
           {groupList}
         </select>
-        <button className="border" onClick={deleteGroup}>
+        <button className="design-btn" onClick={deleteGroup}>
           Delete
-        </button>
-      </div>
-      {/* group assignment */}
-      <div className="flex">
-        <h1>
-          Parent Group:
-          {parentGroupName}
-        </h1>
-        <button className="border" onClick={detachFromParentGroup}>
-          Detach
-        </button>
-      </div>
-      <div className="flex">
-        <h1>Attach to Group:</h1>
-        <select
-          value={parentGroupId}
-          onChange={(e) => setparentGroupId(parseInt(e.target.value))}
-        >
-          {assignList}
-        </select>
-        <button className="border" onClick={attachToParentGroup}>
-          Attach
         </button>
       </div>
       {/* edit group name */}
       <div className="flex">
-        <h1>Group Name:</h1>
+        <h1 className="w-1/3">Group Name:</h1>
         <form onSubmit={editGroupName}>
           <input
+            className="design-input"
             name="edit-group-name"
             placeholder={selectedGroup.name}
             value={editName}
             onChange={(e) => seteditName(e.target.value)}
             required
           />
-          <button type="submit">Edit</button>
+          <button className="design-btn" type="submit">
+            Edit
+          </button>
         </form>
+      </div>
+      {/* group assignment */}
+      <div className="flex">
+        <h1 className="w-1/3">Parent Group:</h1>
+        <p className="mx-2 w-150">{parentGroupName}</p>
+        <button className="design-btn" onClick={detachFromParentGroup}>
+          Detach
+        </button>
+      </div>
+      <div className="flex">
+        <h1 className="w-1/3">Attach to:</h1>
+        <select
+          className="design-input"
+          value={parentGroupId}
+          onChange={(e) => setparentGroupId(parseInt(e.target.value))}
+        >
+          {assignList}
+        </select>
+        <button className="design-btn" onClick={attachToParentGroup}>
+          Attach
+        </button>
       </div>
       <ModelPositionControls
         type="Group"

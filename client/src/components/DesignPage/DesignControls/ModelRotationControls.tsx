@@ -12,9 +12,12 @@ function ModelRotationControls(props: Props) {
       <div>
         <h1>{type} Rotations: (Degrees)</h1>
       </div>
-      <div>
-        <label htmlFor="model-X-rotation">X-Rotation:</label>
+      <div className="flex">
+        <div className="w-1/3">
+          <label htmlFor="model-X-rotation">X-Rotation:</label>
+        </div>
         <input
+          className="design-input"
           type="number"
           name="model-X-rotation"
           value={rotation[0]}
@@ -27,9 +30,12 @@ function ModelRotationControls(props: Props) {
           }
         />
       </div>
-      <div>
-        <label htmlFor="model-Y-rotation">Y-Rotation:</label>
+      <div className="flex">
+        <div className="w-1/3">
+          <label htmlFor="model-Y-rotation">Y-Rotation:</label>
+        </div>
         <input
+          className="design-input"
           type="number"
           name="model-Y-rotation"
           value={rotation[1]}
@@ -42,9 +48,12 @@ function ModelRotationControls(props: Props) {
           }
         />
       </div>
-      <div>
-        <label htmlFor="model-Z-rotation">Z-Rotation:</label>
+      <div className="flex">
+        <div className="w-1/3">
+          <label htmlFor="model-Z-rotation">Z-Rotation:</label>
+        </div>
         <input
+          className="design-input"
           type="number"
           name="model-Z-rotation"
           value={rotation[2]}

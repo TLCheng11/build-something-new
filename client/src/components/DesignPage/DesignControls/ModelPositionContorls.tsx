@@ -15,9 +15,12 @@ function ModelPositionControls(props: Props) {
       <div>
         <h1>{type} Positions:</h1>
       </div>
-      <div>
-        <label htmlFor="model-X-position">X-Position:</label>
+      <div className="flex">
+        <div className="w-1/3">
+          <label htmlFor="model-X-position">X-Position:</label>
+        </div>
         <input
+          className="design-input"
           type="number"
           step={step}
           name="model-X-position"
@@ -31,9 +34,12 @@ function ModelPositionControls(props: Props) {
           }
         />
       </div>
-      <div>
-        <label htmlFor="model-Y-position">Y-Position:</label>
+      <div className="flex">
+        <div className="w-1/3">
+          <label htmlFor="model-Y-position">Y-Position:</label>
+        </div>
         <input
+          className="design-input"
           type="number"
           step={step}
           name="model-Y-position"
@@ -47,9 +53,12 @@ function ModelPositionControls(props: Props) {
           }
         />
       </div>
-      <div>
-        <label htmlFor="model-Z-position">Z-Position:</label>
+      <div className="flex">
+        <div className="w-1/3">
+          <label htmlFor="model-Z-position">Z-Position:</label>
+        </div>
         <input
+          className="design-input"
           type="number"
           step={step}
           name="model-Z-position"

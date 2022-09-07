@@ -100,7 +100,10 @@ function DesignPage() {
 
   return (
     <div id="design-page" className="flex h-screen w-screen bg-black">
-      <div id="design-controls-holder" className="h-full w-1/4 overflow-auto">
+      <div
+        id="design-controls-holder"
+        className="h-full w-1/4 min-w-control overflow-auto"
+      >
         <DesignControls
           setrefresh={setrefresh}
           currentProject={currentProject}

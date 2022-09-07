@@ -20,37 +20,38 @@ function GridControls(props: Props) {
   } = props;
 
   return (
-    <div id="design-controls" className="h-full w-full bg-gray-600">
-      <div id="grid-control">
-        <h1>Show Grids:</h1>
-        <div className="flex">
-          <div>
-            <label htmlFor="show-main-grid">Main: </label>
-            <input
-              name="show-main-grid"
-              type="checkbox"
-              checked={showGridMain}
-              onChange={(e) => setshowGridMain(e.target.checked)}
-            />
-          </div>
-          <div>
-            <label htmlFor="show-group-grid">Group</label>
-            <input
-              name="show-group-grid"
-              type="checkbox"
-              checked={showGridGroup}
-              onChange={(e) => setshowGridGroup(e.target.checked)}
-            />
-          </div>
-          <div>
-            <label htmlFor="show-model-grid">Model</label>
-            <input
-              name="show-model-grid"
-              type="checkbox"
-              checked={showGridModel}
-              onChange={(e) => setshowGridModel(e.target.checked)}
-            />
-          </div>
+    <div id="grid-control" className="h-full w-full bg-gray-600">
+      <div>
+        <p></p>
+      </div>
+      <div className="flex">
+        <p>Show Grids:</p>
+        <div className="px-2">
+          <label htmlFor="show-main-grid">Main: </label>
+          <input
+            name="show-main-grid"
+            type="checkbox"
+            checked={showGridMain}
+            onChange={(e) => setshowGridMain(e.target.checked)}
+          />
+        </div>
+        <div>
+          <label htmlFor="show-group-grid">Group</label>
+          <input
+            name="show-group-grid"
+            type="checkbox"
+            checked={showGridGroup}
+            onChange={(e) => setshowGridGroup(e.target.checked)}
+          />
+        </div>
+        <div className="px-2">
+          <label htmlFor="show-model-grid">Model</label>
+          <input
+            name="show-model-grid"
+            type="checkbox"
+            checked={showGridModel}
+            onChange={(e) => setshowGridModel(e.target.checked)}
+          />
         </div>
       </div>
     </div>

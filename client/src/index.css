@@ -15,3 +15,11 @@ input:checked ~ .dot {
 .project-card-btn {
   @apply text-lg mx-1 px-2 border rounded-md disabled:opacity-60
 }
+
+.design-input {
+  @apply w-150 mx-2 border rounded-md
+}
+
+.design-btn {
+  @apply w-btn border rounded-md border-black
+}

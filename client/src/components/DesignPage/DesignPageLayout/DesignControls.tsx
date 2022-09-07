@@ -98,9 +98,11 @@ function DesignControls(props: Props) {
   } = props;
 
   return (
-    <div>
-      <div className="h-full w-full bg-gray-600">
-        <h1 onClick={() => navigate(-1)}>Back</h1>
+    <div className="text-lg p-2 bg-gray-600">
+      <div className="h-full w-full">
+        <h1 onClick={() => navigate(-1)}>
+          <a className="cursor-pointer border-b border-black">Back</a>
+        </h1>
       </div>
       <GridControls
         showGridMain={showGridMain}

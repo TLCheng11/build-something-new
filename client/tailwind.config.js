@@ -7,6 +7,10 @@ module.exports = {
         "1/10": "10%",
         "9/10": "90%",
       },
+      width: {
+        "btn": "60px",
+        "150": "150px"
+      },
       minHeight: {
         "100": "100px",
         "360": "360px",
@@ -16,6 +20,8 @@ module.exports = {
         "1/2screen": "50vh",
       },
       minWidth: {
+        "input": "150px",
+        "control": "360px",
         "360": "360px",
       },
     },
