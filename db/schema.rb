@@ -112,9 +112,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_162044) do
   create_table "user_projects", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
-    t.boolean "favored"
-    t.boolean "allow_edit"
-    t.boolean "purchased"
+    t.boolean "favored", default: false
+    t.boolean "allow_edit", default: false
+    t.boolean "purchased", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_user_projects_on_project_id"

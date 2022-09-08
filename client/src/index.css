@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+.side-menu-items {
+  @apply cursor-pointer m-2 px-2 hover:text-blue-300;
+}
+
+.project-card-btn {
+  @apply text-lg mx-1 px-2 border rounded-md disabled:opacity-60;
+}
+
+.design-input {
+  @apply w-150 mx-2 border rounded-md text-black;
+}
+
+.design-btn {
+  @apply w-btn border rounded-md border-black;
+}
+
 /* ----- scrollbar style ----- */
 ::-webkit-scrollbar {
   width: 5px;
@@ -30,18 +46,56 @@ input:checked ~ .dot {
   background-color: #48bb78;
 }
 
-.side-menu-items {
-  @apply cursor-pointer m-2 px-2 hover:text-blue-300;
+/* Heart button */
+.heart-like-button {
+  position: relative;
+  width: 30px;
+  height: 25px;
+}
+.heart-like-button:before {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  width: 15px;
+  height: 25px;
+  border-radius: 40px 40px 0 0;
+  background-color: #574136;
+  content: "";
+  cursor: pointer;
+  transition: background 0.4s;
+}
+.heart-like-button:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+  width: 15px;
+  height: 25px;
+  border-radius: 40px 40px 0 0;
+  background-color: #574136;
+  content: "";
+  cursor: pointer;
+  transition: background 0.4s;
+}
+.heart-like-button.liked::before,
+.heart-like-button.liked::after {
+  background-color: #d65076;
+}
+.heart-like-button.liked {
+  animation: liked 0.4s ease;
 }
 
-.project-card-btn {
-  @apply text-lg mx-1 px-2 border rounded-md disabled:opacity-60;
-}
-
-.design-input {
-  @apply w-150 mx-2 border rounded-md text-black;
-}
-
-.design-btn {
-  @apply w-btn border rounded-md border-black;
+@keyframes liked {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

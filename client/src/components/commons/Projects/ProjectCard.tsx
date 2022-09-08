@@ -1,7 +1,8 @@
 import { Loader } from "@react-three/drei";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
+import { UserContext } from "../../../contexts/UserContext";
 import { IProject } from "../../../Interface";
 import ModelLight from "../Models/ModelLight";
 import RoomContent from "../ShowRoom/RoomContent";
@@ -17,9 +18,11 @@ interface Props {
 
 function ProjectCard(props: Props) {
   let navigate = useNavigate();
+  const { currentUser } = useContext(UserContext);
   const { setrefresh, type, project, setshowProjectForm, setcurrentProject } =
     props;
   const [onMarket, setonMarket] = useState<boolean>(project.on_market);
+  const [favored, setfavored] = useState<boolean>(false);
   const [cardProject, setcardProject] = useState<IProject>({
     id: 0,
     title: "",
@@ -44,6 +47,12 @@ function ProjectCard(props: Props) {
         res.json().then(console.log);
       }
     });
+
+    if (project.created_by !== currentUser.id) {
+      fetch(`/user_projects_favored/?project_id=${project.id}`)
+        .then((res) => res.json())
+        .then(console.log);
+    }
   }, []);
 
   function toProjectDesign(id?: number) {
@@ -87,6 +96,29 @@ function ProjectCard(props: Props) {
     }
   }
 
+  function toggleLike(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    fetch(`/projects/${project.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    }).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => setonMarket(data.on_market));
+      } else {
+        res.json().then((data) => alert(data.error));
+      }
+    });
+
+    const target = e.target as Element;
+    if (target.classList.contains("liked")) {
+      target.classList.remove("liked");
+    } else {
+      target.classList.add("liked");
+    }
+  }
+
   return (
     <div className="col-span-1 flex flex-col items-center min-h-360 max-h-1/2screen bg-slate-900 border border-blue-200 rounded-xl">
       <div className="h-4/5 min-h-100 w-full rounded-t-xl bg-blue-100">
@@ -102,7 +134,10 @@ function ProjectCard(props: Props) {
       </div>
       <div className="w-full px-3 pb-2 text-white">
         <div className="py-2">
-          <h1 className="text-3xl">{project.title}</h1>
+          <div className="flex justify-between">
+            <h1 className="text-3xl">{project.title}</h1>
+            <div className="heart-like-button" onClick={(e) => toggleLike(e)} />
+          </div>
           {type !== "myProject" && <h1>Creator: {project.creator}</h1>}
         </div>
         {type === "myProject" && (

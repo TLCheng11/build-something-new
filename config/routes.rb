@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     get "/projects_data/:id", to:"projects#data"
     get "/projects_download/:id", to:"projects#download"
 
+    # user_projects
+    get "/user_projects_favored", to:"user_projects#favored"
+
     # comments
     resources :comments, only: [:create, :update, :destroy]
     resources :projects, only: [:show] do
