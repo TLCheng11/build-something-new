@@ -1,5 +1,4 @@
-import { Box, Plane, Sphere } from "@react-three/drei";
-import { useEffect, useState } from "react";
+import { Box, Circle, Plane, Sphere } from "@react-three/drei";
 import { DoubleSide } from "three";
 import { IModelGroup } from "../../../Interface";
 
@@ -8,20 +7,9 @@ interface Props {
 }
 
 function RoomGroup({ group }: Props) {
-  // const [childGroups, setchildGroups] = useState<IModelGroup[]>([]);
-
   const showChildGroups = group.child_groups?.map((group) => (
     <RoomGroup key={group.id} group={group} />
   ));
-
-  // get all child groups
-  // useEffect(() => {
-  //   if (group.id > 0) {
-  //     fetch(`/model_groups/${group.id}`)
-  //       .then((res) => res.json())
-  //       .then((data) => setchildGroups(data.child_groups));
-  //   }
-  // }, [group]);
 
   return (
     <group
@@ -57,6 +45,32 @@ function RoomGroup({ group }: Props) {
             side={DoubleSide}
           />
         </Plane>
+      ))}
+      {group.model_shapes?.map((shape) => (
+        <Circle
+          key={shape.id}
+          args={[
+            shape.radius || 0,
+            shape.segments || 0,
+            0,
+            ((shape.theta_length || 360) / 360) * Math.PI * 2,
+          ]}
+          position={[
+            shape.xposition || 0,
+            shape.yposition || 0,
+            shape.zposition || 0,
+          ]}
+          rotation={[
+            ((shape.xrotation || 0) / 360) * Math.PI * 2,
+            ((shape.yrotation || 0) / 360) * Math.PI * 2,
+            ((shape.zrotation || 0) / 360) * Math.PI * 2,
+          ]}
+        >
+          <meshStandardMaterial
+            color={shape.color || "#fff"}
+            side={DoubleSide}
+          />
+        </Circle>
       ))}
       {group.model_boxes?.map((box) => (
         <Box

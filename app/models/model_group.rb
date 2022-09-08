@@ -32,6 +32,7 @@ class ModelGroup < ApplicationRecord
     # end
     group[:model_boxes] = self.model_boxes
     group[:model_spheres] = self.model_spheres
+    group[:model_shapes] = self.model_shapes
     group[:child_groups] = []
       if self.child_groups.count > 0
         self.child_groups.each do |child|
