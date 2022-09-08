@@ -21,26 +21,12 @@ function FavoredProjects() {
 
   useEffect(() => {
     if (currentUser.id) {
-      fetch(`/users/${currentUser.id}/projects_page_count`).then((res) => {
-        if (res.ok) {
-          res.json().then((data) => {
-            setpageCount(data.page_count);
-          });
-        } else {
-          res.json().then((data) => {
-            alert(data.error);
-          });
-        }
-      });
-    }
-  }, [refresh]);
-
-  useEffect(() => {
-    if (currentUser.id && pageCount > 0) {
-      fetch(`/users/${currentUser.id}/projects/?page=${currentPage}`).then(
+      fetch(`/users/${currentUser.id}/projects_page_count/?type=favored`).then(
         (res) => {
           if (res.ok) {
-            res.json().then(setfavoredProjects);
+            res.json().then((data) => {
+              setpageCount(data.page_count);
+            });
           } else {
             res.json().then((data) => {
               alert(data.error);
@@ -48,6 +34,20 @@ function FavoredProjects() {
           }
         }
       );
+    }
+  }, [refresh]);
+
+  useEffect(() => {
+    if (currentUser.id && pageCount > 0) {
+      fetch(`/projects_favored/?page=${currentPage}`).then((res) => {
+        if (res.ok) {
+          res.json().then(setfavoredProjects);
+        } else {
+          res.json().then((data) => {
+            alert(data.error);
+          });
+        }
+      });
     }
   }, [refresh, pageCount, currentPage]);
 

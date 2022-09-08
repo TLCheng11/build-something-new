@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get "/projects_ratings/:id", to:"projects#ratings"
     get "/projects_data/:id", to:"projects#data"
     get "/projects_download/:id", to:"projects#download"
+    get "/projects_favored", to:"projects#favored"
 
     # user_projects
     patch "/user_projects_set_favor/:project_id", to:"user_projects#set_favor"

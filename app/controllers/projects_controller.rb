@@ -26,11 +26,32 @@ class ProjectsController < ApplicationController
     end
   end
 
+  # Get /projects_favored
+  def favored
+    if params[:page]
+      position = (params[:page].to_i - 1) * 4
+      projects = User.find(session[:user_id]).projects.order("updated_at DESC").joins(:user_projects).where("user_projects.favored" => true).uniq
+      if (position) < projects.length
+        render json: projects.slice(position, 4), each_serializer: ProjectShowSerializer
+      else
+        render json: {error: "page number excess searchable pages "}, status: 405
+      end
+    else
+      render json: {error: "please enter a page number"}, status: 405
+    end
+  end
+
+
   # GET /projects_page_count
   def page_count
     if params[:user_id]
-      page_count = (User.find(params[:user_id]).projects.where(created_by: params[:user_id]).count.to_f / 4).ceil
-      render json: {page_count: page_count}
+      if params[:type] === "myProjects"
+        page_count = (User.find(params[:user_id]).projects.where(created_by: params[:user_id]).count.to_f / 4).ceil
+        render json: {page_count: page_count}
+      elsif params[:type] === "favored"
+        page_count = (User.find(params[:user_id]).user_projects.where(favored: true).count.to_f / 4).ceil
+        render json: {page_count: page_count}
+      end
     else 
       page_count = (Project.where(on_market: true).count.to_f / 6).ceil
       render json: {page_count: page_count}

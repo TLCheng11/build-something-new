@@ -29,7 +29,9 @@ function MyProjects() {
 
   useEffect(() => {
     if (currentUser.id) {
-      fetch(`/users/${currentUser.id}/projects_page_count`).then((res) => {
+      fetch(
+        `/users/${currentUser.id}/projects_page_count/?type=myProjects`
+      ).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
             setpageCount(data.page_count);
