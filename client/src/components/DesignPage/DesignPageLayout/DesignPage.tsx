@@ -66,6 +66,9 @@ function DesignPage() {
   const [sphereSize, setsphereSize] = useState<[number, number, number]>([
     0.5, 32, 16,
   ]);
+  const [shapeSize, setshapeSize] = useState<[number, number, number]>([
+    0.5, 32, 360,
+  ]);
   const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
   const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("#396BA7");
@@ -129,6 +132,8 @@ function DesignPage() {
           setboxSize={setboxSize}
           sphereSize={sphereSize}
           setsphereSize={setsphereSize}
+          shapeSize={shapeSize}
+          setshapeSize={setshapeSize}
           position={position}
           setposition={setposition}
           rotation={rotation}

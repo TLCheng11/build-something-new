@@ -17,6 +17,8 @@ interface Props {
   setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
   sphereSize: [number, number, number];
   setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  shapeSize: [number, number, number];
+  setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function ModelSizeContorls(props: Props) {
@@ -29,6 +31,8 @@ function ModelSizeContorls(props: Props) {
     setplaneSize,
     sphereSize,
     setsphereSize,
+    shapeSize,
+    setshapeSize,
   } = props;
   const [step, setstep] = useState<string>("0.1");
 
@@ -53,6 +57,7 @@ function ModelSizeContorls(props: Props) {
           Selected: {selectedModel.type === "planes" && "Plane"}
           {selectedModel.type === "boxes" && "Box"}
           {selectedModel.type === "spheres" && "Sphere"}
+          {selectedModel.type === "shapes" && "Shape"}
         </h1>
         <button id="delete-model" className="design-btn" onClick={deleteModel}>
           Delete
@@ -212,6 +217,68 @@ function ModelSizeContorls(props: Props) {
               value={sphereSize[2]}
               onChange={(e) =>
                 setsphereSize((size) => [
+                  size[0],
+                  size[1],
+                  parseFloat(e.target.value),
+                ])
+              }
+            />
+          </div>
+        </div>
+      )}
+      {selectedModel.type === "shapes" && (
+        <div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-radius">Radius:</label>
+            </div>
+            <input
+              className="design-input"
+              type="number"
+              min="0.1"
+              step={step}
+              name="model-radius"
+              value={shapeSize[0]}
+              onChange={(e) =>
+                setshapeSize((size) => [
+                  parseFloat(e.target.value),
+                  size[1],
+                  size[2],
+                ])
+              }
+            />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-segments">Segments:</label>
+            </div>
+            <input
+              className="design-input"
+              type="number"
+              min="0"
+              name="model-segments"
+              value={shapeSize[1]}
+              onChange={(e) =>
+                setshapeSize((size) => [
+                  size[0],
+                  parseFloat(e.target.value),
+                  size[2],
+                ])
+              }
+            />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-theta-length">Theta Length:</label>
+            </div>
+            <input
+              className="design-input"
+              type="number"
+              min="0"
+              name="model-theta-length"
+              value={shapeSize[2]}
+              onChange={(e) =>
+                setshapeSize((size) => [
                   size[0],
                   size[1],
                   parseFloat(e.target.value),

@@ -54,6 +54,8 @@ interface Props {
   setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
   sphereSize: [number, number, number];
   setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  shapeSize: [number, number, number];
+  setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -89,6 +91,8 @@ function DesignControls(props: Props) {
     setboxSize,
     sphereSize,
     setsphereSize,
+    shapeSize,
+    setshapeSize,
     position,
     setposition,
     rotation,
@@ -139,6 +143,8 @@ function DesignControls(props: Props) {
             setboxSize={setboxSize}
             sphereSize={sphereSize}
             setsphereSize={setsphereSize}
+            shapeSize={shapeSize}
+            setshapeSize={setshapeSize}
           />
           <ModelPositionControls
             type="Model"

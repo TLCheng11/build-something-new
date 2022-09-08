@@ -62,6 +62,26 @@ export interface IModelPlane {
   };
 }
 
+export interface IModelShape {
+  id: number;
+  radius?: number | undefined;
+  segments?: number | undefined;
+  theta_length?: number | undefined;
+  xposition?: number | undefined;
+  yposition?: number | undefined;
+  zposition?: number | undefined;
+  xrotation?: number | undefined;
+  yrotation?: number | undefined;
+  zrotation?: number | undefined;
+  color?: string | undefined;
+  image_url?: string | undefined;
+  mass?: number | undefined;
+  group: {
+    id: number;
+    group_name: string;
+  };
+}
+
 export interface IModelBox {
   id: number;
   width?: number | undefined;

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_05_162044) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_202255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_162044) do
     t.index ["model_group_id"], name: "index_model_planes_on_model_group_id"
   end
 
+  create_table "model_shapes", force: :cascade do |t|
+    t.bigint "model_group_id", null: false
+    t.float "radius", default: 0.5
+    t.float "segments", default: 32.0
+    t.float "theta_length", default: 360.0
+    t.float "xposition", default: 0.0
+    t.float "yposition", default: 4.0
+    t.float "zposition", default: 0.0
+    t.float "xrotation", default: 0.0
+    t.float "yrotation", default: 0.0
+    t.float "zrotation", default: 0.0
+    t.string "color"
+    t.string "image_url"
+    t.float "mass", default: 1.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["model_group_id"], name: "index_model_shapes_on_model_group_id"
+  end
+
   create_table "model_spheres", force: :cascade do |t|
     t.bigint "model_group_id", null: false
     t.float "radius", default: 0.5
@@ -140,6 +159,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_162044) do
   add_foreign_key "model_boxes", "model_groups"
   add_foreign_key "model_groups", "projects"
   add_foreign_key "model_planes", "model_groups"
+  add_foreign_key "model_shapes", "model_groups"
   add_foreign_key "model_spheres", "model_groups"
   add_foreign_key "user_projects", "projects"
   add_foreign_key "user_projects", "users"
