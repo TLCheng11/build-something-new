@@ -49,21 +49,24 @@ function ModelSizeContorls(props: Props) {
   return (
     <div id="model-size-controls" className="h-full w-full bg-gray-600">
       <div className="flex">
-        <h1>
-          Selected {selectedModel.type === "planes" && "Plane"}
+        <h1 className="mr-4">
+          Selected: {selectedModel.type === "planes" && "Plane"}
           {selectedModel.type === "boxes" && "Box"}
           {selectedModel.type === "spheres" && "Sphere"}
         </h1>
-        <button id="delete-model" className="border" onClick={deleteModel}>
+        <button id="delete-model" className="design-btn" onClick={deleteModel}>
           Delete
         </button>
       </div>
       <h1>Model Size:</h1>
       {selectedModel.type === "planes" && (
         <div>
-          <div>
-            <label htmlFor="model-width">Width:</label>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-width">Width:</label>
+            </div>
             <input
+              className="design-input"
               type="number"
               min="0.1"
               step={step}
@@ -74,9 +77,12 @@ function ModelSizeContorls(props: Props) {
               }
             />
           </div>
-          <div>
-            <label htmlFor="model-depth">Depth:</label>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-depth">Depth:</label>
+            </div>
             <input
+              className="design-input"
               type="number"
               min="0.1"
               step={step}
@@ -91,9 +97,12 @@ function ModelSizeContorls(props: Props) {
       )}
       {selectedModel.type === "boxes" && (
         <div>
-          <div>
-            <label htmlFor="model-width">Width:</label>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-width">Width:</label>
+            </div>
             <input
+              className="design-input"
               type="number"
               min="0.1"
               step={step}
@@ -108,9 +117,12 @@ function ModelSizeContorls(props: Props) {
               }
             />
           </div>
-          <div>
-            <label htmlFor="model-height">Height:</label>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-height">Height:</label>
+            </div>
             <input
+              className="design-input"
               type="number"
               min="0.1"
               step={step}
@@ -125,9 +137,12 @@ function ModelSizeContorls(props: Props) {
               }
             />
           </div>
-          <div>
-            <label htmlFor="model-depth">Depth:</label>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-depth">Depth:</label>
+            </div>
             <input
+              className="design-input"
               type="number"
               min="0.1"
               step={step}
@@ -146,9 +161,12 @@ function ModelSizeContorls(props: Props) {
       )}
       {selectedModel.type === "spheres" && (
         <div>
-          <div>
-            <label htmlFor="model-radius">Radius:</label>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-radius">Radius:</label>
+            </div>
             <input
+              className="design-input"
               type="number"
               min="0.1"
               step={step}
@@ -163,9 +181,12 @@ function ModelSizeContorls(props: Props) {
               }
             />
           </div>
-          <div>
-            <label htmlFor="model-width-segments">Width Segments:</label>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-width-segments">W-Segments:</label>
+            </div>
             <input
+              className="design-input"
               type="number"
               min="0"
               name="model-width-segments"
@@ -179,9 +200,12 @@ function ModelSizeContorls(props: Props) {
               }
             />
           </div>
-          <div>
-            <label htmlFor="model-height-segments">Height Segments:</label>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-height-segments">H-Segments:</label>
+            </div>
             <input
+              className="design-input"
               type="number"
               min="0"
               name="model-height-segments"

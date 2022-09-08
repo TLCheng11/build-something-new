@@ -98,7 +98,7 @@ function DesignControls(props: Props) {
   } = props;
 
   return (
-    <div className="text-lg p-2 bg-gray-600">
+    <div className="text-lg text-white p-2 bg-gray-600">
       <div className="h-full w-full">
         <h1 onClick={() => navigate(-1)}>
           <a className="cursor-pointer border-b border-black">Back</a>

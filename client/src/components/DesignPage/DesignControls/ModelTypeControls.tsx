@@ -36,9 +36,10 @@ function ModelTypesControls(props: Props) {
     <div id="model-type-controls" className="h-full w-full bg-gray-600">
       <h1>Model Control:</h1>
       <div id="model-type-selection" className="flex">
-        <h1>Model Type:</h1>
+        <h1 className="w-1/3">Model Type:</h1>
         <div className="px-2">
           <select
+            className="design-input"
             id="model-type"
             value={modelType}
             onChange={(e) => setmodelType(e.target.value)}
@@ -48,7 +49,7 @@ function ModelTypesControls(props: Props) {
             <option value="spheres">Sphere</option>
           </select>
         </div>
-        <button id="add-model" className="border" onClick={addModel}>
+        <button id="add-model" className="design-btn" onClick={addModel}>
           Add
         </button>
       </div>

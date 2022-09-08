@@ -14,7 +14,7 @@ function ModelColorControls(props: Props) {
         <div>
           <h1>Model Color:</h1>
         </div>
-        <div>
+        <div className="flex justify-center">
           <SketchPicker
             color={modelColor}
             onChangeComplete={(color) => setmodelColor(color.hex)}

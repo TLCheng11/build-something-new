@@ -105,46 +105,6 @@ function ProjectInfoForm(props: Props) {
       id="project-info-form"
       className="fixed h-screen w-screen z-20 left-0 flex items-center justify-center bg-black bg-opacity-70"
     >
-      {/* <div className="border p-3">
-        <div className="flex justify-end">
-          <p
-            className="cursor-pointer hover:text-red-500"
-            onClick={() => setshowProjectForm(false)}
-          >
-            X
-          </p>
-        </div>
-        <div>
-          <h1>{action === "post" ? "Enter " : "Edit "}Project Info:</h1>
-        </div>
-        <form onSubmit={handleFormSubmit}>
-          <div>
-            <label htmlFor="title">Title:</label>
-            <input
-              className="block text-black"
-              name="title"
-              value={formInput.title}
-              onChange={onFormChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="description">Description</label>
-            <textarea
-              className="block text-black w-full"
-              name="description"
-              maxLength={255}
-              value={formInput.description}
-              onChange={onFormChange}
-            />
-          </div>
-          <div className="flex justify-center pt-2">
-            <button type="submit" className="border">
-              {action === "post" ? "Create" : "Edit"}
-            </button>
-          </div>
-        </form>
-      </div> */}
       <div className="max-w-lg text-xl rounded-lg bg-white shadow-md shadow-blue-600/50">
         <div className="flex justify-end">
           <p
@@ -168,6 +128,9 @@ function ProjectInfoForm(props: Props) {
               value={formInput.title}
               onChange={onFormChange}
             />
+            <label htmlFor="description" className="text-gray-600">
+              Description:
+            </label>
             <textarea
               className="w-full h-20 mt-2 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
               name="description"
