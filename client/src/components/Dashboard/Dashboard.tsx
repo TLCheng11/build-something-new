@@ -14,7 +14,7 @@ function Dashboard() {
           action="post"
         />
       )}
-      <div id="menu-side" className="h-full w-1/5 border-r">
+      <div id="menu-side" className="h-full w-1/5 min-w-225 border-r">
         <MenuSide setshowProjectForm={setshowProjectForm} />
       </div>
       <Outlet />

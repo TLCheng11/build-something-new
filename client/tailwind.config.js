@@ -8,21 +8,23 @@ module.exports = {
         "9/10": "90%",
       },
       width: {
-        "btn": "60px",
-        "150": "150px"
+        btn: "60px",
+        150: "150px",
       },
       minHeight: {
-        "100": "100px",
-        "360": "360px",
-        "720": "720px",
+        "card-b": "46px",
+        100: "100px",
+        360: "360px",
+        720: "720px",
       },
       maxHeight: {
         "1/2screen": "50vh",
       },
       minWidth: {
-        "input": "150px",
-        "control": "360px",
-        "360": "360px",
+        input: "150px",
+        control: "360px",
+        225: "225px",
+        360: "360px",
       },
     },
   },

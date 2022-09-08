@@ -106,34 +106,41 @@ function ProjectCard(props: Props) {
           {type !== "myProject" && <h1>Creator: {project.creator}</h1>}
         </div>
         {type === "myProject" && (
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between min-h-card-b">
             <div>
-              <button
-                className="project-card-btn hover:bg-blue-300"
-                onClick={() => {
-                  if (setshowProjectForm && setcurrentProject) {
-                    setshowProjectForm(true);
-                    setcurrentProject(project);
-                  }
-                }}
-                disabled={onMarket}
-              >
-                Edit
-              </button>
-              <button
-                className="project-card-btn hover:bg-green-600"
-                onClick={() => toProjectDesign(project.id)}
-                disabled={onMarket}
-              >
-                Build
-              </button>
-              <button
-                className="project-card-btn hover:bg-red-600"
-                onClick={deleteProject}
-                disabled={onMarket}
-              >
-                Delete
-              </button>
+              <div>
+                <button
+                  className="project-card-btn hover:bg-blue-300"
+                  onClick={() => {
+                    if (setshowProjectForm && setcurrentProject) {
+                      setshowProjectForm(true);
+                      setcurrentProject(project);
+                    }
+                  }}
+                  disabled={onMarket}
+                >
+                  Edit
+                </button>
+                <button
+                  className="project-card-btn hover:bg-green-600"
+                  onClick={() => toProjectDesign(project.id)}
+                  disabled={onMarket}
+                >
+                  Build
+                </button>
+                <button
+                  className="project-card-btn hover:bg-red-600"
+                  onClick={deleteProject}
+                  disabled={onMarket}
+                >
+                  Delete
+                </button>
+              </div>
+              {onMarket && (
+                <div className="text-xs ml-2">
+                  Take project off market before edit
+                </div>
+              )}
             </div>
             <div className="flex items-center">
               <label className="flex items-center cursor-pointer">
