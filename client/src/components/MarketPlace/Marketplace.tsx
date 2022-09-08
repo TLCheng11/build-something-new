@@ -52,7 +52,7 @@ function MarketPlace() {
     <div id="dashboard" className="flex h-screen w-screen bg-white text-black">
       {pageCount < 1 ? (
         <div className="flex items-center justify-center h-full w-full">
-          <h1>No project on market</h1>
+          <h1 className="text-4xl font-medium">No project on market</h1>
         </div>
       ) : (
         <div id="market-place-showcase" className="h-full w-full">

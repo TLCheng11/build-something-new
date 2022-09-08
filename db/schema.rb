@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_08_223743) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_08_225619) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,11 +45,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_223743) do
     t.index ["model_group_id"], name: "index_model_boxes_on_model_group_id"
   end
 
-  create_table "model_cones", force: :cascade do |t|
+  create_table "model_cylinders", force: :cascade do |t|
     t.bigint "model_group_id", null: false
-    t.float "radius", default: 0.5
+    t.float "radius_top", default: 0.5
+    t.float "radius_bottom", default: 0.5
     t.float "height", default: 1.0
-    t.float "segments", default: 16.0
+    t.float "segments", default: 3.0
     t.float "theta_length", default: 360.0
     t.float "xposition", default: 0.0
     t.float "yposition", default: 4.0
@@ -62,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_223743) do
     t.float "mass", default: 1.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["model_group_id"], name: "index_model_cones_on_model_group_id"
+    t.index ["model_group_id"], name: "index_model_cylinders_on_model_group_id"
   end
 
   create_table "model_groups", force: :cascade do |t|
@@ -122,6 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_223743) do
     t.float "radius", default: 0.5
     t.float "width_segments", default: 32.0
     t.float "height_segments", default: 16.0
+    t.float "theta_length", default: 360.0
     t.float "xposition", default: 0.0
     t.float "yposition", default: 4.0
     t.float "zposition", default: 0.0
@@ -177,7 +179,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_223743) do
   add_foreign_key "comments", "projects"
   add_foreign_key "comments", "users"
   add_foreign_key "model_boxes", "model_groups"
-  add_foreign_key "model_cones", "model_groups"
+  add_foreign_key "model_cylinders", "model_groups"
   add_foreign_key "model_groups", "projects"
   add_foreign_key "model_planes", "model_groups"
   add_foreign_key "model_shapes", "model_groups"

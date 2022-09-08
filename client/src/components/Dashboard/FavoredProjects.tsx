@@ -55,7 +55,7 @@ function FavoredProjects() {
     <div className="h-full w-full">
       {pageCount < 1 ? (
         <div className="flex items-center justify-center h-full w-full">
-          <h1>No favored project</h1>
+          <h1 className="text-4xl font-medium">No favored project</h1>
         </div>
       ) : (
         <div id="my-projects-showcase" className="h-full w-full">
