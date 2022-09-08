@@ -18,7 +18,9 @@ function ModelRotationControls(props: Props) {
         </div>
         <input
           className="design-input"
-          type="number"
+          type="range"
+          min="0"
+          max="360"
           name="model-X-rotation"
           value={rotation[0]}
           onChange={(e) =>
@@ -29,6 +31,7 @@ function ModelRotationControls(props: Props) {
             ])
           }
         />
+        <p>{rotation[0]}</p>
       </div>
       <div className="flex">
         <div className="w-1/3">
@@ -36,7 +39,9 @@ function ModelRotationControls(props: Props) {
         </div>
         <input
           className="design-input"
-          type="number"
+          type="range"
+          min="0"
+          max="360"
           name="model-Y-rotation"
           value={rotation[1]}
           onChange={(e) =>
@@ -47,6 +52,7 @@ function ModelRotationControls(props: Props) {
             ])
           }
         />
+        <p>{rotation[1]}</p>
       </div>
       <div className="flex">
         <div className="w-1/3">
@@ -54,7 +60,9 @@ function ModelRotationControls(props: Props) {
         </div>
         <input
           className="design-input"
-          type="number"
+          type="range"
+          min="0"
+          max="360"
           name="model-Z-rotation"
           value={rotation[2]}
           onChange={(e) =>
@@ -65,6 +73,7 @@ function ModelRotationControls(props: Props) {
             ])
           }
         />
+        <p>{rotation[2]}</p>
       </div>
     </div>
   );
