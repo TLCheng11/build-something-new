@@ -113,7 +113,12 @@ function ProjectCard(props: Props) {
       body: JSON.stringify({ favored: !favored }),
     }).then((res) => {
       if (res.ok) {
-        res.json().then((data) => setfavored(data.favored));
+        res.json().then((data) => {
+          setfavored(data.favored);
+          if (setrefresh) {
+            setrefresh((state: boolean) => !state);
+          }
+        });
       } else {
         res.json().then((data) => alert(data.error));
       }
