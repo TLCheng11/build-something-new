@@ -1,11 +1,4 @@
-import {
-  Box,
-  Circle,
-  Loader,
-  OrbitControls,
-  Plane,
-  Sphere,
-} from "@react-three/drei";
+import { Loader, OrbitControls } from "@react-three/drei";
 import { Canvas } from "react-three-fiber";
 import GridLayout from "../../commons/Models/GridLayout";
 import ModelGroup from "../../commons/Models/ModelGroup";
@@ -56,6 +49,8 @@ interface Props {
   setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   sphereSize: [number, number, number];
   setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  shapeSize: [number, number, number];
+  setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -88,6 +83,8 @@ function DesignCanvas(props: Props) {
     setboxSize,
     sphereSize,
     setsphereSize,
+    shapeSize,
+    setshapeSize,
     position,
     setposition,
     rotation,
@@ -121,6 +118,8 @@ function DesignCanvas(props: Props) {
         setboxSize={setboxSize}
         sphereSize={sphereSize}
         setsphereSize={setsphereSize}
+        shapeSize={shapeSize}
+        setshapeSize={setshapeSize}
         position={position}
         setposition={setposition}
         rotation={rotation}
@@ -129,6 +128,8 @@ function DesignCanvas(props: Props) {
         setmodelColor={setmodelColor}
       />
     ));
+
+  console.log(currentProject);
 
   return (
     <div id="design-canvas" className="h-full w-full bg-gray-400">

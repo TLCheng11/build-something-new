@@ -186,7 +186,7 @@ function ModelShape(props: Props) {
   return (
     <>
       <Circle
-        args={[selfSize[0], selfSize[1], 0, selfSize[2]]}
+        args={[selfSize[0], selfSize[1], 0, (selfSize[2] / 360) * Math.PI * 2]}
         position={[selfPosition[0], selfPosition[1], selfPosition[2]]}
         rotation={[
           (selfRotation[0] / 360) * Math.PI * 2,

@@ -166,6 +166,8 @@ function DesignPage() {
           setboxSize={setboxSize}
           sphereSize={sphereSize}
           setsphereSize={setsphereSize}
+          shapeSize={shapeSize}
+          setshapeSize={setshapeSize}
           position={position}
           setposition={setposition}
           rotation={rotation}

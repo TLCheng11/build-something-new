@@ -40,6 +40,7 @@ export interface IModelGroup {
   model_planes?: IModelPlane[] | undefined;
   model_boxes?: IModelBox[] | undefined;
   model_spheres?: IModelSphere[] | undefined;
+  model_shapes?: IModelShape[] | undefined;
   child_groups?: IModelGroup[] | undefined;
 }
 

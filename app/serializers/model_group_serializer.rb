@@ -4,6 +4,7 @@ class ModelGroupSerializer < ActiveModel::Serializer
   has_many :model_planes
   has_many :model_boxes
   has_many :model_spheres
+  has_many :model_shapes
   has_many :child_groups
 
   def parent_group_name

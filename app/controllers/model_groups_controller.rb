@@ -3,7 +3,7 @@ class ModelGroupsController < ApplicationController
 
   # GET /model_groups/1
   def show
-    render json: @model_group, include: ["child_groups", "child_groups.child_groups", "child_groups.model_planes", "child_groups.model_boxes", "child_groups.model_spheres"]
+    render json: @model_group, include: ["child_groups", "child_groups.child_groups", "child_groups.model_planes", "child_groups.model_boxes", "child_groups.model_spheres", "child_groups.model_shapes"]
   end
 
   # POST /model_groups

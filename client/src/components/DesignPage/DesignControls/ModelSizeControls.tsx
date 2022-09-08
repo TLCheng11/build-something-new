@@ -255,7 +255,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0"
+              min="3"
               name="model-segments"
               value={shapeSize[1]}
               onChange={(e) =>
@@ -273,8 +273,9 @@ function ModelSizeContorls(props: Props) {
             </div>
             <input
               className="design-input"
-              type="number"
-              min="0"
+              type="range"
+              min={1}
+              max={360}
               name="model-theta-length"
               value={shapeSize[2]}
               onChange={(e) =>
@@ -285,6 +286,7 @@ function ModelSizeContorls(props: Props) {
                 ])
               }
             />
+            <p>{shapeSize[2]}</p>
           </div>
         </div>
       )}

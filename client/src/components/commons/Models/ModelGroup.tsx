@@ -3,6 +3,7 @@ import { IModelGroup } from "../../../Interface";
 import GridLayout from "./GridLayout";
 import ModelBox from "./ModelBox";
 import ModelPlane from "./ModelPlane";
+import ModelShape from "./ModelShape";
 import ModelSphere from "./ModelSphere";
 
 interface Props {
@@ -46,6 +47,8 @@ interface Props {
   setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   sphereSize: [number, number, number];
   setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  shapeSize: [number, number, number];
+  setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -76,6 +79,8 @@ function ModelGroup(props: Props) {
     setboxSize,
     sphereSize,
     setsphereSize,
+    shapeSize,
+    setshapeSize,
     position,
     setposition,
     rotation,
@@ -128,6 +133,8 @@ function ModelGroup(props: Props) {
       setboxSize={setboxSize}
       sphereSize={sphereSize}
       setsphereSize={setsphereSize}
+      shapeSize={shapeSize}
+      setshapeSize={setshapeSize}
       position={position}
       setposition={setposition}
       rotation={rotation}
@@ -149,6 +156,27 @@ function ModelGroup(props: Props) {
       setselectedModel={setselectedModel}
       planeSize={planeSize}
       setplaneSize={setplaneSize}
+      position={position}
+      setposition={setposition}
+      rotation={rotation}
+      setrotation={setrotation}
+      modelColor={modelColor}
+      setmodelColor={setmodelColor}
+    />
+  ));
+
+  const showModelShapes = group.model_shapes?.map((shape) => (
+    <ModelShape
+      key={shape.id}
+      shape={shape}
+      gridModel={gridModel}
+      showGridModel={showGridModel}
+      selectedGroup={selectedGroup}
+      setselectedGroup={setselectedGroup}
+      selectedModel={selectedModel}
+      setselectedModel={setselectedModel}
+      shapeSize={shapeSize}
+      setshapeSize={setshapeSize}
       position={position}
       setposition={setposition}
       rotation={rotation}
@@ -293,6 +321,7 @@ function ModelGroup(props: Props) {
         )}
         {showChildGroups}
         {showModelPlanes}
+        {showModelShapes}
         {showModelBoxes}
         {showModelSpheres}
       </group>
