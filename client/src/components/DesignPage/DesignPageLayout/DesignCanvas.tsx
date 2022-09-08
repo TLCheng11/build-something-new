@@ -1,10 +1,11 @@
-import { Loader, OrbitControls } from "@react-three/drei";
+import { Cone, Loader, OrbitControls } from "@react-three/drei";
 import { Canvas } from "react-three-fiber";
 import GridLayout from "../../commons/Models/GridLayout";
 import ModelGroup from "../../commons/Models/ModelGroup";
 import { IProject } from "../../../Interface";
 import { Suspense } from "react";
 import ModelLight from "../../commons/Models/ModelLight";
+import { DoubleSide } from "three";
 
 interface Props {
   refresh: boolean;
@@ -138,6 +139,12 @@ function DesignCanvas(props: Props) {
           {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
           {showModelGroups}
         </Suspense>
+        <Cone args={[2, 5, 3, 1, false, 0, 6.28]} position={[0, 2.5, 0]}>
+          <meshStandardMaterial
+            color={"red"}
+            side={DoubleSide}
+          ></meshStandardMaterial>
+        </Cone>
       </Canvas>
       <Loader />
     </div>

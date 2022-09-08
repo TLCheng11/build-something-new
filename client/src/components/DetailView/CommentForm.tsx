@@ -16,8 +16,6 @@ function CommentForm(props: Props) {
   const [title, settitle] = useState<string>(currentComment?.title || "");
   const [comment, setcomment] = useState<string>(currentComment?.comment || "");
 
-  console.log(currentComment);
-
   function handleCommentSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (action === "post") {
