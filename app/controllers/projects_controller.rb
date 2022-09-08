@@ -50,13 +50,22 @@ class ProjectsController < ApplicationController
 
   # GET /projects_data/1
   def data
+    # get all the child groups
     top_level_groups = @project.model_groups.where(parent_group_id: nil)
     groups_data = []
     top_level_groups.each do |group|
       groups_data.push(group.get_all_children)
     end
+    # check if it is favored
+    favored = false
+    search_projects = UserProject.where(user_id: session[:user_id], project_id: params[:id])
+    if search_projects.count > 0
+      favored = search_projects.first.favored
+    end
+    # get creator info
     creator = User.find(@project.created_by).username
-    data = {id: @project.id, title: @project.title, created_by:@project.created_by, creator: creator, description: @project.description, on_market: @project.on_market, price: @project.price, sold_count: @project.sold_count, model_groups:groups_data}
+    # construct return data
+    data = {id: @project.id, title: @project.title, created_by:@project.created_by, creator: creator, description: @project.description, on_market: @project.on_market, price: @project.price, sold_count: @project.sold_count, model_groups:groups_data, favored: favored}
     render json: data
   end
 

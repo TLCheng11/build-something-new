@@ -1,5 +1,5 @@
 import { Loader } from "@react-three/drei";
-import { Suspense, useContext, useEffect, useState } from "react";
+import { Suspense, useContext, useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
 import { UserContext } from "../../../contexts/UserContext";
@@ -18,6 +18,7 @@ interface Props {
 
 function ProjectCard(props: Props) {
   let navigate = useNavigate();
+  const favoredRef = useRef<HTMLDivElement>(null);
   const { currentUser } = useContext(UserContext);
   const { setrefresh, type, project, setshowProjectForm, setcurrentProject } =
     props;
@@ -41,19 +42,25 @@ function ProjectCard(props: Props) {
           .json()
           .then((data) => {
             setcardProject(data);
+            setfavored(data.favored);
           })
           .catch(console.error);
       } else {
         res.json().then(console.log);
       }
     });
-
-    if (project.created_by !== currentUser.id) {
-      fetch(`/user_projects_favored/?project_id=${project.id}`)
-        .then((res) => res.json())
-        .then(console.log);
-    }
   }, []);
+
+  useEffect(() => {
+    if (favoredRef.current) {
+      const target = favoredRef.current;
+      if (favored) {
+        target.classList.add("liked");
+      } else if (target.classList.contains("liked")) {
+        target.classList.remove("liked");
+      }
+    }
+  }, [favored]);
 
   function toProjectDesign(id?: number) {
     navigate(`/project-design/${id}`);
@@ -97,26 +104,19 @@ function ProjectCard(props: Props) {
   }
 
   function toggleLike(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    fetch(`/projects/${project.id}`, {
+    fetch(`/user_projects_set_favor/${project.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({ favored: !favored }),
     }).then((res) => {
       if (res.ok) {
-        res.json().then((data) => setonMarket(data.on_market));
+        res.json().then((data) => setfavored(data.favored));
       } else {
         res.json().then((data) => alert(data.error));
       }
     });
-
-    const target = e.target as Element;
-    if (target.classList.contains("liked")) {
-      target.classList.remove("liked");
-    } else {
-      target.classList.add("liked");
-    }
   }
 
   return (
@@ -136,7 +136,15 @@ function ProjectCard(props: Props) {
         <div className="py-2">
           <div className="flex justify-between">
             <h1 className="text-3xl">{project.title}</h1>
-            <div className="heart-like-button" onClick={(e) => toggleLike(e)} />
+
+            {/* like button */}
+            {currentUser.id !== project.created_by && (
+              <div
+                ref={favoredRef}
+                className="heart-like-button"
+                onClick={(e) => toggleLike(e)}
+              ></div>
+            )}
           </div>
           {type !== "myProject" && <h1>Creator: {project.creator}</h1>}
         </div>

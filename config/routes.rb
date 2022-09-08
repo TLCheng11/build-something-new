@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get "/projects_download/:id", to:"projects#download"
 
     # user_projects
-    get "/user_projects_favored", to:"user_projects#favored"
+    patch "/user_projects_set_favor/:project_id", to:"user_projects#set_favor"
 
     # comments
     resources :comments, only: [:create, :update, :destroy]
