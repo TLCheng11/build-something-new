@@ -1,4 +1,11 @@
-import { Loader, OrbitControls } from "@react-three/drei";
+import {
+  Box,
+  Circle,
+  Loader,
+  OrbitControls,
+  Plane,
+  Sphere,
+} from "@react-three/drei";
 import { Canvas } from "react-three-fiber";
 import GridLayout from "../../commons/Models/GridLayout";
 import ModelGroup from "../../commons/Models/ModelGroup";

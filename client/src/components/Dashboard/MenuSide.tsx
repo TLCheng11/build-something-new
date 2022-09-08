@@ -12,8 +12,6 @@ function MenuSide(props: Props) {
   const { setshowProjectForm } = props;
   const { currentUser, setcurrentUser } = useContext(UserContext);
 
-  console.log(location);
-
   function logout() {
     fetch("/logout", {
       method: "POST",
