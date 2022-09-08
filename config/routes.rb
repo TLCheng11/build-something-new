@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     resources :model_boxes, only: [:create, :update, :destroy]
     resources :model_spheres, only: [:create, :update, :destroy]
     resources :model_shapes, only: [:create, :update, :destroy]
-    resources :model_cones, only: [:create, :update, :destroy]
+    resources :model_cylinders, only: [:create, :update, :destroy]
 
   # redirect to frontend routing
     get '*path',
