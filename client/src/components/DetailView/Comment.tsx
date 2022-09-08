@@ -30,7 +30,11 @@ function Comment({ setrefresh, comment }: Props) {
       currentComment={comment}
     />
   ) : (
-    <div className="m-2 px-3 py-1 border rounded-lg">
+    <div
+      className={`m-2 px-3 py-1 border rounded-lg ${
+        currentUser.id === comment.user.id && "bg-blue-300"
+      }`}
+    >
       <div className="flex justify-between">
         <div className="flex items-center">
           <img

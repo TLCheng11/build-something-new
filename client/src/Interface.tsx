@@ -17,6 +17,7 @@ export interface IProject {
   creator?: string | undefined;
   tags?: string | undefined;
   description?: string | undefined;
+  favored?: boolean | undefined;
   on_market: boolean;
   price?: number | undefined;
   sold_count?: number | undefined;

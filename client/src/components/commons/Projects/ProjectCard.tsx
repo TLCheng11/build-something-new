@@ -51,6 +51,7 @@ function ProjectCard(props: Props) {
     });
   }, []);
 
+  // to update favered icon status
   useEffect(() => {
     if (favoredRef.current) {
       const target = favoredRef.current;
