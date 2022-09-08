@@ -30,9 +30,6 @@ function Details({ project }: Props) {
     <Comment key={comment.id} setrefresh={setrefresh} comment={comment} />
   ));
 
-  console.log(project);
-  console.log(favored);
-
   useEffect(() => {
     if (project.id) {
       fetch(`/projects/${project.id}/comments`)

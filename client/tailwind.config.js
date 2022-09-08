@@ -26,6 +26,9 @@ module.exports = {
         225: "225px",
         360: "360px",
       },
+      scale: {
+        200: "2",
+      },
     },
   },
   plugins: [],

@@ -46,16 +46,18 @@ function DetailView() {
   if (notFound) return <h1>Page Not Found</h1>;
 
   return (
-    <div className="h-screen w-screen overflow-x-hidden">
+    <div className="h-screen w-screen pt-10 overflow-auto">
       <div
         id="detailview-background"
         className="fixed h-full w-full -z-10 bg-white"
       ></div>
       <div>
         <button
-          className="text-white text-3xl m-2"
+          className="fixed flex items-end justify-end h-24 w-24 -top-12 -left-12 p-3 bg-blue-400 rounded-full hover:scale-200 transition-all duration-300"
           onClick={() => navigate(-1)}
-        ></button>
+        >
+          <p className="-rotate-45">Back</p>
+        </button>
       </div>
       <div className="flex h-5/6 w-full">
         <div className="flex justify-center h-full w-2/3 m-2">
