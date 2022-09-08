@@ -62,14 +62,16 @@ function MenuSide(props: Props) {
             </button>
           </div>
         )}
-        <div
-          className={`side-menu-items ${
-            selectedTab === "favored" && "underline"
-          }`}
-          onClick={() => setselectedTab("favored")}
-        >
-          Favored
-        </div>
+        <NavLink to="/dashboard/favors/1">
+          <div
+            className={`side-menu-items ${
+              selectedTab === "favored" && "underline"
+            }`}
+            onClick={() => setselectedTab("favored")}
+          >
+            Favored
+          </div>
+        </NavLink>
         <div
           className={`side-menu-items ${
             selectedTab === "profile" && "underline"

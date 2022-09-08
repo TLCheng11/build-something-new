@@ -8,7 +8,7 @@ import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 function MarketPlace() {
   const params = useParams();
   const { currentUser } = useContext(UserContext);
-  const [myProjects, setmyProjects] = useState<IProject[]>([]);
+  const [allProjects, setallProjects] = useState<IProject[]>([]);
   const [pageCount, setpageCount] = useState(0);
   const [currentPage, setcurrentPage] = useState<number>(1);
 
@@ -38,7 +38,7 @@ function MarketPlace() {
     if (currentUser.id && pageCount > 0) {
       fetch(`/projects/?page=${currentPage}`).then((res) => {
         if (res.ok) {
-          res.json().then(setmyProjects);
+          res.json().then(setallProjects);
         } else {
           res.json().then((data) => {
             alert(data.error);
@@ -57,7 +57,7 @@ function MarketPlace() {
       ) : (
         <div id="market-place-showcase" className="h-full w-full">
           <div className="h-9/10 w-full overflow-auto">
-            <ProjectShowcase type="market" myProjects={myProjects} />
+            <ProjectShowcase type="market" projects={allProjects} />
           </div>
           <div className="h-1/10">
             <PagesNavBar

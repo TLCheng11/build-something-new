@@ -40,6 +40,8 @@ function PagesNavBar(props: Props) {
       navigate(`/marketplace/${currentPage}`);
     } else if (type === "dashboard-projects") {
       navigate(`/dashboard/projects/${currentPage}`);
+    } else if (type === "favored-projects") {
+      navigate(`/dashboard/favors/${currentPage}`);
     }
   }, [currentPage]);
 

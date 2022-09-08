@@ -4,21 +4,16 @@ import ProjectCard from "./ProjectCard";
 interface Props {
   setrefresh?: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
-  myProjects: IProject[];
+  projects: IProject[];
   setshowProjectForm?: React.Dispatch<React.SetStateAction<boolean>>;
   setcurrentProject?: React.Dispatch<React.SetStateAction<IProject>>;
 }
 
 function ProjectShowcase(props: Props) {
-  const {
-    setrefresh,
-    type,
-    myProjects,
-    setshowProjectForm,
-    setcurrentProject,
-  } = props;
+  const { setrefresh, type, projects, setshowProjectForm, setcurrentProject } =
+    props;
 
-  const showMyProjects = myProjects.map((project) => (
+  const showProjects = projects.map((project) => (
     <ProjectCard
       key={project.id}
       setrefresh={setrefresh}
@@ -36,7 +31,7 @@ function ProjectShowcase(props: Props) {
         type === "market" ? "grid-cols-3" : "grid-cols-2"
       } gap-10 p-10 h-full min-h-fit min-w-360px`}
     >
-      {showMyProjects}
+      {showProjects}
     </div>
   );
 }
