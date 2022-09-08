@@ -1,5 +1,5 @@
 export const showModelComponentJsx = `
-import { Box, Loader, OrbitControls, Plane, Sphere } from "@react-three/drei";
+import { Box, Circle, Loader, OrbitControls, Plane, Sphere } from "@react-three/drei";
 import React, { useState, useEffect, Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import { DoubleSide } from "three";
@@ -43,6 +43,32 @@ function Group({ group }) {
             side={DoubleSide}
           />
         </Plane>
+      ))}
+      {group.model_shapes?.map((shape) => (
+        <Circle
+          key={shape.id}
+          args={[
+            shape.radius || 0,
+            shape.segments || 0,
+            0,
+            ((shape.theta_length || 360) / 360) * Math.PI * 2,
+          ]}
+          position={[
+            shape.xposition || 0,
+            shape.yposition || 0,
+            shape.zposition || 0,
+          ]}
+          rotation={[
+            ((shape.xrotation || 0) / 360) * Math.PI * 2,
+            ((shape.yrotation || 0) / 360) * Math.PI * 2,
+            ((shape.zrotation || 0) / 360) * Math.PI * 2,
+          ]}
+        >
+          <meshStandardMaterial
+            color={shape.color || "#fff"}
+            side={DoubleSide}
+          />
+        </Circle>
       ))}
       {group.model_boxes?.map((box) => (
         <Box
