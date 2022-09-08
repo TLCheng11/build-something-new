@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_162044) do
   create_table "model_groups", force: :cascade do |t|
     t.bigint "project_id", null: false
     t.string "group_name", default: "New Group"
+    t.integer "parent_group_id"
     t.float "xposition", default: 0.0
     t.float "yposition", default: 0.0
     t.float "zposition", default: 0.0
@@ -56,7 +57,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_162044) do
     t.float "zrotation", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "parent_group_id"
     t.index ["project_id"], name: "index_model_groups_on_project_id"
   end
 
@@ -112,8 +112,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_162044) do
   create_table "user_projects", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "project_id", null: false
-    t.boolean "farvourite"
+    t.boolean "favored"
     t.boolean "allow_edit"
+    t.boolean "purchased"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_user_projects_on_project_id"
