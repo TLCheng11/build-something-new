@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { UserContext } from "../../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 
 interface Props {
   setshowProjectForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -42,7 +42,9 @@ function MenuSide(props: Props) {
       <div className="text-3xl">
         <NavLink to="/dashboard/projects/1">
           <div
-            className="side-menu-items"
+            className={`side-menu-items ${
+              selectedTab === "project" && "underline"
+            }`}
             onClick={() => setselectedTab("project")}
           >
             My Projects
@@ -53,7 +55,7 @@ function MenuSide(props: Props) {
             <p>└</p>
             <button
               id="btn-add-project"
-              className="side-menu-items text-2xl border-b"
+              className="side-menu-items text-2xl"
               onClick={() => setshowProjectForm(true)}
             >
               Add Project
@@ -61,13 +63,17 @@ function MenuSide(props: Props) {
           </div>
         )}
         <div
-          className="side-menu-items"
-          onClick={() => setselectedTab("farovured")}
+          className={`side-menu-items ${
+            selectedTab === "favored" && "underline"
+          }`}
+          onClick={() => setselectedTab("favored")}
         >
           Favored
         </div>
         <div
-          className="side-menu-items"
+          className={`side-menu-items ${
+            selectedTab === "profile" && "underline"
+          }`}
           onClick={() => setselectedTab("profile")}
         >
           Profile

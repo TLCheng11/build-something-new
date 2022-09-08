@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import MenuSide from "../commons/Menus/MenuSide";
+import MenuSide from "./MenuSide";
 import ProjectInfoForm from "../commons/Projects/ProjectInfoForm";
 
 function Dashboard() {
