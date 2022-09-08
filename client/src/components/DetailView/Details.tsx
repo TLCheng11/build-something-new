@@ -89,12 +89,14 @@ function Details({ project }: Props) {
       <div className="h-full w-full p-3 rounded-3xl border bg-white overflow-auto">
         <div className="flex justify-between">
           {/* like button */}
-          {currentUser.id !== project.created_by && (
+          {currentUser.id !== project.created_by ? (
             <div
               ref={favoredRef}
               className="heart-like-button"
               onClick={(e) => toggleLike(e)}
             ></div>
+          ) : (
+            <div></div>
           )}
           {/* radio buttons for download */}
           <div className="flex items-center justify-end">

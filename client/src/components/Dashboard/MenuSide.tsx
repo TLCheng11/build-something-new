@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 
 interface Props {
@@ -8,9 +8,11 @@ interface Props {
 
 function MenuSide(props: Props) {
   let navigate = useNavigate();
+  const location = useLocation();
   const { setshowProjectForm } = props;
   const { currentUser, setcurrentUser } = useContext(UserContext);
-  const [selectedTab, setselectedTab] = useState<string>("project");
+
+  console.log(location);
 
   function logout() {
     fetch("/logout", {
@@ -36,21 +38,17 @@ function MenuSide(props: Props) {
         </h1>
       </div>
       <hr />
-      {/* <button id="btn-logout" className="border" onClick={() => logout()}>
-        Logout
-      </button> */}
       <div className="text-3xl">
         <NavLink to="/dashboard/projects/1">
           <div
             className={`side-menu-items ${
-              selectedTab === "project" && "underline"
+              location.pathname.includes("project") && "underline"
             }`}
-            onClick={() => setselectedTab("project")}
           >
             My Projects
           </div>
         </NavLink>
-        {selectedTab === "project" && (
+        {location.pathname.includes("project") && (
           <div className="flex items-center ml-4">
             <p>└</p>
             <button
@@ -65,18 +63,16 @@ function MenuSide(props: Props) {
         <NavLink to="/dashboard/favors/1">
           <div
             className={`side-menu-items ${
-              selectedTab === "favored" && "underline"
+              location.pathname.includes("favors") && "underline"
             }`}
-            onClick={() => setselectedTab("favored")}
           >
             Favored
           </div>
         </NavLink>
         <div
           className={`side-menu-items ${
-            selectedTab === "profile" && "underline"
+            location.pathname.includes("profile") && "underline"
           }`}
-          onClick={() => setselectedTab("profile")}
         >
           Profile
         </div>
