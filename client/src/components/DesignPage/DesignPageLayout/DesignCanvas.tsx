@@ -129,8 +129,6 @@ function DesignCanvas(props: Props) {
       />
     ));
 
-  console.log(currentProject);
-
   return (
     <div id="design-canvas" className="h-full w-full bg-gray-400">
       <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>

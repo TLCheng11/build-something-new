@@ -147,6 +147,7 @@ function ModelGroup(props: Props) {
   const showModelPlanes = group.model_planes?.map((plane) => (
     <ModelPlane
       key={plane.id}
+      group={group}
       plane={plane}
       gridModel={gridModel}
       showGridModel={showGridModel}
@@ -168,6 +169,7 @@ function ModelGroup(props: Props) {
   const showModelShapes = group.model_shapes?.map((shape) => (
     <ModelShape
       key={shape.id}
+      group={group}
       shape={shape}
       gridModel={gridModel}
       showGridModel={showGridModel}
@@ -189,6 +191,7 @@ function ModelGroup(props: Props) {
   const showModelBoxes = group.model_boxes?.map((box) => (
     <ModelBox
       key={box.id}
+      group={group}
       box={box}
       gridModel={gridModel}
       showGridModel={showGridModel}
@@ -210,6 +213,7 @@ function ModelGroup(props: Props) {
   const showModelSpheres = group.model_spheres?.map((sphere) => (
     <ModelSphere
       key={sphere.id}
+      group={group}
       sphere={sphere}
       gridModel={gridModel}
       showGridModel={showGridModel}

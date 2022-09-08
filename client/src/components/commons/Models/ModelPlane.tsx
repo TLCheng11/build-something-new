@@ -2,10 +2,11 @@ import { Plane, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";
-import { IModelPlane } from "../../../Interface";
+import { IModelGroup, IModelPlane } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
+  group: IModelGroup;
   plane: IModelPlane;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
@@ -41,6 +42,7 @@ interface Props {
 
 function ModelPlane(props: Props) {
   const {
+    group,
     plane,
     gridModel,
     showGridModel,
@@ -146,8 +148,8 @@ function ModelPlane(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "planes", id: plane.id || 0 });
-    if (selectedGroup.id !== plane.group.id) {
-      setselectedGroup({ id: plane.group.id, name: plane.group.group_name });
+    if (selectedGroup.id !== group.id) {
+      setselectedGroup({ id: group.id, name: group.group_name });
     }
   }
 

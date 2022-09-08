@@ -2,10 +2,11 @@ import { Circle, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";
-import { IModelShape } from "../../../Interface";
+import { IModelGroup, IModelShape } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
+  group: IModelGroup;
   shape: IModelShape;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
@@ -41,6 +42,7 @@ interface Props {
 
 function ModelShape(props: Props) {
   const {
+    group,
     shape,
     gridModel,
     showGridModel,
@@ -147,8 +149,8 @@ function ModelShape(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "shapes", id: shape.id || 0 });
-    if (selectedGroup.id !== shape.group.id) {
-      setselectedGroup({ id: shape.group.id, name: shape.group.group_name });
+    if (selectedGroup.id !== group.id) {
+      setselectedGroup({ id: group.id, name: group.group_name });
     }
   }
 

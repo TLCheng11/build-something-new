@@ -1,9 +1,5 @@
 class ModelSphereSerializer < ActiveModel::Serializer
-  attributes :id, :radius, :width_segments, :height_segments, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation, :color,:image_url, :mass, :group
+  attributes :id, :radius, :width_segments, :height_segments, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation, :color,:image_url, :mass
   # has_one :model_group
 
-  def group
-    group = self.object.model_group
-    {id: group.id, group_name: group.group_name}
-  end
 end

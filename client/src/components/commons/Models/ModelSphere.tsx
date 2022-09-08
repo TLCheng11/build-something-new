@@ -1,10 +1,11 @@
 import { Sphere, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
-import { IModelSphere } from "../../../Interface";
+import { IModelGroup, IModelSphere } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
+  group: IModelGroup;
   sphere: IModelSphere;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
@@ -40,6 +41,7 @@ interface Props {
 
 function ModelSphere(props: Props) {
   const {
+    group,
     sphere,
     gridModel,
     showGridModel,
@@ -146,8 +148,8 @@ function ModelSphere(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "spheres", id: sphere.id || 0 });
-    if (selectedGroup.id !== sphere.group.id) {
-      setselectedGroup({ id: sphere.group.id, name: sphere.group.group_name });
+    if (selectedGroup.id !== group.id) {
+      setselectedGroup({ id: group.id, name: group.group_name });
     }
   }
 

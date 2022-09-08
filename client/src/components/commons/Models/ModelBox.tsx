@@ -1,10 +1,11 @@
 import { Box, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
-import { IModelBox } from "../../../Interface";
+import { IModelBox, IModelGroup } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
+  group: IModelGroup;
   box: IModelBox;
   gridModel: [number, number, string, string];
   selectedGroup: {
@@ -40,6 +41,7 @@ interface Props {
 
 function ModelBox(props: Props) {
   const {
+    group,
     box,
     gridModel,
     showGridModel,
@@ -146,8 +148,8 @@ function ModelBox(props: Props) {
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
     setselectedModel({ type: "boxes", id: box.id || 0 });
-    if (selectedGroup.id !== box.group.id) {
-      setselectedGroup({ id: box.group.id, name: box.group.group_name });
+    if (selectedGroup.id !== group.id) {
+      setselectedGroup({ id: group.id, name: group.group_name });
     }
   }
 
