@@ -123,6 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_225619) do
     t.float "radius", default: 0.5
     t.float "width_segments", default: 32.0
     t.float "height_segments", default: 16.0
+    t.float "phi_length", default: 360.0
     t.float "theta_length", default: 360.0
     t.float "xposition", default: 0.0
     t.float "yposition", default: 4.0

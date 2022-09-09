@@ -16,7 +16,7 @@ class ModelCylindersController < ApplicationController
   # DELETE /model_cylinders/1
   def destroy
     @model_cylinder.destroy
-    render json: {message: "cylinder deleted"}, status: :accepted
+    render json: {message: "Cylinder deleted"}, status: :accepted
   end
 
   private

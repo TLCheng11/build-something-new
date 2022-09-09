@@ -29,6 +29,6 @@ class ModelSpheresController < ApplicationController
     end
 
     def model_sphere_update_params
-      params.permit(:radius, :width_segments, :height_segments, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation, :color)
+      params.permit(:radius, :width_segments, :height_segments, :phi_length, :theta_length, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation, :color)
     end
 end

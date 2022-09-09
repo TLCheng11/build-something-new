@@ -109,6 +109,8 @@ export interface IModelSphere {
   radius?: number | undefined;
   width_segments?: number | undefined;
   height_segments?: number | undefined;
+  phi_length?: number | undefined;
+  theta_length?: number | undefined;
   xposition?: number | undefined;
   yposition?: number | undefined;
   zposition?: number | undefined;

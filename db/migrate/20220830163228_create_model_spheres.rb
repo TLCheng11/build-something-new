@@ -5,6 +5,7 @@ class CreateModelSpheres < ActiveRecord::Migration[7.0]
       t.float :radius, default: 0.5
       t.float :width_segments, default: 32
       t.float :height_segments, default: 16
+      t.float :phi_length, default: 360
       t.float :theta_length, default: 360
       t.float :xposition, default: 0
       t.float :yposition, default: 4
