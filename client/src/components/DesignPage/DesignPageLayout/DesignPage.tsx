@@ -102,6 +102,8 @@ function DesignPage() {
     });
   }, [selectedGroup, selectedModel, refresh]);
 
+  console.log("render");
+
   if (notFound) return <h1>Page Not Found</h1>;
 
   return (

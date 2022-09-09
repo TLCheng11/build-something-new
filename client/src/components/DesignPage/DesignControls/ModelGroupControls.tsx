@@ -64,7 +64,7 @@ function ModelGroupControls(props: Props) {
     if (assignList.length > 0) {
       setparentGroupId(assignList[0].props.value);
     }
-  }, [assignList]);
+  }, [selectedGroup]);
 
   useEffect(() => {
     const currentGroup = currentProject.model_groups.filter(

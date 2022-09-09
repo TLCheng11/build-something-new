@@ -1,4 +1,4 @@
-import { Box, Circle, Plane, Sphere } from "@react-three/drei";
+import { Box, Circle, Cylinder, Plane, Sphere } from "@react-three/drei";
 import { DoubleSide } from "three";
 import { IModelGroup } from "../../../Interface";
 
@@ -111,6 +111,36 @@ function RoomGroup({ group }: Props) {
         >
           <meshStandardMaterial color={sphere.color || "#fff"} />
         </Sphere>
+      ))}
+      {group.model_cylinders?.map((cylinder) => (
+        <Cylinder
+          key={cylinder.id}
+          args={[
+            cylinder.radius_top || 0,
+            cylinder.radius_bottom || 0,
+            cylinder.height || 0,
+            cylinder.segments || 0,
+            1,
+            false,
+            0,
+            ((cylinder.theta_length || 360) / 360) * Math.PI * 2,
+          ]}
+          position={[
+            cylinder.xposition || 0,
+            cylinder.yposition || 0,
+            cylinder.zposition || 0,
+          ]}
+          rotation={[
+            ((cylinder.xrotation || 0) / 360) * Math.PI * 2,
+            ((cylinder.yrotation || 0) / 360) * Math.PI * 2,
+            ((cylinder.zrotation || 0) / 360) * Math.PI * 2,
+          ]}
+        >
+          <meshStandardMaterial
+            color={cylinder.color || "#fff"}
+            side={DoubleSide}
+          />
+        </Cylinder>
       ))}
     </group>
   );
