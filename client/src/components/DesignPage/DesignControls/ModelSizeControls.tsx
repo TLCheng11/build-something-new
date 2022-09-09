@@ -18,6 +18,10 @@ interface Props {
   sphereSize: [number, number, number];
   setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   shapeSize: [number, number, number];
+  cylinderSize: [number, number, number, number, number];
+  setcylinderSize: React.Dispatch<
+    React.SetStateAction<[number, number, number, number, number]>
+  >;
   setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
@@ -33,6 +37,8 @@ function ModelSizeContorls(props: Props) {
     setsphereSize,
     shapeSize,
     setshapeSize,
+    cylinderSize,
+    setcylinderSize,
   } = props;
   const [step, setstep] = useState<string>("0.1");
 
@@ -262,6 +268,120 @@ function ModelSizeContorls(props: Props) {
               }
             />
             <p>{shapeSize[2]}</p>
+          </div>
+        </div>
+      )}
+      {selectedModel.type === "cylinders" && (
+        <div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-radius-top">Radius Top:</label>
+            </div>
+            <input
+              className="design-input"
+              type="number"
+              min="0"
+              step={step}
+              name="model-radius-top"
+              value={cylinderSize[0]}
+              onChange={(e) =>
+                setcylinderSize((size) => [
+                  parseFloat(e.target.value),
+                  size[1],
+                  size[2],
+                  size[3],
+                  size[4],
+                ])
+              }
+            />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-radius-bottom">Radius Bot:</label>
+            </div>
+            <input
+              className="design-input"
+              type="number"
+              min="0.1"
+              step={step}
+              name="model-radius-bottom"
+              value={cylinderSize[1]}
+              onChange={(e) =>
+                setcylinderSize((size) => [
+                  size[0],
+                  parseFloat(e.target.value),
+                  size[2],
+                  size[3],
+                  size[4],
+                ])
+              }
+            />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-height">Height:</label>
+            </div>
+            <input
+              className="design-input"
+              type="number"
+              min="0.1"
+              step={step}
+              name="model-height"
+              value={cylinderSize[2]}
+              onChange={(e) =>
+                setcylinderSize((size) => [
+                  size[0],
+                  size[1],
+                  parseFloat(e.target.value),
+                  size[3],
+                  size[4],
+                ])
+              }
+            />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-segments">Segments:</label>
+            </div>
+            <input
+              className="design-input"
+              type="number"
+              min="2"
+              name="model-segments"
+              value={cylinderSize[3]}
+              onChange={(e) =>
+                setcylinderSize((size) => [
+                  size[0],
+                  size[1],
+                  size[2],
+                  parseFloat(e.target.value),
+                  size[4],
+                ])
+              }
+            />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-theta-length">Theta Length:</label>
+            </div>
+            <input
+              className="design-input"
+              type="range"
+              min={1}
+              max={360}
+              name="model-theta-length"
+              value={cylinderSize[4]}
+              onChange={(e) =>
+                setcylinderSize((size) => [
+                  size[0],
+                  size[1],
+                  size[2],
+                  size[3],
+                  parseFloat(e.target.value),
+                ])
+              }
+            />
+            <p>{cylinderSize[4]}</p>
           </div>
         </div>
       )}

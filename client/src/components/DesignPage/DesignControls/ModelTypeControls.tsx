@@ -81,6 +81,7 @@ function ModelTypesControls(props: Props) {
             <option value="shapes">Shape</option>
             <option value="boxes">Box</option>
             <option value="spheres">Sphere</option>
+            <option value="cylinders">Cylinder</option>
           </select>
         </div>
         <button id="add-model" className="design-btn" onClick={addModel}>
@@ -89,10 +90,15 @@ function ModelTypesControls(props: Props) {
       </div>
       <div className="flex">
         <h1 className="mr-4">
-          Selected: {selectedModel.type === "planes" && "Plane"}
-          {selectedModel.type === "boxes" && "Box"}
-          {selectedModel.type === "spheres" && "Sphere"}
-          {selectedModel.type === "shapes" && "Shape"}
+          Selected:{" "}
+          <span className="text-blue-500">
+            {selectedModel.type === "planes" && "Plane"}
+            {selectedModel.type === "boxes" && "Box"}
+            {selectedModel.type === "spheres" && "Sphere"}
+            {selectedModel.type === "shapes" && "Shape"}
+            {selectedModel.type === "cylinders" && "Cylinder"}
+          </span>{" "}
+          from ({selectedGroup.name})
         </h1>
       </div>
     </div>

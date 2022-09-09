@@ -41,6 +41,7 @@ export interface IModelGroup {
   model_boxes?: IModelBox[] | undefined;
   model_spheres?: IModelSphere[] | undefined;
   model_shapes?: IModelShape[] | undefined;
+  model_cylinders?: IModelCylinder[] | undefined;
   child_groups?: IModelGroup[] | undefined;
 }
 
@@ -108,6 +109,28 @@ export interface IModelSphere {
   radius?: number | undefined;
   width_segments?: number | undefined;
   height_segments?: number | undefined;
+  xposition?: number | undefined;
+  yposition?: number | undefined;
+  zposition?: number | undefined;
+  xrotation?: number | undefined;
+  yrotation?: number | undefined;
+  zrotation?: number | undefined;
+  color?: string | undefined;
+  image_url?: string | undefined;
+  mass?: number | undefined;
+  group: {
+    id: number;
+    group_name: string;
+  };
+}
+
+export interface IModelCylinder {
+  id: number;
+  radius_top?: number | undefined;
+  radius_bottom?: number | undefined;
+  height?: number | undefined;
+  segments?: number | undefined;
+  theta_length?: number | undefined;
   xposition?: number | undefined;
   yposition?: number | undefined;
   zposition?: number | undefined;

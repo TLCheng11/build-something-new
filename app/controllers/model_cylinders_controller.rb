@@ -3,7 +3,7 @@ class ModelCylindersController < ApplicationController
   
   # GET /model_cylinders/1
   def create
-    @model_cylinder = Modelcylinder.create!(model_cylinder_params)
+    @model_cylinder = ModelCylinder.create!(model_cylinder_params)
     render json: @model_cylinder, status: :created
   end
 
@@ -21,7 +21,7 @@ class ModelCylindersController < ApplicationController
 
   private
     def find_model_cylinder
-      @model_cylinder = Modelcylinder.find(params[:id])
+      @model_cylinder = ModelCylinder.find(params[:id])
     end
 
     def model_cylinder_params

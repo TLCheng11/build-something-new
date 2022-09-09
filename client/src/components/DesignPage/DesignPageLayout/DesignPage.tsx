@@ -69,6 +69,9 @@ function DesignPage() {
   const [shapeSize, setshapeSize] = useState<[number, number, number]>([
     0.5, 32, 360,
   ]);
+  const [cylinderSize, setcylinderSize] = useState<
+    [number, number, number, number, number]
+  >([0.5, 0.5, 1, 3, 360]);
   const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
   const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("#396BA7");
@@ -134,6 +137,8 @@ function DesignPage() {
           setsphereSize={setsphereSize}
           shapeSize={shapeSize}
           setshapeSize={setshapeSize}
+          cylinderSize={cylinderSize}
+          setcylinderSize={setcylinderSize}
           position={position}
           setposition={setposition}
           rotation={rotation}
@@ -168,6 +173,8 @@ function DesignPage() {
           setsphereSize={setsphereSize}
           shapeSize={shapeSize}
           setshapeSize={setshapeSize}
+          cylinderSize={cylinderSize}
+          setcylinderSize={setcylinderSize}
           position={position}
           setposition={setposition}
           rotation={rotation}

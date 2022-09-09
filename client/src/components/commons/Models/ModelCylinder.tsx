@@ -1,13 +1,13 @@
-import { Circle, useCursor } from "@react-three/drei";
+import { Cylinder, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";
-import { IModelGroup, IModelShape } from "../../../Interface";
+import { IModelGroup, IModelCylinder } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
   group: IModelGroup;
-  shape: IModelShape;
+  cylinder: IModelCylinder;
   gridModel: [number, number, string, string];
   showGridModel: boolean;
   selectedGroup: {
@@ -30,8 +30,10 @@ interface Props {
       id: number;
     }>
   >;
-  shapeSize: [number, number, number];
-  setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  cylinderSize: [number, number, number, number, number];
+  setcylinderSize: React.Dispatch<
+    React.SetStateAction<[number, number, number, number, number]>
+  >;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -40,18 +42,18 @@ interface Props {
   setmodelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function ModelShape(props: Props) {
+function ModelCylinder(props: Props) {
   const {
     group,
-    shape,
+    cylinder,
     gridModel,
     showGridModel,
     selectedGroup,
     setselectedGroup,
     selectedModel,
     setselectedModel,
-    shapeSize,
-    setshapeSize,
+    cylinderSize,
+    setcylinderSize,
     position,
     setposition,
     rotation,
@@ -62,29 +64,35 @@ function ModelShape(props: Props) {
 
   // states for all self properties
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
-  const [selfSize, setselfSize] = useState<[number, number, number]>([
-    shape.radius || 0.5,
-    shape.segments || 32,
-    shape.theta_length || 360,
+  const [selfSize, setselfSize] = useState<
+    [number, number, number, number, number]
+  >([
+    cylinder.radius_top || 0.5,
+    cylinder.radius_bottom || 0.5,
+    cylinder.height || 1,
+    cylinder.segments || 3,
+    cylinder.theta_length || 360,
   ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
-    shape.xposition || 0,
-    shape.yposition || 4,
-    shape.zposition || 0,
+    cylinder.xposition || 0,
+    cylinder.yposition || 4,
+    cylinder.zposition || 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
-    shape.xrotation || 0,
-    shape.yrotation || 0,
-    shape.zrotation || 0,
+    cylinder.xrotation || 0,
+    cylinder.yrotation || 0,
+    cylinder.zrotation || 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>(shape.color || "#B97C17");
+  const [selfColor, setselfColor] = useState<string>(
+    cylinder.color || "#952DAA"
+  );
 
   // hover pointer
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
 
   // using ref to override the useEffect clean up original state problem
-  const sizeRef = useRef<[number, number, number]>(selfSize);
+  const sizeRef = useRef<[number, number, number, number, number]>(selfSize);
   const positionRef = useRef<[number, number, number]>(selfPosition);
   const rotationRef = useRef<[number, number, number]>(selfRotation);
   const colorRef = useRef<String>(selfColor);
@@ -92,15 +100,21 @@ function ModelShape(props: Props) {
 
   // set size
   useEffect(() => {
-    if (selectedModel.type === "shapes" && selectedModel.id === shape.id) {
-      setselfSize(shapeSize);
-      sizeRef.current = shapeSize;
+    if (
+      selectedModel.type === "cylinders" &&
+      selectedModel.id === cylinder.id
+    ) {
+      setselfSize(cylinderSize);
+      sizeRef.current = cylinderSize;
     }
-  }, [shapeSize]);
+  }, [cylinderSize]);
 
   // set position
   useEffect(() => {
-    if (selectedModel.type === "shapes" && selectedModel.id === shape.id) {
+    if (
+      selectedModel.type === "cylinders" &&
+      selectedModel.id === cylinder.id
+    ) {
       setSelfPosition(position);
       positionRef.current = position;
     }
@@ -108,7 +122,10 @@ function ModelShape(props: Props) {
 
   // set rotation
   useEffect(() => {
-    if (selectedModel.type === "shapes" && selectedModel.id === shape.id) {
+    if (
+      selectedModel.type === "cylinders" &&
+      selectedModel.id === cylinder.id
+    ) {
       setselfRotation(rotation);
       rotationRef.current = rotation;
     }
@@ -116,7 +133,10 @@ function ModelShape(props: Props) {
 
   // set color
   useEffect(() => {
-    if (selectedModel.type === "shapes" && selectedModel.id === shape.id) {
+    if (
+      selectedModel.type === "cylinders" &&
+      selectedModel.id === cylinder.id
+    ) {
       setselfColor(modelColor);
       colorRef.current = modelColor;
     }
@@ -124,16 +144,22 @@ function ModelShape(props: Props) {
 
   // toggle grids
   useEffect(() => {
-    if (selectedModel.type === "shapes" && selectedModel.id === shape.id) {
+    if (
+      selectedModel.type === "cylinders" &&
+      selectedModel.id === cylinder.id
+    ) {
       setselfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
   // set all self properties from history when selection
   useEffect(() => {
-    if (selectedModel.type === "shapes" && selectedModel.id === shape.id) {
+    if (
+      selectedModel.type === "cylinders" &&
+      selectedModel.id === cylinder.id
+    ) {
       setselfShowGrid(showGridModel);
-      setshapeSize(selfSize);
+      setcylinderSize(selfSize);
       setposition(selfPosition);
       setrotation(selfRotation);
       setmodelColor(selfColor);
@@ -148,7 +174,7 @@ function ModelShape(props: Props) {
   // lock self as selected item when clicked
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
-    setselectedModel({ type: "shapes", id: shape.id || 0 });
+    setselectedModel({ type: "cylinders", id: cylinder.id || 0 });
     if (selectedGroup.id !== group.id) {
       setselectedGroup({ id: group.id, name: group.group_name });
     }
@@ -162,17 +188,19 @@ function ModelShape(props: Props) {
   }, []);
 
   function saveModel() {
-    if (shape.id) {
-      // console.log(shape.id, "saving shape");
-      fetch(`/model_shapes/${shape.id}`, {
+    if (cylinder.id) {
+      // console.log(cylinder.id, "saving cylinder");
+      fetch(`/model_cylinders/${cylinder.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          radius: sizeRef.current[0],
-          segments: sizeRef.current[1],
-          theta_length: sizeRef.current[2],
+          radius_top: sizeRef.current[0],
+          radius_bottom: sizeRef.current[1],
+          height: sizeRef.current[2],
+          segments: sizeRef.current[3],
+          theta_length: sizeRef.current[4],
           xposition: positionRef.current[0],
           yposition: positionRef.current[1],
           zposition: positionRef.current[2],
@@ -187,8 +215,17 @@ function ModelShape(props: Props) {
 
   return (
     <>
-      <Circle
-        args={[selfSize[0], selfSize[1], 0, (selfSize[2] / 360) * Math.PI * 2]}
+      <Cylinder
+        args={[
+          selfSize[0],
+          selfSize[1],
+          selfSize[2],
+          selfSize[3],
+          1,
+          false,
+          0,
+          (selfSize[4] / 360) * Math.PI * 2,
+        ]}
         position={[selfPosition[0], selfPosition[1], selfPosition[2]]}
         rotation={[
           (selfRotation[0] / 360) * Math.PI * 2,
@@ -207,9 +244,9 @@ function ModelShape(props: Props) {
           />
         )}
         <meshStandardMaterial color={selfColor} side={DoubleSide} />
-      </Circle>
+      </Cylinder>
     </>
   );
 }
 
-export default ModelShape;
+export default ModelCylinder;

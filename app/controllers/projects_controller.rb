@@ -60,7 +60,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    render json: @project, serializer: ProjectShowSerializer, include: ["model_groups", "model_groups.child_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres", "model_groups.model_shapes"]
+    render json: @project, serializer: ProjectShowSerializer, include: ["model_groups", "model_groups.child_groups", "model_groups.model_planes", "model_groups.model_boxes", "model_groups.model_spheres", "model_groups.model_shapes", "model_groups.model_cylinders"]
   end
 
   # GET /projects_ratings/1

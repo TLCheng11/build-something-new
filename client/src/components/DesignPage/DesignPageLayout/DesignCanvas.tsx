@@ -51,6 +51,10 @@ interface Props {
   setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   shapeSize: [number, number, number];
   setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  cylinderSize: [number, number, number, number, number];
+  setcylinderSize: React.Dispatch<
+    React.SetStateAction<[number, number, number, number, number]>
+  >;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -85,6 +89,8 @@ function DesignCanvas(props: Props) {
     setsphereSize,
     shapeSize,
     setshapeSize,
+    cylinderSize,
+    setcylinderSize,
     position,
     setposition,
     rotation,
@@ -120,6 +126,8 @@ function DesignCanvas(props: Props) {
         setsphereSize={setsphereSize}
         shapeSize={shapeSize}
         setshapeSize={setshapeSize}
+        cylinderSize={cylinderSize}
+        setcylinderSize={setcylinderSize}
         position={position}
         setposition={setposition}
         rotation={rotation}

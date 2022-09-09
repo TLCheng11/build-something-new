@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { IModelGroup } from "../../../Interface";
 import GridLayout from "./GridLayout";
 import ModelBox from "./ModelBox";
+import ModelCylinder from "./ModelCylinder";
 import ModelPlane from "./ModelPlane";
 import ModelShape from "./ModelShape";
 import ModelSphere from "./ModelSphere";
@@ -49,6 +50,10 @@ interface Props {
   setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   shapeSize: [number, number, number];
   setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  cylinderSize: [number, number, number, number, number];
+  setcylinderSize: React.Dispatch<
+    React.SetStateAction<[number, number, number, number, number]>
+  >;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
@@ -81,6 +86,8 @@ function ModelGroup(props: Props) {
     setsphereSize,
     shapeSize,
     setshapeSize,
+    cylinderSize,
+    setcylinderSize,
     position,
     setposition,
     rotation,
@@ -135,6 +142,8 @@ function ModelGroup(props: Props) {
       setsphereSize={setsphereSize}
       shapeSize={shapeSize}
       setshapeSize={setshapeSize}
+      cylinderSize={cylinderSize}
+      setcylinderSize={setcylinderSize}
       position={position}
       setposition={setposition}
       rotation={rotation}
@@ -223,6 +232,28 @@ function ModelGroup(props: Props) {
       setselectedModel={setselectedModel}
       sphereSize={sphereSize}
       setsphereSize={setsphereSize}
+      position={position}
+      setposition={setposition}
+      rotation={rotation}
+      setrotation={setrotation}
+      modelColor={modelColor}
+      setmodelColor={setmodelColor}
+    />
+  ));
+
+  const showModelCylinders = group.model_cylinders?.map((cylinder) => (
+    <ModelCylinder
+      key={cylinder.id}
+      group={group}
+      cylinder={cylinder}
+      gridModel={gridModel}
+      showGridModel={showGridModel}
+      selectedGroup={selectedGroup}
+      setselectedGroup={setselectedGroup}
+      selectedModel={selectedModel}
+      setselectedModel={setselectedModel}
+      cylinderSize={cylinderSize}
+      setcylinderSize={setcylinderSize}
       position={position}
       setposition={setposition}
       rotation={rotation}
@@ -328,6 +359,7 @@ function ModelGroup(props: Props) {
         {showModelShapes}
         {showModelBoxes}
         {showModelSpheres}
+        {showModelCylinders}
       </group>
     </>
   );
