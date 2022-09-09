@@ -63,9 +63,9 @@ function DesignPage() {
   // properties for selected model
   const [planeSize, setplaneSize] = useState<[number, number]>([5, 5]);
   const [boxSize, setboxSize] = useState<[number, number, number]>([1, 1, 1]);
-  const [sphereSize, setsphereSize] = useState<[number, number, number]>([
-    0.5, 32, 16,
-  ]);
+  const [sphereSize, setsphereSize] = useState<
+    [number, number, number, number, number]
+  >([0.5, 32, 16, 360, 360]);
   const [shapeSize, setshapeSize] = useState<[number, number, number]>([
     0.5, 32, 360,
   ]);
@@ -101,8 +101,6 @@ function DesignPage() {
       }
     });
   }, [selectedGroup, selectedModel, refresh]);
-
-  console.log("render");
 
   if (notFound) return <h1>Page Not Found</h1>;
 

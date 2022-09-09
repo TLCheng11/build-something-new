@@ -95,6 +95,10 @@ function Group({ group }) {
             sphere.radius || 0,
             sphere.width_segments || 0,
             sphere.height_segments || 0,
+            0,
+            ((sphere.phi_length || 0) / 360) * Math.PI * 2,
+            0,
+            ((sphere.theta_length || 0) / 360) * Math.PI,
           ]}
           position={[
             sphere.xposition || 0,

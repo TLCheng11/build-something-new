@@ -52,8 +52,10 @@ interface Props {
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   boxSize: [number, number, number];
   setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
-  sphereSize: [number, number, number];
-  setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  sphereSize: [number, number, number, number, number];
+  setsphereSize: React.Dispatch<
+    React.SetStateAction<[number, number, number, number, number]>
+  >;
   shapeSize: [number, number, number];
   setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   cylinderSize: [number, number, number, number, number];

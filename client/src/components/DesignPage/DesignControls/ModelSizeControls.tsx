@@ -15,8 +15,10 @@ interface Props {
   setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   boxSize: [number, number, number];
   setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
-  sphereSize: [number, number, number];
-  setsphereSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  sphereSize: [number, number, number, number, number];
+  setsphereSize: React.Dispatch<
+    React.SetStateAction<[number, number, number, number, number]>
+  >;
   shapeSize: [number, number, number];
   cylinderSize: [number, number, number, number, number];
   setcylinderSize: React.Dispatch<
@@ -163,6 +165,8 @@ function ModelSizeContorls(props: Props) {
                   parseFloat(e.target.value),
                   size[1],
                   size[2],
+                  size[3],
+                  size[4],
                 ])
               }
             />
@@ -182,6 +186,8 @@ function ModelSizeContorls(props: Props) {
                   size[0],
                   parseFloat(e.target.value),
                   size[2],
+                  size[3],
+                  size[4],
                 ])
               }
             />
@@ -201,9 +207,57 @@ function ModelSizeContorls(props: Props) {
                   size[0],
                   size[1],
                   parseFloat(e.target.value),
+                  size[3],
+                  size[4],
                 ])
               }
             />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-phi-length">Phi Length:</label>
+            </div>
+            <input
+              className="design-input"
+              type="range"
+              min="1"
+              max="360"
+              name="model-phi-length"
+              value={sphereSize[3]}
+              onChange={(e) =>
+                setsphereSize((size) => [
+                  size[0],
+                  size[1],
+                  size[2],
+                  parseFloat(e.target.value),
+                  size[4],
+                ])
+              }
+            />
+            <div>{sphereSize[3]}</div>
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-theta-length">Theta Length:</label>
+            </div>
+            <input
+              className="design-input"
+              type="range"
+              min="1"
+              max="360"
+              name="model-theta-length"
+              value={sphereSize[4]}
+              onChange={(e) =>
+                setsphereSize((size) => [
+                  size[0],
+                  size[1],
+                  size[2],
+                  size[3],
+                  parseFloat(e.target.value),
+                ])
+              }
+            />
+            <div>{sphereSize[4]}</div>
           </div>
         </div>
       )}
