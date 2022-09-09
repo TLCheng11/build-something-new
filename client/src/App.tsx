@@ -9,6 +9,7 @@ import MenuTop from "./components/commons/Menus/MenuTop";
 import DetailView from "./components/DetailView/DetailView";
 import MyProjects from "./components/Dashboard/MyProjects";
 import FavoredProjects from "./components/Dashboard/FavoredProjects";
+import Profile from "./components/Dashboard/Profile";
 
 function App() {
   const { currentUser, setcurrentUser } = useContext(UserContext);
@@ -51,6 +52,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="projects/:page" element={<MyProjects />} />
             <Route path="favors/:page" element={<FavoredProjects />} />
+            <Route path="profile" element={<Profile />} />
             <Route
               path="*"
               element={<div className="text-6xl">Page Not Found</div>}

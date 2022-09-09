@@ -67,13 +67,15 @@ function MenuSide(props: Props) {
             Favored
           </div>
         </NavLink>
-        <div
-          className={`side-menu-items ${
-            location.pathname.includes("profile") && "underline"
-          }`}
-        >
-          Profile
-        </div>
+        <NavLink to="/dashboard/profile">
+          <div
+            className={`side-menu-items ${
+              location.pathname.includes("profile") && "underline"
+            }`}
+          >
+            Profile
+          </div>
+        </NavLink>
         <div className="side-menu-items" onClick={() => logout()}>
           Logout
         </div>
