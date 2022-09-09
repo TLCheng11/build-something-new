@@ -183,6 +183,15 @@ function ModelGroupControls(props: Props) {
 
   return (
     <div className="h-full w-full py-2 mb-2 bg-gray-600 border-t border-b border-black">
+      <div className="flex mb-2">
+        <h1 className="mr-3">Group Controls:</h1>
+        <button
+          className="design-btn min-w-fit px-2 hover:bg-red-500"
+          onClick={deleteGroup}
+        >
+          Delete Group
+        </button>
+      </div>
       {/* new group */}
       <div className="flex">
         <h1 className="w-1/3">New Group:</h1>
@@ -202,7 +211,7 @@ function ModelGroupControls(props: Props) {
       </div>
       {/* group selection */}
       <div className="flex">
-        <h1 className="w-1/3">Select Group</h1>
+        <h1 className="w-1/3">Select Group:</h1>
         <select
           className="design-input"
           value={selectedGroup.id}
@@ -215,9 +224,6 @@ function ModelGroupControls(props: Props) {
         >
           {groupList}
         </select>
-        <button className="design-btn" onClick={deleteGroup}>
-          Delete
-        </button>
       </div>
       {/* edit group name */}
       <div className="flex">

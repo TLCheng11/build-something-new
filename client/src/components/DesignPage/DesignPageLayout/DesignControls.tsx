@@ -128,6 +128,7 @@ function DesignControls(props: Props) {
       />
       <ModelTypesControls
         selectedGroup={selectedGroup}
+        selectedModel={selectedModel}
         setselectedModel={setselectedModel}
         modelType={modelType}
         setmodelType={setmodelType}
