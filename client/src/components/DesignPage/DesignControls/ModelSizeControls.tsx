@@ -310,7 +310,7 @@ function ModelSizeContorls(props: Props) {
               className="design-input"
               type="range"
               min={1}
-              max={360}
+              max={720}
               name="model-theta-length"
               value={shapeSize[2]}
               onChange={(e) =>
