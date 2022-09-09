@@ -1,11 +1,42 @@
 export const showModelComponentTsx = `
-import { Box, Circle, Loader, OrbitControls, Plane, Sphere } from "@react-three/drei";
+import {
+  Box,
+  Circle,
+  Cylinder,
+  Loader,
+  OrbitControls,
+  Plane,
+  Sphere,
+} from "@react-three/drei";
 import { useState, useEffect, Suspense } from "react";
 import { Canvas } from "react-three-fiber";
 import { DoubleSide } from "three";
 
-function Group({ group }: any) {
-  const showChildGroups = group.child_groups.map((group: any) => (
+interface Props {
+  group: IGroup;
+}
+
+interface IGroup {
+  id: number;
+  group_name: string;
+  parent_group_id?: number | undefined;
+  parent_group_name?: string | undefined;
+  xposition?: number | undefined;
+  yposition?: number | undefined;
+  zposition?: number | undefined;
+  xrotation?: number | undefined;
+  yrotation?: number | undefined;
+  zrotation?: number | undefined;
+  model_planes?: any[] | undefined;
+  model_boxes?: any[] | undefined;
+  model_spheres?: any[] | undefined;
+  model_shapes?: any[] | undefined;
+  model_cylinders?: any[] | undefined;
+  child_groups?: IGroup[] | undefined;
+}
+
+function Group({ group }: Props) {
+  const showChildGroups = group.child_groups?.map((group: any) => (
     <Group key={group.id} group={group} />
   ));
 
@@ -23,7 +54,7 @@ function Group({ group }: any) {
       ]}
     >
       {showChildGroups}
-      {group.model_planes?.map((plane: any) => (
+      {group.model_planes?.map((plane) => (
         <Plane
           key={plane.id}
           args={[plane.width || 0, plane.depth || 0]}
@@ -44,7 +75,7 @@ function Group({ group }: any) {
           />
         </Plane>
       ))}
-      {group.model_shapes?.map((shape: any) => (
+      {group.model_shapes?.map((shape) => (
         <Circle
           key={shape.id}
           args={[
@@ -70,7 +101,7 @@ function Group({ group }: any) {
           />
         </Circle>
       ))}
-      {group.model_boxes?.map((box: any) => (
+      {group.model_boxes?.map((box) => (
         <Box
           key={box.id}
           args={[box.width || 0, box.height || 0, box.depth || 0]}
@@ -88,7 +119,7 @@ function Group({ group }: any) {
           <meshStandardMaterial color={box.color || "#fff"} />
         </Box>
       ))}
-      {group.model_spheres?.map((sphere: any) => (
+      {group.model_spheres?.map((sphere) => (
         <Sphere
           key={sphere.id}
           args={[
@@ -110,6 +141,36 @@ function Group({ group }: any) {
           <meshStandardMaterial color={sphere.color || "#fff"} />
         </Sphere>
       ))}
+      {group.model_cylinders?.map((cylinder) => (
+        <Cylinder
+          key={cylinder.id}
+          args={[
+            cylinder.radius_top || 0,
+            cylinder.radius_bottom || 0,
+            cylinder.height || 0,
+            cylinder.segments || 0,
+            1,
+            false,
+            0,
+            ((cylinder.theta_length || 360) / 360) * Math.PI * 2,
+          ]}
+          position={[
+            cylinder.xposition || 0,
+            cylinder.yposition || 0,
+            cylinder.zposition || 0,
+          ]}
+          rotation={[
+            ((cylinder.xrotation || 0) / 360) * Math.PI * 2,
+            ((cylinder.yrotation || 0) / 360) * Math.PI * 2,
+            ((cylinder.zrotation || 0) / 360) * Math.PI * 2,
+          ]}
+        >
+          <meshStandardMaterial
+            color={cylinder.color || "#fff"}
+            side={DoubleSide}
+          />
+        </Cylinder>
+      ))}
     </group>
   );
 }
@@ -117,7 +178,7 @@ function Group({ group }: any) {
 function ShowModel() {
   const [model, setmodel] = useState<any>({ model_groups: [] });
 
-  const showModel = model.model_groups.map((group: any) => (
+  const showModel = model.model_groups.map((group: IGroup) => (
     <Group key={group.id} group={group} />
   ));
 
