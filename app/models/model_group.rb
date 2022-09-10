@@ -27,14 +27,11 @@ class ModelGroup < ApplicationRecord
 
   def get_all_children
     group = {id: self.id, group_name: self.group_name, parent_group_id: self.parent_group_id, xposition: self.xposition, yposition: self.yposition, zposition: zposition, xrotation: xrotation, yrotation: yrotation, zrotation: zrotation}
-    group[:model_planes] = self.model_planes
-    # group[:model_planes].map! do |plane|
-    #   ModelPlaneSerializer.new(plane)
-    # end
-    group[:model_boxes] = self.model_boxes
-    group[:model_spheres] = self.model_spheres
-    group[:model_shapes] = self.model_shapes
-    group[:model_cylinders] = self.model_cylinders
+    group[:model_planes] = data_except_date(self.model_planes)
+    group[:model_boxes] = data_except_date(self.model_boxes)
+    group[:model_spheres] = data_except_date(self.model_spheres)
+    group[:model_shapes] = data_except_date(self.model_shapes)
+    group[:model_cylinders] = data_except_date(self.model_cylinders)
     group[:child_groups] = []
       if self.child_groups.count > 0
         self.child_groups.each do |child|
@@ -69,5 +66,18 @@ class ModelGroup < ApplicationRecord
           find_child_groups(list, group)
         end
       end
+    end
+
+    def data_except_date(models)
+      models_without_date = models.map do |model|
+        modelHash = Hash.new
+        model.attributes.each do |k, v|
+          if (k != "created_at" && k != "updated_at")
+            modelHash["#{k}"] = v
+          end
+        end
+        modelHash
+      end
+      models_without_date
     end
 end
