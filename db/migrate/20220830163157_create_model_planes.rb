@@ -5,7 +5,7 @@ class CreateModelPlanes < ActiveRecord::Migration[7.0]
       t.float :width, default: 5
       t.float :depth, default: 5
       t.float :xposition, default: 0
-      t.float :yposition, default: 0
+      t.float :yposition, default: 1
       t.float :zposition, default: 0
       t.float :xrotation, default: 0
       t.float :yrotation, default: 0

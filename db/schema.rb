@@ -86,7 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_225619) do
     t.float "width", default: 5.0
     t.float "depth", default: 5.0
     t.float "xposition", default: 0.0
-    t.float "yposition", default: 0.0
+    t.float "yposition", default: 1.0
     t.float "zposition", default: 0.0
     t.float "xrotation", default: 0.0
     t.float "yrotation", default: 0.0
