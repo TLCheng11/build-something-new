@@ -14,6 +14,7 @@ module.exports = {
       minHeight: {
         "card-b": "46px",
         100: "100px",
+        180: "180px",
         360: "360px",
         720: "720px",
       },
@@ -25,6 +26,7 @@ module.exports = {
         control: "360px",
         225: "225px",
         360: "360px",
+        460: "460px",
       },
       scale: {
         200: "2",

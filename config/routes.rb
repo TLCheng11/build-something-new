@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   
   # routes for all model controllers
     # users
-    resources :users, only: [:create]
+    resources :users, only: [:create, :update]
 
     # projects
     resources :users, only: [:show] do
