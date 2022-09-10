@@ -42,7 +42,7 @@ function ModelSizeContorls(props: Props) {
     cylinderSize,
     setcylinderSize,
   } = props;
-  const [step, setstep] = useState<string>("0.1");
+  const [step, setstep] = useState<string>("0.05");
 
   return (
     <div id="model-size-controls" className="h-full w-full bg-gray-600">
@@ -56,7 +56,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0.1"
+              min="0.05"
               step={step}
               name="model-width"
               value={planeSize[0]}
@@ -72,7 +72,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0.1"
+              min="0.05"
               step={step}
               name="model-depth"
               value={planeSize[1]}
@@ -93,7 +93,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0.1"
+              min="0.05"
               step={step}
               name="model-radius"
               value={shapeSize[0]}
@@ -172,7 +172,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0.1"
+              min="0.05"
               step={step}
               name="model-width"
               value={boxSize[0]}
@@ -192,7 +192,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0.1"
+              min="0.05"
               step={step}
               name="model-height"
               value={boxSize[1]}
@@ -212,7 +212,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0.1"
+              min="0.05"
               step={step}
               name="model-depth"
               value={boxSize[2]}
@@ -237,7 +237,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0.1"
+              min="0.05"
               step={step}
               name="model-radius"
               value={sphereSize[0]}
@@ -406,7 +406,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0.1"
+              min="0.05"
               step={step}
               name="model-radius-bottom"
               value={cylinderSize[1]}
@@ -428,7 +428,7 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="number"
-              min="0.1"
+              min="0.05"
               step={step}
               name="model-height"
               value={cylinderSize[2]}

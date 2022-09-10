@@ -8,7 +8,7 @@ interface Props {
 
 function ModelPositionControls(props: Props) {
   const { type, position, setposition } = props;
-  const [step, setstep] = useState<string>("0.1");
+  const [step, setstep] = useState<string>("0.05");
 
   return (
     <div id="model-position-controls" className="h-full w-full bg-gray-600">
