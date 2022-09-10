@@ -5,7 +5,7 @@ class ModelPlane < ApplicationRecord
     attributes = Hash.new
     self.attributes.each do |k, v|
       if (k != "created_at" && k != "updated_at" && k != "id")
-        if (k == "yposition" || k == "zposition")
+        if (k == "yposition")
           attributes["#{k}"] = v + pos
         else
           attributes["#{k}"] = v

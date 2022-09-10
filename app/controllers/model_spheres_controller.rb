@@ -1,10 +1,16 @@
 class ModelSpheresController < ApplicationController
-  before_action :find_model_sphere, only: [:update, :destroy]
+  before_action :find_model_sphere, only: [:update, :destroy, :copy]
   
-  # GET /model_spheres/1
+  # POST /model_spheres/1
   def create
     @model_sphere = ModelSphere.create!(model_sphere_params)
     render json: @model_sphere, status: :created
+  end
+
+  # POST /model_spheres_copy/1
+  def copy
+    new_sphere = @model_sphere.copy
+    render json: new_sphere, status: :created
   end
 
   # PATCH/PUT /model_spheres/1

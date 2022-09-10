@@ -1,10 +1,16 @@
 class ModelPlanesController < ApplicationController
-  before_action :find_model_plane, only: [:update, :destroy]
+  before_action :find_model_plane, only: [:update, :destroy, :copy]
   
-  # GET /model_planes/1
+  # POST /model_planes/1
   def create
     @model_plane = ModelPlane.create!(model_plane_params)
     render json: @model_plane, status: :created
+  end
+  
+  # POST /model_planes_copy/1
+  def copy
+    new_plane = @model_plane.copy
+    render json: new_plane, status: :created
   end
 
   # PATCH/PUT /model_planes/1

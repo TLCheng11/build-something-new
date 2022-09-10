@@ -1,10 +1,16 @@
 class ModelShapesController < ApplicationController
-  before_action :find_model_shape, only: [:update, :destroy]
+  before_action :find_model_shape, only: [:update, :destroy, :copy]
   
-  # GET /model_shapes/1
+  # POST /model_shapes/1
   def create
     @model_shape = ModelShape.create!(model_shape_params)
     render json: @model_shape, status: :created
+  end
+
+  # POST /model_shapes_copy/1
+  def copy
+    new_shape = @model_shape.copy
+    render json: new_shape, status: :created
   end
 
   # PATCH/PUT /model_shapes/1

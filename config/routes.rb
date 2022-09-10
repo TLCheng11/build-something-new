@@ -41,10 +41,15 @@ Rails.application.routes.draw do
 
     # models
     resources :model_planes, only: [:create, :update, :destroy]
-    resources :model_boxes, only: [:create, :update, :destroy]
-    resources :model_spheres, only: [:create, :update, :destroy]
+    post "model_planes_copy/:id", to: "model_planes#copy"
     resources :model_shapes, only: [:create, :update, :destroy]
+    post "model_shapes_copy/:id", to: "model_shapes#copy"
+    resources :model_boxes, only: [:create, :update, :destroy]
+    post "model_boxes_copy/:id", to: "model_boxes#copy"
+    resources :model_spheres, only: [:create, :update, :destroy]
+    post "model_spheres_copy/:id", to: "model_spheres#copy"
     resources :model_cylinders, only: [:create, :update, :destroy]
+    post "model_cylinders_copy/:id", to: "model_cylinders#copy"
 
   # redirect to frontend routing
     get '*path',

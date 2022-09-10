@@ -15,7 +15,7 @@
 }
 
 .design-btn {
-  @apply w-btn border rounded-md border-black;
+  @apply w-btn border rounded-md border-black hover:bg-blue-400;
 }
 
 /* ----- scrollbar style ----- */

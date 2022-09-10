@@ -1,10 +1,16 @@
 class ModelCylindersController < ApplicationController
-  before_action :find_model_cylinder, only: [:update, :destroy]
+  before_action :find_model_cylinder, only: [:update, :destroy, :copy]
   
-  # GET /model_cylinders/1
+  # POST /model_cylinders/1
   def create
     @model_cylinder = ModelCylinder.create!(model_cylinder_params)
     render json: @model_cylinder, status: :created
+  end
+
+  # POST /model_cylinders_copy/1
+  def copy
+    new_cylinder = @model_cylinder.copy
+    render json: new_cylinder, status: :created
   end
 
   # PATCH/PUT /model_cylinders/1

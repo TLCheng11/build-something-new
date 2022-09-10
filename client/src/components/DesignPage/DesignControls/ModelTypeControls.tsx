@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface Props {
   selectedGroup: {
@@ -28,6 +28,11 @@ function ModelTypesControls(props: Props) {
     setmodelType,
   } = props;
 
+  const [isDisabled, setisDisabled] = useState<{
+    add: boolean;
+    copy: boolean;
+  }>({ add: false, copy: false });
+
   function addModel() {
     fetch(`/model_${modelType}`, {
       method: "POST",
@@ -54,6 +59,35 @@ function ModelTypesControls(props: Props) {
         })
         .catch(console.error);
     }
+  }
+
+  function copyModel() {
+    if (selectedModel.id > 0) {
+      const id = selectedModel.id;
+      setselectedModel({ ...selectedModel, id: 0 });
+      setTimeout(() => {
+        fetch(`/model_${selectedModel.type}_copy/${id}`, {
+          method: "POST",
+        })
+          .then((res) => {
+            if (res.ok) {
+              res
+                .json()
+                .then((data) =>
+                  setselectedModel({ ...selectedModel, id: data.id })
+                );
+            } else res.json().then(console.log);
+          })
+          .catch(console.error);
+      }, 500);
+    }
+  }
+
+  function disableBtn(type: string) {
+    setisDisabled({ ...isDisabled, [type]: true });
+    const id = setTimeout(() => {
+      setisDisabled({ ...isDisabled, [type]: false });
+    }, 2000);
   }
 
   return (
@@ -84,23 +118,45 @@ function ModelTypesControls(props: Props) {
             <option value="cylinders">Cylinder</option>
           </select>
         </div>
-        <button id="add-model" className="design-btn" onClick={addModel}>
+        <button
+          id="add-model"
+          className="design-btn"
+          disabled={isDisabled.add}
+          onClick={() => {
+            disableBtn("add");
+            addModel();
+          }}
+        >
           Add
         </button>
       </div>
-      <div className="flex">
-        <h1 className="mr-4">
-          Selected:{" "}
-          <span className="text-blue-500">
-            {selectedModel.type === "planes" && "Plane"}
-            {selectedModel.type === "boxes" && "Box"}
-            {selectedModel.type === "spheres" && "Sphere"}
-            {selectedModel.type === "shapes" && "Shape"}
-            {selectedModel.type === "cylinders" && "Cylinder"}
-          </span>{" "}
-          {/* from ({selectedGroup.name}) */}
-        </h1>
-      </div>
+      {selectedModel.id > 0 && (
+        <div className="flex mt-1">
+          <h1 className="w-1/3 min-w-fit mr-3">
+            Selected:{" "}
+            <span className="text-blue-500">
+              {selectedModel.type === "planes" && "Plane"}
+              {selectedModel.type === "boxes" && "Box"}
+              {selectedModel.type === "spheres" && "Sphere"}
+              {selectedModel.type === "shapes" && "Shape"}
+              {selectedModel.type === "cylinders" && "Cylinder"}
+            </span>{" "}
+            {/* from ({selectedGroup.name}) */}
+          </h1>
+          <div>
+            <button
+              className="design-btn px-2 min-w-fit whitespace-nowrap hover:bg-green-600 isDisabled:opacity-60"
+              disabled={isDisabled.copy}
+              onClick={() => {
+                disableBtn("copy");
+                copyModel();
+              }}
+            >
+              Copy Model
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

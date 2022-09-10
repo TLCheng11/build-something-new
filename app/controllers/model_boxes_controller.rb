@@ -1,10 +1,16 @@
 class ModelBoxesController < ApplicationController
-  before_action :find_model_box, only: [:update, :destroy]
+  before_action :find_model_box, only: [:update, :destroy, :copy]
 
-  # GET /model_boxes/1
+  # POST /model_boxes/1
   def create
     @model_box = ModelBox.create!(model_box_params)
     render json: @model_box, status: :created
+  end
+
+  # POST /model_boxes_copy/1
+  def copy
+    new_box = @model_box.copy
+    render json: new_box, status: :created
   end
 
   # PATCH/PUT /model_boxes/1
