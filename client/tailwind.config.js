@@ -31,6 +31,9 @@ module.exports = {
       scale: {
         200: "2",
       },
+      rotate: {
+        36: "36deg",
+      },
     },
   },
   plugins: [],

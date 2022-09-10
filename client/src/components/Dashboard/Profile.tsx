@@ -118,7 +118,7 @@ function Profile() {
             </button>
           </div>
           {showEmailForm && (
-            <div className="px-2 py-1 rounded text-xl bg-blue-400">
+            <div className="px-2 py-1 flex justify-center rounded text-xl bg-blue-400">
               <form
                 onSubmit={(e) => {
                   if (validateEmail(e)) {
