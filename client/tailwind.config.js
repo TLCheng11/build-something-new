@@ -26,7 +26,7 @@ module.exports = {
         control: "360px",
         225: "225px",
         360: "360px",
-        460: "460px",
+        480: "480px",
       },
       scale: {
         200: "2",
