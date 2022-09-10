@@ -71,7 +71,7 @@ function ModelShape(props: Props) {
   ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     shape.xposition || 0,
-    shape.yposition || 4,
+    shape.yposition || 0,
     shape.zposition || 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([

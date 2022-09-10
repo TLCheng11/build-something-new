@@ -69,15 +69,15 @@ function ModelCylinder(props: Props) {
   const [selfSize, setselfSize] = useState<
     [number, number, number, number, number]
   >([
-    cylinder.radius_top || 0.5,
-    cylinder.radius_bottom || 0.5,
+    cylinder.radius_top || 0,
+    cylinder.radius_bottom || 0,
     cylinder.height || 1,
     cylinder.segments || 3,
     cylinder.theta_length || 360,
   ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     cylinder.xposition || 0,
-    cylinder.yposition || 4,
+    cylinder.yposition || 0,
     cylinder.zposition || 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([

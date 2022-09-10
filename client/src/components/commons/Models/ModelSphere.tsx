@@ -70,14 +70,14 @@ function ModelSphere(props: Props) {
     [number, number, number, number, number]
   >([
     sphere.radius || 0.5,
-    sphere.width_segments || 32,
-    sphere.height_segments || 16,
+    sphere.width_segments || 0,
+    sphere.height_segments || 0,
     sphere.phi_length || 360,
     sphere.theta_length || 360,
   ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     sphere.xposition || 0,
-    sphere.yposition || 4,
+    sphere.yposition || 0,
     sphere.zposition || 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([

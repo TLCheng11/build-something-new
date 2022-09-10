@@ -221,7 +221,7 @@ function ModelSizeContorls(props: Props) {
               className="design-input"
               type="range"
               min="1"
-              max="360"
+              max="720"
               name="model-phi-length"
               value={sphereSize[3]}
               onChange={(e) =>
@@ -244,7 +244,7 @@ function ModelSizeContorls(props: Props) {
               className="design-input"
               type="range"
               min="1"
-              max="360"
+              max="720"
               name="model-theta-length"
               value={sphereSize[4]}
               onChange={(e) =>
@@ -422,7 +422,7 @@ function ModelSizeContorls(props: Props) {
               className="design-input"
               type="range"
               min={1}
-              max={360}
+              max={720}
               name="model-theta-length"
               value={cylinderSize[4]}
               onChange={(e) =>

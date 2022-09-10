@@ -70,7 +70,7 @@ function ModelBox(props: Props) {
   ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     box.xposition || 0,
-    box.yposition || 4,
+    box.yposition || 0,
     box.zposition || 0,
   ]);
   const [selfRotation, setselfRotation] = useState<[number, number, number]>([
