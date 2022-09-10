@@ -7,6 +7,10 @@ interface Props {
   setshowGridGroup: React.Dispatch<React.SetStateAction<boolean>>;
   showGridModel: boolean;
   setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
+  gridMain: [number, number, string, string];
+  setgridMain: React.Dispatch<
+    React.SetStateAction<[number, number, string, string]>
+  >;
 }
 
 function GridControls(props: Props) {
@@ -17,6 +21,8 @@ function GridControls(props: Props) {
     setshowGridGroup,
     showGridModel,
     setshowGridModel,
+    gridMain,
+    setgridMain,
   } = props;
 
   return (
@@ -53,6 +59,24 @@ function GridControls(props: Props) {
             onChange={(e) => setshowGridModel(e.target.checked)}
           />
         </div>
+      </div>
+      <div className="mb-2">
+        <label htmlFor="main-grid-size">Main Grid Size:</label>
+        <input
+          className="design-input"
+          name="main-grid-size"
+          type="number"
+          min={10}
+          value={gridMain[0]}
+          onChange={(e) => {
+            setgridMain([
+              parseInt(e.target.value),
+              parseInt(e.target.value) * 2,
+              gridMain[2],
+              gridMain[3],
+            ]);
+          }}
+        />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ function MenuTop() {
   const wh = (window.innerHeight / 3) * 2;
   const ww = window.innerWidth / 2;
   const { setcurrentUser } = useContext(UserContext);
-  const [showMenu, setshowMenu] = useState<boolean>(true);
+  const [showMenu, setshowMenu] = useState<boolean>(false);
   const [menuPosition, setmenuPosition] = useState<
     [number, number, number, number]
   >([0 - wh, 0 - ww, 0 - ww, 180]);

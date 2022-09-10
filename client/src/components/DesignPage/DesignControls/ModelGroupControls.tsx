@@ -163,21 +163,23 @@ function ModelGroupControls(props: Props) {
   }
 
   function deleteGroup() {
-    if (selectedGroup.id > 0) {
-      fetch(`/model_groups/${selectedGroup.id}`, {
-        method: "DELETE",
-      })
-        .then((res) => {
-          if (res.ok) {
-            res.json().then(() => {
-              setselectedGroup({
-                id: currentProject.model_groups[0].id,
-                name: currentProject.model_groups[0].group_name,
-              });
-            });
-          } else res.json().then((data) => alert(data.message));
+    if (window.confirm("Are you sure?")) {
+      if (selectedGroup.id > 0) {
+        fetch(`/model_groups/${selectedGroup.id}`, {
+          method: "DELETE",
         })
-        .catch(console.error);
+          .then((res) => {
+            if (res.ok) {
+              res.json().then(() => {
+                setselectedGroup({
+                  id: currentProject.model_groups[0].id,
+                  name: currentProject.model_groups[0].group_name,
+                });
+              });
+            } else res.json().then((data) => alert(data.message));
+          })
+          .catch(console.error);
+      }
     }
   }
 

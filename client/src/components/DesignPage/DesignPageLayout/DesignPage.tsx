@@ -119,6 +119,8 @@ function DesignPage() {
           setshowGridGroup={setshowGridGroup}
           showGridModel={showGridModel}
           setshowGridModel={setshowGridModel}
+          gridMain={gridMain}
+          setgridMain={setgridMain}
           selectedGroup={selectedGroup}
           setselectedGroup={setselectedGroup}
           groupPosition={groupPosition}
