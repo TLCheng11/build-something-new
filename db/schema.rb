@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_08_225619) do
     t.float "height", default: 1.0
     t.float "segments", default: 3.0
     t.float "theta_length", default: 360.0
+    t.boolean "open_ended", default: false
     t.float "xposition", default: 0.0
     t.float "yposition", default: 4.0
     t.float "zposition", default: 0.0

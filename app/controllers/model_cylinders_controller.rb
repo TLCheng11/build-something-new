@@ -29,6 +29,6 @@ class ModelCylindersController < ApplicationController
     end
 
     def model_cylinder_update_params
-      params.permit(:radius_top, :radius_bottom, :height, :segments, :theta_length, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation, :color)
+      params.permit(:radius_top, :radius_bottom, :height, :segments, :theta_length, :open_ended, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation, :color)
     end
 end

@@ -7,6 +7,7 @@ class CreateModelCylinders < ActiveRecord::Migration[7.0]
       t.float :height, default: 1
       t.float :segments, default: 3
       t.float :theta_length, default: 360
+      t.boolean :open_ended, default: false
       t.float :xposition, default: 0
       t.float :yposition, default: 4
       t.float :zposition, default: 0
