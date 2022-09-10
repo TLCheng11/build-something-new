@@ -32,6 +32,20 @@ function ModelRotationControls(props: Props) {
           }
         />
         <p>{rotation[0]}</p>
+        <input
+          className="w-4 ml-2 rounded-md"
+          type="number"
+          min={0}
+          max={360}
+          value={rotation[0]}
+          onChange={(e) =>
+            setrotation((rotation) => [
+              parseInt(e.target.value),
+              rotation[1],
+              rotation[2],
+            ])
+          }
+        />
       </div>
       <div className="flex">
         <div className="w-1/3">
@@ -53,6 +67,20 @@ function ModelRotationControls(props: Props) {
           }
         />
         <p>{rotation[1]}</p>
+        <input
+          className="w-4 ml-2 rounded-md"
+          type="number"
+          min={0}
+          max={360}
+          value={rotation[1]}
+          onChange={(e) =>
+            setrotation((rotation) => [
+              rotation[0],
+              parseInt(e.target.value),
+              rotation[2],
+            ])
+          }
+        />
       </div>
       <div className="flex">
         <div className="w-1/3">
@@ -74,6 +102,20 @@ function ModelRotationControls(props: Props) {
           }
         />
         <p>{rotation[2]}</p>
+        <input
+          className="w-4 ml-2 rounded-md"
+          type="number"
+          min={0}
+          max={360}
+          value={rotation[2]}
+          onChange={(e) =>
+            setrotation((rotation) => [
+              rotation[0],
+              rotation[1],
+              parseInt(e.target.value),
+            ])
+          }
+        />
       </div>
     </div>
   );

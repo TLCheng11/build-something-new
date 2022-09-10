@@ -98,7 +98,7 @@ function ModelTypesControls(props: Props) {
             {selectedModel.type === "shapes" && "Shape"}
             {selectedModel.type === "cylinders" && "Cylinder"}
           </span>{" "}
-          from ({selectedGroup.name})
+          {/* from ({selectedGroup.name}) */}
         </h1>
       </div>
     </div>

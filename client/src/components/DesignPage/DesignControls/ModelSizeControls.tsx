@@ -83,6 +83,86 @@ function ModelSizeContorls(props: Props) {
           </div>
         </div>
       )}
+
+      {selectedModel.type === "shapes" && (
+        <div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-radius">Radius:</label>
+            </div>
+            <input
+              className="design-input"
+              type="number"
+              min="0.1"
+              step={step}
+              name="model-radius"
+              value={shapeSize[0]}
+              onChange={(e) =>
+                setshapeSize((size) => [
+                  parseFloat(e.target.value),
+                  size[1],
+                  size[2],
+                ])
+              }
+            />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-segments">Segments:</label>
+            </div>
+            <input
+              className="design-input"
+              type="number"
+              min="3"
+              name="model-segments"
+              value={shapeSize[1]}
+              onChange={(e) =>
+                setshapeSize((size) => [
+                  size[0],
+                  parseFloat(e.target.value),
+                  size[2],
+                ])
+              }
+            />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-theta-length">Theta Length:</label>
+            </div>
+            <input
+              className="design-input"
+              type="range"
+              min={1}
+              max={720}
+              name="model-theta-length"
+              value={shapeSize[2]}
+              onChange={(e) =>
+                setshapeSize((size) => [
+                  size[0],
+                  size[1],
+                  parseFloat(e.target.value),
+                ])
+              }
+            />
+            <p>{shapeSize[2]}</p>
+            <input
+              className="w-4 ml-2 rounded-md"
+              type="number"
+              min={1}
+              max={720}
+              value={shapeSize[2]}
+              onChange={(e) =>
+                setshapeSize((size) => [
+                  size[0],
+                  size[1],
+                  parseFloat(e.target.value),
+                ])
+              }
+            />
+          </div>
+        </div>
+      )}
+
       {selectedModel.type === "boxes" && (
         <div>
           <div className="flex">
@@ -147,6 +227,7 @@ function ModelSizeContorls(props: Props) {
           </div>
         </div>
       )}
+
       {selectedModel.type === "spheres" && (
         <div>
           <div className="flex">
@@ -220,8 +301,8 @@ function ModelSizeContorls(props: Props) {
             <input
               className="design-input"
               type="range"
-              min="1"
-              max="720"
+              min={1}
+              max={720}
               name="model-phi-length"
               value={sphereSize[3]}
               onChange={(e) =>
@@ -235,69 +316,19 @@ function ModelSizeContorls(props: Props) {
               }
             />
             <div>{sphereSize[3]}</div>
-          </div>
-          <div className="flex">
-            <div className="w-1/3">
-              <label htmlFor="model-theta-length">Theta Length:</label>
-            </div>
             <input
-              className="design-input"
-              type="range"
-              min="1"
-              max="720"
-              name="model-theta-length"
-              value={sphereSize[4]}
+              className="w-4 ml-2 rounded-md"
+              type="number"
+              min={1}
+              max={720}
+              value={sphereSize[3]}
               onChange={(e) =>
                 setsphereSize((size) => [
                   size[0],
                   size[1],
                   size[2],
-                  size[3],
                   parseFloat(e.target.value),
-                ])
-              }
-            />
-            <div>{sphereSize[4]}</div>
-          </div>
-        </div>
-      )}
-      {selectedModel.type === "shapes" && (
-        <div>
-          <div className="flex">
-            <div className="w-1/3">
-              <label htmlFor="model-radius">Radius:</label>
-            </div>
-            <input
-              className="design-input"
-              type="number"
-              min="0.1"
-              step={step}
-              name="model-radius"
-              value={shapeSize[0]}
-              onChange={(e) =>
-                setshapeSize((size) => [
-                  parseFloat(e.target.value),
-                  size[1],
-                  size[2],
-                ])
-              }
-            />
-          </div>
-          <div className="flex">
-            <div className="w-1/3">
-              <label htmlFor="model-segments">Segments:</label>
-            </div>
-            <input
-              className="design-input"
-              type="number"
-              min="3"
-              name="model-segments"
-              value={shapeSize[1]}
-              onChange={(e) =>
-                setshapeSize((size) => [
-                  size[0],
-                  parseFloat(e.target.value),
-                  size[2],
+                  size[4],
                 ])
               }
             />
@@ -312,19 +343,38 @@ function ModelSizeContorls(props: Props) {
               min={1}
               max={720}
               name="model-theta-length"
-              value={shapeSize[2]}
+              value={sphereSize[4]}
               onChange={(e) =>
-                setshapeSize((size) => [
+                setsphereSize((size) => [
                   size[0],
                   size[1],
+                  size[2],
+                  size[3],
                   parseFloat(e.target.value),
                 ])
               }
             />
-            <p>{shapeSize[2]}</p>
+            <div>{sphereSize[4]}</div>
+            <input
+              className="w-4 ml-2 rounded-md"
+              type="number"
+              min={1}
+              max={720}
+              value={sphereSize[4]}
+              onChange={(e) =>
+                setsphereSize((size) => [
+                  size[0],
+                  size[1],
+                  size[2],
+                  size[3],
+                  parseFloat(e.target.value),
+                ])
+              }
+            />
           </div>
         </div>
       )}
+
       {selectedModel.type === "cylinders" && (
         <div>
           <div className="flex">
@@ -436,6 +486,22 @@ function ModelSizeContorls(props: Props) {
               }
             />
             <p>{cylinderSize[4]}</p>
+            <input
+              className="w-4 ml-2 rounded-md"
+              type="number"
+              min={1}
+              max={720}
+              value={cylinderSize[4]}
+              onChange={(e) =>
+                setcylinderSize((size) => [
+                  size[0],
+                  size[1],
+                  size[2],
+                  size[3],
+                  parseFloat(e.target.value),
+                ])
+              }
+            />
           </div>
         </div>
       )}
