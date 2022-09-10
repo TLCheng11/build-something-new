@@ -41,6 +41,48 @@ class ModelGroup < ApplicationRecord
     return group
   end
 
+  def copy(pos = 1, group_id = 0)
+    # to create first group layer
+    attributes = Hash.new
+    self.attributes.each do |k, v|
+      if (k == "project_id" || k == "xposition" || k == "xrotation" || k == "yrotation" || k == "zrotation")
+        attributes["#{k}"] = v
+      elsif (k == "yposition" || k == "zposition")
+        attributes["#{k}"] = v + pos
+      elsif (k == "parent_group_id")
+        attributes["#{k}"] = group_id > 0 ? group_id : v
+      elsif (k == "group_name")
+        attributes["#{k}"] = v + "(" + Time.now.iso8601 + ")"
+      end
+    end
+    new_group = ModelGroup.create!(attributes)
+
+    
+    # to create all child groups
+    self.child_groups.each do |group|
+      group.copy(0, new_group.id)
+    end
+
+    # to create all child models
+    self.model_planes.each do |plane|
+      plane.copy(0, new_group.id)
+    end
+    self.model_shapes.each do |shape|
+      shape.copy(0, new_group.id)
+    end
+    self.model_boxes.each do |box|
+      box.copy(0, new_group.id)
+    end
+    self.model_spheres.each do |sphere|
+      sphere.copy(0, new_group.id)
+    end
+    self.model_cylinders.each do |cylinder|
+      cylinder.copy(0, new_group.id)
+    end
+
+    new_group
+  end
+
   # wip
   # def is_child?(id, group)
   #   children = group.child_groups

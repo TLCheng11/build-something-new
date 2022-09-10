@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
     # model_groups
     resources :model_groups, only: [:show, :create, :update, :destroy]
+    post "model_groups_copy/:id", to: "model_groups#copy"
     patch "/model_groups/:id/attach", to: "model_groups#attach"
     patch "/model_groups/:id/detach", to: "model_groups#detach"
 

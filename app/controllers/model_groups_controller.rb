@@ -1,5 +1,5 @@
 class ModelGroupsController < ApplicationController
-  before_action :find_model_group, only: [:show, :update, :destroy, :attach, :detach]
+  before_action :find_model_group, only: [:show, :update, :destroy, :attach, :detach, :copy]
 
   # GET /model_groups/1
   def show
@@ -10,6 +10,12 @@ class ModelGroupsController < ApplicationController
   def create
     @model_group = ModelGroup.create!(model_group_params)
     render json: @model_group, status: :created
+  end
+
+  # POST /model_groups_copy/1
+  def copy
+    new_group = @model_group.copy
+    render json: new_group, status: :created
   end
 
   # PATCH/PUT /model_groups/1

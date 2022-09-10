@@ -43,6 +43,10 @@ function ModelGroupControls(props: Props) {
   const [editName, seteditName] = useState<string>("");
   const [parentGroupId, setparentGroupId] = useState<number>(0);
   const [parentGroupName, setparentGroupName] = useState<string>("None");
+  const [isDisabled, setisDisabled] = useState<{
+    create: boolean;
+    copy: boolean;
+  }>({ create: false, copy: false });
 
   // options for group selection
   const groupList = currentProject.model_groups?.map((group) => (
@@ -77,6 +81,7 @@ function ModelGroupControls(props: Props) {
 
   function createGroup(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    disableBtn("create");
     fetch("/model_groups", {
       method: "POST",
       headers: {
@@ -183,6 +188,37 @@ function ModelGroupControls(props: Props) {
     }
   }
 
+  function copyGroup() {
+    if (window.confirm("Are you sure?")) {
+      if (selectedGroup.id > 0) {
+        const id = selectedGroup.id;
+        setselectedGroup({ ...selectedGroup, id: 0 });
+        setTimeout(() => {
+          fetch(`/model_groups_copy/${id}`, {
+            method: "POST",
+          })
+            .then((res) => {
+              if (res.ok) {
+                res
+                  .json()
+                  .then((data) =>
+                    setselectedGroup({ id: data.id, name: data.group_name })
+                  );
+              } else res.json().then(console.log);
+            })
+            .catch(console.error);
+        }, 500);
+      }
+    }
+  }
+
+  function disableBtn(type: string) {
+    setisDisabled({ ...isDisabled, [type]: true });
+    setTimeout(() => {
+      setisDisabled({ create: false, copy: false });
+    }, 2000);
+  }
+
   return (
     <div className="h-full w-full py-2 mb-2 bg-gray-600 border-t border-b border-black">
       <div className="flex mb-2">
@@ -206,7 +242,11 @@ function ModelGroupControls(props: Props) {
             onChange={(e) => setgroupName(e.target.value)}
             required
           />
-          <button className="design-btn" type="submit">
+          <button
+            className="design-btn"
+            type="submit"
+            disabled={isDisabled.create}
+          >
             Create
           </button>
         </form>
@@ -226,6 +266,16 @@ function ModelGroupControls(props: Props) {
         >
           {groupList}
         </select>
+        <button
+          className="design-btn"
+          disabled={isDisabled.copy}
+          onClick={() => {
+            disableBtn("copy");
+            copyGroup();
+          }}
+        >
+          Copy
+        </button>
       </div>
       {/* edit group name */}
       <div className="flex">

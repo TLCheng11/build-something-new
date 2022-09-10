@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface Props {
   selectedGroup: {
@@ -85,8 +85,8 @@ function ModelTypesControls(props: Props) {
 
   function disableBtn(type: string) {
     setisDisabled({ ...isDisabled, [type]: true });
-    const id = setTimeout(() => {
-      setisDisabled({ ...isDisabled, [type]: false });
+    setTimeout(() => {
+      setisDisabled({ add: false, copy: false });
     }, 2000);
   }
 
