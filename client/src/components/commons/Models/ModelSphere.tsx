@@ -6,6 +6,7 @@ import { IModelGroup, IModelSphere } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
+  showMenu: boolean;
   group: IModelGroup;
   sphere: IModelSphere;
   gridModel: [number, number, string, string];
@@ -44,6 +45,7 @@ interface Props {
 
 function ModelSphere(props: Props) {
   const {
+    showMenu,
     group,
     sphere,
     gridModel,
@@ -217,6 +219,7 @@ function ModelSphere(props: Props) {
       >
         {selfShowGrid && (
           <GridLayout
+            showMenu={showMenu}
             type="Model"
             gridArgs={gridModel}
             gridPosition={[0, 0, 0]}

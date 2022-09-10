@@ -1,13 +1,14 @@
 import { Box, Html } from "@react-three/drei";
 
 interface Props {
+  showMenu: boolean;
   type: string;
   gridArgs: [number, number, string, string];
   gridPosition?: [number, number, number];
 }
 
 function GridLayout(props: Props) {
-  const { type, gridArgs, gridPosition } = props;
+  const { showMenu, type, gridArgs, gridPosition } = props;
   const factor: number = type === "Main" ? 20 : 10;
 
   return (
@@ -25,51 +26,58 @@ function GridLayout(props: Props) {
       >
         <gridHelper args={gridArgs} />
       </Box>
-      <Html
-        position={[gridArgs[0] / 2 + 0.2, 0.4, 0.2]}
-        distanceFactor={factor}
-      >
-        <div>
-          <h1 className="text-4xl select-none">X+</h1>
-        </div>
-      </Html>
-      <Html
-        position={[-gridArgs[0] / 2 - factor / 25, 0.4, 0.2]}
-        distanceFactor={factor}
-      >
-        <div>
-          <h1 className="text-4xl select-none">X-</h1>
-        </div>
-      </Html>
-      <Html
-        position={[-0.2, gridArgs[0] / 2 + factor / 25, 0.2]}
-        distanceFactor={factor}
-      >
-        <div>
-          <h1 className="text-4xl select-none">Y+</h1>
-        </div>
-      </Html>
-      <Html position={[-0.2, -gridArgs[0] / 2, 0.2]} distanceFactor={factor}>
-        <div>
-          <h1 className="text-4xl select-none">Y-</h1>
-        </div>
-      </Html>
-      <Html
-        position={[-0.2, 0.4, gridArgs[0] / 2 + factor / 25]}
-        distanceFactor={factor}
-      >
-        <div>
-          <h1 className="text-4xl select-none">Z+</h1>
-        </div>
-      </Html>
-      <Html
-        position={[-0.2, 0.4, -gridArgs[0] / 2 - 0.2]}
-        distanceFactor={factor}
-      >
-        <div>
-          <h1 className="text-4xl select-none">Z-</h1>
-        </div>
-      </Html>
+      {!showMenu && (
+        <>
+          <Html
+            position={[gridArgs[0] / 2 + 0.2, 0.4, 0.2]}
+            distanceFactor={factor}
+          >
+            <div>
+              <h1 className="text-4xl select-none">X+</h1>
+            </div>
+          </Html>
+          <Html
+            position={[-gridArgs[0] / 2 - factor / 25, 0.4, 0.2]}
+            distanceFactor={factor}
+          >
+            <div>
+              <h1 className="text-4xl select-none">X-</h1>
+            </div>
+          </Html>
+          <Html
+            position={[-0.2, gridArgs[0] / 2 + factor / 25, 0.2]}
+            distanceFactor={factor}
+          >
+            <div>
+              <h1 className="text-4xl select-none">Y+</h1>
+            </div>
+          </Html>
+          <Html
+            position={[-0.2, -gridArgs[0] / 2, 0.2]}
+            distanceFactor={factor}
+          >
+            <div>
+              <h1 className="text-4xl select-none">Y-</h1>
+            </div>
+          </Html>
+          <Html
+            position={[-0.2, 0.4, gridArgs[0] / 2 + factor / 25]}
+            distanceFactor={factor}
+          >
+            <div>
+              <h1 className="text-4xl select-none">Z+</h1>
+            </div>
+          </Html>
+          <Html
+            position={[-0.2, 0.4, -gridArgs[0] / 2 - 0.2]}
+            distanceFactor={factor}
+          >
+            <div>
+              <h1 className="text-4xl select-none">Z-</h1>
+            </div>
+          </Html>
+        </>
+      )}
     </group>
   );
 }

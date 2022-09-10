@@ -4,7 +4,11 @@ import { IProject } from "../../../Interface";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
-function DesignPage() {
+interface Props {
+  showMenu: boolean;
+}
+
+function DesignPage({ showMenu }: Props) {
   let navigate = useNavigate();
   const params = useParams();
   const [notFound, setnotFound] = useState<boolean>(false);
@@ -151,6 +155,7 @@ function DesignPage() {
       </div>
       <div id="design-canvas-holder" className="h-full w-3/4 border">
         <DesignCanvas
+          showMenu={showMenu}
           refresh={refresh}
           currentProject={currentProject}
           gridMain={gridMain}

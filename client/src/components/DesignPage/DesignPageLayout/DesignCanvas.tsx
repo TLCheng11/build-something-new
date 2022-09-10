@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import ModelLight from "../../commons/Models/ModelLight";
 
 interface Props {
+  showMenu: boolean;
   refresh: boolean;
   currentProject: IProject;
   gridMain: [number, number, string, string];
@@ -67,6 +68,7 @@ interface Props {
 
 function DesignCanvas(props: Props) {
   const {
+    showMenu,
     refresh,
     currentProject,
     gridMain,
@@ -106,6 +108,7 @@ function DesignCanvas(props: Props) {
     .map((group) => (
       <ModelGroup
         key={group.id}
+        showMenu={showMenu}
         refresh={refresh}
         group={group}
         gridGroup={gridGroup}
@@ -145,7 +148,9 @@ function DesignCanvas(props: Props) {
         <OrbitControls />
         <ModelLight />
         <Suspense fallback={null}>
-          {showGridMain && <GridLayout type="Main" gridArgs={gridMain} />}
+          {showGridMain && (
+            <GridLayout showMenu={showMenu} type="Main" gridArgs={gridMain} />
+          )}
           {showModelGroups}
         </Suspense>
       </Canvas>

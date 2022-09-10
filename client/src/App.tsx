@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { UserContext } from "./contexts/UserContext";
 import LoginScreen from "./components/LoginScreen/LoginScreen";
@@ -13,6 +13,7 @@ import Profile from "./components/Dashboard/Profile";
 
 function App() {
   const { currentUser, setcurrentUser } = useContext(UserContext);
+  const [showMenu, setshowMenu] = useState<boolean>(false);
 
   // only authorize logged in users
   useEffect(() => {
@@ -44,7 +45,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <MenuTop />
+      <MenuTop showMenu={showMenu} setshowMenu={setshowMenu} />
       <div className="App">
         <Routes>
           <Route path="/" element={<LoginScreen />} />
@@ -58,7 +59,10 @@ function App() {
               element={<div className="text-6xl">Page Not Found</div>}
             />
           </Route>
-          <Route path="/project-design/:project_id" element={<DesignPage />} />
+          <Route
+            path="/project-design/:project_id"
+            element={<DesignPage showMenu={showMenu} />}
+          />
           <Route
             path="/project-detail-view/:project_id"
             element={<DetailView />}

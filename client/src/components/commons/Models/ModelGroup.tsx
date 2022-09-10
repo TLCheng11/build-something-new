@@ -8,6 +8,7 @@ import ModelShape from "./ModelShape";
 import ModelSphere from "./ModelSphere";
 
 interface Props {
+  showMenu: boolean;
   refresh: boolean;
   group: IModelGroup;
   gridGroup: [number, number, string, string];
@@ -66,6 +67,7 @@ interface Props {
 
 function ModelGroup(props: Props) {
   const {
+    showMenu,
     refresh,
     group,
     gridGroup,
@@ -121,8 +123,9 @@ function ModelGroup(props: Props) {
 
   const showChildGroups = childGroups.map((group) => (
     <ModelGroup
-      refresh={refresh}
       key={group.id}
+      showMenu={showMenu}
+      refresh={refresh}
       group={group}
       gridGroup={gridGroup}
       showGridGroup={showGridGroup}
@@ -158,6 +161,7 @@ function ModelGroup(props: Props) {
   const showModelPlanes = group.model_planes?.map((plane) => (
     <ModelPlane
       key={plane.id}
+      showMenu={showMenu}
       group={group}
       plane={plane}
       gridModel={gridModel}
@@ -180,6 +184,7 @@ function ModelGroup(props: Props) {
   const showModelShapes = group.model_shapes?.map((shape) => (
     <ModelShape
       key={shape.id}
+      showMenu={showMenu}
       group={group}
       shape={shape}
       gridModel={gridModel}
@@ -202,6 +207,7 @@ function ModelGroup(props: Props) {
   const showModelBoxes = group.model_boxes?.map((box) => (
     <ModelBox
       key={box.id}
+      showMenu={showMenu}
       group={group}
       box={box}
       gridModel={gridModel}
@@ -224,6 +230,7 @@ function ModelGroup(props: Props) {
   const showModelSpheres = group.model_spheres?.map((sphere) => (
     <ModelSphere
       key={sphere.id}
+      showMenu={showMenu}
       group={group}
       sphere={sphere}
       gridModel={gridModel}
@@ -246,6 +253,7 @@ function ModelGroup(props: Props) {
   const showModelCylinders = group.model_cylinders?.map((cylinder) => (
     <ModelCylinder
       key={cylinder.id}
+      showMenu={showMenu}
       group={group}
       cylinder={cylinder}
       gridModel={gridModel}
@@ -351,6 +359,7 @@ function ModelGroup(props: Props) {
       >
         {selfShowGrid && (
           <GridLayout
+            showMenu={showMenu}
             type="Group"
             gridArgs={gridGroup}
             gridPosition={[0, 0, 0]}

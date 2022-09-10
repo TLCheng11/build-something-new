@@ -6,6 +6,7 @@ import { IModelGroup, IModelPlane } from "../../../Interface";
 import GridLayout from "./GridLayout";
 
 interface Props {
+  showMenu: boolean;
   group: IModelGroup;
   plane: IModelPlane;
   gridModel: [number, number, string, string];
@@ -42,6 +43,7 @@ interface Props {
 
 function ModelPlane(props: Props) {
   const {
+    showMenu,
     group,
     plane,
     gridModel,
@@ -200,6 +202,7 @@ function ModelPlane(props: Props) {
       >
         {selfShowGrid && (
           <GridLayout
+            showMenu={showMenu}
             type="Model"
             gridArgs={gridModel}
             gridPosition={[0, 0, 0]}
