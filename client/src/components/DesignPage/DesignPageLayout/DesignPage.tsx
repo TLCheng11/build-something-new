@@ -74,8 +74,8 @@ function DesignPage({ showMenu }: Props) {
     0.5, 32, 360,
   ]);
   const [cylinderSize, setcylinderSize] = useState<
-    [number, number, number, number, number]
-  >([0.5, 0.5, 1, 3, 360]);
+    [number, number, number, number, number, boolean]
+  >([0.5, 0.5, 1, 3, 360, false]);
   const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
   const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
   const [modelColor, setmodelColor] = useState<string>("#396BA7");

@@ -31,9 +31,9 @@ interface Props {
       id: number;
     }>
   >;
-  cylinderSize: [number, number, number, number, number];
+  cylinderSize: [number, number, number, number, number, boolean];
   setcylinderSize: React.Dispatch<
-    React.SetStateAction<[number, number, number, number, number]>
+    React.SetStateAction<[number, number, number, number, number, boolean]>
   >;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
@@ -67,13 +67,14 @@ function ModelCylinder(props: Props) {
   // states for all self properties
   const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
   const [selfSize, setselfSize] = useState<
-    [number, number, number, number, number]
+    [number, number, number, number, number, boolean]
   >([
     cylinder.radius_top || 0,
     cylinder.radius_bottom || 0,
     cylinder.height || 1,
     cylinder.segments || 3,
     cylinder.theta_length || 360,
+    cylinder.open_ended || false,
   ]);
   const [selfPosition, setSelfPosition] = useState<[number, number, number]>([
     cylinder.xposition || 0,
@@ -94,7 +95,8 @@ function ModelCylinder(props: Props) {
   useCursor(hovered);
 
   // using ref to override the useEffect clean up original state problem
-  const sizeRef = useRef<[number, number, number, number, number]>(selfSize);
+  const sizeRef =
+    useRef<[number, number, number, number, number, boolean]>(selfSize);
   const positionRef = useRef<[number, number, number]>(selfPosition);
   const rotationRef = useRef<[number, number, number]>(selfRotation);
   const colorRef = useRef<String>(selfColor);
@@ -203,6 +205,7 @@ function ModelCylinder(props: Props) {
           height: sizeRef.current[2],
           segments: sizeRef.current[3],
           theta_length: sizeRef.current[4],
+          open_ended: sizeRef.current[5],
           xposition: positionRef.current[0],
           yposition: positionRef.current[1],
           zposition: positionRef.current[2],
@@ -224,7 +227,7 @@ function ModelCylinder(props: Props) {
           selfSize[2],
           selfSize[3],
           1,
-          false,
+          selfSize[5],
           0,
           (selfSize[4] / 360) * Math.PI * 2,
         ]}

@@ -53,9 +53,9 @@ interface Props {
   >;
   shapeSize: [number, number, number];
   setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
-  cylinderSize: [number, number, number, number, number];
+  cylinderSize: [number, number, number, number, number, boolean];
   setcylinderSize: React.Dispatch<
-    React.SetStateAction<[number, number, number, number, number]>
+    React.SetStateAction<[number, number, number, number, number, boolean]>
   >;
   position: [number, number, number];
   setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;

@@ -133,6 +133,7 @@ export interface IModelCylinder {
   height?: number | undefined;
   segments?: number | undefined;
   theta_length?: number | undefined;
+  open_ended?: boolean | undefined;
   xposition?: number | undefined;
   yposition?: number | undefined;
   zposition?: number | undefined;

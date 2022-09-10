@@ -20,9 +20,9 @@ interface Props {
     React.SetStateAction<[number, number, number, number, number]>
   >;
   shapeSize: [number, number, number];
-  cylinderSize: [number, number, number, number, number];
+  cylinderSize: [number, number, number, number, number, boolean];
   setcylinderSize: React.Dispatch<
-    React.SetStateAction<[number, number, number, number, number]>
+    React.SetStateAction<[number, number, number, number, number, boolean]>
   >;
   setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
@@ -395,6 +395,7 @@ function ModelSizeContorls(props: Props) {
                   size[2],
                   size[3],
                   size[4],
+                  size[5],
                 ])
               }
             />
@@ -417,6 +418,7 @@ function ModelSizeContorls(props: Props) {
                   size[2],
                   size[3],
                   size[4],
+                  size[5],
                 ])
               }
             />
@@ -439,6 +441,7 @@ function ModelSizeContorls(props: Props) {
                   parseFloat(e.target.value),
                   size[3],
                   size[4],
+                  size[5],
                 ])
               }
             />
@@ -460,6 +463,7 @@ function ModelSizeContorls(props: Props) {
                   size[2],
                   parseFloat(e.target.value),
                   size[4],
+                  size[5],
                 ])
               }
             />
@@ -482,6 +486,7 @@ function ModelSizeContorls(props: Props) {
                   size[2],
                   size[3],
                   parseFloat(e.target.value),
+                  size[5],
                 ])
               }
             />
@@ -499,6 +504,28 @@ function ModelSizeContorls(props: Props) {
                   size[2],
                   size[3],
                   parseFloat(e.target.value),
+                  size[5],
+                ])
+              }
+            />
+          </div>
+          <div className="flex">
+            <div className="w-1/3">
+              <label htmlFor="model-open-ended">Open Ended:</label>
+            </div>
+            <input
+              className="design-input"
+              type="checkbox"
+              name="model-open-ended"
+              checked={cylinderSize[5]}
+              onChange={(e) =>
+                setcylinderSize((size) => [
+                  size[0],
+                  size[1],
+                  size[2],
+                  size[3],
+                  size[4],
+                  e.target.checked,
                 ])
               }
             />

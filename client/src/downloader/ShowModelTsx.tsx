@@ -154,7 +154,7 @@ function Group({ group }: Props) {
             cylinder.height || 0,
             cylinder.segments || 0,
             1,
-            false,
+            cylinder.open_ended || false,
             0,
             ((cylinder.theta_length || 360) / 360) * Math.PI * 2,
           ]}
