@@ -15,7 +15,7 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
 
   const [menuPosition, setmenuPosition] = useState<
     [number, number, number, number]
-  >([0 - wh, 0 - ww, 0 - ww, 180]);
+  >([0 - wh, 0 - ww, 0 - ww, -180]);
 
   useEffect(() => {
     if (showMenu) {
@@ -46,12 +46,12 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
       <div className="text-6xl">
         <div
           id="menu-top"
-          className="flex items-center justify-center h-3/5 w-screen z-40 fixed text-red-400 bg-blue-500 transition-all duration-700 ease-in"
+          className="flex items-center justify-center h-3/5 w-screen z-40 fixed text-red-400 bg-blue-500 transition-all duration-1000 ease-in"
           style={{
             clipPath: "polygon(0 0, 50% 100%, 100% 0)",
-            top: menuPosition[0],
-            // transformOrigin: "top",
-            // transform: `rotateX(${menuPosition[3]}deg)`,
+            // top: menuPosition[0],
+            transformOrigin: "top",
+            transform: `rotateX(${menuPosition[3]}deg)`,
             // transform: `rotate(${menuPosition[3]}deg)`,
           }}
         >
@@ -65,12 +65,12 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
         </nav> */}
         </div>
         <div
-          className="h-full w-1/2 z-40 fixed flex items-center justify-center text-green-400 bg-red-400 transition-all duration-700 ease-in"
+          className="h-full w-1/2 z-40 fixed flex items-center justify-center text-green-400 bg-red-400 transition-all duration-1000 ease-in"
           style={{
             clipPath: "polygon(0 0, 100% 59.9%, 100% 100%, 0% 100%)",
-            left: menuPosition[1],
-            // transformOrigin: "left",
-            // transform: `rotateY(${menuPosition[3]}deg)`,
+            // left: menuPosition[1],
+            transformOrigin: "left",
+            transform: `rotateY(${menuPosition[3]}deg)`,
             // transform: `rotate(${menuPosition[3]}deg)`,
           }}
         >
@@ -81,12 +81,12 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
           </NavLink>
         </div>
         <div
-          className="h-full w-1/2 z-40 fixed flex items-center justify-center right-0 text-blue-500 bg-green-400 transition-all duration-700 ease-in"
+          className="h-full w-1/2 z-40 fixed flex items-center justify-center right-0 text-blue-500 bg-green-400 transition-all duration-1000 ease-in"
           style={{
             clipPath: "polygon(0 59.9%, 100% 0, 100% 100%, 0% 100%)",
-            right: menuPosition[2],
-            // transformOrigin: "right",
-            // transform: `rotateY(${menuPosition[3]}deg)`,
+            // right: menuPosition[2],
+            transformOrigin: "right",
+            transform: `rotateY(${menuPosition[3]}deg)`,
             // transform: `rotate(${menuPosition[3]}deg)`,
           }}
         >
