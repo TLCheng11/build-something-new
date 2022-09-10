@@ -67,6 +67,7 @@ function GridControls(props: Props) {
           name="main-grid-size"
           type="number"
           min={10}
+          max={9999}
           value={gridMain[0]}
           onChange={(e) => {
             setgridMain([

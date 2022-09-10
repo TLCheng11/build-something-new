@@ -238,6 +238,7 @@ function ModelGroupControls(props: Props) {
             className="design-input"
             name="group-name"
             placeholder="Enter Group Name"
+            maxLength={50}
             value={groupName}
             onChange={(e) => setgroupName(e.target.value)}
             required
@@ -285,6 +286,7 @@ function ModelGroupControls(props: Props) {
             className="design-input"
             name="edit-group-name"
             placeholder={selectedGroup.name}
+            maxLength={50}
             value={editName}
             onChange={(e) => seteditName(e.target.value)}
             required
