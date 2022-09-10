@@ -514,7 +514,7 @@ function ModelSizeContorls(props: Props) {
               <label htmlFor="model-open-ended">Open Ended:</label>
             </div>
             <input
-              className="design-input"
+              className="design-input relative -left-14"
               type="checkbox"
               name="model-open-ended"
               checked={cylinderSize[5]}
