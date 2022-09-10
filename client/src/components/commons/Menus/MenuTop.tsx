@@ -41,10 +41,12 @@ function MenuTop() {
       <div className="text-6xl">
         <div
           id="menu-top"
-          className="flex items-center justify-center h-3/5 w-screen z-40 fixed text-red-400 bg-blue-500 transition-all duration-500 ease-in"
+          className="flex items-center justify-center h-3/5 w-screen z-40 fixed text-red-400 bg-blue-500 transition-all duration-700 ease-in"
           style={{
             clipPath: "polygon(0 0, 50% 100%, 100% 0)",
             top: menuPosition[0],
+            // transformOrigin: "top",
+            // transform: `rotateX(${menuPosition[3]}deg)`,
             // transform: `rotate(${menuPosition[3]}deg)`,
           }}
         >
@@ -58,10 +60,12 @@ function MenuTop() {
         </nav> */}
         </div>
         <div
-          className="h-full w-1/2 z-40 fixed flex items-center justify-center text-green-400 bg-red-400 transition-all duration-500 ease-in"
+          className="h-full w-1/2 z-40 fixed flex items-center justify-center text-green-400 bg-red-400 transition-all duration-700 ease-in"
           style={{
             clipPath: "polygon(0 0, 100% 59.9%, 100% 100%, 0% 100%)",
             left: menuPosition[1],
+            // transformOrigin: "left",
+            // transform: `rotateY(${menuPosition[3]}deg)`,
             // transform: `rotate(${menuPosition[3]}deg)`,
           }}
         >
@@ -72,10 +76,12 @@ function MenuTop() {
           </NavLink>
         </div>
         <div
-          className="h-full w-1/2 z-40 fixed flex items-center justify-center right-0 text-blue-500 bg-green-400 transition-all duration-500 ease-in"
+          className="h-full w-1/2 z-40 fixed flex items-center justify-center right-0 text-blue-500 bg-green-400 transition-all duration-700 ease-in"
           style={{
             clipPath: "polygon(0 59.9%, 100% 0, 100% 100%, 0% 100%)",
             right: menuPosition[2],
+            // transformOrigin: "right",
+            // transform: `rotateY(${menuPosition[3]}deg)`,
             // transform: `rotate(${menuPosition[3]}deg)`,
           }}
         >
