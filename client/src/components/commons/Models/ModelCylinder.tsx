@@ -238,6 +238,8 @@ function ModelCylinder(props: Props) {
           (selfRotation[2] / 360) * Math.PI * 2,
         ]}
         onClick={handleOnClick}
+        castShadow
+        receiveShadow
         onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
         onPointerOut={(e) => setHovered(false)}
       >

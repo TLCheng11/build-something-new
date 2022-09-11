@@ -195,6 +195,7 @@ function ModelPlane(props: Props) {
           (selfRotation[2] / 360) * Math.PI * 2,
           (selfRotation[1] / 360) * Math.PI * 2,
         ]}
+        castShadow
         receiveShadow
         onClick={handleOnClick}
         onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}

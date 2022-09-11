@@ -213,6 +213,8 @@ function ModelSphere(props: Props) {
           (selfRotation[1] / 360) * Math.PI * 2,
           (selfRotation[2] / 360) * Math.PI * 2,
         ]}
+        castShadow
+        receiveShadow
         onClick={handleOnClick}
         onPointerOver={(e) => (e.stopPropagation(), setHovered(true))}
         onPointerOut={(e) => setHovered(false)}
