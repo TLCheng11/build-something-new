@@ -11,6 +11,7 @@ interface Props {
 function DesignPage({ showMenu }: Props) {
   let navigate = useNavigate();
   const params = useParams();
+  const [firstLoad, setfirstLoad] = useState<boolean>(true);
   const [notFound, setnotFound] = useState<boolean>(false);
   const [refresh, setrefresh] = useState<boolean>(false);
   const [currentProject, setcurrentProject] = useState<IProject>({
@@ -96,12 +97,15 @@ function DesignPage({ showMenu }: Props) {
           .json()
           .then((data) => {
             setcurrentProject(data);
-            setsetting(data.project_setting);
             if (selectedGroup.id === 0) {
               setselectedGroup({
                 id: data.model_groups[0].id,
                 name: data.model_groups[0].group_name,
               });
+            }
+            if (firstLoad) {
+              setsetting(data.project_setting);
+              setfirstLoad(false);
             }
           })
           .catch(console.error);

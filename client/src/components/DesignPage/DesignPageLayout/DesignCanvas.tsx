@@ -3,7 +3,7 @@ import { Canvas } from "react-three-fiber";
 import GridLayout from "../../commons/Models/GridLayout";
 import ModelGroup from "../../commons/Models/ModelGroup";
 import { IProject, ISetting } from "../../../Interface";
-import { Suspense } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import ModelLight from "../../commons/Models/ModelLight";
 import Camera from "../../commons/Models/Camera";
 
@@ -150,7 +150,7 @@ function DesignCanvas(props: Props) {
       id="design-canvas"
       className="h-full w-full"
       style={{
-        backgroundColor: setting.bg_color || "#9CA3AF",
+        backgroundColor: setting.bg_color,
       }}
     >
       <Canvas
