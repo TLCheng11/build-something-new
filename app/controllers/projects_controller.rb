@@ -100,12 +100,20 @@ class ProjectsController < ApplicationController
 
   # GET /projects_download/1
   def download
+    # get settings
+    setting = Hash.new
+    @project.project_setting.attributes.each do |k, v|
+      if (k != "id" && k != "project_id" && k != "created_at" && k != "updated_at")
+        setting["#{k}"] = v
+      end
+    end
+    # get all the child groups
     top_level_groups = @project.model_groups.where(parent_group_id: nil)
     groups_data = []
     top_level_groups.each do |group|
       groups_data.push(group.get_all_children)
     end
-    data = {title: @project.title, model_groups:groups_data}
+    data = {title: @project.title, model_groups:groups_data, project_setting:setting}
     render json: data
   end
 

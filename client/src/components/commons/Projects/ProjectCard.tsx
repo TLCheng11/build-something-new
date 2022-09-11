@@ -126,8 +126,6 @@ function ProjectCard(props: Props) {
     });
   }
 
-  console.log(cardProject);
-
   return (
     <div
       className={`col-span-1 flex flex-col items-center min-h-360 max-h-1/2screen border border-blue-200 rounded-xl  ${

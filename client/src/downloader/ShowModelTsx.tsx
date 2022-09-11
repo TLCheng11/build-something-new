@@ -200,7 +200,17 @@ function ShowModel() {
         background: "rgb(156 163 175)",
       }}
     >
-      <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
+      <Canvas
+        camera={{
+          position: [
+            model.project_setting?.xcamera,
+            model.project_setting?.ycamera,
+            model.project_setting?.zcamera,
+          ],
+          near: 0.1,
+          far: 1000,
+        }}
+      >
         <OrbitControls />
         <ambientLight intensity={0.3} />
         <directionalLight position={[1000, 1000, 500]} intensity={1} />

@@ -7,7 +7,6 @@ import { readmeText } from "./README";
 function useDownload() {
   function handleZip(fileName: string, data: any, downloadType: string) {
     const jsonData = JSON.stringify(data);
-
     // zipping files
     const zip = new JSZip();
 
