@@ -30,7 +30,7 @@ function SettingControls(props: Props) {
       .catch(console.error);
   }
 
-  function updateColor(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  function updateColor() {
     fetch(`/project_settings/${currentProject.id}`, {
       method: "PATCH",
       headers: {

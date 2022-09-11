@@ -13,7 +13,7 @@ function Camera({ setting }: Props) {
     camera.position.x = setting?.xcamera || 5;
     camera.position.y = setting?.ycamera || 5;
     camera.position.z = setting?.zcamera || 5;
-  }, [setting]);
+  }, [setting?.xcamera, setting?.ycamera, setting?.zcamera]);
 
   return <mesh></mesh>;
 }
