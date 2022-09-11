@@ -22,7 +22,6 @@ function DetailView() {
   const showProject = project.model_groups.map((group) => (
     <RoomContent key={group.id} group={group} />
   ));
-  // .filter((group) => !group.parent_group_id)
 
   useEffect(() => {
     fetch(`/projects_data/${params.project_id}`).then((res) => {

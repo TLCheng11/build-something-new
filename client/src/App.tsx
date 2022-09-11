@@ -10,6 +10,7 @@ import DetailView from "./components/DetailView/DetailView";
 import MyProjects from "./components/Dashboard/MyProjects";
 import FavoredProjects from "./components/Dashboard/FavoredProjects";
 import Profile from "./components/Dashboard/Profile";
+import TestPhysic from "./components/commons/TestPhysic/TestPhysic";
 
 function App() {
   const { currentUser, setcurrentUser } = useContext(UserContext);
@@ -66,6 +67,10 @@ function App() {
           <Route
             path="/project-detail-view/:project_id"
             element={<DetailView />}
+          />
+          <Route
+            path="/project-test-physic/:project_id"
+            element={<TestPhysic />}
           />
           <Route
             path="*"
