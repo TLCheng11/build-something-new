@@ -19,8 +19,8 @@ function ModelRotationControls(props: Props) {
         <input
           className="design-input"
           type="range"
-          min={-360}
-          max={360}
+          min={-180}
+          max={180}
           name="model-X-rotation"
           value={rotation[0]}
           onChange={(e) =>
@@ -31,12 +31,11 @@ function ModelRotationControls(props: Props) {
             ])
           }
         />
-        <p>{rotation[0]}</p>
         <input
-          className="w-4 ml-2 rounded-md"
+          className="w-4 mr-2 rounded-md"
           type="number"
-          min={-360}
-          max={360}
+          min={-180}
+          max={180}
           value={rotation[0]}
           onChange={(e) =>
             setrotation((rotation) => [
@@ -46,6 +45,7 @@ function ModelRotationControls(props: Props) {
             ])
           }
         />
+        <p>{rotation[0]}</p>
       </div>
       <div className="flex">
         <div className="w-1/3">
@@ -54,8 +54,8 @@ function ModelRotationControls(props: Props) {
         <input
           className="design-input"
           type="range"
-          min={-360}
-          max={360}
+          min={-180}
+          max={180}
           name="model-Y-rotation"
           value={rotation[1]}
           onChange={(e) =>
@@ -66,12 +66,11 @@ function ModelRotationControls(props: Props) {
             ])
           }
         />
-        <p>{rotation[1]}</p>
         <input
-          className="w-4 ml-2 rounded-md"
+          className="w-4 mr-2 rounded-md"
           type="number"
-          min={-360}
-          max={360}
+          min={-180}
+          max={180}
           value={rotation[1]}
           onChange={(e) =>
             setrotation((rotation) => [
@@ -81,6 +80,7 @@ function ModelRotationControls(props: Props) {
             ])
           }
         />
+        <p>{rotation[1]}</p>
       </div>
       <div className="flex">
         <div className="w-1/3">
@@ -89,8 +89,8 @@ function ModelRotationControls(props: Props) {
         <input
           className="design-input"
           type="range"
-          min={-360}
-          max={360}
+          min={-180}
+          max={180}
           name="model-Z-rotation"
           value={rotation[2]}
           onChange={(e) =>
@@ -101,12 +101,11 @@ function ModelRotationControls(props: Props) {
             ])
           }
         />
-        <p>{rotation[2]}</p>
         <input
-          className="w-4 ml-2 rounded-md"
+          className="w-4 mr-2 rounded-md"
           type="number"
-          min={-360}
-          max={360}
+          min={-180}
+          max={180}
           value={rotation[2]}
           onChange={(e) =>
             setrotation((rotation) => [
@@ -116,6 +115,7 @@ function ModelRotationControls(props: Props) {
             ])
           }
         />
+        <p>{rotation[2]}</p>
       </div>
     </div>
   );
