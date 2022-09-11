@@ -45,9 +45,9 @@ class ModelGroup < ApplicationRecord
     # to create first group layer
     attributes = Hash.new
     self.attributes.each do |k, v|
-      if (k == "project_id" || k == "xposition" || k == "xrotation" || k == "yrotation" || k == "zrotation")
+      if (k == "project_id" || k == "xposition" || k== "yposition" || k == "xrotation" || k == "yrotation" || k == "zrotation")
         attributes["#{k}"] = v
-      elsif (k == "yposition" || k == "zposition")
+      elsif (k == "zposition")
         attributes["#{k}"] = v + pos
       elsif (k == "parent_group_id")
         attributes["#{k}"] = group_id > 0 ? group_id : v
