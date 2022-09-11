@@ -15,7 +15,12 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
 
   const [menuPosition, setmenuPosition] = useState<
     [number, number, number, number]
-  >([0 - wh, 0 - ww, 0 - ww, -180]);
+  >([0 - wh, 0 - ww, 0 - ww, 180]);
+
+  const angle =
+    ((window.innerHeight / (window.innerWidth / 2)) * 360) / Math.PI ** 2;
+
+  console.log(angle);
 
   useEffect(() => {
     if (showMenu) {
@@ -75,7 +80,11 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
           }}
         >
           <NavLink to="/marketplace/1">
-            <div className="rotate-36" onClick={() => setshowMenu(false)}>
+            <div
+              // className="rotate-36"
+              style={{ transform: `rotate(${angle}deg)` }}
+              onClick={() => setshowMenu(false)}
+            >
               Marketplace
             </div>
           </NavLink>
@@ -91,7 +100,11 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
           }}
         >
           <NavLink to="/dashboard/profile">
-            <div className="-rotate-36" onClick={() => setshowMenu(false)}>
+            <div
+              // className="-rotate-36"
+              style={{ transform: `rotate(-${angle}deg)` }}
+              onClick={() => setshowMenu(false)}
+            >
               Profile
             </div>
           </NavLink>
