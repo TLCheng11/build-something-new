@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { useNavigate } from "react-router-dom";
-import { IProject } from "../../../Interface";
+import { IProject, ISetting } from "../../../Interface";
 import GridControls from "../DesignControls/GridControls";
 import ModelColorControls from "../DesignControls/ModelColorControls";
 import ModelGroupControls from "../DesignControls/ModelGroupControls";
@@ -8,10 +8,13 @@ import ModelPositionControls from "../DesignControls/ModelPositionContorls";
 import ModelRotationControls from "../DesignControls/ModelRotationControls";
 import ModelSizeContorls from "../DesignControls/ModelSizeControls";
 import ModelTypesControls from "../DesignControls/ModelTypeControls";
+import SettingControls from "../DesignControls/SettingControls";
 
 interface Props {
   setrefresh: Dispatch<SetStateAction<boolean>>;
   currentProject: IProject;
+  setting: ISetting;
+  setsetting: React.Dispatch<React.SetStateAction<ISetting>>;
   showGridMain: boolean;
   setshowGridMain: Dispatch<SetStateAction<boolean>>;
   showGridGroup: boolean;
@@ -79,6 +82,8 @@ function DesignControls(props: Props) {
   const {
     setrefresh,
     currentProject,
+    setting,
+    setsetting,
     showGridMain,
     setshowGridMain,
     showGridGroup,
@@ -122,6 +127,12 @@ function DesignControls(props: Props) {
           <a className="cursor-pointer border-b border-black">Back</a>
         </h1>
       </div>
+      <SettingControls
+        setrefresh={setrefresh}
+        currentProject={currentProject}
+        setting={setting}
+        setsetting={setsetting}
+      />
       <GridControls
         showGridMain={showGridMain}
         setshowGridMain={setshowGridMain}

@@ -2,14 +2,16 @@ import { Loader, OrbitControls } from "@react-three/drei";
 import { Canvas } from "react-three-fiber";
 import GridLayout from "../../commons/Models/GridLayout";
 import ModelGroup from "../../commons/Models/ModelGroup";
-import { IProject } from "../../../Interface";
+import { IProject, ISetting } from "../../../Interface";
 import { Suspense } from "react";
 import ModelLight from "../../commons/Models/ModelLight";
+import Camera from "../../commons/Models/Camera";
 
 interface Props {
   showMenu: boolean;
   refresh: boolean;
   currentProject: IProject;
+  setting: ISetting;
   gridMain: [number, number, string, string];
   showGridMain: boolean;
   gridGroup: [number, number, string, string];
@@ -71,6 +73,7 @@ function DesignCanvas(props: Props) {
     showMenu,
     refresh,
     currentProject,
+    setting,
     gridMain,
     showGridMain,
     gridModel,
@@ -143,8 +146,25 @@ function DesignCanvas(props: Props) {
     ));
 
   return (
-    <div id="design-canvas" className="h-full w-full bg-gray-400">
-      <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
+    <div
+      id="design-canvas"
+      className="h-full w-full"
+      style={{
+        backgroundColor: currentProject.project_setting?.bg_color || "#9CA3AF",
+      }}
+    >
+      <Canvas
+        camera={{
+          position: [
+            currentProject.project_setting?.xcamera || 5,
+            currentProject.project_setting?.ycamera || 5,
+            currentProject.project_setting?.zcamera || 5,
+          ],
+          near: 0.1,
+          far: 1000,
+        }}
+      >
+        <Camera setting={setting} />
         <OrbitControls />
         <ModelLight />
         <Suspense fallback={null}>

@@ -24,6 +24,15 @@ export interface IProject {
   overall_rating?: number | undefined;
   rating_count?: number | undefined;
   model_groups: IModelGroup[];
+  project_setting?: ISetting;
+}
+
+export interface ISetting {
+  xcamera: number;
+  ycamera: number;
+  zcamera: number;
+  bg_color: string;
+  shadow: boolean;
 }
 
 export interface IModelGroup {

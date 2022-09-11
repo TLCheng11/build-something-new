@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { IProject } from "../../../Interface";
+import { IProject, ISetting } from "../../../Interface";
 import DesignCanvas from "./DesignCanvas";
 import DesignControls from "./DesignControls";
 
@@ -18,6 +18,15 @@ function DesignPage({ showMenu }: Props) {
     title: "",
     on_market: false,
     model_groups: [{ id: 0, group_name: "" }],
+  });
+
+  // states for setting
+  const [setting, setsetting] = useState<ISetting>({
+    xcamera: 5,
+    ycamera: 5,
+    zcamera: 5,
+    bg_color: "#9CA3AF",
+    shadow: true,
   });
 
   // states for grid controls
@@ -87,6 +96,7 @@ function DesignPage({ showMenu }: Props) {
           .json()
           .then((data) => {
             setcurrentProject(data);
+            setsetting(data.project_setting);
             if (selectedGroup.id === 0) {
               setselectedGroup({
                 id: data.model_groups[0].id,
@@ -117,6 +127,8 @@ function DesignPage({ showMenu }: Props) {
         <DesignControls
           setrefresh={setrefresh}
           currentProject={currentProject}
+          setting={setting}
+          setsetting={setsetting}
           showGridMain={showGridMain}
           setshowGridMain={setshowGridMain}
           showGridGroup={showGridGroup}
@@ -158,6 +170,7 @@ function DesignPage({ showMenu }: Props) {
           showMenu={showMenu}
           refresh={refresh}
           currentProject={currentProject}
+          setting={setting}
           gridMain={gridMain}
           showGridMain={showGridMain}
           gridGroup={gridGroup}

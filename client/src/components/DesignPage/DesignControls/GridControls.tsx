@@ -28,7 +28,7 @@ function GridControls(props: Props) {
   return (
     <div id="grid-control" className="h-full w-full bg-gray-600">
       <div>
-        <p></p>
+        <p>Grid Controls:</p>
       </div>
       <div className="flex">
         <p>Show Grids:</p>
