@@ -197,7 +197,7 @@ function ShowModel() {
       style={{
         height: "800px",
         width: "1200px",
-        background: "rgb(156 163 175)",
+        backgroundColor: model.project_setting?.bg_color,
       }}
     >
       <Canvas

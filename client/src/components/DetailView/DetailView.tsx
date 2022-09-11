@@ -62,7 +62,10 @@ function DetailView() {
       </div>
       <div className="flex h-5/6 w-full">
         <div className="flex justify-center h-full w-2/3 m-2">
-          <div className="h-full w-full mx-5 min-h-360px min-w-360px rounded-3xl bg-blue-200">
+          <div
+            className="h-full w-full mx-5 min-h-360px min-w-360px rounded-3xl bg-blue-200"
+            style={{ backgroundColor: project.project_setting?.bg_color }}
+          >
             <Canvas
               camera={{
                 position: [

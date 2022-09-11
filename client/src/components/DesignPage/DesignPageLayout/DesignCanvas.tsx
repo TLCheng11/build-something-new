@@ -150,7 +150,7 @@ function DesignCanvas(props: Props) {
       id="design-canvas"
       className="h-full w-full"
       style={{
-        backgroundColor: currentProject.project_setting?.bg_color || "#9CA3AF",
+        backgroundColor: setting.bg_color || "#9CA3AF",
       }}
     >
       <Canvas

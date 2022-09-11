@@ -132,7 +132,14 @@ function ProjectCard(props: Props) {
         currentUser.id === project.created_by ? "bg-green-800" : "bg-slate-900"
       }`}
     >
-      <div className="h-4/5 min-h-100 w-full rounded-t-xl bg-blue-100">
+      <div
+        className="h-4/5 min-h-100 w-full rounded-t-x"
+        style={{
+          backgroundColor: cardProject.project_setting?.bg_color,
+          borderTopLeftRadius: "0.7rem",
+          borderTopRightRadius: "0.7rem",
+        }}
+      >
         <NavLink to={`/project-detail-view/${project.id}`}>
           <Canvas
             camera={{

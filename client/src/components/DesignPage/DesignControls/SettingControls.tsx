@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { SliderPicker } from "react-color";
 import { IProject, ISetting } from "../../../Interface";
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 
 function SettingControls(props: Props) {
   const { setrefresh, currentProject, setting, setsetting } = props;
+
   function updateCamera(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     fetch(`/project_settings/${currentProject.id}`, {
@@ -28,10 +30,46 @@ function SettingControls(props: Props) {
       .catch(console.error);
   }
 
+  function updateColor(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    fetch(`/project_settings/${currentProject.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        bg_color: setting.bg_color,
+      }),
+    })
+      .then((res) => res.json())
+      .then(() => setrefresh((state) => !state))
+      .catch(console.error);
+  }
+
   return (
     <div id="setting-control" className="h-full w-full bg-gray-600">
       <div className="flex">
         <p>Project Settings:</p>
+      </div>
+      <div className="flex">
+        <p>Background Color:</p>
+        <div
+          className="h-7 w-16 mx-2 border rounded-sm"
+          style={{ backgroundColor: currentProject.project_setting?.bg_color }}
+        ></div>
+        <button
+          className="design-btn min-w-fit px-1 whitespace-nowrap"
+          onClick={updateColor}
+        >
+          Save Color
+        </button>
+      </div>
+      <div className="my-2">
+        <SliderPicker
+          color={setting.bg_color}
+          onChangeComplete={(color) =>
+            setsetting({ ...setting, bg_color: color.hex })
+          }
+        />
       </div>
       <div className="flex">
         <h1>Camera Position:</h1>
