@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
 import { UserContext } from "../../../contexts/UserContext";
 import { IProject } from "../../../Interface";
+import Camera from "../Models/Camera";
 import ModelLight from "../Models/ModelLight";
 import RoomContent from "../ShowRoom/RoomContent";
 import RoomStage from "../ShowRoom/RoomStage";
@@ -125,6 +126,8 @@ function ProjectCard(props: Props) {
     });
   }
 
+  console.log(cardProject);
+
   return (
     <div
       className={`col-span-1 flex flex-col items-center min-h-360 max-h-1/2screen border border-blue-200 rounded-xl  ${
@@ -133,7 +136,18 @@ function ProjectCard(props: Props) {
     >
       <div className="h-4/5 min-h-100 w-full rounded-t-xl bg-blue-100">
         <NavLink to={`/project-detail-view/${project.id}`}>
-          <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
+          <Canvas
+            camera={{
+              position: [
+                cardProject.project_setting?.xcamera || 5,
+                cardProject.project_setting?.ycamera || 5,
+                cardProject.project_setting?.zcamera || 5,
+              ],
+              near: 0.1,
+              far: 1000,
+            }}
+          >
+            <Camera setting={cardProject.project_setting} />
             <ModelLight />
             <Suspense fallback={null}>
               <RoomStage>{showProject}</RoomStage>

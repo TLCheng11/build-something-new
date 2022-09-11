@@ -3,6 +3,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
 import { IProject } from "../../Interface";
+import Camera from "../commons/Models/Camera";
 import ModelLight from "../commons/Models/ModelLight";
 import RoomContent from "../commons/ShowRoom/RoomContent";
 import Details from "./Details";
@@ -62,7 +63,18 @@ function DetailView() {
       <div className="flex h-5/6 w-full">
         <div className="flex justify-center h-full w-2/3 m-2">
           <div className="h-full w-full mx-5 min-h-360px min-w-360px rounded-3xl bg-blue-200">
-            <Canvas camera={{ position: [5, 5, 5], near: 0.1, far: 1000 }}>
+            <Canvas
+              camera={{
+                position: [
+                  project.project_setting?.xcamera || 5,
+                  project.project_setting?.ycamera || 5,
+                  project.project_setting?.zcamera || 5,
+                ],
+                near: 0.1,
+                far: 1000,
+              }}
+            >
+              <Camera setting={project.project_setting} />
               <OrbitControls />
               <ModelLight />
               <Suspense fallback={null}>{showProject}</Suspense>

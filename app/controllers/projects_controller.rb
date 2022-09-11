@@ -71,6 +71,14 @@ class ProjectsController < ApplicationController
 
   # GET /projects_data/1
   def data
+    # get settings
+    setting = Hash.new
+    @project.project_setting.attributes.each do |k, v|
+      if (k != "id" && k != "project_id" && k != "created_at" && k != "updated_at")
+        setting["#{k}"] = v
+      end
+    end
+
     # get all the child groups
     top_level_groups = @project.model_groups.where(parent_group_id: nil)
     groups_data = []
@@ -86,7 +94,7 @@ class ProjectsController < ApplicationController
     # get creator info
     creator = User.find(@project.created_by).username
     # construct return data
-    data = {id: @project.id, title: @project.title, created_by:@project.created_by, creator: creator, description: @project.description, on_market: @project.on_market, price: @project.price, sold_count: @project.sold_count, model_groups:groups_data, favored: favored}
+    data = {id: @project.id, title: @project.title, created_by:@project.created_by, creator: creator, description: @project.description, on_market: @project.on_market, price: @project.price, sold_count: @project.sold_count, model_groups:groups_data, favored: favored, project_setting:setting}
     render json: data
   end
 
