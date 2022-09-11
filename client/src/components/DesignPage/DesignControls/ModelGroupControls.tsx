@@ -192,6 +192,7 @@ function ModelGroupControls(props: Props) {
     if (window.confirm("Are you sure?")) {
       if (selectedGroup.id > 0) {
         const id = selectedGroup.id;
+        // to trigger a save before copy
         setselectedGroup({ ...selectedGroup, id: 0 });
         setTimeout(() => {
           fetch(`/model_groups_copy/${id}`, {

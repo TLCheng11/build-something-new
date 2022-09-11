@@ -52,7 +52,7 @@ function PagesNavBar(props: Props) {
           className="mx-1 px-1 border hover:bg-slate-500"
           onClick={() => setcurrentPage(1)}
         >
-          {"<<"}
+          {"First"}
         </button>
         <button
           className="mx-1 px-1 border hover:bg-slate-500"
@@ -75,7 +75,7 @@ function PagesNavBar(props: Props) {
           className="mx-1 px-1 border hover:bg-slate-500"
           onClick={() => setcurrentPage(pageCount)}
         >
-          {">>"}
+          {"Last"}
         </button>
       </div>
     </div>

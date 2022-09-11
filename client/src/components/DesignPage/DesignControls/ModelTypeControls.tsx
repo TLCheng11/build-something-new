@@ -64,6 +64,7 @@ function ModelTypesControls(props: Props) {
   function copyModel() {
     if (selectedModel.id > 0) {
       const id = selectedModel.id;
+      // to trigger a save before copy
       setselectedModel({ ...selectedModel, id: 0 });
       setTimeout(() => {
         fetch(`/model_${selectedModel.type}_copy/${id}`, {

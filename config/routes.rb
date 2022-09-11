@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     # user_projects
     patch "/user_projects_set_favor/:project_id", to:"user_projects#set_favor"
 
+    # project_settings
+    resources :project_settings, only: [:update]
+
     # comments
     resources :comments, only: [:create, :update, :destroy]
     resources :projects, only: [:show] do
