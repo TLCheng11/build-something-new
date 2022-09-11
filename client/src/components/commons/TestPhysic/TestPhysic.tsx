@@ -70,7 +70,7 @@ function TestPhysic() {
       >
         <OrbitControls />
         <ModelLight />
-        <Physics gravity={[0, -10, 0]}>
+        <Physics gravity={[0, -100, 0]}>
           <Suspense fallback={null}>{showProject}</Suspense>
         </Physics>
       </Canvas>

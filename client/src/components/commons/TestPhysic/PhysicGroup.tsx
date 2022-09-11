@@ -10,9 +10,9 @@ interface Props {
 }
 
 function PhysicGroup({ group }: Props) {
-  const showChildGroups = group.child_groups?.map((group) => (
-    <PhysicGroup key={group.id} group={group} />
-  ));
+  const showChildGroups = group.child_groups?.map((child) => {
+    return <PhysicGroup key={group.id} group={child} />;
+  });
 
   const showPlanes = group.model_planes?.map((plane) => (
     <PhysicPlane key={plane.id} plane={plane} />
