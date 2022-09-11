@@ -18,7 +18,8 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
   >([0 - wh, 0 - ww, 0 - ww, 180]);
 
   const angle =
-    ((window.innerHeight / (window.innerWidth / 2)) * 360) / Math.PI ** 2;
+    (((window.innerHeight * 3) / 5 / (window.innerWidth / 2)) * 360) /
+    (Math.PI * 2);
 
   console.log(angle);
 
