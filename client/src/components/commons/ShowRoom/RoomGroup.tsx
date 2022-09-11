@@ -36,8 +36,8 @@ function RoomGroup({ group }: Props) {
           ]}
           rotation={[
             (((plane.xrotation || 0) - 90) / 360) * Math.PI * 2,
-            ((plane.yrotation || 0) / 360) * Math.PI * 2,
             ((plane.zrotation || 0) / 360) * Math.PI * 2,
+            ((plane.yrotation || 0) / 360) * Math.PI * 2,
           ]}
         >
           <meshStandardMaterial

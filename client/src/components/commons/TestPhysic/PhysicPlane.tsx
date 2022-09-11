@@ -17,8 +17,8 @@ function PhysicPlane({ plane }: Props) {
     ],
     rotation: [
       (((plane.xrotation || 0) - 90) / 360) * Math.PI * 2,
-      ((plane.yrotation || 0) / 360) * Math.PI * 2,
       ((plane.zrotation || 0) / 360) * Math.PI * 2,
+      ((plane.yrotation || 0) / 360) * Math.PI * 2,
     ],
     mass: 0,
   }));
@@ -34,8 +34,8 @@ function PhysicPlane({ plane }: Props) {
       ]}
       rotation={[
         (((plane.xrotation || 0) - 90) / 360) * Math.PI * 2,
-        ((plane.yrotation || 0) / 360) * Math.PI * 2,
         ((plane.zrotation || 0) / 360) * Math.PI * 2,
+        ((plane.yrotation || 0) / 360) * Math.PI * 2,
       ]}
     >
       <meshStandardMaterial color={plane.color || "#fff"} side={DoubleSide} />
