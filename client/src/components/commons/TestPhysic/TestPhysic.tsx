@@ -3,7 +3,7 @@ import { Loader, OrbitControls } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
-import { IProject } from "../../../Interface";
+import { IProject, ISetting } from "../../../Interface";
 import ModelLight from "../Models/ModelLight";
 import PhysicGroup from "./PhysicGroup";
 
@@ -17,6 +17,7 @@ function TestPhysic() {
     on_market: false,
     model_groups: [{ id: 0, group_name: "" }],
   });
+  const [dataLoaded, setdataLoaded] = useState<boolean>(false);
 
   const showProject = project.model_groups.map((group) => (
     <PhysicGroup key={group.id} group={group} />
@@ -29,6 +30,7 @@ function TestPhysic() {
           .json()
           .then((data) => {
             setproject(data);
+            setdataLoaded(true);
           })
           .catch(console.error);
       } else {
@@ -48,7 +50,7 @@ function TestPhysic() {
 
   return (
     <div
-      className="h-screen w-screen"
+      className="h-screen w-screen flex justify-center items-center"
       style={{ backgroundColor: project.project_setting?.bg_color }}
     >
       <button
@@ -57,24 +59,30 @@ function TestPhysic() {
       >
         <p className="-rotate-45">Back</p>
       </button>
-      <Canvas
-        camera={{
-          position: [
-            project.project_setting?.xcamera || 5,
-            project.project_setting?.ycamera || 5,
-            project.project_setting?.zcamera || 5,
-          ],
-          near: 0.1,
-          far: 1000,
-        }}
-      >
-        <OrbitControls />
-        <ModelLight />
-        <Physics gravity={[0, -100, 0]}>
-          <Suspense fallback={null}>{showProject}</Suspense>
-        </Physics>
-      </Canvas>
-      <Loader />;
+      {dataLoaded ? (
+        <div className="h-full w-full">
+          <Canvas
+            camera={{
+              position: [
+                project.project_setting?.xcamera || 5,
+                project.project_setting?.ycamera || 5,
+                project.project_setting?.zcamera || 5,
+              ],
+              near: 0.1,
+              far: 1000,
+            }}
+          >
+            <OrbitControls />
+            <ModelLight />
+            <Physics gravity={[0, -100, 0]}>
+              <Suspense fallback={null}>{showProject}</Suspense>
+            </Physics>
+          </Canvas>
+          <Loader />;
+        </div>
+      ) : (
+        <div className="text-4xl">Loading...</div>
+      )}
     </div>
   );
 }

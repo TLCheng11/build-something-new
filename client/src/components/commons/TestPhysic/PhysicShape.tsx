@@ -20,7 +20,7 @@ function PhysicShape({ shape }: Props) {
       ((shape.yrotation || 0) / 360) * Math.PI * 2,
       ((shape.zrotation || 0) / 360) * Math.PI * 2,
     ],
-    mass: 1,
+    mass: shape.mass,
   }));
 
   return (

@@ -15,7 +15,7 @@ function PhysicBox({ box }: Props) {
       ((box.yrotation || 0) / 360) * Math.PI * 2,
       ((box.zrotation || 0) / 360) * Math.PI * 2,
     ],
-    mass: 1,
+    mass: box.mass,
   }));
 
   return (
