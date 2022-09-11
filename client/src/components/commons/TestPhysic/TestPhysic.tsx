@@ -71,6 +71,7 @@ function TestPhysic() {
               near: 0.1,
               far: 1000,
             }}
+            shadows
           >
             <OrbitControls />
             <ModelLight />

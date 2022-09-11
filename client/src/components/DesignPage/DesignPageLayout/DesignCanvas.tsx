@@ -163,7 +163,7 @@ function DesignCanvas(props: Props) {
           near: 0.1,
           far: 1000,
         }}
-        shadows
+        // shadows
       >
         <Camera setting={setting} />
         <OrbitControls />
