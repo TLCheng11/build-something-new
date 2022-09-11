@@ -3,8 +3,8 @@ function ModelLight() {
     <>
       <ambientLight intensity={0.3} />
       <directionalLight
-        position={[200, 200, 100]}
-        intensity={2}
+        position={[1000, 1000, 500]}
+        intensity={1}
         // castShadow
         // shadow-mapSize-height={512}
         // shadow-mapSize-width={512}
