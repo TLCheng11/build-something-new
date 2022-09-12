@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       # byebug
       # @user.reset_password(new_password)
       # @user.update!(password: new_password)
-      render json: {message: "Password updated!"}, status: :accepted
+      render json: {message: "Password changed successfully!"}, status: :accepted
     else
       render json: {error: "Wrong password!"}, status: 405
     end
