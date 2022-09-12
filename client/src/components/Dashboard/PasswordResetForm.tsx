@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../contexts/UserContext";
+import { useEffect, useState } from "react";
 
 interface Props {
   setshowPasswordForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function PasswordResetForm({ setshowPasswordForm }: Props) {
-  const { currentUser } = useContext(UserContext);
   const [formInput, setformInput] = useState({
     current_password: "",
     new_password: "",
@@ -16,6 +14,7 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
     class: "cursor-not-allowed disabled:opacity-25",
     disable: true,
   });
+  const [message, setmessage] = useState<string>("");
 
   const conditions = {
     first: formInput.current_password.length >= 8,
@@ -25,7 +24,8 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
     fifth:
       formInput.new_password === formInput.password_confirmation &&
       formInput.new_password.length > 0,
-    sixth: formInput.current_password != formInput.new_password,
+    sixth: formInput.current_password !== formInput.new_password,
+    seventh: formInput.current_password.length === 0,
   };
 
   useEffect(() => {
@@ -58,7 +58,7 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
 
   function updatePassword(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    fetch(`/users_new_password/${currentUser.id}`, {
+    fetch(`/users_new_password`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -66,14 +66,35 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
       body: JSON.stringify(formInput),
     }).then((res) => {
       if (res.ok) {
-        res.json().then(() => console.log("password updated"));
+        res.json().then(() => {
+          console.log("Password updated");
+          setmessage("success");
+        });
       } else {
-        res.json().then((data) => alert(data.errors));
+        res.json().then((data) => {
+          setmessage("fail");
+        });
       }
     });
   }
 
-  return (
+  return message ? (
+    message === "success" ? (
+      <div
+        className="cursor-pointer bg-gradient-to-r from-white/90 to-green-800/80 rounded-lg flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8"
+        onClick={() => setshowPasswordForm(false)}
+      >
+        <h1 className="text-4xl text-black">Password changed successfully.</h1>
+      </div>
+    ) : (
+      <div
+        className="cursor-pointer bg-gradient-to-r from-white/90 to-red-800/80 rounded-lg flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8"
+        onClick={() => setmessage("")}
+      >
+        <h1 className="text-4xl text-white">Wrong Password</h1>
+      </div>
+    )
+  ) : (
     <div className="bg-gradient-to-r from-white/90 to-blue-500/80 rounded-lg flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="flex justify-end">
@@ -135,13 +156,15 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
           </div>
 
           <div className="font-bold">
-            {!conditions.sixth && (
-              <div className="flex justify-center">
-                <p className="text-red-600">
-                  new password cannot be same as current password
-                </p>
-              </div>
-            )}
+            {!conditions.seventh
+              ? !conditions.sixth && (
+                  <div className="flex justify-center">
+                    <p className="text-red-600">
+                      new password cannot be same as current password
+                    </p>
+                  </div>
+                )
+              : null}
 
             <p className={conditions.first ? "text-green-600" : "text-red-600"}>
               * please enter current password

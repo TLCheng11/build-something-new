@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :user_projects, dependent: :destroy
   has_many :projects, through: :user_projects, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  def reset_password(password)
+    self.update!(password: password)
+  end
 end

@@ -96,7 +96,7 @@ function SignUpForm(props: Props) {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 mx-10 text-center text-3xl tracking-tight font-bold text-blue-700">
-            Join and Create!
+            Join and Build!
           </h2>
         </div>
         <form
