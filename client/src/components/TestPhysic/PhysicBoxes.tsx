@@ -1,6 +1,6 @@
 import { useBox } from "@react-three/cannon";
 import { Box } from "@react-three/drei";
-import { IModelBox } from "../../../Interface";
+import { IModelBox } from "../../Interface";
 
 interface Props {
   box: IModelBox;

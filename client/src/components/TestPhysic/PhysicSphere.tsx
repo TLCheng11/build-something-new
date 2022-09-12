@@ -1,7 +1,7 @@
 import { useSphere } from "@react-three/cannon";
 import { Sphere } from "@react-three/drei";
 import { DoubleSide } from "three";
-import { IModelSphere } from "../../../Interface";
+import { IModelSphere } from "../../Interface";
 
 interface Props {
   sphere: IModelSphere;

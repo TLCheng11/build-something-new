@@ -1,4 +1,4 @@
-import { IModelGroup } from "../../../Interface";
+import { IModelGroup } from "../../Interface";
 import PhysicBox from "./PhysicBoxes";
 import PhysicCylinder from "./PhysicCylinder";
 import PhysicPlane from "./PhysicPlane";

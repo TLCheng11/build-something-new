@@ -1,7 +1,7 @@
 import { useCylinder } from "@react-three/cannon";
 import { Cylinder } from "@react-three/drei";
 import { DoubleSide } from "three";
-import { IModelCylinder } from "../../../Interface";
+import { IModelCylinder } from "../../Interface";
 
 interface Props {
   cylinder: IModelCylinder;

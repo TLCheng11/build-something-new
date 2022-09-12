@@ -1,7 +1,7 @@
 import { useBox } from "@react-three/cannon";
 import { Circle } from "@react-three/drei";
 import { DoubleSide } from "three";
-import { IModelShape } from "../../../Interface";
+import { IModelShape } from "../../Interface";
 
 interface Props {
   shape: IModelShape;

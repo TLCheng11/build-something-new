@@ -10,7 +10,7 @@ import DetailView from "./components/DetailView/DetailView";
 import MyProjects from "./components/Dashboard/MyProjects";
 import FavoredProjects from "./components/Dashboard/FavoredProjects";
 import Profile from "./components/Dashboard/Profile";
-import TestPhysic from "./components/commons/TestPhysic/TestPhysic";
+import TestPhysic from "./components/TestPhysic/TestPhysic";
 
 function App() {
   const { currentUser, setcurrentUser } = useContext(UserContext);

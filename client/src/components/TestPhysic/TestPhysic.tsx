@@ -3,8 +3,8 @@ import { Loader, OrbitControls } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Canvas } from "react-three-fiber";
-import { IProject, ISetting } from "../../../Interface";
-import ModelLight from "../Models/ModelLight";
+import { IProject, ISetting } from "../../Interface";
+import ModelLight from "../commons/Models/ModelLight";
 import PhysicGroup from "./PhysicGroup";
 
 function TestPhysic() {
@@ -43,8 +43,6 @@ function TestPhysic() {
       }
     });
   }, []);
-
-  console.log(project);
 
   if (notFound) return <h1>Page Not Found</h1>;
 

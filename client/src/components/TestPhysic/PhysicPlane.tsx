@@ -1,7 +1,7 @@
 import { usePlane } from "@react-three/cannon";
 import { Plane } from "@react-three/drei";
 import { DoubleSide } from "three";
-import { IModelPlane } from "../../../Interface";
+import { IModelPlane } from "../../Interface";
 
 interface Props {
   plane: IModelPlane;
