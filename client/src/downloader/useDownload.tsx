@@ -2,10 +2,17 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { showModelComponentJsx } from "./ShowModelJsx";
 import { showModelComponentTsx } from "./ShowModelTsx";
+import { showModelComponentPhysicJsx } from "./ShowModelJsxPhysic";
 import { readmeText } from "./README";
+import { showModelComponentPhysicTsx } from "./ShowModelTsxPhysic";
 
 function useDownload() {
-  function handleZip(fileName: string, data: any, downloadType: string) {
+  function handleZip(
+    fileName: string,
+    data: any,
+    downloadType: string,
+    withPhysic: boolean
+  ) {
     const jsonData = JSON.stringify(data);
     // zipping files
     const zip = new JSZip();
@@ -15,9 +22,17 @@ function useDownload() {
     if (folder) {
       folder.file("model.json", jsonData);
       if (downloadType === "jsx") {
-        folder.file("ShowModel.jsx", showModelComponentJsx);
+        if (withPhysic) {
+          folder.file("ShowModel.jsx", showModelComponentPhysicJsx);
+        } else {
+          folder.file("ShowModel.jsx", showModelComponentJsx);
+        }
       } else if (downloadType === "tsx") {
-        folder.file("ShowModel.tsx", showModelComponentTsx);
+        if (withPhysic) {
+          folder.file("ShowModel.tsx", showModelComponentPhysicTsx);
+        } else {
+          folder.file("ShowModel.tsx", showModelComponentTsx);
+        }
       }
     }
 

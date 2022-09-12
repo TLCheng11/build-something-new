@@ -130,7 +130,9 @@ function DesignControls(props: Props) {
           Back
         </h1>
         <NavLink to={`/project-test-physic/${currentProject.id}`}>
-          <h1 className="cursor-pointer border-b border-black">Test Physic</h1>
+          <button className="design-btn min-w-fit px-1 mr-4 whitespace-nowrap">
+            Test Physic
+          </button>
         </NavLink>
       </div>
       <SettingControls

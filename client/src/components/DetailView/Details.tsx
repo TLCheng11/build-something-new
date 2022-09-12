@@ -5,6 +5,7 @@ import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import { UserContext } from "../../contexts/UserContext";
 import useDownload from "../../downloader/useDownload";
+import { NavLink } from "react-router-dom";
 
 interface Props {
   project: IProject;
@@ -25,6 +26,7 @@ function Details({ project }: Props) {
   //testing downloader
   const [handleZip] = useDownload();
   const [downloadType, setdownloadType] = useState<string>("jsx");
+  const [withPhysic, setwithPhysic] = useState<boolean>(false);
 
   const showComments = comments.map((comment) => (
     <Comment key={comment.id} setrefresh={setrefresh} comment={comment} />
@@ -61,7 +63,11 @@ function Details({ project }: Props) {
   function downloadModel() {
     fetch(`/projects_download/${project.id}`).then((res) => {
       if (res.ok) {
-        res.json().then((data) => handleZip(project.title, data, downloadType));
+        res
+          .json()
+          .then((data) =>
+            handleZip(project.title, data, downloadType, withPhysic)
+          );
       } else {
         res.json().then((data) => alert(data.error));
       }
@@ -132,14 +138,30 @@ function Details({ project }: Props) {
                 .tsx
               </label>
             </div>
+            {/* with Physic option */}
+            <div className="flex items-center">
+              <label>| With Physic: </label>
+              <input
+                className="h-4 w-4 mx-2 mt-1"
+                type="checkbox"
+                checked={withPhysic}
+                onChange={(e) => setwithPhysic(e.target.checked)}
+              />
+            </div>
             <button
-              className="px-1 border rounded-md"
+              className="design-btn min-w-fit px-1 "
               onClick={() => downloadModel()}
             >
               Download
             </button>
           </div>
         </div>
+
+        <NavLink to={`/project-test-physic/${project.id}`}>
+          <div className="mt-1 flex justify-end">
+            <button className="design-btn min-w-fit px-0.5">Test Physic</button>
+          </div>
+        </NavLink>
 
         <div className="mb-5">
           <h1 className="text-3xl">{project.title}</h1>
