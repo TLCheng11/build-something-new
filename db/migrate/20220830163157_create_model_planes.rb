@@ -12,7 +12,7 @@ class CreateModelPlanes < ActiveRecord::Migration[7.0]
       t.float :zrotation, default: 0
       t.string :color
       t.string :image_url
-      t.float :mass, default: 1
+      t.float :mass, default: 0
 
       t.timestamps
     end

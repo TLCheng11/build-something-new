@@ -10,6 +10,7 @@ class CreateModelGroups < ActiveRecord::Migration[7.0]
       t.float :xrotation, default: 0
       t.float :yrotation, default: 0
       t.float :zrotation, default: 0
+      t.float :mass, default: 0
 
       t.timestamps
     end

@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_015135) do
     t.float "xrotation", default: 0.0
     t.float "yrotation", default: 0.0
     t.float "zrotation", default: 0.0
+    t.float "mass", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_model_groups_on_project_id"
@@ -94,7 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_015135) do
     t.float "zrotation", default: 0.0
     t.string "color"
     t.string "image_url"
-    t.float "mass", default: 1.0
+    t.float "mass", default: 0.0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["model_group_id"], name: "index_model_planes_on_model_group_id"
@@ -184,6 +185,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_015135) do
     t.string "last_name"
     t.datetime "dob"
     t.string "profile_img"
+    t.text "svg"
     t.string "introduction"
     t.boolean "is_login", default: true
     t.datetime "created_at", null: false

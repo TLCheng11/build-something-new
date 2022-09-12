@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.datetime :dob
       t.string :profile_img
+      t.text :svg
       t.string :introduction
       t.boolean :is_login, default: true
 
