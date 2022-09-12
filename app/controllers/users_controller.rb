@@ -23,9 +23,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users_new_password
   def new_password
     if @user&.authenticate(params[:current_password]) && params[:new_password] == params[:password_confirmation]
-      # byebug
-      # @user.reset_password(new_password)
-      # @user.update!(password: new_password)
+      @user.update!(password: params[:new_password])
       render json: {message: "Password changed successfully!"}, status: :accepted
     else
       render json: {error: "Wrong password!"}, status: 405
