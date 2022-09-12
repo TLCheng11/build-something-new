@@ -37,7 +37,7 @@ function ShowModel() {
       >
         <ModelLight />
         <IntroCamera />
-        <Physics gravity={[0, -130, 0]}>
+        <Physics gravity={[0, -120, 0]}>
           <Suspense fallback={null}>{showModel}</Suspense>
         </Physics>
       </Canvas>
