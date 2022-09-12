@@ -6,7 +6,7 @@ class CreateProjectSettings < ActiveRecord::Migration[7.0]
       t.float :ycamera, default: 5
       t.float :zcamera, default: 5
       t.string :bg_color, default: "#9CA3AF"
-      t.boolean :shadow, default: true
+      t.boolean :shadow, default: false
 
       t.timestamps
     end

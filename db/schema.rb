@@ -146,7 +146,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_015135) do
     t.float "ycamera", default: 5.0
     t.float "zcamera", default: 5.0
     t.string "bg_color", default: "#9CA3AF"
-    t.boolean "shadow", default: true
+    t.boolean "shadow", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_project_settings_on_project_id"
