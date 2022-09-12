@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import defaultProfileImg from "../../icons/defaultProfile.jpeg";
+import PasswordResetForm from "./PasswordResetForm";
 
 function Profile() {
   const { currentUser, setcurrentUser } = useContext(UserContext);
   const [showImgForm, setshowImgForm] = useState<boolean>(false);
   const [profile_img, setprofile_img] = useState<string>("");
   const [showEmailForm, setshowEmailForm] = useState<boolean>(false);
+  const [showPasswordForm, setshowPasswordForm] = useState<boolean>(false);
   const [email, setemail] = useState<string>("");
   const [invalidEmail, setinvalidEmail] = useState<boolean>(false);
   const [showNameForm, setshowNameForm] = useState<boolean>(false);
@@ -15,7 +17,7 @@ function Profile() {
   const [showIntroForm, setshowIntroForm] = useState<boolean>(false);
   const [introduction, setintroduction] = useState<string>("");
 
-  function updateProfileImg(e: React.FormEvent<HTMLFormElement>, input = {}) {
+  function updateProfile(e: React.FormEvent<HTMLFormElement>, input = {}) {
     e.preventDefault();
     fetch(`/users/${currentUser.id}`, {
       method: "PATCH",
@@ -56,7 +58,14 @@ function Profile() {
   }, [showIntroForm]);
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-4/5">
+      {/* password form */}
+      {showPasswordForm && (
+        <div className="fixed h-full w-4/5 z-30 flex justify-center items-center bg-gray-600 bg-opacity-70">
+          <PasswordResetForm setshowPasswordForm={setshowPasswordForm} />
+        </div>
+      )}
+
       {/* profile header */}
       <div className="h-1/6 min-h-180 w-full">
         <div className="h-3/4 bg-blue-400 border-b-2 border-black"></div>
@@ -73,7 +82,7 @@ function Profile() {
             <div className="px-2 py-1 rounded bg-blue-400">
               <form
                 onSubmit={(e) => {
-                  updateProfileImg(e, { profile_img });
+                  updateProfile(e, { profile_img });
                   setshowImgForm(false);
                 }}
               >
@@ -101,28 +110,35 @@ function Profile() {
         </div>
       </div>
       <div className="h-1/10"></div>
+
       {/* profile body */}
       <div className="w-full flex flex-col items-center justify-center text-2xl">
-        <div className="mt-4 mb-8">
+        <div className="mt-4 mb-4">
           <h1 className="text-5xl">{currentUser.username}</h1>
         </div>
+        <button
+          className="design-btn min-w-fit px-2"
+          onClick={() => setshowPasswordForm(true)}
+        >
+          Change Password
+        </button>
         <div className=" max-h-1/2screen w-1/3 min-w-480 overflow-auto">
           {/* email */}
           <div className="m-2 flex justify-between">
-            <p>Email: {currentUser.email}</p>
+            <p className="overflow-hidden">Email: {currentUser.email}</p>
             <button
-              className="px-2 border border-black rounded-lg"
+              className="design-btn px-2"
               onClick={() => setshowEmailForm((state) => !state)}
             >
-              edit
+              Edit
             </button>
           </div>
           {showEmailForm && (
-            <div className="px-2 py-1 flex justify-center rounded text-xl bg-blue-400">
+            <div className="px-2 py-1 rounded text-xl bg-blue-400">
               <form
                 onSubmit={(e) => {
                   if (validateEmail(e)) {
-                    updateProfileImg(e, { email });
+                    updateProfile(e, { email });
                     setshowEmailForm(false);
                   } else {
                     setinvalidEmail(true);
@@ -158,21 +174,21 @@ function Profile() {
           )}
           {/* first and last_name */}
           <div className="m-2 flex justify-between">
-            <p>
+            <p className="overflow-hidden">
               First name:{" "}
               {currentUser.first_name || (
                 <span className="text-gray-400">Enter First_name</span>
               )}
             </p>
             <button
-              className="px-2 border border-black rounded-lg"
+              className="design-btn px-2"
               onClick={() => setshowNameForm((state) => !state)}
             >
-              edit
+              Edit
             </button>
           </div>
           <div className="m-2 flex">
-            <p>
+            <p className="overflow-hidden">
               Last name:{" "}
               {currentUser.last_name || (
                 <span className="text-gray-400">Enter Last_name</span>
@@ -183,7 +199,7 @@ function Profile() {
             <div className="px-2 py-1 rounded bg-blue-400">
               <form
                 onSubmit={(e) => {
-                  updateProfileImg(e, { first_name, last_name });
+                  updateProfile(e, { first_name, last_name });
                   setshowNameForm(false);
                 }}
               >
@@ -228,10 +244,10 @@ function Profile() {
           <div className="mt-10 mx-2 flex justify-between">
             <p>Introduction:</p>
             <button
-              className="px-2 border border-black rounded-lg"
+              className="design-btn px-2"
               onClick={() => setshowIntroForm((state) => !state)}
             >
-              edit
+              Edit
             </button>
           </div>
 
@@ -239,7 +255,7 @@ function Profile() {
             <div className="px-2 py-1 rounded bg-blue-400">
               <form
                 onSubmit={(e) => {
-                  updateProfileImg(e, { introduction });
+                  updateProfile(e, { introduction });
                   setshowIntroForm(false);
                 }}
               >
@@ -270,7 +286,7 @@ function Profile() {
             </div>
           ) : (
             <div className="m-2 flex">
-              <p>
+              <p className="overflow-x-hidden">
                 {currentUser.introduction || (
                   <span className="text-gray-400">Add your introduction</span>
                 )}
