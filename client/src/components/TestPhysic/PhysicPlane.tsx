@@ -20,7 +20,7 @@ function PhysicPlane({ plane }: Props) {
       ((plane.zrotation || 0) / 360) * Math.PI * 2,
       ((plane.yrotation || 0) / 360) * Math.PI * 2,
     ],
-    mass: 0,
+    mass: plane.mass,
   }));
 
   return (
