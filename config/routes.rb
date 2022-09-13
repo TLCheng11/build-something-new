@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     # users
     resources :users, only: [:create, :update]
     patch "/users_new_password", to:"users#new_password"
+    patch "/users_change_image", to:"users#change_image"
 
     # projects
     resources :users, only: [:show] do

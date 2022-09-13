@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:create]
-  before_action :find_user, only: %i[ show update destroy new_password ]
+  before_action :find_user, only: %i[ show update destroy new_password change_image ]
 
   # GET /users/1
   def show
@@ -18,6 +18,17 @@ class UsersController < ApplicationController
   def update
     @user.update!(user_params)
     render json: @user, status: :accepted
+  end
+
+  # PATCH/PUT /users_change_image
+  def change_image
+    byebug
+    @user.image.attach(params[:image])
+    if @user.image.attached?
+      render json: @user, status: :accepted
+    else
+      render json: {error: "update failed"}, status: 405
+    end
   end
 
   # PATCH/PUT /users_new_password
@@ -44,7 +55,7 @@ class UsersController < ApplicationController
     # ---------- Strong params ----------
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:username, :password, :profile_img, :first_name, :last_name, :email, :introduction, :is_login)
+      params.permit(:username, :password, :profile_img, :first_name, :last_name, :email, :introduction, :is_login, :image)
     end
 
     # Only for user signup

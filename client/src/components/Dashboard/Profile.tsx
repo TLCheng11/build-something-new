@@ -16,6 +16,31 @@ function Profile() {
   const [last_name, setlast_name] = useState<string>("");
   const [showIntroForm, setshowIntroForm] = useState<boolean>(false);
   const [introduction, setintroduction] = useState<string>("");
+  const [imgFile, setimgFile] = useState<File | null>(null);
+
+  function uploadImage(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (imgFile) {
+      const data = new FormData();
+      data.append("image", imgFile);
+      fetch(`/users_change_image`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }).then((res) => {
+        if (res.ok) {
+          res.json().then(setcurrentUser);
+        } else {
+          res.json().then((data) => alert(data.errors));
+        }
+      });
+    }
+  }
+
+  // console.log(currentUser);
 
   function updateProfile(e: React.FormEvent<HTMLFormElement>, input = {}) {
     e.preventDefault();
@@ -91,6 +116,36 @@ function Profile() {
                   className="mx-1 border-2 rounded-md"
                   value={profile_img}
                   onChange={(e) => setprofile_img(e.target.value)}
+                />
+                <button className="mx-1 px-2 border rounded-md" type="submit">
+                  change
+                </button>
+                <button
+                  className="px-2 border rounded-md"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setshowImgForm((state) => !state);
+                  }}
+                >
+                  X
+                </button>
+              </form>
+              <form
+                onSubmit={(e) => {
+                  uploadImage(e);
+                  setshowImgForm(false);
+                }}
+              >
+                <label>Image File:</label>
+                <input
+                  className="mx-1 border-2 rounded-md"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    if (e.target.files) {
+                      setimgFile(e.target.files[0]);
+                    }
+                  }}
                 />
                 <button className="mx-1 px-2 border rounded-md" type="submit">
                   change
