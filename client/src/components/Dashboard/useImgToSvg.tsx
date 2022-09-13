@@ -3,7 +3,7 @@ import potrace from "potrace";
 function useImgToSvg() {
   function convertImgToSvg(file: File) {
     // const fileBuffer = Buffer.from(file, "base64");
-    potrace.trace("file", (err, svg) => {
+    potrace.trace(file, (err, svg) => {
       if (err) throw err;
       console.log(JSON.stringify(svg));
     });
