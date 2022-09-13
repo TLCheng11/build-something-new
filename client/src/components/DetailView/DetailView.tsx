@@ -53,7 +53,7 @@ function DetailView() {
       ></div>
       <div>
         <button
-          className="fixed flex items-end justify-end h-24 w-24 -top-12 -left-12 p-3 bg-blue-400 rounded-full hover:scale-200 transition-all duration-300"
+          className="fixed flex items-end justify-end h-24 w-24 z-10 -top-12 -left-12 p-3 bg-blue-400 rounded-full hover:scale-200 transition-all duration-300"
           onClick={() => navigate(-1)}
         >
           <p className="-rotate-45">Back</p>
