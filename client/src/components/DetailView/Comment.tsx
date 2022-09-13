@@ -38,6 +38,7 @@ function Comment({ setrefresh, comment }: Props) {
       <div className="flex justify-between">
         <div className="flex items-center">
           <img
+            className="h-12 w-12 rounded-full"
             src={
               currentUser.image_url ||
               "https://img.icons8.com/office/40/000000/test-account.png"
