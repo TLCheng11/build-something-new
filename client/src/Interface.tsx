@@ -168,7 +168,7 @@ export interface IComment {
   user: {
     id: number;
     username: string;
-    profile_img?: string | undefined;
+    image_url?: string | undefined;
     is_login: boolean;
   };
 }
