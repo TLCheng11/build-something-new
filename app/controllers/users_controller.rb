@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users_change_image
   def change_image
     byebug
-    @user.image.attach(params[:image])
+    @user.update!(user_signup_params)
     if @user.image.attached?
       render json: @user, status: :accepted
     else
@@ -60,6 +60,6 @@ class UsersController < ApplicationController
 
     # Only for user signup
     def user_signup_params
-      params.permit(:username, :password, :email)
+      params.permit(:username, :password, :email, :image)
     end
 end

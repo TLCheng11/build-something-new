@@ -22,14 +22,14 @@ function Profile() {
     e.preventDefault();
 
     if (imgFile) {
-      const data = new FormData();
-      data.append("image", imgFile);
+      const formData = new FormData();
+      formData.append("image", imgFile);
       fetch(`/users_change_image`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: formData,
       }).then((res) => {
         if (res.ok) {
           res.json().then(setcurrentUser);
@@ -40,7 +40,7 @@ function Profile() {
     }
   }
 
-  // console.log(currentUser);
+  console.log(currentUser);
 
   function updateProfile(e: React.FormEvent<HTMLFormElement>, input = {}) {
     e.preventDefault();
