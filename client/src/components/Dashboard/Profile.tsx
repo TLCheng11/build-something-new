@@ -186,7 +186,7 @@ function Profile() {
         >
           Change Password
         </button>
-        <div className=" max-h-1/2screen w-1/3 min-w-480 overflow-auto">
+        <div className=" max-h-2/5screen w-1/3 min-w-480 overflow-auto">
           {/* email */}
           <div className="m-2 flex justify-between">
             <p className="overflow-hidden">Email: {currentUser.email}</p>

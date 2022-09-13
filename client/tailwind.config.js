@@ -20,6 +20,7 @@ module.exports = {
       },
       maxHeight: {
         "1/2screen": "50vh",
+        "2/5screen": "40vh",
       },
       minWidth: {
         input: "150px",
