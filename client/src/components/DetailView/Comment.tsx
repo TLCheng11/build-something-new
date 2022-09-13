@@ -39,7 +39,7 @@ function Comment({ setrefresh, comment }: Props) {
         <div className="flex items-center">
           <img
             src={
-              currentUser.profile_img ||
+              currentUser.image_url ||
               "https://img.icons8.com/office/40/000000/test-account.png"
             }
           />

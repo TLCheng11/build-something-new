@@ -26,9 +26,6 @@ function Profile() {
       formData.append("image", imgFile);
       fetch(`/users_change_image`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: formData,
       }).then((res) => {
         if (res.ok) {
@@ -99,13 +96,13 @@ function Profile() {
           <div className="h-48 w-48 flex items-center justify-center bg-white rounded-full">
             <img
               className="cursor-pointer h-44 w-44 rounded-full"
-              src={currentUser.profile_img || defaultProfileImg}
+              src={currentUser.image_url || defaultProfileImg}
               onClick={() => setshowImgForm((state) => !state)}
             />
           </div>
           {showImgForm && (
             <div className="px-2 py-1 rounded bg-blue-400">
-              <form
+              {/* <form
                 onSubmit={(e) => {
                   updateProfile(e, { profile_img });
                   setshowImgForm(false);
@@ -129,7 +126,7 @@ function Profile() {
                 >
                   X
                 </button>
-              </form>
+              </form> */}
               <form
                 onSubmit={(e) => {
                   uploadImage(e);

@@ -5,7 +5,8 @@ export interface ICurrentUser {
   first_name?: string | undefined;
   last_name?: string | undefined;
   dob?: Date | undefined;
-  profile_img?: string | undefined;
+  // profile_img?: string | undefined;
+  image_url?: string | undefined;
   introduction?: string | undefined;
   is_login?: boolean | undefined;
 }

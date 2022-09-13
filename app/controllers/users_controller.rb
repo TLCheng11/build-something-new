@@ -22,7 +22,6 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users_change_image
   def change_image
-    byebug
     @user.update!(user_signup_params)
     if @user.image.attached?
       render json: @user, status: :accepted
