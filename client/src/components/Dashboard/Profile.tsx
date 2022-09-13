@@ -6,7 +6,7 @@ import PasswordResetForm from "./PasswordResetForm";
 function Profile() {
   const { currentUser, setcurrentUser } = useContext(UserContext);
   const [showImgForm, setshowImgForm] = useState<boolean>(false);
-  const [profile_img, setprofile_img] = useState<string>("");
+  // const [profile_img, setprofile_img] = useState<string>("");
   const [showEmailForm, setshowEmailForm] = useState<boolean>(false);
   const [showPasswordForm, setshowPasswordForm] = useState<boolean>(false);
   const [email, setemail] = useState<string>("");
@@ -67,9 +67,9 @@ function Profile() {
     return email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g);
   }
 
-  useEffect(() => {
-    setprofile_img("");
-  }, [showImgForm]);
+  // useEffect(() => {
+  //   setprofile_img("");
+  // }, [showImgForm]);
 
   useEffect(() => {
     setemail("");
