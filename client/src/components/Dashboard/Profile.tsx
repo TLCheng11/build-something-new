@@ -37,8 +37,6 @@ function Profile() {
     }
   }
 
-  console.log(currentUser);
-
   function updateProfile(e: React.FormEvent<HTMLFormElement>, input = {}) {
     e.preventDefault();
     fetch(`/users/${currentUser.id}`, {
@@ -54,6 +52,14 @@ function Profile() {
         res.json().then((data) => alert(data.errors));
       }
     });
+  }
+
+  function closeAllForms() {
+    setshowImgForm(false);
+    setshowEmailForm(false);
+    setshowNameForm(false);
+    setshowIntroForm(false);
+    setshowPasswordForm(false);
   }
 
   function validateEmail(e: React.FormEvent<HTMLFormElement>) {
@@ -97,7 +103,10 @@ function Profile() {
             <img
               className="cursor-pointer h-44 w-44 rounded-full"
               src={currentUser.image_url || defaultProfileImg}
-              onClick={() => setshowImgForm((state) => !state)}
+              onClick={() => {
+                closeAllForms();
+                setshowImgForm((state) => !state);
+              }}
             />
           </div>
           {showImgForm && (
@@ -170,7 +179,10 @@ function Profile() {
         </div>
         <button
           className="design-btn min-w-fit px-2"
-          onClick={() => setshowPasswordForm(true)}
+          onClick={() => {
+            closeAllForms();
+            setshowPasswordForm(true);
+          }}
         >
           Change Password
         </button>
@@ -180,7 +192,10 @@ function Profile() {
             <p className="overflow-hidden">Email: {currentUser.email}</p>
             <button
               className="design-btn px-2"
-              onClick={() => setshowEmailForm((state) => !state)}
+              onClick={() => {
+                closeAllForms();
+                setshowEmailForm((state) => !state);
+              }}
             >
               Edit
             </button>
@@ -234,7 +249,10 @@ function Profile() {
             </p>
             <button
               className="design-btn px-2"
-              onClick={() => setshowNameForm((state) => !state)}
+              onClick={() => {
+                closeAllForms();
+                setshowNameForm((state) => !state);
+              }}
             >
               Edit
             </button>
@@ -297,7 +315,10 @@ function Profile() {
             <p>Introduction:</p>
             <button
               className="design-btn px-2"
-              onClick={() => setshowIntroForm((state) => !state)}
+              onClick={() => {
+                closeAllForms();
+                setshowIntroForm((state) => !state);
+              }}
             >
               Edit
             </button>
