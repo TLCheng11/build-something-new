@@ -1,4 +1,4 @@
-import { Circle, useCursor } from "@react-three/drei";
+import { Circle, Edges, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";
@@ -212,6 +212,11 @@ function ModelShape(props: Props) {
           />
         )}
         <meshStandardMaterial color={selfColor} side={DoubleSide} />
+        <Edges
+          visible={selectedRef.current || hovered}
+          scale={1.05}
+          color={"yellow"}
+        ></Edges>
       </Circle>
     </>
   );

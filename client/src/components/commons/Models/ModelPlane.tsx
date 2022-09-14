@@ -210,6 +210,11 @@ function ModelPlane(props: Props) {
           />
         )}
         <meshStandardMaterial color={selfColor} side={DoubleSide} />
+        <Edges
+          visible={selectedRef.current || hovered}
+          scale={1.05}
+          color={"yellow"}
+        ></Edges>
       </Plane>
     </>
   );

@@ -1,4 +1,4 @@
-import { Sphere, useCursor } from "@react-three/drei";
+import { Edges, Sphere, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";
@@ -228,6 +228,11 @@ function ModelSphere(props: Props) {
           />
         )}
         <meshStandardMaterial color={selfColor} side={DoubleSide} />
+        <Edges
+          visible={selectedRef.current || hovered}
+          scale={1.05}
+          color={"yellow"}
+        ></Edges>
       </Sphere>
     </>
   );

@@ -1,4 +1,4 @@
-import { Box, useCursor } from "@react-three/drei";
+import { Box, Edges, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { IModelBox, IModelGroup } from "../../../Interface";
@@ -211,6 +211,11 @@ function ModelBox(props: Props) {
           />
         )}
         <meshStandardMaterial color={selfColor} />
+        <Edges
+          visible={selectedRef.current || hovered}
+          scale={1.05}
+          color={"yellow"}
+        ></Edges>
       </Box>
     </>
   );

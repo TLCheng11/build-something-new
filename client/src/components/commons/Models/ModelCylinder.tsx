@@ -1,4 +1,4 @@
-import { Cylinder, useCursor } from "@react-three/drei";
+import { Cylinder, Edges, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";
@@ -252,6 +252,11 @@ function ModelCylinder(props: Props) {
           />
         )}
         <meshStandardMaterial color={selfColor} side={DoubleSide} />
+        <Edges
+          visible={selectedRef.current || hovered}
+          scale={1.05}
+          color={"yellow"}
+        ></Edges>
       </Cylinder>
     </>
   );
