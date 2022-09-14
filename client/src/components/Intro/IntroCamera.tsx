@@ -16,7 +16,13 @@ function IntroCamera() {
       camera.position.x -= xcamera;
     }, 5);
     allIds.push(idX);
-    allIds.push(setTimeout(() => clearInterval(idX), 25000));
+
+    const stopX = setInterval(() => {
+      if (camera.position.x <= 0) {
+        clearInterval(idX);
+      }
+    }, 5);
+    allIds.push(stopX);
 
     const idRX = setInterval(() => {
       camera.rotation.x -= xrotation;
