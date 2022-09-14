@@ -55,17 +55,28 @@ function MarketPlace() {
           <h1 className="text-4xl font-medium">No project on market</h1>
         </div>
       ) : (
-        <div id="market-place-showcase" className="h-full w-full">
-          <div className="h-9/10 w-full overflow-auto">
-            <ProjectShowcase type="market" projects={allProjects} />
+        <div className="h-full w-full">
+          <div className="h-1/8 w-full flex justify-center">
+            <h1 id="header-title">
+              <span>B</span>
+              <span>U</span>
+              <span>I</span>
+              <span>L</span>
+              <span>D</span>
+            </h1>
           </div>
-          <div className="h-1/10">
-            <PagesNavBar
-              type="marketplace"
-              pageCount={pageCount}
-              currentPage={currentPage}
-              setcurrentPage={setcurrentPage}
-            />
+          <div id="market-place-showcase" className="h-7/8 w-full">
+            <div className="h-7/8 w-full overflow-auto">
+              <ProjectShowcase type="market" projects={allProjects} />
+            </div>
+            <div className="h-1/8">
+              <PagesNavBar
+                type="marketplace"
+                pageCount={pageCount}
+                currentPage={currentPage}
+                setcurrentPage={setcurrentPage}
+              />
+            </div>
           </div>
         </div>
       )}
