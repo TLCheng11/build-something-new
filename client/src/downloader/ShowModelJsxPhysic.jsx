@@ -287,8 +287,8 @@ function ShowModel() {
   return (
     <div
       style={{
-        height: "800px",
-        width: "1200px",
+        height: "100vh",
+        width: "100vw",
         backgroundColor: model.project_setting?.bg_color,
       }}
     >
