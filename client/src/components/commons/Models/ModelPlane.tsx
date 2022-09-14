@@ -1,4 +1,4 @@
-import { Plane, useCursor } from "@react-three/drei";
+import { Edges, Plane, useCursor } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { ThreeEvent } from "react-three-fiber";
 import { DoubleSide } from "three";

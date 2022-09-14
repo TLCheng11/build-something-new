@@ -160,6 +160,7 @@ function DesignControls(props: Props) {
         setgroupPosition={setgroupPosition}
         groupRotation={groupRotation}
         setgroupRotation={setgroupRotation}
+        setselectedModel={setselectedModel}
       />
       <ModelTypesControls
         selectedGroup={selectedGroup}

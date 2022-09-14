@@ -25,6 +25,12 @@ interface Props {
   setgroupRotation: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
+  setselectedModel: Dispatch<
+    SetStateAction<{
+      type: string;
+      id: number;
+    }>
+  >;
 }
 
 function ModelGroupControls(props: Props) {
@@ -37,6 +43,7 @@ function ModelGroupControls(props: Props) {
     setgroupPosition,
     groupRotation,
     setgroupRotation,
+    setselectedModel,
   } = props;
   const [groupName, setgroupName] = useState<string>("");
   const params = useParams();
@@ -194,6 +201,7 @@ function ModelGroupControls(props: Props) {
         const id = selectedGroup.id;
         // to trigger a save before copy
         setselectedGroup({ ...selectedGroup, id: 0 });
+        setselectedModel({ type: "", id: 0 });
         setTimeout(() => {
           fetch(`/model_groups_copy/${id}`, {
             method: "POST",
