@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { SliderPicker } from "react-color";
+import { ChromePicker, SliderPicker } from "react-color";
 import { IProject, ISetting } from "../../../Interface";
 
 interface Props {
@@ -63,8 +63,8 @@ function SettingControls(props: Props) {
           Save Color
         </button>
       </div>
-      <div className="my-2">
-        <SliderPicker
+      <div className="my-2 flex justify-center">
+        <ChromePicker
           color={setting.bg_color}
           onChangeComplete={(color) =>
             setsetting({ ...setting, bg_color: color.hex })
