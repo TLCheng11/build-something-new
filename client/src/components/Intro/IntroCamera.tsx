@@ -20,6 +20,7 @@ function IntroCamera() {
     const stopX = setInterval(() => {
       if (camera.position.x <= 0) {
         clearInterval(idX);
+        clearInterval(stopX);
       }
     }, 5);
     allIds.push(stopX);
