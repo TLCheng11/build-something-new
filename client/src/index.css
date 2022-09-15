@@ -203,7 +203,7 @@ input:checked ~ .dot {
 }
 .heart-like-button.liked::before,
 .heart-like-button.liked::after {
-  background-color: #d65076;
+  background-color: #ed7979;
 }
 .heart-like-button.liked {
   animation: liked 0.4s ease;
