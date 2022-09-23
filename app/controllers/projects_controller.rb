@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  skip_before_action :authorized, only: [:index, :page_count, :data, :ratings]
   before_action :find_project, only: %i[ show update destroy ratings data download]
 
   # GET /projects

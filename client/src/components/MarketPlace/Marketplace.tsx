@@ -20,23 +20,23 @@ function MarketPlace() {
   }, []);
 
   useEffect(() => {
-    if (currentUser.id) {
-      fetch(`/projects_page_count`).then((res) => {
-        if (res.ok) {
-          res.json().then((data) => {
-            setpageCount(data.page_count);
-          });
-        } else {
-          res.json().then((data) => {
-            alert(data.error);
-          });
-        }
-      });
-    }
+    // if (currentUser.id) {
+    fetch(`/projects_page_count`).then((res) => {
+      if (res.ok) {
+        res.json().then((data) => {
+          setpageCount(data.page_count);
+        });
+      } else {
+        res.json().then((data) => {
+          alert(data.error);
+        });
+      }
+    });
+    // }
   }, []);
 
   useEffect(() => {
-    if (currentUser.id && pageCount > 0) {
+    if (pageCount > 0) {
       fetch(`/projects/?page=${currentPage}`).then((res) => {
         if (res.ok) {
           res.json().then(setallProjects);

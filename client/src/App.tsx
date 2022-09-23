@@ -11,9 +11,10 @@ import MyProjects from "./components/Dashboard/MyProjects";
 import FavoredProjects from "./components/Dashboard/FavoredProjects";
 import Profile from "./components/Dashboard/Profile";
 import TestPhysic from "./components/TestPhysic/TestPhysic";
+import LoginTop from "./components/commons/Menus/LoginTop";
 
 function App() {
-  const { currentUser, setcurrentUser } = useContext(UserContext);
+  const { currentUser, setcurrentUser, firstEnter } = useContext(UserContext);
   const [showMenu, setshowMenu] = useState<boolean>(false);
 
   // only authorize logged in users
@@ -34,8 +35,14 @@ function App() {
   if (!currentUser.id)
     return (
       <BrowserRouter>
+        {!firstEnter && <LoginTop />}
         <Routes>
           <Route path="/" element={<LoginScreen />} />
+          <Route path="/marketplace/:page" element={<MarketPlace />} />
+          <Route
+            path="/project-detail-view/:project_id"
+            element={<DetailView />}
+          />
           <Route
             path="*"
             element={<div className="text-6xl">Page Not Found</div>}

@@ -9,7 +9,7 @@ interface Props {
 function LoginForm(props: Props) {
   let navigate = useNavigate();
   const { setSignUp } = props;
-  const { setcurrentUser } = useContext(UserContext);
+  const { setcurrentUser, firstEnter } = useContext(UserContext);
   const [formInput, setFormInput] = useState({
     username: "",
     password: "",
@@ -115,6 +115,31 @@ function LoginForm(props: Props) {
               </span>
               Sign in
             </button>
+            {firstEnter && (
+              <button
+                type="button"
+                className="mt-2 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                onClick={() => navigate("/marketplace/1")}
+              >
+                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </span>
+                Browse as guest
+              </button>
+            )}
           </div>
         </form>
         <p className="mt-2 text-center text-base text-gray-600 ">

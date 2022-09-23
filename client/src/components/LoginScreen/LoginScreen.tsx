@@ -5,7 +5,11 @@ import Intro from "../Intro/Intro";
 import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
-function LoginPage() {
+interface Props {
+  setshowLogin?: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function LoginPage({ setshowLogin }: Props) {
   let navigate = useNavigate();
   const { currentUser, firstEnter, setfirstEnter } = useContext(UserContext);
   const [signUp, setSignUp] = useState<boolean>(false);
@@ -16,15 +20,19 @@ function LoginPage() {
       setfirstEnter(false);
       navigate("/marketplace/1");
     }
-  }, []);
 
-  useEffect(() => {
     const id = setTimeout(() => {
       setshowForms(true);
     }, 31000);
 
     return () => clearInterval(id);
-  });
+  }, []);
+
+  useEffect(() => {
+    if (!firstEnter) {
+      setshowForms(true);
+    }
+  }, []);
 
   return (
     <div
@@ -36,7 +44,14 @@ function LoginPage() {
           <Intro />
         </div>
       ) : (
-        <div className="fixed h-screen w-screen bg-stone-900 opacity-50"></div>
+        <div
+          className="fixed h-screen w-screen bg-stone-900 opacity-50"
+          onClick={() => {
+            if (setshowLogin) {
+              setshowLogin((state) => !state);
+            }
+          }}
+        ></div>
       )}
       <div
         className={`z-10 ${

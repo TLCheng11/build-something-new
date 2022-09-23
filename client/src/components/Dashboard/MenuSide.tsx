@@ -9,6 +9,7 @@ interface Props {
 function MenuSide(props: Props) {
   let navigate = useNavigate();
   const location = useLocation();
+  const { setfirstEnter } = useContext(UserContext);
   const { setshowProjectForm } = props;
   const { currentUser, setcurrentUser } = useContext(UserContext);
 
@@ -19,6 +20,7 @@ function MenuSide(props: Props) {
       .then((res) => res.json())
       .then(console.log);
     setcurrentUser({});
+    setfirstEnter(true);
     navigate("/");
   }
 

@@ -167,7 +167,7 @@ function ProjectCard(props: Props) {
             <h1 className="text-3xl">{project.title}</h1>
 
             {/* like button */}
-            {currentUser.id !== project.created_by && (
+            {currentUser.id && currentUser.id !== project.created_by && (
               <div
                 ref={favoredRef}
                 className="heart-like-button"
