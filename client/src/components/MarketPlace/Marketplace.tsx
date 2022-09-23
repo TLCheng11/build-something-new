@@ -7,12 +7,13 @@ import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 
 function MarketPlace() {
   const params = useParams();
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setfirstEnter } = useContext(UserContext);
   const [allProjects, setallProjects] = useState<IProject[]>([]);
   const [pageCount, setpageCount] = useState(0);
   const [currentPage, setcurrentPage] = useState<number>(1);
 
   useEffect(() => {
+    setfirstEnter(false);
     if (params.page) {
       setcurrentPage(parseInt(params.page));
     }

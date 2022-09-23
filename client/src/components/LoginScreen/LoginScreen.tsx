@@ -7,12 +7,13 @@ import SignUpForm from "./SignUpForm";
 
 function LoginPage() {
   let navigate = useNavigate();
-  const { currentUser, setcurrentUser } = useContext(UserContext);
+  const { currentUser, firstEnter, setfirstEnter } = useContext(UserContext);
   const [signUp, setSignUp] = useState<boolean>(false);
   const [showForms, setshowForms] = useState<boolean>(false);
 
   useEffect(() => {
     if (currentUser.id) {
+      setfirstEnter(false);
       navigate("/marketplace/1");
     }
   }, []);
@@ -30,9 +31,13 @@ function LoginPage() {
       className="h-screen w-screen flex items-center justify-center"
       onClick={() => setshowForms(true)}
     >
-      <div className="fixed h-screen w-screen">
-        <Intro />
-      </div>
+      {firstEnter ? (
+        <div className="fixed h-screen w-screen">
+          <Intro />
+        </div>
+      ) : (
+        <div className="fixed h-screen w-screen bg-stone-900 opacity-50"></div>
+      )}
       <div
         className={`z-10 ${
           showForms ? "opacity-100" : "opacity-0"
