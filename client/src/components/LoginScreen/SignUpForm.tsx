@@ -10,6 +10,7 @@ function SignUpForm(props: Props) {
   let navigate = useNavigate();
   const { setSignUp } = props;
   const { setcurrentUser } = useContext(UserContext);
+  const [focused, setFocused] = useState<string>("");
 
   const [formInput, setformInput] = useState({
     username: "",
@@ -106,6 +107,7 @@ function SignUpForm(props: Props) {
           onSubmit={handleSignUp}
         >
           <div className="rounded-md shadow-sm -space-y-px">
+            {/* username input */}
             <div>
               <label htmlFor="username" className="sr-only">
                 Username
@@ -119,8 +121,34 @@ function SignUpForm(props: Props) {
                 placeholder="Username"
                 value={formInput.username}
                 onChange={onFormChange}
+                onFocus={() => setFocused("username")}
+                onBlur={() => {
+                  if (focused === "username") {
+                    setFocused("");
+                  }
+                }}
               />
             </div>
+            {focused === "username" && (
+              <div className="font-bold max-w-full">
+                <p
+                  className={
+                    conditions.first ? "text-green-600" : "text-red-600"
+                  }
+                >
+                  * username must be between 3 - 20 charaters
+                </p>
+                <p
+                  className={
+                    conditions.second ? "text-green-600" : "text-red-600"
+                  }
+                >
+                  * username must start with a letter and cannot have space
+                </p>
+              </div>
+            )}
+
+            {/* email input */}
             <div>
               <label htmlFor="email" className="sr-only">
                 Username
@@ -134,8 +162,27 @@ function SignUpForm(props: Props) {
                 placeholder="xyz@email.com"
                 value={formInput.email}
                 onChange={onFormChange}
+                onFocus={() => setFocused("email")}
+                onBlur={() => {
+                  if (focused === "email") {
+                    setFocused("");
+                  }
+                }}
               />
             </div>
+            {focused === "email" && (
+              <div className="font-bold">
+                <p
+                  className={
+                    conditions.third ? "text-green-600" : "text-red-600"
+                  }
+                >
+                  * please enter a valid email address
+                </p>
+              </div>
+            )}
+
+            {/* password input */}
             <div>
               <label htmlFor="password" className="sr-only">
                 Password
@@ -149,6 +196,12 @@ function SignUpForm(props: Props) {
                 placeholder="Password"
                 value={formInput.password}
                 onChange={onFormChange}
+                onFocus={() => setFocused("password")}
+                onBlur={() => {
+                  if (focused === "password") {
+                    setFocused("");
+                  }
+                }}
               />
             </div>
             <div>
@@ -164,40 +217,48 @@ function SignUpForm(props: Props) {
                 placeholder="Comfirm password"
                 value={formInput.password_confirmation}
                 onChange={onFormChange}
+                onFocus={() => setFocused("password")}
+                onBlur={() => {
+                  if (focused === "password") {
+                    setFocused("");
+                  }
+                }}
               />
             </div>
-          </div>
-
-          <div className="font-bold">
-            <p className={conditions.first ? "text-green-600" : "text-red-600"}>
-              * username must be between 3 - 20 charaters
-            </p>
-            <p
-              className={conditions.second ? "text-green-600" : "text-red-600"}
-            >
-              * username must start with a letter and cannot have space
-            </p>
-            <p className={conditions.third ? "text-green-600" : "text-red-600"}>
-              * please enter a valid email address
-            </p>
-            <p
-              className={conditions.fourth ? "text-green-600" : "text-red-600"}
-            >
-              * password must be between 8 - 20 charaters
-            </p>
-            <p className={conditions.fifth ? "text-green-600" : "text-red-600"}>
-              * password must contain at least one Uppercase and lowercase
-              letter
-            </p>
-            <p className={conditions.sixth ? "text-green-600" : "text-red-600"}>
-              * password can only include alphabet letters, numbers, one of this
-              special charater ~!@#$%^&*-=+?_ and cannot have space
-            </p>
-            <p
-              className={conditions.seventh ? "text-green-600" : "text-red-600"}
-            >
-              * please confirm your password
-            </p>
+            {focused === "password" && (
+              <div className="font-bold">
+                <p
+                  className={
+                    conditions.fourth ? "text-green-600" : "text-red-600"
+                  }
+                >
+                  * password must be between 8 - 20 charaters
+                </p>
+                <p
+                  className={
+                    conditions.fifth ? "text-green-600" : "text-red-600"
+                  }
+                >
+                  * password must contain at least one Uppercase and lowercase
+                  letter
+                </p>
+                <p
+                  className={
+                    conditions.sixth ? "text-green-600" : "text-red-600"
+                  }
+                >
+                  * password can only include alphabet letters, numbers, one of
+                  this special charater ~!@#$%^&*-=+?_ and cannot have space
+                </p>
+                <p
+                  className={
+                    conditions.seventh ? "text-green-600" : "text-red-600"
+                  }
+                >
+                  * please confirm your password
+                </p>
+              </div>
+            )}
           </div>
 
           <div>

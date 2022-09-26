@@ -54,7 +54,7 @@ function LoginPage({ setshowLogin }: Props) {
         ></div>
       )}
       <div
-        className={`z-10 ${
+        className={`w-1/4 min-w-360 z-10 ${
           showForms ? "opacity-100" : "opacity-0"
         } transition-opacity duration-500 ease-in`}
       >
