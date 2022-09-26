@@ -11,8 +11,8 @@ import Details from "./Details";
 function DetailView() {
   let navigate = useNavigate();
   const params = useParams();
-  const [notFound, setnotFound] = useState<boolean>(false);
-  const [project, setproject] = useState<IProject>({
+  const [notFound, setNotFound] = useState<boolean>(false);
+  const [project, setProject] = useState<IProject>({
     id: 0,
     title: "",
     on_market: false,
@@ -29,14 +29,14 @@ function DetailView() {
         res
           .json()
           .then((data) => {
-            setproject(data);
+            setProject(data);
           })
           .catch(console.error);
       } else {
         const id = setTimeout(() => {
           navigate(-1);
         }, 2000);
-        setnotFound(true);
+        setNotFound(true);
 
         return () => clearInterval(id);
       }

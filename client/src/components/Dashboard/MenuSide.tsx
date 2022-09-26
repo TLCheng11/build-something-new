@@ -3,15 +3,15 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 
 interface Props {
-  setshowProjectForm: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowProjectForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function MenuSide(props: Props) {
   let navigate = useNavigate();
   const location = useLocation();
-  const { setfirstEnter } = useContext(UserContext);
-  const { setshowProjectForm } = props;
-  const { currentUser, setcurrentUser } = useContext(UserContext);
+  const { setFirstEnter } = useContext(UserContext);
+  const { setShowProjectForm } = props;
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   function logout() {
     fetch("/logout", {
@@ -19,8 +19,8 @@ function MenuSide(props: Props) {
     })
       .then((res) => res.json())
       .then(console.log);
-    setcurrentUser({});
-    setfirstEnter(true);
+    setCurrentUser({});
+    setFirstEnter(true);
     navigate("/");
   }
 
@@ -54,7 +54,7 @@ function MenuSide(props: Props) {
             <button
               id="btn-add-project"
               className="side-menu-items text-2xl"
-              onClick={() => setshowProjectForm(true)}
+              onClick={() => setShowProjectForm(true)}
             >
               Add Project
             </button>

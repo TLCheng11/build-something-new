@@ -4,18 +4,18 @@ import MenuSide from "./MenuSide";
 import ProjectInfoForm from "../commons/Projects/ProjectInfoForm";
 
 function Dashboard() {
-  const [showProjectForm, setshowProjectForm] = useState<boolean>(false);
+  const [showProjectForm, setShowProjectForm] = useState<boolean>(false);
 
   return (
     <div id="dashboard" className="flex h-screen w-screen bg-white text-black">
       {showProjectForm && (
         <ProjectInfoForm
-          setshowProjectForm={setshowProjectForm}
+          setShowProjectForm={setShowProjectForm}
           action="post"
         />
       )}
       <div id="menu-side" className="h-full w-1/5 min-w-225 border-r">
-        <MenuSide setshowProjectForm={setshowProjectForm} />
+        <MenuSide setShowProjectForm={setShowProjectForm} />
       </div>
       <Outlet />
     </div>

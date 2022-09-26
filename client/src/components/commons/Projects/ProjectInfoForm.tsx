@@ -10,31 +10,31 @@ import { UserContext } from "../../../contexts/UserContext";
 import { IProject } from "../../../Interface";
 
 interface Props {
-  setshowProjectForm: Dispatch<SetStateAction<boolean>>;
+  setShowProjectForm: Dispatch<SetStateAction<boolean>>;
   action: string;
   currentProject?: IProject;
-  setrefresh?: React.Dispatch<React.SetStateAction<boolean>>;
-  setcurrentPage?: React.Dispatch<React.SetStateAction<number>>;
+  setRefresh?: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentPage?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 function ProjectInfoForm(props: Props) {
   let navigate = useNavigate();
   const {
-    setshowProjectForm,
+    setShowProjectForm,
     action,
     currentProject,
-    setrefresh,
-    setcurrentPage,
+    setRefresh,
+    setCurrentPage,
   } = props;
   const { currentUser } = useContext(UserContext);
-  const [formInput, setformInput] = useState({
+  const [formInput, setFormInput] = useState({
     title: "",
     description: "",
   });
 
   useEffect(() => {
     if (currentProject) {
-      setformInput({
+      setFormInput({
         title: currentProject.title,
         description: currentProject.description || "",
       });
@@ -50,7 +50,7 @@ function ProjectInfoForm(props: Props) {
       ...formInput,
       [e.target.name]: e.target.value,
     };
-    setformInput(newInput);
+    setFormInput(newInput);
   }
 
   function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -69,7 +69,7 @@ function ProjectInfoForm(props: Props) {
         if (res.ok) {
           res.json().then((data) => {
             navigate(`/project-design/${data.id}`);
-            setshowProjectForm(false);
+            setShowProjectForm(false);
           });
         } else {
           res.json().then((message) => alert(message.errors));
@@ -87,10 +87,10 @@ function ProjectInfoForm(props: Props) {
       }).then((res) => {
         if (res.ok) {
           res.json().then(() => {
-            setshowProjectForm(false);
-            if (setcurrentPage && setrefresh) {
-              setrefresh((state) => !state);
-              setcurrentPage(1);
+            setShowProjectForm(false);
+            if (setCurrentPage && setRefresh) {
+              setRefresh((state) => !state);
+              setCurrentPage(1);
             }
           });
         } else {
@@ -109,7 +109,7 @@ function ProjectInfoForm(props: Props) {
         <div className="flex justify-end">
           <p
             className="cursor-pointer text-xl mx-2 hover:text-red-500"
-            onClick={() => setshowProjectForm(false)}
+            onClick={() => setShowProjectForm(false)}
           >
             X
           </p>

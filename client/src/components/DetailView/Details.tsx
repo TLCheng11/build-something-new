@@ -14,22 +14,22 @@ interface Props {
 function Details({ project }: Props) {
   const favoredRef = useRef<HTMLDivElement>(null);
   const { currentUser } = useContext(UserContext);
-  const [refresh, setrefresh] = useState<boolean>(false);
-  const [favored, setfavored] = useState<boolean>(false);
-  const [addComment, setaddComment] = useState<boolean>(false);
-  const [comments, setcomments] = useState<IComment[]>([]);
-  const [overallRating, setoverallRating] = useState<{
+  const [refresh, setRefresh] = useState<boolean>(false);
+  const [favored, setFavored] = useState<boolean>(false);
+  const [addComment, setAddComment] = useState<boolean>(false);
+  const [comments, setComments] = useState<IComment[]>([]);
+  const [overallRating, setOverallRating] = useState<{
     rating: number;
     count: number;
   }>({ rating: 0, count: 0 });
 
   //testing downloader
   const [handleZip] = useDownload();
-  const [downloadType, setdownloadType] = useState<string>("jsx");
-  const [withPhysic, setwithPhysic] = useState<boolean>(false);
+  const [downloadType, setDownloadType] = useState<string>("jsx");
+  const [withPhysic, setWithPhysic] = useState<boolean>(false);
 
   const showComments = comments.map((comment) => (
-    <Comment key={comment.id} setrefresh={setrefresh} comment={comment} />
+    <Comment key={comment.id} setRefresh={setRefresh} comment={comment} />
   ));
 
   useEffect(() => {
@@ -37,17 +37,17 @@ function Details({ project }: Props) {
       if (currentUser.id) {
         fetch(`/projects/${project.id}/comments`)
           .then((res) => res.json())
-          .then(setcomments)
+          .then(setComments)
           .catch(console.error);
       }
 
       fetch(`/projects_ratings/${project.id}`)
         .then((res) => res.json())
-        .then(setoverallRating)
+        .then(setOverallRating)
         .catch(console.error);
     }
 
-    setfavored(project.favored || false);
+    setFavored(project.favored || false);
   }, [refresh, project]);
 
   // to update favered icon status
@@ -85,7 +85,7 @@ function Details({ project }: Props) {
       body: JSON.stringify({ favored: !favored }),
     }).then((res) => {
       if (res.ok) {
-        res.json().then((data) => setfavored(data.favored));
+        res.json().then((data) => setFavored(data.favored));
       } else {
         res.json().then((data) => alert(data.error));
       }
@@ -118,7 +118,7 @@ function Details({ project }: Props) {
                     name="radio-download"
                     value="jsx"
                     checked={downloadType === "jsx"}
-                    onChange={(e) => setdownloadType(e.target.value)}
+                    onChange={(e) => setDownloadType(e.target.value)}
                   />
                   <label
                     htmlFor="radio-jsx"
@@ -133,7 +133,7 @@ function Details({ project }: Props) {
                     name="radio-download"
                     value="tsx"
                     checked={downloadType === "tsx"}
-                    onChange={(e) => setdownloadType(e.target.value)}
+                    onChange={(e) => setDownloadType(e.target.value)}
                   />
                   <label
                     htmlFor="radio-tsx"
@@ -149,7 +149,7 @@ function Details({ project }: Props) {
                     className="h-4 w-4 mx-2 mt-1"
                     type="checkbox"
                     checked={withPhysic}
-                    onChange={(e) => setwithPhysic(e.target.checked)}
+                    onChange={(e) => setWithPhysic(e.target.checked)}
                   />
                 </div>
                 <button
@@ -214,7 +214,7 @@ function Details({ project }: Props) {
                 <div>
                   <button
                     className="px-1 border"
-                    onClick={() => setaddComment((state) => !state)}
+                    onClick={() => setAddComment((state) => !state)}
                   >
                     Add a Comment
                   </button>
@@ -223,9 +223,9 @@ function Details({ project }: Props) {
             </div>
             {addComment && (
               <CommentForm
-                setrefresh={setrefresh}
+                setRefresh={setRefresh}
                 action="post"
-                setaddComment={setaddComment}
+                setAddComment={setAddComment}
                 id={project.id}
               />
             )}

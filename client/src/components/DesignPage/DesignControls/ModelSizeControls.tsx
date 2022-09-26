@@ -5,44 +5,44 @@ interface Props {
     type: string;
     id: number;
   };
-  setselectedModel: Dispatch<
+  setSelectedModel: Dispatch<
     SetStateAction<{
       type: string;
       id: number;
     }>
   >;
   planeSize: [number, number];
-  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
+  setPlaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   boxSize: [number, number, number];
-  setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
+  setBoxSize: Dispatch<SetStateAction<[number, number, number]>>;
   sphereSize: [number, number, number, number, number];
-  setsphereSize: React.Dispatch<
+  setSphereSize: React.Dispatch<
     React.SetStateAction<[number, number, number, number, number]>
   >;
   shapeSize: [number, number, number];
   cylinderSize: [number, number, number, number, number, boolean];
-  setcylinderSize: React.Dispatch<
+  setCylinderSize: React.Dispatch<
     React.SetStateAction<[number, number, number, number, number, boolean]>
   >;
-  setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setShapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function ModelSizeContorls(props: Props) {
   const {
     selectedModel,
-    setselectedModel,
+    setSelectedModel,
     boxSize,
-    setboxSize,
+    setBoxSize,
     planeSize,
-    setplaneSize,
+    setPlaneSize,
     sphereSize,
-    setsphereSize,
+    setSphereSize,
     shapeSize,
-    setshapeSize,
+    setShapeSize,
     cylinderSize,
-    setcylinderSize,
+    setCylinderSize,
   } = props;
-  const [step, setstep] = useState<string>("0.05");
+  const [step, setStep] = useState<string>("0.05");
 
   return (
     <div id="model-size-controls" className="h-full w-full bg-gray-600">
@@ -61,7 +61,7 @@ function ModelSizeContorls(props: Props) {
               name="model-width"
               value={planeSize[0]}
               onChange={(e) =>
-                setplaneSize((size) => [parseFloat(e.target.value), size[1]])
+                setPlaneSize((size) => [parseFloat(e.target.value), size[1]])
               }
             />
           </div>
@@ -77,7 +77,7 @@ function ModelSizeContorls(props: Props) {
               name="model-depth"
               value={planeSize[1]}
               onChange={(e) =>
-                setplaneSize((size) => [size[0], parseFloat(e.target.value)])
+                setPlaneSize((size) => [size[0], parseFloat(e.target.value)])
               }
             />
           </div>
@@ -98,7 +98,7 @@ function ModelSizeContorls(props: Props) {
               name="model-radius"
               value={shapeSize[0]}
               onChange={(e) =>
-                setshapeSize((size) => [
+                setShapeSize((size) => [
                   parseFloat(e.target.value),
                   size[1],
                   size[2],
@@ -117,7 +117,7 @@ function ModelSizeContorls(props: Props) {
               name="model-segments"
               value={shapeSize[1]}
               onChange={(e) =>
-                setshapeSize((size) => [
+                setShapeSize((size) => [
                   size[0],
                   parseFloat(e.target.value),
                   size[2],
@@ -137,7 +137,7 @@ function ModelSizeContorls(props: Props) {
               name="model-theta-length"
               value={shapeSize[2]}
               onChange={(e) =>
-                setshapeSize((size) => [
+                setShapeSize((size) => [
                   size[0],
                   size[1],
                   parseFloat(e.target.value),
@@ -151,7 +151,7 @@ function ModelSizeContorls(props: Props) {
               max={720}
               value={shapeSize[2]}
               onChange={(e) =>
-                setshapeSize((size) => [
+                setShapeSize((size) => [
                   size[0],
                   size[1],
                   parseFloat(e.target.value),
@@ -177,7 +177,7 @@ function ModelSizeContorls(props: Props) {
               name="model-width"
               value={boxSize[0]}
               onChange={(e) =>
-                setboxSize((size) => [
+                setBoxSize((size) => [
                   parseFloat(e.target.value),
                   size[1],
                   size[2],
@@ -197,7 +197,7 @@ function ModelSizeContorls(props: Props) {
               name="model-height"
               value={boxSize[1]}
               onChange={(e) =>
-                setboxSize((size) => [
+                setBoxSize((size) => [
                   size[0],
                   parseFloat(e.target.value),
                   size[2],
@@ -217,7 +217,7 @@ function ModelSizeContorls(props: Props) {
               name="model-depth"
               value={boxSize[2]}
               onChange={(e) =>
-                setboxSize((size) => [
+                setBoxSize((size) => [
                   size[0],
                   size[1],
                   parseFloat(e.target.value),
@@ -242,7 +242,7 @@ function ModelSizeContorls(props: Props) {
               name="model-radius"
               value={sphereSize[0]}
               onChange={(e) =>
-                setsphereSize((size) => [
+                setSphereSize((size) => [
                   parseFloat(e.target.value),
                   size[1],
                   size[2],
@@ -263,7 +263,7 @@ function ModelSizeContorls(props: Props) {
               name="model-width-segments"
               value={sphereSize[1]}
               onChange={(e) =>
-                setsphereSize((size) => [
+                setSphereSize((size) => [
                   size[0],
                   parseFloat(e.target.value),
                   size[2],
@@ -284,7 +284,7 @@ function ModelSizeContorls(props: Props) {
               name="model-height-segments"
               value={sphereSize[2]}
               onChange={(e) =>
-                setsphereSize((size) => [
+                setSphereSize((size) => [
                   size[0],
                   size[1],
                   parseFloat(e.target.value),
@@ -306,7 +306,7 @@ function ModelSizeContorls(props: Props) {
               name="model-phi-length"
               value={sphereSize[3]}
               onChange={(e) =>
-                setsphereSize((size) => [
+                setSphereSize((size) => [
                   size[0],
                   size[1],
                   size[2],
@@ -322,7 +322,7 @@ function ModelSizeContorls(props: Props) {
               max={720}
               value={sphereSize[3]}
               onChange={(e) =>
-                setsphereSize((size) => [
+                setSphereSize((size) => [
                   size[0],
                   size[1],
                   size[2],
@@ -345,7 +345,7 @@ function ModelSizeContorls(props: Props) {
               name="model-theta-length"
               value={sphereSize[4]}
               onChange={(e) =>
-                setsphereSize((size) => [
+                setSphereSize((size) => [
                   size[0],
                   size[1],
                   size[2],
@@ -361,7 +361,7 @@ function ModelSizeContorls(props: Props) {
               max={720}
               value={sphereSize[4]}
               onChange={(e) =>
-                setsphereSize((size) => [
+                setSphereSize((size) => [
                   size[0],
                   size[1],
                   size[2],
@@ -389,7 +389,7 @@ function ModelSizeContorls(props: Props) {
               name="model-radius-top"
               value={cylinderSize[0]}
               onChange={(e) =>
-                setcylinderSize((size) => [
+                setCylinderSize((size) => [
                   parseFloat(e.target.value),
                   size[1],
                   size[2],
@@ -412,7 +412,7 @@ function ModelSizeContorls(props: Props) {
               name="model-radius-bottom"
               value={cylinderSize[1]}
               onChange={(e) =>
-                setcylinderSize((size) => [
+                setCylinderSize((size) => [
                   size[0],
                   parseFloat(e.target.value),
                   size[2],
@@ -435,7 +435,7 @@ function ModelSizeContorls(props: Props) {
               name="model-height"
               value={cylinderSize[2]}
               onChange={(e) =>
-                setcylinderSize((size) => [
+                setCylinderSize((size) => [
                   size[0],
                   size[1],
                   parseFloat(e.target.value),
@@ -457,7 +457,7 @@ function ModelSizeContorls(props: Props) {
               name="model-segments"
               value={cylinderSize[3]}
               onChange={(e) =>
-                setcylinderSize((size) => [
+                setCylinderSize((size) => [
                   size[0],
                   size[1],
                   size[2],
@@ -480,7 +480,7 @@ function ModelSizeContorls(props: Props) {
               name="model-theta-length"
               value={cylinderSize[4]}
               onChange={(e) =>
-                setcylinderSize((size) => [
+                setCylinderSize((size) => [
                   size[0],
                   size[1],
                   size[2],
@@ -497,7 +497,7 @@ function ModelSizeContorls(props: Props) {
               max={720}
               value={cylinderSize[4]}
               onChange={(e) =>
-                setcylinderSize((size) => [
+                setCylinderSize((size) => [
                   size[0],
                   size[1],
                   size[2],
@@ -519,7 +519,7 @@ function ModelSizeContorls(props: Props) {
               name="model-open-ended"
               checked={cylinderSize[5]}
               onChange={(e) =>
-                setcylinderSize((size) => [
+                setCylinderSize((size) => [
                   size[0],
                   size[1],
                   size[2],

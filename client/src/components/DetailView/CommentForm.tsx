@@ -3,18 +3,18 @@ import ReactStars from "react-stars";
 import { IComment } from "../../Interface";
 
 interface Props {
-  setrefresh: React.Dispatch<React.SetStateAction<boolean>>;
+  setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   action: string;
-  setaddComment: React.Dispatch<React.SetStateAction<boolean>>;
+  setAddComment: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;
   currentComment?: IComment;
 }
 
 function CommentForm(props: Props) {
-  const { setrefresh, action, setaddComment, id, currentComment } = props;
-  const [rating, setrating] = useState<number>(currentComment?.rating || 0);
-  const [title, settitle] = useState<string>(currentComment?.title || "");
-  const [comment, setcomment] = useState<string>(currentComment?.comment || "");
+  const { setRefresh, action, setAddComment, id, currentComment } = props;
+  const [rating, setRating] = useState<number>(currentComment?.rating || 0);
+  const [title, setTitle] = useState<string>(currentComment?.title || "");
+  const [comment, setComment] = useState<string>(currentComment?.comment || "");
 
   function handleCommentSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,8 +29,8 @@ function CommentForm(props: Props) {
         .then((res) => {
           if (res.ok) {
             res.json().then(() => {
-              setaddComment((state) => !state);
-              setrefresh((state) => !state);
+              setAddComment((state) => !state);
+              setRefresh((state) => !state);
             });
           } else {
             res
@@ -51,8 +51,8 @@ function CommentForm(props: Props) {
       }).then((res) => {
         if (res.ok) {
           res.json().then(() => {
-            setaddComment((state) => !state);
-            setrefresh((state) => !state);
+            setAddComment((state) => !state);
+            setRefresh((state) => !state);
           });
         } else {
           res.json().then((data) => alert(data.error));
@@ -75,7 +75,7 @@ function CommentForm(props: Props) {
             maxLength={100}
             required
             value={title}
-            onChange={(e) => settitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <textarea
             className="w-full h-20 mt-2 p-2 border rounded focus:outline-none focus:ring-gray-300 focus:ring-1"
@@ -83,7 +83,7 @@ function CommentForm(props: Props) {
             placeholder=""
             maxLength={255}
             value={comment}
-            onChange={(e) => setcomment(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
           ></textarea>
         </div>
         <div className="flex items-center">
@@ -94,7 +94,7 @@ function CommentForm(props: Props) {
             size={24}
             color2={"#ffd700"}
             value={rating}
-            onChange={setrating}
+            onChange={setRating}
           />
           <p>{rating}</p>
         </div>
@@ -109,7 +109,7 @@ function CommentForm(props: Props) {
             className="px-3 py-2 mx-2 text-sm text-blue-600 border border-blue-500 rounded"
             onClick={(e) => {
               e.preventDefault();
-              setaddComment((state) => !state);
+              setAddComment((state) => !state);
             }}
           >
             Cancel

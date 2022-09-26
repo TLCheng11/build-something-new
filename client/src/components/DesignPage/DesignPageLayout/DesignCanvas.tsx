@@ -22,50 +22,50 @@ interface Props {
     id: number;
     name: string;
   };
-  setselectedGroup: React.Dispatch<
+  setSelectedGroup: React.Dispatch<
     React.SetStateAction<{
       id: number;
       name: string;
     }>
   >;
   groupPosition: [number, number, number];
-  setgroupPosition: React.Dispatch<
+  setGroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
   groupRotation: [number, number, number];
-  setgroupRotation: React.Dispatch<
+  setGroupRotation: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
   selectedModel: {
     type: string;
     id: number;
   };
-  setselectedModel: React.Dispatch<
+  setSelectedModel: React.Dispatch<
     React.SetStateAction<{
       type: string;
       id: number;
     }>
   >;
   planeSize: [number, number];
-  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
+  setPlaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   boxSize: [number, number, number];
-  setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setBoxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   sphereSize: [number, number, number, number, number];
-  setsphereSize: React.Dispatch<
+  setSphereSize: React.Dispatch<
     React.SetStateAction<[number, number, number, number, number]>
   >;
   shapeSize: [number, number, number];
-  setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setShapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   cylinderSize: [number, number, number, number, number, boolean];
-  setcylinderSize: React.Dispatch<
+  setCylinderSize: React.Dispatch<
     React.SetStateAction<[number, number, number, number, number, boolean]>
   >;
   position: [number, number, number];
-  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setPosition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
-  setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setRotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   modelColor: string;
-  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
+  setModelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function DesignCanvas(props: Props) {
@@ -81,29 +81,29 @@ function DesignCanvas(props: Props) {
     gridGroup,
     showGridGroup,
     selectedGroup,
-    setselectedGroup,
+    setSelectedGroup,
     groupPosition,
-    setgroupPosition,
+    setGroupPosition,
     groupRotation,
-    setgroupRotation,
+    setGroupRotation,
     selectedModel,
-    setselectedModel,
+    setSelectedModel,
     planeSize,
-    setplaneSize,
+    setPlaneSize,
     boxSize,
-    setboxSize,
+    setBoxSize,
     sphereSize,
-    setsphereSize,
+    setSphereSize,
     shapeSize,
-    setshapeSize,
+    setShapeSize,
     cylinderSize,
-    setcylinderSize,
+    setCylinderSize,
     position,
-    setposition,
+    setPosition,
     rotation,
-    setrotation,
+    setRotation,
     modelColor,
-    setmodelColor,
+    setModelColor,
   } = props;
 
   const showModelGroups = currentProject.model_groups
@@ -119,29 +119,29 @@ function DesignCanvas(props: Props) {
         gridModel={gridModel}
         showGridModel={showGridModel}
         selectedGroup={selectedGroup}
-        setselectedGroup={setselectedGroup}
+        setSelectedGroup={setSelectedGroup}
         groupPosition={groupPosition}
-        setgroupPosition={setgroupPosition}
+        setGroupPosition={setGroupPosition}
         groupRotation={groupRotation}
-        setgroupRotation={setgroupRotation}
+        setGroupRotation={setGroupRotation}
         selectedModel={selectedModel}
-        setselectedModel={setselectedModel}
+        setSelectedModel={setSelectedModel}
         planeSize={planeSize}
-        setplaneSize={setplaneSize}
+        setPlaneSize={setPlaneSize}
         boxSize={boxSize}
-        setboxSize={setboxSize}
+        setBoxSize={setBoxSize}
         sphereSize={sphereSize}
-        setsphereSize={setsphereSize}
+        setSphereSize={setSphereSize}
         shapeSize={shapeSize}
-        setshapeSize={setshapeSize}
+        setShapeSize={setShapeSize}
         cylinderSize={cylinderSize}
-        setcylinderSize={setcylinderSize}
+        setCylinderSize={setCylinderSize}
         position={position}
-        setposition={setposition}
+        setPosition={setPosition}
         rotation={rotation}
-        setrotation={setrotation}
+        setRotation={setRotation}
         modelColor={modelColor}
-        setmodelColor={setmodelColor}
+        setModelColor={setModelColor}
       />
     ));
 

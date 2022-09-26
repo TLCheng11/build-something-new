@@ -4,16 +4,16 @@ import { UserContext } from "../../../contexts/UserContext";
 
 interface Props {
   showMenu: boolean;
-  setshowMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function MenuTop({ showMenu, setshowMenu }: Props) {
+function MenuTop({ showMenu, setShowMenu }: Props) {
   let navigate = useNavigate();
   const wh = (window.innerHeight / 3) * 2;
   const ww = window.innerWidth / 2;
-  const { setcurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
-  const [menuPosition, setmenuPosition] = useState<
+  const [menuPosition, setMenuPosition] = useState<
     [number, number, number, number]
   >([0 - wh, 0 - ww, 0 - ww, 180]);
 
@@ -25,9 +25,9 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
 
   useEffect(() => {
     if (showMenu) {
-      setmenuPosition([0, 0, 0, 0]);
+      setMenuPosition([0, 0, 0, 0]);
     } else {
-      setmenuPosition([0 - wh, 0 - ww, 0 - ww, 180]);
+      setMenuPosition([0 - wh, 0 - ww, 0 - ww, 180]);
     }
   }, [showMenu]);
 
@@ -37,7 +37,7 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
     })
       .then((res) => res.json())
       .then(console.log);
-    setcurrentUser({});
+    setCurrentUser({});
     navigate("/");
   }
 
@@ -45,7 +45,7 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
     <div>
       <div
         className="cursor-pointer fixed flex items-end justify-start h-24 w-24 z-50 -top-12 -right-12 p-3 bg-blue-600 rounded-full hover:scale-200 transition-all duration-300 ease-in"
-        onClick={() => setshowMenu((state) => !state)}
+        onClick={() => setShowMenu((state) => !state)}
       >
         <p className="absolute left-1 rotate-45">Menu</p>
       </div>
@@ -62,7 +62,7 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
           }}
         >
           <NavLink to="/dashboard/projects/1">
-            <div onClick={() => setshowMenu(false)}>DashBoard</div>
+            <div onClick={() => setShowMenu(false)}>DashBoard</div>
           </NavLink>
           {/* <nav className="flex items-center">
           
@@ -84,7 +84,7 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
             <div
               // className="rotate-36"
               style={{ transform: `rotate(${angle}deg)` }}
-              onClick={() => setshowMenu(false)}
+              onClick={() => setShowMenu(false)}
             >
               Marketplace
             </div>
@@ -104,7 +104,7 @@ function MenuTop({ showMenu, setshowMenu }: Props) {
             <div
               // className="-rotate-36"
               style={{ transform: `rotate(-${angle}deg)` }}
-              onClick={() => setshowMenu(false)}
+              onClick={() => setShowMenu(false)}
             >
               Profile
             </div>

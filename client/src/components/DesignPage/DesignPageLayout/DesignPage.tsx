@@ -11,10 +11,10 @@ interface Props {
 function DesignPage({ showMenu }: Props) {
   let navigate = useNavigate();
   const params = useParams();
-  const [firstLoad, setfirstLoad] = useState<boolean>(true);
-  const [notFound, setnotFound] = useState<boolean>(false);
-  const [refresh, setrefresh] = useState<boolean>(false);
-  const [currentProject, setcurrentProject] = useState<IProject>({
+  const [firstLoad, setFirstLoad] = useState<boolean>(true);
+  const [notFound, setNotFound] = useState<boolean>(false);
+  const [refresh, setRefresh] = useState<boolean>(false);
+  const [currentProject, setCurrentProject] = useState<IProject>({
     id: 0,
     title: "",
     on_market: false,
@@ -22,7 +22,7 @@ function DesignPage({ showMenu }: Props) {
   });
 
   // states for setting
-  const [setting, setsetting] = useState<ISetting>({
+  const [setting, setSetting] = useState<ISetting>({
     xcamera: 5,
     ycamera: 5,
     zcamera: 5,
@@ -31,64 +31,64 @@ function DesignPage({ showMenu }: Props) {
   });
 
   // states for grid controls
-  const [gridMain, setgridMain] = useState<[number, number, string, string]>([
+  const [gridMain, setGridMain] = useState<[number, number, string, string]>([
     10,
     20,
     "black",
     "gray",
   ]);
-  const [showGridMain, setshowGridMain] = useState<boolean>(true);
-  const [gridGroup, setgridGroup] = useState<[number, number, string, string]>([
+  const [showGridMain, setShowGridMain] = useState<boolean>(true);
+  const [gridGroup, setGridGroup] = useState<[number, number, string, string]>([
     7,
     14,
     "crimson",
     "red",
   ]);
-  const [showGridGroup, setshowGridGroup] = useState<boolean>(false);
-  const [gridModel, setgridModel] = useState<[number, number, string, string]>([
+  const [showGridGroup, setShowGridGroup] = useState<boolean>(false);
+  const [gridModel, setGridModel] = useState<[number, number, string, string]>([
     5,
     10,
     "purple",
     "blue",
   ]);
-  const [showGridModel, setshowGridModel] = useState<boolean>(false);
+  const [showGridModel, setShowGridModel] = useState<boolean>(false);
 
   // states for Model Group
-  const [selectedGroup, setselectedGroup] = useState<{
+  const [selectedGroup, setSelectedGroup] = useState<{
     id: number;
     name: string;
   }>({ id: 0, name: "" });
-  const [groupPosition, setgroupPosition] = useState<[number, number, number]>([
+  const [groupPosition, setGroupPosition] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
-  const [groupRotation, setgroupRotation] = useState<[number, number, number]>([
+  const [groupRotation, setGroupRotation] = useState<[number, number, number]>([
     0, 0, 0,
   ]);
 
   // states for Models
-  const [selectedModel, setselectedModel] = useState<{
+  const [selectedModel, setSelectedModel] = useState<{
     type: string;
     id: number;
   }>({ type: "", id: 0 });
 
   // states for model type selection
-  const [modelType, setmodelType] = useState<string>("planes");
+  const [modelType, setModelType] = useState<string>("planes");
 
   // properties for selected model
-  const [planeSize, setplaneSize] = useState<[number, number]>([5, 5]);
-  const [boxSize, setboxSize] = useState<[number, number, number]>([1, 1, 1]);
-  const [sphereSize, setsphereSize] = useState<
+  const [planeSize, setPlaneSize] = useState<[number, number]>([5, 5]);
+  const [boxSize, setBoxSize] = useState<[number, number, number]>([1, 1, 1]);
+  const [sphereSize, setSphereSize] = useState<
     [number, number, number, number, number]
   >([0.5, 32, 16, 360, 360]);
-  const [shapeSize, setshapeSize] = useState<[number, number, number]>([
+  const [shapeSize, setShapeSize] = useState<[number, number, number]>([
     0.5, 32, 360,
   ]);
-  const [cylinderSize, setcylinderSize] = useState<
+  const [cylinderSize, setCylinderSize] = useState<
     [number, number, number, number, number, boolean]
   >([0.5, 0.5, 1, 3, 360, false]);
-  const [position, setposition] = useState<[number, number, number]>([0, 0, 0]);
-  const [rotation, setrotation] = useState<[number, number, number]>([0, 0, 0]);
-  const [modelColor, setmodelColor] = useState<string>("#396BA7");
+  const [position, setPosition] = useState<[number, number, number]>([0, 0, 0]);
+  const [rotation, setRotation] = useState<[number, number, number]>([0, 0, 0]);
+  const [modelColor, setModelColor] = useState<string>("#396BA7");
 
   useEffect(() => {
     fetch(`/projects/${params.project_id}`).then((res) => {
@@ -96,16 +96,16 @@ function DesignPage({ showMenu }: Props) {
         res
           .json()
           .then((data) => {
-            setcurrentProject(data);
+            setCurrentProject(data);
             if (selectedGroup.id === 0) {
-              setselectedGroup({
+              setSelectedGroup({
                 id: data.model_groups[0].id,
                 name: data.model_groups[0].group_name,
               });
             }
             if (firstLoad) {
-              setsetting(data.project_setting);
-              setfirstLoad(false);
+              setSetting(data.project_setting);
+              setFirstLoad(false);
             }
           })
           .catch(console.error);
@@ -113,7 +113,7 @@ function DesignPage({ showMenu }: Props) {
         const id = setTimeout(() => {
           navigate(-1);
         }, 2000);
-        setnotFound(true);
+        setNotFound(true);
 
         return () => clearInterval(id);
       }
@@ -129,44 +129,44 @@ function DesignPage({ showMenu }: Props) {
         className="h-full w-1/4 min-w-control overflow-auto"
       >
         <DesignControls
-          setrefresh={setrefresh}
+          setRefresh={setRefresh}
           currentProject={currentProject}
           setting={setting}
-          setsetting={setsetting}
+          setSetting={setSetting}
           showGridMain={showGridMain}
-          setshowGridMain={setshowGridMain}
+          setShowGridMain={setShowGridMain}
           showGridGroup={showGridGroup}
-          setshowGridGroup={setshowGridGroup}
+          setShowGridGroup={setShowGridGroup}
           showGridModel={showGridModel}
-          setshowGridModel={setshowGridModel}
+          setShowGridModel={setShowGridModel}
           gridMain={gridMain}
-          setgridMain={setgridMain}
+          setGridMain={setGridMain}
           selectedGroup={selectedGroup}
-          setselectedGroup={setselectedGroup}
+          setSelectedGroup={setSelectedGroup}
           groupPosition={groupPosition}
-          setgroupPosition={setgroupPosition}
+          setGroupPosition={setGroupPosition}
           groupRotation={groupRotation}
-          setgroupRotation={setgroupRotation}
+          setGroupRotation={setGroupRotation}
           modelType={modelType}
-          setmodelType={setmodelType}
+          setModelType={setModelType}
           selectedModel={selectedModel}
-          setselectedModel={setselectedModel}
+          setSelectedModel={setSelectedModel}
           planeSize={planeSize}
-          setplaneSize={setplaneSize}
+          setPlaneSize={setPlaneSize}
           boxSize={boxSize}
-          setboxSize={setboxSize}
+          setBoxSize={setBoxSize}
           sphereSize={sphereSize}
-          setsphereSize={setsphereSize}
+          setSphereSize={setSphereSize}
           shapeSize={shapeSize}
-          setshapeSize={setshapeSize}
+          setShapeSize={setShapeSize}
           cylinderSize={cylinderSize}
-          setcylinderSize={setcylinderSize}
+          setCylinderSize={setCylinderSize}
           position={position}
-          setposition={setposition}
+          setPosition={setPosition}
           rotation={rotation}
-          setrotation={setrotation}
+          setRotation={setRotation}
           modelColor={modelColor}
-          setmodelColor={setmodelColor}
+          setModelColor={setModelColor}
         />
       </div>
       <div id="design-canvas-holder" className="h-full w-3/4 border">
@@ -182,29 +182,29 @@ function DesignPage({ showMenu }: Props) {
           gridModel={gridModel}
           showGridModel={showGridModel}
           selectedGroup={selectedGroup}
-          setselectedGroup={setselectedGroup}
+          setSelectedGroup={setSelectedGroup}
           groupPosition={groupPosition}
-          setgroupPosition={setgroupPosition}
+          setGroupPosition={setGroupPosition}
           groupRotation={groupRotation}
-          setgroupRotation={setgroupRotation}
+          setGroupRotation={setGroupRotation}
           selectedModel={selectedModel}
-          setselectedModel={setselectedModel}
+          setSelectedModel={setSelectedModel}
           planeSize={planeSize}
-          setplaneSize={setplaneSize}
+          setPlaneSize={setPlaneSize}
           boxSize={boxSize}
-          setboxSize={setboxSize}
+          setBoxSize={setBoxSize}
           sphereSize={sphereSize}
-          setsphereSize={setsphereSize}
+          setSphereSize={setSphereSize}
           shapeSize={shapeSize}
-          setshapeSize={setshapeSize}
+          setShapeSize={setShapeSize}
           cylinderSize={cylinderSize}
-          setcylinderSize={setcylinderSize}
+          setCylinderSize={setCylinderSize}
           position={position}
-          setposition={setposition}
+          setPosition={setPosition}
           rotation={rotation}
-          setrotation={setrotation}
+          setRotation={setRotation}
           modelColor={modelColor}
-          setmodelColor={setmodelColor}
+          setModelColor={setModelColor}
         />
       </div>
     </div>

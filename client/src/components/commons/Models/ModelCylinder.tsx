@@ -15,7 +15,7 @@ interface Props {
     id: number;
     name: string;
   };
-  setselectedGroup: React.Dispatch<
+  setSelectedGroup: React.Dispatch<
     React.SetStateAction<{
       id: number;
       name: string;
@@ -25,22 +25,22 @@ interface Props {
     type: string;
     id: number;
   };
-  setselectedModel: React.Dispatch<
+  setSelectedModel: React.Dispatch<
     React.SetStateAction<{
       type: string;
       id: number;
     }>
   >;
   cylinderSize: [number, number, number, number, number, boolean];
-  setcylinderSize: React.Dispatch<
+  setCylinderSize: React.Dispatch<
     React.SetStateAction<[number, number, number, number, number, boolean]>
   >;
   position: [number, number, number];
-  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setPosition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
-  setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setRotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   modelColor: string;
-  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
+  setModelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function ModelCylinder(props: Props) {
@@ -51,22 +51,22 @@ function ModelCylinder(props: Props) {
     gridModel,
     showGridModel,
     selectedGroup,
-    setselectedGroup,
+    setSelectedGroup,
     selectedModel,
-    setselectedModel,
+    setSelectedModel,
     cylinderSize,
-    setcylinderSize,
+    setCylinderSize,
     position,
-    setposition,
+    setPosition,
     rotation,
-    setrotation,
+    setRotation,
     modelColor,
-    setmodelColor,
+    setModelColor,
   } = props;
 
   // states for all self properties
-  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
-  const [selfSize, setselfSize] = useState<
+  const [selfShowGrid, setSelfShowGrid] = useState<boolean>(false);
+  const [selfSize, setSelfSize] = useState<
     [number, number, number, number, number, boolean]
   >([
     cylinder.radius_top || 0,
@@ -81,12 +81,12 @@ function ModelCylinder(props: Props) {
     cylinder.yposition || 0,
     cylinder.zposition || 0,
   ]);
-  const [selfRotation, setselfRotation] = useState<[number, number, number]>([
+  const [selfRotation, setSelfRotation] = useState<[number, number, number]>([
     cylinder.xrotation || 0,
     cylinder.yrotation || 0,
     cylinder.zrotation || 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>(
+  const [selfColor, setSelfColor] = useState<string>(
     cylinder.color || "#952DAA"
   );
 
@@ -108,7 +108,7 @@ function ModelCylinder(props: Props) {
       selectedModel.type === "cylinders" &&
       selectedModel.id === cylinder.id
     ) {
-      setselfSize(cylinderSize);
+      setSelfSize(cylinderSize);
       sizeRef.current = cylinderSize;
     }
   }, [cylinderSize]);
@@ -130,7 +130,7 @@ function ModelCylinder(props: Props) {
       selectedModel.type === "cylinders" &&
       selectedModel.id === cylinder.id
     ) {
-      setselfRotation(rotation);
+      setSelfRotation(rotation);
       rotationRef.current = rotation;
     }
   }, [rotation]);
@@ -141,7 +141,7 @@ function ModelCylinder(props: Props) {
       selectedModel.type === "cylinders" &&
       selectedModel.id === cylinder.id
     ) {
-      setselfColor(modelColor);
+      setSelfColor(modelColor);
       colorRef.current = modelColor;
     }
   }, [modelColor]);
@@ -152,7 +152,7 @@ function ModelCylinder(props: Props) {
       selectedModel.type === "cylinders" &&
       selectedModel.id === cylinder.id
     ) {
-      setselfShowGrid(showGridModel);
+      setSelfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
@@ -162,14 +162,14 @@ function ModelCylinder(props: Props) {
       selectedModel.type === "cylinders" &&
       selectedModel.id === cylinder.id
     ) {
-      setselfShowGrid(showGridModel);
-      setcylinderSize(selfSize);
-      setposition(selfPosition);
-      setrotation(selfRotation);
-      setmodelColor(selfColor);
+      setSelfShowGrid(showGridModel);
+      setCylinderSize(selfSize);
+      setPosition(selfPosition);
+      setRotation(selfRotation);
+      setModelColor(selfColor);
       selectedRef.current = true;
     } else if (selectedRef.current) {
-      setselfShowGrid(false);
+      setSelfShowGrid(false);
       saveModel();
       selectedRef.current = false;
     }
@@ -178,9 +178,9 @@ function ModelCylinder(props: Props) {
   // lock self as selected item when clicked
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
-    setselectedModel({ type: "cylinders", id: cylinder.id || 0 });
+    setSelectedModel({ type: "cylinders", id: cylinder.id || 0 });
     if (selectedGroup.id !== group.id) {
-      setselectedGroup({ id: group.id, name: group.group_name });
+      setSelectedGroup({ id: group.id, name: group.group_name });
     }
   }
 

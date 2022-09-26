@@ -14,8 +14,8 @@ import TestPhysic from "./components/TestPhysic/TestPhysic";
 import LoginTop from "./components/commons/Menus/LoginTop";
 
 function App() {
-  const { currentUser, setcurrentUser, firstEnter } = useContext(UserContext);
-  const [showMenu, setshowMenu] = useState<boolean>(false);
+  const { currentUser, setCurrentUser, firstEnter } = useContext(UserContext);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   // only authorize logged in users
   useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
           .json()
           .then((user) => {
             // console.log(user)
-            setcurrentUser(user);
+            setCurrentUser(user);
           })
           .catch(console.error);
       }
@@ -53,7 +53,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <MenuTop showMenu={showMenu} setshowMenu={setshowMenu} />
+      <MenuTop showMenu={showMenu} setShowMenu={setShowMenu} />
       <div className="App">
         <Routes>
           <Route path="/" element={<LoginScreen />} />

@@ -9,26 +9,26 @@ interface Props {
     type: string;
     id: number;
   };
-  setselectedModel: React.Dispatch<
+  setSelectedModel: React.Dispatch<
     React.SetStateAction<{
       type: string;
       id: number;
     }>
   >;
   modelType: string;
-  setmodelType: Dispatch<SetStateAction<string>>;
+  setModelType: Dispatch<SetStateAction<string>>;
 }
 
 function ModelTypesControls(props: Props) {
   const {
     selectedGroup,
     selectedModel,
-    setselectedModel,
+    setSelectedModel,
     modelType,
-    setmodelType,
+    setModelType,
   } = props;
 
-  const [isDisabled, setisDisabled] = useState<{
+  const [isDisabled, setIsDisabled] = useState<{
     add: boolean;
     copy: boolean;
   }>({ add: false, copy: false });
@@ -43,7 +43,7 @@ function ModelTypesControls(props: Props) {
     })
       .then((res) => res.json())
       .then((data) => {
-        setselectedModel({ type: modelType, id: data.id });
+        setSelectedModel({ type: modelType, id: data.id });
       });
   }
 
@@ -54,7 +54,7 @@ function ModelTypesControls(props: Props) {
       })
         .then((res) => {
           if (res.ok) {
-            res.json().then(() => setselectedModel({ type: "", id: 0 }));
+            res.json().then(() => setSelectedModel({ type: "", id: 0 }));
           } else res.json().then(console.log);
         })
         .catch(console.error);
@@ -65,7 +65,7 @@ function ModelTypesControls(props: Props) {
     if (selectedModel.id > 0) {
       const id = selectedModel.id;
       // to trigger a save before copy
-      setselectedModel({ ...selectedModel, id: 0 });
+      setSelectedModel({ ...selectedModel, id: 0 });
       setTimeout(() => {
         fetch(`/model_${selectedModel.type}_copy/${id}`, {
           method: "POST",
@@ -75,7 +75,7 @@ function ModelTypesControls(props: Props) {
               res
                 .json()
                 .then((data) =>
-                  setselectedModel({ ...selectedModel, id: data.id })
+                  setSelectedModel({ ...selectedModel, id: data.id })
                 );
             } else res.json().then(console.log);
           })
@@ -85,9 +85,9 @@ function ModelTypesControls(props: Props) {
   }
 
   function disableBtn(type: string) {
-    setisDisabled({ ...isDisabled, [type]: true });
+    setIsDisabled({ ...isDisabled, [type]: true });
     setTimeout(() => {
-      setisDisabled({ add: false, copy: false });
+      setIsDisabled({ add: false, copy: false });
     }, 2000);
   }
 
@@ -110,7 +110,7 @@ function ModelTypesControls(props: Props) {
             className="design-input"
             id="model-type"
             value={modelType}
-            onChange={(e) => setmodelType(e.target.value)}
+            onChange={(e) => setModelType(e.target.value)}
           >
             <option value="planes">Plane</option>
             <option value="shapes">Shape</option>

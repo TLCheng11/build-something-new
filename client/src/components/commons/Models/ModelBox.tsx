@@ -13,7 +13,7 @@ interface Props {
     id: number;
     name: string;
   };
-  setselectedGroup: React.Dispatch<
+  setSelectedGroup: React.Dispatch<
     React.SetStateAction<{
       id: number;
       name: string;
@@ -24,20 +24,20 @@ interface Props {
     type: string;
     id: number;
   };
-  setselectedModel: React.Dispatch<
+  setSelectedModel: React.Dispatch<
     React.SetStateAction<{
       type: string;
       id: number;
     }>
   >;
   boxSize: [number, number, number];
-  setboxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setBoxSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   position: [number, number, number];
-  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setPosition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
-  setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setRotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   modelColor: string;
-  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
+  setModelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function ModelBox(props: Props) {
@@ -48,22 +48,22 @@ function ModelBox(props: Props) {
     gridModel,
     showGridModel,
     selectedGroup,
-    setselectedGroup,
+    setSelectedGroup,
     selectedModel,
-    setselectedModel,
+    setSelectedModel,
     boxSize,
-    setboxSize,
+    setBoxSize,
     position,
-    setposition,
+    setPosition,
     rotation,
-    setrotation,
+    setRotation,
     modelColor,
-    setmodelColor,
+    setModelColor,
   } = props;
 
   // states for all self properties
-  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
-  const [selfSize, setselfSize] = useState<[number, number, number]>([
+  const [selfShowGrid, setSelfShowGrid] = useState<boolean>(false);
+  const [selfSize, setSelfSize] = useState<[number, number, number]>([
     box.width || 1,
     box.height || 1,
     box.depth || 1,
@@ -73,12 +73,12 @@ function ModelBox(props: Props) {
     box.yposition || 0,
     box.zposition || 0,
   ]);
-  const [selfRotation, setselfRotation] = useState<[number, number, number]>([
+  const [selfRotation, setSelfRotation] = useState<[number, number, number]>([
     box.xrotation || 0,
     box.yrotation || 0,
     box.zrotation || 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>(box.color || "#D0021B");
+  const [selfColor, setSelfColor] = useState<string>(box.color || "#D0021B");
 
   // hover pointer
   const [hovered, setHovered] = useState(false);
@@ -94,7 +94,7 @@ function ModelBox(props: Props) {
   // set size
   useEffect(() => {
     if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
-      setselfSize(boxSize);
+      setSelfSize(boxSize);
       sizeRef.current = boxSize;
     }
   }, [boxSize]);
@@ -110,7 +110,7 @@ function ModelBox(props: Props) {
   // set rotation
   useEffect(() => {
     if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
-      setselfRotation(rotation);
+      setSelfRotation(rotation);
       rotationRef.current = rotation;
     }
   }, [rotation]);
@@ -118,7 +118,7 @@ function ModelBox(props: Props) {
   // set color
   useEffect(() => {
     if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
-      setselfColor(modelColor);
+      setSelfColor(modelColor);
       colorRef.current = modelColor;
     }
   }, [modelColor]);
@@ -126,21 +126,21 @@ function ModelBox(props: Props) {
   // toggle grids
   useEffect(() => {
     if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
-      setselfShowGrid(showGridModel);
+      setSelfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
   // set all self properties from history when selection
   useEffect(() => {
     if (selectedModel.type === "boxes" && selectedModel.id === box.id) {
-      setselfShowGrid(showGridModel);
-      setboxSize(selfSize);
-      setposition(selfPosition);
-      setrotation(selfRotation);
-      setmodelColor(selfColor);
+      setSelfShowGrid(showGridModel);
+      setBoxSize(selfSize);
+      setPosition(selfPosition);
+      setRotation(selfRotation);
+      setModelColor(selfColor);
       selectedRef.current = true;
     } else if (selectedRef.current) {
-      setselfShowGrid(false);
+      setSelfShowGrid(false);
       saveModel();
       selectedRef.current = false;
     }
@@ -149,9 +149,9 @@ function ModelBox(props: Props) {
   // lock self as selected item when clicked
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
-    setselectedModel({ type: "boxes", id: box.id || 0 });
+    setSelectedModel({ type: "boxes", id: box.id || 0 });
     if (selectedGroup.id !== group.id) {
-      setselectedGroup({ id: group.id, name: group.group_name });
+      setSelectedGroup({ id: group.id, name: group.group_name });
     }
   }
 

@@ -5,27 +5,27 @@ import ModelPositionControls from "./ModelPositionContorls";
 import ModelRotationControls from "./ModelRotationControls";
 
 interface Props {
-  setrefresh: Dispatch<SetStateAction<boolean>>;
+  setRefresh: Dispatch<SetStateAction<boolean>>;
   currentProject: IProject;
   selectedGroup: {
     id: number;
     name: string;
   };
-  setselectedGroup: React.Dispatch<
+  setSelectedGroup: React.Dispatch<
     React.SetStateAction<{
       id: number;
       name: string;
     }>
   >;
   groupPosition: [number, number, number];
-  setgroupPosition: React.Dispatch<
+  setGroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
   groupRotation: [number, number, number];
-  setgroupRotation: React.Dispatch<
+  setGroupRotation: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
-  setselectedModel: Dispatch<
+  setSelectedModel: Dispatch<
     SetStateAction<{
       type: string;
       id: number;
@@ -35,22 +35,22 @@ interface Props {
 
 function ModelGroupControls(props: Props) {
   const {
-    setrefresh,
+    setRefresh,
     currentProject,
     selectedGroup,
-    setselectedGroup,
+    setSelectedGroup,
     groupPosition,
-    setgroupPosition,
+    setGroupPosition,
     groupRotation,
-    setgroupRotation,
-    setselectedModel,
+    setGroupRotation,
+    setSelectedModel,
   } = props;
-  const [groupName, setgroupName] = useState<string>("");
+  const [groupName, setGroupName] = useState<string>("");
   const params = useParams();
-  const [editName, seteditName] = useState<string>("");
-  const [parentGroupId, setparentGroupId] = useState<number>(0);
-  const [parentGroupName, setparentGroupName] = useState<string>("None");
-  const [isDisabled, setisDisabled] = useState<{
+  const [editName, setEditName] = useState<string>("");
+  const [parentGroupId, setParentGroupId] = useState<number>(0);
+  const [parentGroupName, setParentGroupName] = useState<string>("None");
+  const [isDisabled, setIsDisabled] = useState<{
     create: boolean;
     copy: boolean;
   }>({ create: false, copy: false });
@@ -73,7 +73,7 @@ function ModelGroupControls(props: Props) {
 
   useEffect(() => {
     if (assignList.length > 0) {
-      setparentGroupId(assignList[0].props.value);
+      setParentGroupId(assignList[0].props.value);
     }
   }, [selectedGroup]);
 
@@ -82,7 +82,7 @@ function ModelGroupControls(props: Props) {
       (group) => group.id === selectedGroup.id
     );
     if (currentGroup.length > 0) {
-      setparentGroupName(currentGroup[0].parent_group_name || "None");
+      setParentGroupName(currentGroup[0].parent_group_name || "None");
     }
   }, [currentProject, selectedGroup]);
 
@@ -102,8 +102,8 @@ function ModelGroupControls(props: Props) {
       .then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            setselectedGroup({ id: data.id, name: data.group_name });
-            setgroupName("");
+            setSelectedGroup({ id: data.id, name: data.group_name });
+            setGroupName("");
           });
         } else {
           res.json().then((message) => alert(message.errors));
@@ -126,8 +126,8 @@ function ModelGroupControls(props: Props) {
       .then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            setselectedGroup({ id: data.id, name: data.group_name });
-            seteditName("");
+            setSelectedGroup({ id: data.id, name: data.group_name });
+            setEditName("");
           });
         } else {
           res.json().then((message) => alert(message.errors));
@@ -148,7 +148,7 @@ function ModelGroupControls(props: Props) {
     })
       .then((res) => {
         if (res.ok) {
-          res.json().then(() => setrefresh((state: boolean) => !state));
+          res.json().then(() => setRefresh((state: boolean) => !state));
         } else {
           res.json().then((message) => alert(message.error));
         }
@@ -166,7 +166,7 @@ function ModelGroupControls(props: Props) {
     })
       .then((res) => {
         if (res.ok) {
-          res.json().then(() => setrefresh((state: boolean) => !state));
+          res.json().then(() => setRefresh((state: boolean) => !state));
         } else {
           res.json().then((message) => alert(message.error));
         }
@@ -183,7 +183,7 @@ function ModelGroupControls(props: Props) {
           .then((res) => {
             if (res.ok) {
               res.json().then(() => {
-                setselectedGroup({
+                setSelectedGroup({
                   id: currentProject.model_groups[0].id,
                   name: currentProject.model_groups[0].group_name,
                 });
@@ -200,8 +200,8 @@ function ModelGroupControls(props: Props) {
       if (selectedGroup.id > 0) {
         const id = selectedGroup.id;
         // to trigger a save before copy
-        setselectedGroup({ ...selectedGroup, id: 0 });
-        setselectedModel({ type: "", id: 0 });
+        setSelectedGroup({ ...selectedGroup, id: 0 });
+        setSelectedModel({ type: "", id: 0 });
         setTimeout(() => {
           fetch(`/model_groups_copy/${id}`, {
             method: "POST",
@@ -211,7 +211,7 @@ function ModelGroupControls(props: Props) {
                 res
                   .json()
                   .then((data) =>
-                    setselectedGroup({ id: data.id, name: data.group_name })
+                    setSelectedGroup({ id: data.id, name: data.group_name })
                   );
               } else res.json().then(console.log);
             })
@@ -222,9 +222,9 @@ function ModelGroupControls(props: Props) {
   }
 
   function disableBtn(type: string) {
-    setisDisabled({ ...isDisabled, [type]: true });
+    setIsDisabled({ ...isDisabled, [type]: true });
     setTimeout(() => {
-      setisDisabled({ create: false, copy: false });
+      setIsDisabled({ create: false, copy: false });
     }, 2000);
   }
 
@@ -249,7 +249,7 @@ function ModelGroupControls(props: Props) {
             placeholder="Enter Group Name"
             maxLength={50}
             value={groupName}
-            onChange={(e) => setgroupName(e.target.value)}
+            onChange={(e) => setGroupName(e.target.value)}
             required
           />
           <button
@@ -268,7 +268,7 @@ function ModelGroupControls(props: Props) {
           className="design-input"
           value={selectedGroup.id}
           onChange={(e) =>
-            setselectedGroup({
+            setSelectedGroup({
               id: parseInt(e.target.value),
               name: e.target.options[e.target.selectedIndex].text,
             })
@@ -297,7 +297,7 @@ function ModelGroupControls(props: Props) {
             placeholder={selectedGroup.name}
             maxLength={50}
             value={editName}
-            onChange={(e) => seteditName(e.target.value)}
+            onChange={(e) => setEditName(e.target.value)}
             required
           />
           <button className="design-btn" type="submit">
@@ -318,7 +318,7 @@ function ModelGroupControls(props: Props) {
         <select
           className="design-input"
           value={parentGroupId}
-          onChange={(e) => setparentGroupId(parseInt(e.target.value))}
+          onChange={(e) => setParentGroupId(parseInt(e.target.value))}
         >
           {assignList}
         </select>
@@ -329,12 +329,12 @@ function ModelGroupControls(props: Props) {
       <ModelPositionControls
         type="Group"
         position={groupPosition}
-        setposition={setgroupPosition}
+        setPosition={setGroupPosition}
       />
       <ModelRotationControls
         type="Group"
         rotation={groupRotation}
-        setrotation={setgroupRotation}
+        setRotation={setGroupRotation}
       />
     </div>
   );

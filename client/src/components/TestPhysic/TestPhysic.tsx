@@ -10,8 +10,8 @@ import PhysicGroup from "./PhysicGroup";
 function TestPhysic() {
   let navigate = useNavigate();
   const params = useParams();
-  const [notFound, setnotFound] = useState<boolean>(false);
-  const [project, setproject] = useState<IProject>({
+  const [notFound, setNotFound] = useState<boolean>(false);
+  const [project, setProject] = useState<IProject>({
     id: 0,
     title: "",
     on_market: false,
@@ -29,7 +29,7 @@ function TestPhysic() {
         res
           .json()
           .then((data) => {
-            setproject(data);
+            setProject(data);
             setdataLoaded(true);
           })
           .catch(console.error);
@@ -37,7 +37,7 @@ function TestPhysic() {
         const id = setTimeout(() => {
           navigate(-1);
         }, 2000);
-        setnotFound(true);
+        setNotFound(true);
 
         return () => clearInterval(id);
       }

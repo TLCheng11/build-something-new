@@ -157,7 +157,7 @@ function Group({ group }) {
 }
 
 function ShowModel() {
-  const [model, setmodel] = useState({ model_groups: [] });
+  const [model, setModel] = useState({ model_groups: [] });
 
   const showModel = model.model_groups.map((group) => (
     <Group key={group.id} group={group} />
@@ -166,7 +166,7 @@ function ShowModel() {
   useEffect(() => {
     fetch("/model.json")
       .then((res) => res.json())
-      .then(setmodel);
+      .then(setModel);
   }, []);
 
   return (

@@ -9,10 +9,10 @@ interface Props {
 function SignUpForm(props: Props) {
   let navigate = useNavigate();
   const { setSignUp } = props;
-  const { setcurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
   const [focused, setFocused] = useState<string>("");
 
-  const [formInput, setformInput] = useState({
+  const [formInput, setFormInput] = useState({
     username: "",
     email: "",
     password: "",
@@ -66,7 +66,7 @@ function SignUpForm(props: Props) {
       ...formInput,
       [e.target.name]: e.target.value,
     };
-    setformInput(newInput);
+    setFormInput(newInput);
   }
 
   function handleSignUp(e: React.FormEvent<HTMLFormElement>) {
@@ -82,7 +82,7 @@ function SignUpForm(props: Props) {
         if (res.ok) {
           res.json().then((data) => {
             console.log(data);
-            setcurrentUser(data);
+            setCurrentUser(data);
             navigate("/marketplace/1");
           });
         } else {

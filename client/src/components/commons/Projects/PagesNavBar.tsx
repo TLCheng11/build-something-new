@@ -5,12 +5,12 @@ interface Props {
   type: string;
   pageCount: number;
   currentPage: number;
-  setcurrentPage: Dispatch<SetStateAction<number>>;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 }
 
 function PagesNavBar(props: Props) {
   let navigate = useNavigate();
-  const { type, pageCount, currentPage, setcurrentPage } = props;
+  const { type, pageCount, currentPage, setCurrentPage } = props;
   const totalPages = Array.from(Array(pageCount).keys());
 
   const pages = totalPages
@@ -29,7 +29,7 @@ function PagesNavBar(props: Props) {
         className={`mx-1 px-1 cursor-pointer ${
           currentPage === page + 1 ? "border" : ""
         } hover:bg-slate-500`}
-        onClick={() => setcurrentPage(page + 1)}
+        onClick={() => setCurrentPage(page + 1)}
       >
         {page + 1}
       </div>
@@ -50,14 +50,14 @@ function PagesNavBar(props: Props) {
       <div className="flex justify-center pt-8">
         <button
           className="mx-1 px-1 border hover:bg-slate-500"
-          onClick={() => setcurrentPage(1)}
+          onClick={() => setCurrentPage(1)}
         >
           {"First"}
         </button>
         <button
           className="mx-1 px-1 border hover:bg-slate-500"
           onClick={() => {
-            if (currentPage > 1) setcurrentPage((page) => page - 1);
+            if (currentPage > 1) setCurrentPage((page) => page - 1);
           }}
         >
           {"<"}
@@ -66,14 +66,14 @@ function PagesNavBar(props: Props) {
         <button
           className="mx-1 px-1 border hover:bg-slate-500"
           onClick={() => {
-            if (currentPage < pageCount) setcurrentPage((page) => page + 1);
+            if (currentPage < pageCount) setCurrentPage((page) => page + 1);
           }}
         >
           {">"}
         </button>
         <button
           className="mx-1 px-1 border hover:bg-slate-500"
-          onClick={() => setcurrentPage(pageCount)}
+          onClick={() => setCurrentPage(pageCount)}
         >
           {"Last"}
         </button>

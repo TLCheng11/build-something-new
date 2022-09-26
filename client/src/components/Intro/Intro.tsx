@@ -8,7 +8,7 @@ import PhysicGroup from "../TestPhysic/PhysicGroup";
 import IntroCamera from "./IntroCamera";
 
 function ShowModel() {
-  const [model, setmodel] = useState<IProject>({
+  const [model, setModel] = useState<IProject>({
     id: 0,
     title: "",
     on_market: false,
@@ -22,7 +22,7 @@ function ShowModel() {
   useEffect(() => {
     fetch("/intro/model.json")
       .then((res) => res.json())
-      .then(setmodel);
+      .then(setModel);
   }, []);
 
   return (

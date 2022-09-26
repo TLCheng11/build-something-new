@@ -180,7 +180,7 @@ function Group({ group }: Props) {
 }
 
 function ShowModel() {
-  const [model, setmodel] = useState<any>({ model_groups: [] });
+  const [model, setModel] = useState<any>({ model_groups: [] });
 
   const showModel = model.model_groups.map((group: IGroup) => (
     <Group key={group.id} group={group} />
@@ -189,7 +189,7 @@ function ShowModel() {
   useEffect(() => {
     fetch("/model.json")
       .then((res) => res.json())
-      .then(setmodel);
+      .then(setModel);
   }, []);
 
   return (

@@ -11,113 +11,113 @@ import ModelTypesControls from "../DesignControls/ModelTypeControls";
 import SettingControls from "../DesignControls/SettingControls";
 
 interface Props {
-  setrefresh: Dispatch<SetStateAction<boolean>>;
+  setRefresh: Dispatch<SetStateAction<boolean>>;
   currentProject: IProject;
   setting: ISetting;
-  setsetting: React.Dispatch<React.SetStateAction<ISetting>>;
+  setSetting: React.Dispatch<React.SetStateAction<ISetting>>;
   showGridMain: boolean;
-  setshowGridMain: Dispatch<SetStateAction<boolean>>;
+  setShowGridMain: Dispatch<SetStateAction<boolean>>;
   showGridGroup: boolean;
-  setshowGridGroup: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowGridGroup: React.Dispatch<React.SetStateAction<boolean>>;
   showGridModel: boolean;
-  setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
   gridMain: [number, number, string, string];
-  setgridMain: React.Dispatch<
+  setGridMain: React.Dispatch<
     React.SetStateAction<[number, number, string, string]>
   >;
   selectedGroup: {
     id: number;
     name: string;
   };
-  setselectedGroup: React.Dispatch<
+  setSelectedGroup: React.Dispatch<
     React.SetStateAction<{
       id: number;
       name: string;
     }>
   >;
   groupPosition: [number, number, number];
-  setgroupPosition: React.Dispatch<
+  setGroupPosition: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
   groupRotation: [number, number, number];
-  setgroupRotation: React.Dispatch<
+  setGroupRotation: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
   modelType: string;
-  setmodelType: Dispatch<SetStateAction<string>>;
+  setModelType: Dispatch<SetStateAction<string>>;
   selectedModel: {
     type: string;
     id: number;
   };
-  setselectedModel: React.Dispatch<
+  setSelectedModel: React.Dispatch<
     React.SetStateAction<{
       type: string;
       id: number;
     }>
   >;
   planeSize: [number, number];
-  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
+  setPlaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   boxSize: [number, number, number];
-  setboxSize: Dispatch<SetStateAction<[number, number, number]>>;
+  setBoxSize: Dispatch<SetStateAction<[number, number, number]>>;
   sphereSize: [number, number, number, number, number];
-  setsphereSize: React.Dispatch<
+  setSphereSize: React.Dispatch<
     React.SetStateAction<[number, number, number, number, number]>
   >;
   shapeSize: [number, number, number];
-  setshapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setShapeSize: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   cylinderSize: [number, number, number, number, number, boolean];
-  setcylinderSize: React.Dispatch<
+  setCylinderSize: React.Dispatch<
     React.SetStateAction<[number, number, number, number, number, boolean]>
   >;
   position: [number, number, number];
-  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setPosition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
-  setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setRotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   modelColor: string;
-  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
+  setModelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function DesignControls(props: Props) {
   let navigate = useNavigate();
   const {
-    setrefresh,
+    setRefresh,
     currentProject,
     setting,
-    setsetting,
+    setSetting,
     showGridMain,
-    setshowGridMain,
+    setShowGridMain,
     showGridGroup,
-    setshowGridGroup,
+    setShowGridGroup,
     showGridModel,
-    setshowGridModel,
+    setShowGridModel,
     gridMain,
-    setgridMain,
+    setGridMain,
     selectedGroup,
-    setselectedGroup,
+    setSelectedGroup,
     groupPosition,
-    setgroupPosition,
+    setGroupPosition,
     groupRotation,
-    setgroupRotation,
+    setGroupRotation,
     modelType,
-    setmodelType,
+    setModelType,
     selectedModel,
-    setselectedModel,
+    setSelectedModel,
     planeSize,
-    setplaneSize,
+    setPlaneSize,
     boxSize,
-    setboxSize,
+    setBoxSize,
     sphereSize,
-    setsphereSize,
+    setSphereSize,
     shapeSize,
-    setshapeSize,
+    setShapeSize,
     cylinderSize,
-    setcylinderSize,
+    setCylinderSize,
     position,
-    setposition,
+    setPosition,
     rotation,
-    setrotation,
+    setRotation,
     modelColor,
-    setmodelColor,
+    setModelColor,
   } = props;
 
   return (
@@ -136,68 +136,68 @@ function DesignControls(props: Props) {
         </NavLink>
       </div>
       <SettingControls
-        setrefresh={setrefresh}
+        setRefresh={setRefresh}
         currentProject={currentProject}
         setting={setting}
-        setsetting={setsetting}
+        setSetting={setSetting}
       />
       <GridControls
         showGridMain={showGridMain}
-        setshowGridMain={setshowGridMain}
+        setShowGridMain={setShowGridMain}
         showGridGroup={showGridGroup}
-        setshowGridGroup={setshowGridGroup}
+        setShowGridGroup={setShowGridGroup}
         showGridModel={showGridModel}
-        setshowGridModel={setshowGridModel}
+        setShowGridModel={setShowGridModel}
         gridMain={gridMain}
-        setgridMain={setgridMain}
+        setGridMain={setGridMain}
       />
       <ModelGroupControls
-        setrefresh={setrefresh}
+        setRefresh={setRefresh}
         currentProject={currentProject}
         selectedGroup={selectedGroup}
-        setselectedGroup={setselectedGroup}
+        setSelectedGroup={setSelectedGroup}
         groupPosition={groupPosition}
-        setgroupPosition={setgroupPosition}
+        setGroupPosition={setGroupPosition}
         groupRotation={groupRotation}
-        setgroupRotation={setgroupRotation}
-        setselectedModel={setselectedModel}
+        setGroupRotation={setGroupRotation}
+        setSelectedModel={setSelectedModel}
       />
       <ModelTypesControls
         selectedGroup={selectedGroup}
         selectedModel={selectedModel}
-        setselectedModel={setselectedModel}
+        setSelectedModel={setSelectedModel}
         modelType={modelType}
-        setmodelType={setmodelType}
+        setModelType={setModelType}
       />
       {selectedModel.type && (
         <div>
           <ModelSizeContorls
             selectedModel={selectedModel}
-            setselectedModel={setselectedModel}
+            setSelectedModel={setSelectedModel}
             planeSize={planeSize}
-            setplaneSize={setplaneSize}
+            setPlaneSize={setPlaneSize}
             boxSize={boxSize}
-            setboxSize={setboxSize}
+            setBoxSize={setBoxSize}
             sphereSize={sphereSize}
-            setsphereSize={setsphereSize}
+            setSphereSize={setSphereSize}
             shapeSize={shapeSize}
-            setshapeSize={setshapeSize}
+            setShapeSize={setShapeSize}
             cylinderSize={cylinderSize}
-            setcylinderSize={setcylinderSize}
+            setCylinderSize={setCylinderSize}
           />
           <ModelPositionControls
             type="Model"
             position={position}
-            setposition={setposition}
+            setPosition={setPosition}
           />
           <ModelRotationControls
             type="Model"
             rotation={rotation}
-            setrotation={setrotation}
+            setRotation={setRotation}
           />
           <ModelColorControls
             modelColor={modelColor}
-            setmodelColor={setmodelColor}
+            setModelColor={setModelColor}
           />
         </div>
       )}

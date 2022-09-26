@@ -2,13 +2,13 @@ import { Dispatch, SetStateAction } from "react";
 
 interface Props {
   showGridMain: boolean;
-  setshowGridMain: Dispatch<SetStateAction<boolean>>;
+  setShowGridMain: Dispatch<SetStateAction<boolean>>;
   showGridGroup: boolean;
-  setshowGridGroup: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowGridGroup: React.Dispatch<React.SetStateAction<boolean>>;
   showGridModel: boolean;
-  setshowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowGridModel: React.Dispatch<React.SetStateAction<boolean>>;
   gridMain: [number, number, string, string];
-  setgridMain: React.Dispatch<
+  setGridMain: React.Dispatch<
     React.SetStateAction<[number, number, string, string]>
   >;
 }
@@ -16,13 +16,13 @@ interface Props {
 function GridControls(props: Props) {
   const {
     showGridMain,
-    setshowGridMain,
+    setShowGridMain,
     showGridGroup,
-    setshowGridGroup,
+    setShowGridGroup,
     showGridModel,
-    setshowGridModel,
+    setShowGridModel,
     gridMain,
-    setgridMain,
+    setGridMain,
   } = props;
 
   return (
@@ -38,7 +38,7 @@ function GridControls(props: Props) {
             name="show-main-grid"
             type="checkbox"
             checked={showGridMain}
-            onChange={(e) => setshowGridMain(e.target.checked)}
+            onChange={(e) => setShowGridMain(e.target.checked)}
           />
         </div>
         <div>
@@ -47,7 +47,7 @@ function GridControls(props: Props) {
             name="show-group-grid"
             type="checkbox"
             checked={showGridGroup}
-            onChange={(e) => setshowGridGroup(e.target.checked)}
+            onChange={(e) => setShowGridGroup(e.target.checked)}
           />
         </div>
         <div className="px-2">
@@ -56,7 +56,7 @@ function GridControls(props: Props) {
             name="show-model-grid"
             type="checkbox"
             checked={showGridModel}
-            onChange={(e) => setshowGridModel(e.target.checked)}
+            onChange={(e) => setShowGridModel(e.target.checked)}
           />
         </div>
       </div>
@@ -70,7 +70,7 @@ function GridControls(props: Props) {
           max={9999}
           value={gridMain[0]}
           onChange={(e) => {
-            setgridMain([
+            setGridMain([
               parseInt(e.target.value),
               parseInt(e.target.value) * 2,
               gridMain[2],

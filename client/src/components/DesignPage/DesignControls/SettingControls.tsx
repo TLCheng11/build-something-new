@@ -3,14 +3,14 @@ import { ChromePicker } from "react-color";
 import { IProject, ISetting } from "../../../Interface";
 
 interface Props {
-  setrefresh: Dispatch<SetStateAction<boolean>>;
+  setRefresh: Dispatch<SetStateAction<boolean>>;
   currentProject: IProject;
   setting: ISetting;
-  setsetting: React.Dispatch<React.SetStateAction<ISetting>>;
+  setSetting: React.Dispatch<React.SetStateAction<ISetting>>;
 }
 
 function SettingControls(props: Props) {
-  const { setrefresh, currentProject, setting, setsetting } = props;
+  const { setRefresh, currentProject, setting, setSetting } = props;
 
   function updateCamera(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -26,7 +26,7 @@ function SettingControls(props: Props) {
       }),
     })
       .then((res) => res.json())
-      .then(() => setrefresh((state) => !state))
+      .then(() => setRefresh((state) => !state))
       .catch(console.error);
   }
 
@@ -41,7 +41,7 @@ function SettingControls(props: Props) {
       }),
     })
       .then((res) => res.json())
-      .then(() => setrefresh((state) => !state))
+      .then(() => setRefresh((state) => !state))
       .catch(console.error);
   }
 
@@ -67,7 +67,7 @@ function SettingControls(props: Props) {
         <ChromePicker
           color={setting.bg_color}
           onChangeComplete={(color) =>
-            setsetting({ ...setting, bg_color: color.hex })
+            setSetting({ ...setting, bg_color: color.hex })
           }
         />
       </div>
@@ -95,7 +95,7 @@ function SettingControls(props: Props) {
             step={0.1}
             value={setting.xcamera}
             onChange={(e) =>
-              setsetting({ ...setting, xcamera: parseFloat(e.target.value) })
+              setSetting({ ...setting, xcamera: parseFloat(e.target.value) })
             }
             required
           />
@@ -109,7 +109,7 @@ function SettingControls(props: Props) {
             step={0.1}
             value={setting.ycamera}
             onChange={(e) =>
-              setsetting({ ...setting, ycamera: parseFloat(e.target.value) })
+              setSetting({ ...setting, ycamera: parseFloat(e.target.value) })
             }
             required
           />
@@ -123,7 +123,7 @@ function SettingControls(props: Props) {
             step={0.1}
             value={setting.zcamera}
             onChange={(e) =>
-              setsetting({ ...setting, zcamera: parseFloat(e.target.value) })
+              setSetting({ ...setting, zcamera: parseFloat(e.target.value) })
             }
             required
           />

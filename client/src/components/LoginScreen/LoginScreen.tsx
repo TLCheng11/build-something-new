@@ -6,23 +6,23 @@ import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
 interface Props {
-  setshowLogin?: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowLogin?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function LoginPage({ setshowLogin }: Props) {
+function LoginPage({ setShowLogin }: Props) {
   let navigate = useNavigate();
-  const { currentUser, firstEnter, setfirstEnter } = useContext(UserContext);
+  const { currentUser, firstEnter, setFirstEnter } = useContext(UserContext);
   const [signUp, setSignUp] = useState<boolean>(false);
-  const [showForms, setshowForms] = useState<boolean>(false);
+  const [showForms, setShowForms] = useState<boolean>(false);
 
   useEffect(() => {
     if (currentUser.id) {
-      setfirstEnter(false);
+      setFirstEnter(false);
       navigate("/marketplace/1");
     }
 
     const id = setTimeout(() => {
-      setshowForms(true);
+      setShowForms(true);
     }, 31000);
 
     return () => clearInterval(id);
@@ -30,14 +30,14 @@ function LoginPage({ setshowLogin }: Props) {
 
   useEffect(() => {
     if (!firstEnter) {
-      setshowForms(true);
+      setShowForms(true);
     }
   }, []);
 
   return (
     <div
       className="h-screen w-screen flex items-center justify-center"
-      onClick={() => setshowForms(true)}
+      onClick={() => setShowForms(true)}
     >
       {firstEnter ? (
         <div className="fixed h-screen w-screen">
@@ -47,8 +47,8 @@ function LoginPage({ setshowLogin }: Props) {
         <div
           className="fixed h-screen w-screen bg-stone-900 opacity-50"
           onClick={() => {
-            if (setshowLogin) {
-              setshowLogin((state) => !state);
+            if (setShowLogin) {
+              setShowLogin((state) => !state);
             }
           }}
         ></div>

@@ -2,11 +2,11 @@ import { SketchPicker } from "react-color";
 
 interface Props {
   modelColor: string;
-  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
+  setModelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function ModelColorControls(props: Props) {
-  const { modelColor, setmodelColor } = props;
+  const { modelColor, setModelColor } = props;
 
   return (
     <div id="model-color-controls" className="h-full w-full bg-gray-600">
@@ -17,7 +17,7 @@ function ModelColorControls(props: Props) {
         <div className="flex justify-center text-black">
           <SketchPicker
             color={modelColor}
-            onChangeComplete={(color) => setmodelColor(color.hex)}
+            onChangeComplete={(color) => setModelColor(color.hex)}
           />
         </div>
       </div>

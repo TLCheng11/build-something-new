@@ -10,22 +10,22 @@ import RoomContent from "../ShowRoom/RoomContent";
 import RoomStage from "../ShowRoom/RoomStage";
 
 interface Props {
-  setrefresh?: React.Dispatch<React.SetStateAction<boolean>>;
+  setRefresh?: React.Dispatch<React.SetStateAction<boolean>>;
   type: string;
   project: IProject;
-  setshowProjectForm?: React.Dispatch<React.SetStateAction<boolean>>;
-  setcurrentProject?: React.Dispatch<React.SetStateAction<IProject>>;
+  setShowProjectForm?: React.Dispatch<React.SetStateAction<boolean>>;
+  setCurrentProject?: React.Dispatch<React.SetStateAction<IProject>>;
 }
 
 function ProjectCard(props: Props) {
   let navigate = useNavigate();
   const favoredRef = useRef<HTMLDivElement>(null);
   const { currentUser } = useContext(UserContext);
-  const { setrefresh, type, project, setshowProjectForm, setcurrentProject } =
+  const { setRefresh, type, project, setShowProjectForm, setCurrentProject } =
     props;
-  const [onMarket, setonMarket] = useState<boolean>(project.on_market);
-  const [favored, setfavored] = useState<boolean>(false);
-  const [cardProject, setcardProject] = useState<IProject>({
+  const [onMarket, setOnMarket] = useState<boolean>(project.on_market);
+  const [favored, setFavored] = useState<boolean>(false);
+  const [cardProject, setCardProject] = useState<IProject>({
     id: 0,
     title: "",
     on_market: false,
@@ -42,8 +42,8 @@ function ProjectCard(props: Props) {
         res
           .json()
           .then((data) => {
-            setcardProject(data);
-            setfavored(data.favored);
+            setCardProject(data);
+            setFavored(data.favored);
           })
           .catch(console.error);
       } else {
@@ -77,7 +77,7 @@ function ProjectCard(props: Props) {
       body: JSON.stringify({ on_market: e.target.checked }),
     }).then((res) => {
       if (res.ok) {
-        res.json().then((data) => setonMarket(data.on_market));
+        res.json().then((data) => setOnMarket(data.on_market));
       } else {
         res.json().then((data) => alert(data.error));
       }
@@ -93,8 +93,8 @@ function ProjectCard(props: Props) {
           if (res.ok) {
             res.json().then((data) => {
               alert(data.message);
-              if (setrefresh) {
-                setrefresh((state: boolean) => !state);
+              if (setRefresh) {
+                setRefresh((state: boolean) => !state);
               }
             });
           } else {
@@ -115,9 +115,9 @@ function ProjectCard(props: Props) {
     }).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          setfavored(data.favored);
-          if (setrefresh) {
-            setrefresh((state: boolean) => !state);
+          setFavored(data.favored);
+          if (setRefresh) {
+            setRefresh((state: boolean) => !state);
           }
         });
       } else {
@@ -184,9 +184,9 @@ function ProjectCard(props: Props) {
                 <button
                   className="project-card-btn hover:bg-blue-300"
                   onClick={() => {
-                    if (setshowProjectForm && setcurrentProject) {
-                      setshowProjectForm(true);
-                      setcurrentProject(project);
+                    if (setShowProjectForm && setCurrentProject) {
+                      setShowProjectForm(true);
+                      setCurrentProject(project);
                     }
                   }}
                   disabled={onMarket}

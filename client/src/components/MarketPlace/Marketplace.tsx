@@ -7,15 +7,15 @@ import ProjectShowcase from "../commons/Projects/ProjectShowcase";
 
 function MarketPlace() {
   const params = useParams();
-  const { currentUser, setfirstEnter } = useContext(UserContext);
-  const [allProjects, setallProjects] = useState<IProject[]>([]);
-  const [pageCount, setpageCount] = useState(0);
-  const [currentPage, setcurrentPage] = useState<number>(1);
+  const { setFirstEnter } = useContext(UserContext);
+  const [allProjects, setAllProjects] = useState<IProject[]>([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    setfirstEnter(false);
+    setFirstEnter(false);
     if (params.page) {
-      setcurrentPage(parseInt(params.page));
+      setCurrentPage(parseInt(params.page));
     }
   }, []);
 
@@ -24,7 +24,7 @@ function MarketPlace() {
     fetch(`/projects_page_count`).then((res) => {
       if (res.ok) {
         res.json().then((data) => {
-          setpageCount(data.page_count);
+          setPageCount(data.page_count);
         });
       } else {
         res.json().then((data) => {
@@ -39,7 +39,7 @@ function MarketPlace() {
     if (pageCount > 0) {
       fetch(`/projects/?page=${currentPage}`).then((res) => {
         if (res.ok) {
-          res.json().then(setallProjects);
+          res.json().then(setAllProjects);
         } else {
           res.json().then((data) => {
             alert(data.error);
@@ -75,7 +75,7 @@ function MarketPlace() {
                 type="marketplace"
                 pageCount={pageCount}
                 currentPage={currentPage}
-                setcurrentPage={setcurrentPage}
+                setCurrentPage={setCurrentPage}
               />
             </div>
           </div>

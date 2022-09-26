@@ -4,19 +4,19 @@ import defaultProfileImg from "../../icons/defaultProfile.jpeg";
 import PasswordResetForm from "./PasswordResetForm";
 
 function Profile() {
-  const { currentUser, setcurrentUser } = useContext(UserContext);
-  const [showImgForm, setshowImgForm] = useState<boolean>(false);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [showImgForm, setShowImgForm] = useState<boolean>(false);
   // const [profile_img, setprofile_img] = useState<string>("");
-  const [showEmailForm, setshowEmailForm] = useState<boolean>(false);
-  const [showPasswordForm, setshowPasswordForm] = useState<boolean>(false);
-  const [email, setemail] = useState<string>("");
-  const [invalidEmail, setinvalidEmail] = useState<boolean>(false);
-  const [showNameForm, setshowNameForm] = useState<boolean>(false);
-  const [first_name, setfirst_name] = useState<string>("");
-  const [last_name, setlast_name] = useState<string>("");
-  const [showIntroForm, setshowIntroForm] = useState<boolean>(false);
-  const [introduction, setintroduction] = useState<string>("");
-  const [imgFile, setimgFile] = useState<File | null>(null);
+  const [showEmailForm, setShowEmailForm] = useState<boolean>(false);
+  const [showPasswordForm, setShowPasswordForm] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
+  const [showNameForm, setShowNameForm] = useState<boolean>(false);
+  const [first_name, setFirst_name] = useState<string>("");
+  const [last_name, setLast_name] = useState<string>("");
+  const [showIntroForm, setShowIntroForm] = useState<boolean>(false);
+  const [introduction, setIntroduction] = useState<string>("");
+  const [imgFile, setImgFile] = useState<File | null>(null);
 
   function uploadImage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,7 +29,7 @@ function Profile() {
         body: formData,
       }).then((res) => {
         if (res.ok) {
-          res.json().then(setcurrentUser);
+          res.json().then(setCurrentUser);
         } else {
           res.json().then((data) => alert(data.errors));
         }
@@ -47,7 +47,7 @@ function Profile() {
       body: JSON.stringify(input),
     }).then((res) => {
       if (res.ok) {
-        res.json().then(setcurrentUser);
+        res.json().then(setCurrentUser);
       } else {
         res.json().then((data) => alert(data.errors));
       }
@@ -55,11 +55,11 @@ function Profile() {
   }
 
   function closeAllForms() {
-    setshowImgForm(false);
-    setshowEmailForm(false);
-    setshowNameForm(false);
-    setshowIntroForm(false);
-    setshowPasswordForm(false);
+    setShowImgForm(false);
+    setShowEmailForm(false);
+    setShowNameForm(false);
+    setShowIntroForm(false);
+    setShowPasswordForm(false);
   }
 
   function validateEmail(e: React.FormEvent<HTMLFormElement>) {
@@ -72,17 +72,17 @@ function Profile() {
   // }, [showImgForm]);
 
   useEffect(() => {
-    setemail("");
-    setinvalidEmail(false);
+    setEmail("");
+    setInvalidEmail(false);
   }, [showEmailForm]);
 
   useEffect(() => {
-    setfirst_name("");
-    setlast_name("");
+    setFirst_name("");
+    setLast_name("");
   }, [showNameForm]);
 
   useEffect(() => {
-    setintroduction(currentUser.introduction || "");
+    setIntroduction(currentUser.introduction || "");
   }, [showIntroForm]);
 
   return (
@@ -90,7 +90,7 @@ function Profile() {
       {/* password form */}
       {showPasswordForm && (
         <div className="fixed h-full w-4/5 z-30 flex justify-center items-center bg-gray-600 bg-opacity-70">
-          <PasswordResetForm setshowPasswordForm={setshowPasswordForm} />
+          <PasswordResetForm setShowPasswordForm={setShowPasswordForm} />
         </div>
       )}
 
@@ -105,7 +105,7 @@ function Profile() {
               src={currentUser.image_url || defaultProfileImg}
               onClick={() => {
                 closeAllForms();
-                setshowImgForm((state) => !state);
+                setShowImgForm((state) => !state);
               }}
             />
           </div>
@@ -114,7 +114,7 @@ function Profile() {
               {/* <form
                 onSubmit={(e) => {
                   updateProfile(e, { profile_img });
-                  setshowImgForm(false);
+                  setShowImgForm(false);
                 }}
               >
                 <label>Image url:</label>
@@ -130,7 +130,7 @@ function Profile() {
                   className="px-2 border rounded-md"
                   onClick={(e) => {
                     e.preventDefault();
-                    setshowImgForm((state) => !state);
+                    setShowImgForm((state) => !state);
                   }}
                 >
                   X
@@ -139,7 +139,7 @@ function Profile() {
               <form
                 onSubmit={(e) => {
                   uploadImage(e);
-                  setshowImgForm(false);
+                  setShowImgForm(false);
                 }}
               >
                 <label>Image File:</label>
@@ -149,7 +149,7 @@ function Profile() {
                   accept="image/*"
                   onChange={(e) => {
                     if (e.target.files) {
-                      setimgFile(e.target.files[0]);
+                      setImgFile(e.target.files[0]);
                     }
                   }}
                 />
@@ -160,7 +160,7 @@ function Profile() {
                   className="px-2 border rounded-md"
                   onClick={(e) => {
                     e.preventDefault();
-                    setshowImgForm((state) => !state);
+                    setShowImgForm((state) => !state);
                   }}
                 >
                   X
@@ -181,7 +181,7 @@ function Profile() {
           className="design-btn min-w-fit px-2"
           onClick={() => {
             closeAllForms();
-            setshowPasswordForm(true);
+            setShowPasswordForm(true);
           }}
         >
           Change Password
@@ -194,7 +194,7 @@ function Profile() {
               className="design-btn px-2"
               onClick={() => {
                 closeAllForms();
-                setshowEmailForm((state) => !state);
+                setShowEmailForm((state) => !state);
               }}
             >
               Edit
@@ -206,9 +206,9 @@ function Profile() {
                 onSubmit={(e) => {
                   if (validateEmail(e)) {
                     updateProfile(e, { email });
-                    setshowEmailForm(false);
+                    setShowEmailForm(false);
                   } else {
-                    setinvalidEmail(true);
+                    setInvalidEmail(true);
                   }
                 }}
               >
@@ -217,8 +217,8 @@ function Profile() {
                   className="mx-1 border-2 rounded-md"
                   value={email}
                   onChange={(e) => {
-                    setemail(e.target.value);
-                    setinvalidEmail(false);
+                    setEmail(e.target.value);
+                    setInvalidEmail(false);
                   }}
                 />
                 <button className="mx-1 px-2 border rounded-md" type="submit">
@@ -228,7 +228,7 @@ function Profile() {
                   className="px-2 border rounded-md"
                   onClick={(e) => {
                     e.preventDefault();
-                    setshowEmailForm((state) => !state);
+                    setShowEmailForm((state) => !state);
                   }}
                 >
                   X
@@ -251,7 +251,7 @@ function Profile() {
               className="design-btn px-2"
               onClick={() => {
                 closeAllForms();
-                setshowNameForm((state) => !state);
+                setShowNameForm((state) => !state);
               }}
             >
               Edit
@@ -270,7 +270,7 @@ function Profile() {
               <form
                 onSubmit={(e) => {
                   updateProfile(e, { first_name, last_name });
-                  setshowNameForm(false);
+                  setShowNameForm(false);
                 }}
               >
                 <div className="flex">
@@ -280,7 +280,7 @@ function Profile() {
                   <input
                     className="mx-1 border-2 rounded-md"
                     value={first_name}
-                    onChange={(e) => setfirst_name(e.target.value)}
+                    onChange={(e) => setFirst_name(e.target.value)}
                   />
                 </div>
                 <div className="flex">
@@ -290,7 +290,7 @@ function Profile() {
                   <input
                     className="mx-1 border-2 rounded-md"
                     value={last_name}
-                    onChange={(e) => setlast_name(e.target.value)}
+                    onChange={(e) => setLast_name(e.target.value)}
                   />
                 </div>
                 <div className="mt-2 flex justify-center">
@@ -301,7 +301,7 @@ function Profile() {
                     className="px-2 border rounded-md"
                     onClick={(e) => {
                       e.preventDefault();
-                      setshowNameForm((state) => !state);
+                      setShowNameForm((state) => !state);
                     }}
                   >
                     X
@@ -317,7 +317,7 @@ function Profile() {
               className="design-btn px-2"
               onClick={() => {
                 closeAllForms();
-                setshowIntroForm((state) => !state);
+                setShowIntroForm((state) => !state);
               }}
             >
               Edit
@@ -329,7 +329,7 @@ function Profile() {
               <form
                 onSubmit={(e) => {
                   updateProfile(e, { introduction });
-                  setshowIntroForm(false);
+                  setShowIntroForm(false);
                 }}
               >
                 <div>
@@ -340,7 +340,7 @@ function Profile() {
                     maxLength={255}
                     className="w-full border-2 rounded-md"
                     value={introduction}
-                    onChange={(e) => setintroduction(e.target.value)}
+                    onChange={(e) => setIntroduction(e.target.value)}
                   />
                 </div>
                 <button className="mx-1 px-2 border rounded-md" type="submit">
@@ -350,7 +350,7 @@ function Profile() {
                   className="px-2 border rounded-md"
                   onClick={(e) => {
                     e.preventDefault();
-                    setshowIntroForm((state) => !state);
+                    setShowIntroForm((state) => !state);
                   }}
                 >
                   X

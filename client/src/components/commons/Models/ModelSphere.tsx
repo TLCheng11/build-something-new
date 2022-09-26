@@ -15,7 +15,7 @@ interface Props {
     id: number;
     name: string;
   };
-  setselectedGroup: React.Dispatch<
+  setSelectedGroup: React.Dispatch<
     React.SetStateAction<{
       id: number;
       name: string;
@@ -25,22 +25,22 @@ interface Props {
     type: string;
     id: number;
   };
-  setselectedModel: React.Dispatch<
+  setSelectedModel: React.Dispatch<
     React.SetStateAction<{
       type: string;
       id: number;
     }>
   >;
   sphereSize: [number, number, number, number, number];
-  setsphereSize: React.Dispatch<
+  setSphereSize: React.Dispatch<
     React.SetStateAction<[number, number, number, number, number]>
   >;
   position: [number, number, number];
-  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setPosition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
-  setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setRotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   modelColor: string;
-  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
+  setModelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function ModelSphere(props: Props) {
@@ -51,22 +51,22 @@ function ModelSphere(props: Props) {
     gridModel,
     showGridModel,
     selectedGroup,
-    setselectedGroup,
+    setSelectedGroup,
     selectedModel,
-    setselectedModel,
+    setSelectedModel,
     sphereSize,
-    setsphereSize,
+    setSphereSize,
     position,
-    setposition,
+    setPosition,
     rotation,
-    setrotation,
+    setRotation,
     modelColor,
-    setmodelColor,
+    setModelColor,
   } = props;
 
   // states for all self properties
-  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
-  const [selfSize, setselfSize] = useState<
+  const [selfShowGrid, setSelfShowGrid] = useState<boolean>(false);
+  const [selfSize, setSelfSize] = useState<
     [number, number, number, number, number]
   >([
     sphere.radius || 0.5,
@@ -80,12 +80,12 @@ function ModelSphere(props: Props) {
     sphere.yposition || 0,
     sphere.zposition || 0,
   ]);
-  const [selfRotation, setselfRotation] = useState<[number, number, number]>([
+  const [selfRotation, setSelfRotation] = useState<[number, number, number]>([
     sphere.xrotation || 0,
     sphere.yrotation || 0,
     sphere.zrotation || 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>(sphere.color || "#396BA7");
+  const [selfColor, setSelfColor] = useState<string>(sphere.color || "#396BA7");
 
   // hover pointer
   const [hovered, setHovered] = useState(false);
@@ -101,7 +101,7 @@ function ModelSphere(props: Props) {
   // set size
   useEffect(() => {
     if (selectedModel.type === "spheres" && selectedModel.id === sphere.id) {
-      setselfSize(sphereSize);
+      setSelfSize(sphereSize);
       sizeRef.current = sphereSize;
     }
   }, [sphereSize]);
@@ -117,7 +117,7 @@ function ModelSphere(props: Props) {
   // set rotation
   useEffect(() => {
     if (selectedModel.type === "spheres" && selectedModel.id === sphere.id) {
-      setselfRotation(rotation);
+      setSelfRotation(rotation);
       rotationRef.current = rotation;
     }
   }, [rotation]);
@@ -125,7 +125,7 @@ function ModelSphere(props: Props) {
   // set color
   useEffect(() => {
     if (selectedModel.type === "spheres" && selectedModel.id === sphere.id) {
-      setselfColor(modelColor);
+      setSelfColor(modelColor);
       colorRef.current = modelColor;
     }
   }, [modelColor]);
@@ -133,21 +133,21 @@ function ModelSphere(props: Props) {
   // toggle grids
   useEffect(() => {
     if (selectedModel.type === "spheres" && selectedModel.id === sphere.id) {
-      setselfShowGrid(showGridModel);
+      setSelfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
   // set all self properties from history when selection
   useEffect(() => {
     if (selectedModel.type === "spheres" && selectedModel.id === sphere.id) {
-      setselfShowGrid(showGridModel);
-      setsphereSize(selfSize);
-      setposition(selfPosition);
-      setrotation(selfRotation);
-      setmodelColor(selfColor);
+      setSelfShowGrid(showGridModel);
+      setSphereSize(selfSize);
+      setPosition(selfPosition);
+      setRotation(selfRotation);
+      setModelColor(selfColor);
       selectedRef.current = true;
     } else if (selectedRef.current) {
-      setselfShowGrid(false);
+      setSelfShowGrid(false);
       saveModel();
       selectedRef.current = false;
     }
@@ -156,9 +156,9 @@ function ModelSphere(props: Props) {
   // lock self as selected item when clicked
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
-    setselectedModel({ type: "spheres", id: sphere.id || 0 });
+    setSelectedModel({ type: "spheres", id: sphere.id || 0 });
     if (selectedGroup.id !== group.id) {
-      setselectedGroup({ id: group.id, name: group.group_name });
+      setSelectedGroup({ id: group.id, name: group.group_name });
     }
   }
 

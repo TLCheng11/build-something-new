@@ -5,27 +5,27 @@ import { IComment } from "../../Interface";
 import CommentForm from "./CommentForm";
 
 interface Props {
-  setrefresh: React.Dispatch<React.SetStateAction<boolean>>;
+  setRefresh: React.Dispatch<React.SetStateAction<boolean>>;
   comment: IComment;
 }
 
-function Comment({ setrefresh, comment }: Props) {
+function Comment({ setRefresh, comment }: Props) {
   const { currentUser } = useContext(UserContext);
-  const [editing, setediting] = useState<boolean>(false);
+  const [editing, setEditing] = useState<boolean>(false);
 
   function deleteComment() {
     fetch(`/comments/${comment.id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then(() => setrefresh((state) => !state));
+      .then(() => setRefresh((state) => !state));
   }
 
   return editing ? (
     <CommentForm
-      setrefresh={setrefresh}
+      setRefresh={setRefresh}
       action="edit"
-      setaddComment={setediting}
+      setAddComment={setEditing}
       id={comment.id}
       currentComment={comment}
     />
@@ -64,7 +64,7 @@ function Comment({ setrefresh, comment }: Props) {
             <img
               className="cursor-pointer h-7"
               src="https://img.icons8.com/nolan/64/edit--v1.png"
-              onClick={() => setediting(true)}
+              onClick={() => setEditing(true)}
             />
             <img
               className="cursor-pointer h-7"

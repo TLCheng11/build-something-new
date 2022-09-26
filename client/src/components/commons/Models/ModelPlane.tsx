@@ -15,7 +15,7 @@ interface Props {
     id: number;
     name: string;
   };
-  setselectedGroup: React.Dispatch<
+  setSelectedGroup: React.Dispatch<
     React.SetStateAction<{
       id: number;
       name: string;
@@ -25,20 +25,20 @@ interface Props {
     type: string;
     id: number;
   };
-  setselectedModel: React.Dispatch<
+  setSelectedModel: React.Dispatch<
     React.SetStateAction<{
       type: string;
       id: number;
     }>
   >;
   planeSize: [number, number];
-  setplaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
+  setPlaneSize: React.Dispatch<React.SetStateAction<[number, number]>>;
   position: [number, number, number];
-  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setPosition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   rotation: [number, number, number];
-  setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setRotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
   modelColor: string;
-  setmodelColor: React.Dispatch<React.SetStateAction<string>>;
+  setModelColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function ModelPlane(props: Props) {
@@ -49,22 +49,22 @@ function ModelPlane(props: Props) {
     gridModel,
     showGridModel,
     selectedGroup,
-    setselectedGroup,
+    setSelectedGroup,
     selectedModel,
-    setselectedModel,
+    setSelectedModel,
     planeSize,
-    setplaneSize,
+    setPlaneSize,
     position,
-    setposition,
+    setPosition,
     rotation,
-    setrotation,
+    setRotation,
     modelColor,
-    setmodelColor,
+    setModelColor,
   } = props;
 
   // states for all self properties
-  const [selfShowGrid, setselfShowGrid] = useState<boolean>(false);
-  const [selfSize, setselfSize] = useState<[number, number]>([
+  const [selfShowGrid, setSelfShowGrid] = useState<boolean>(false);
+  const [selfSize, setSelfSize] = useState<[number, number]>([
     plane.width || 10,
     plane.depth || 10,
   ]);
@@ -73,12 +73,12 @@ function ModelPlane(props: Props) {
     plane.yposition || 0,
     plane.zposition || 0,
   ]);
-  const [selfRotation, setselfRotation] = useState<[number, number, number]>([
+  const [selfRotation, setSelfRotation] = useState<[number, number, number]>([
     plane.xrotation || 0,
     plane.yrotation || 0,
     plane.zrotation || 0,
   ]);
-  const [selfColor, setselfColor] = useState<string>(plane.color || "#678546");
+  const [selfColor, setSelfColor] = useState<string>(plane.color || "#678546");
 
   // hover pointer
   const [hovered, setHovered] = useState(false);
@@ -94,7 +94,7 @@ function ModelPlane(props: Props) {
   // set size
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
-      setselfSize(planeSize);
+      setSelfSize(planeSize);
       sizeRef.current = planeSize;
     }
   }, [planeSize]);
@@ -110,7 +110,7 @@ function ModelPlane(props: Props) {
   // set rotation
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
-      setselfRotation(rotation);
+      setSelfRotation(rotation);
       rotationRef.current = rotation;
     }
   }, [rotation]);
@@ -118,7 +118,7 @@ function ModelPlane(props: Props) {
   // set color
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
-      setselfColor(modelColor);
+      setSelfColor(modelColor);
       colorRef.current = modelColor;
     }
   }, [modelColor]);
@@ -126,21 +126,21 @@ function ModelPlane(props: Props) {
   // toggle grids
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
-      setselfShowGrid(showGridModel);
+      setSelfShowGrid(showGridModel);
     }
   }, [showGridModel]);
 
   // set all self properties from history when selection
   useEffect(() => {
     if (selectedModel.type === "planes" && selectedModel.id === plane.id) {
-      setselfShowGrid(showGridModel);
-      setplaneSize(selfSize);
-      setposition(selfPosition);
-      setrotation(selfRotation);
-      setmodelColor(selfColor);
+      setSelfShowGrid(showGridModel);
+      setPlaneSize(selfSize);
+      setPosition(selfPosition);
+      setRotation(selfRotation);
+      setModelColor(selfColor);
       selectedRef.current = true;
     } else if (selectedRef.current) {
-      setselfShowGrid(false);
+      setSelfShowGrid(false);
       saveModel();
       selectedRef.current = false;
     }
@@ -149,9 +149,9 @@ function ModelPlane(props: Props) {
   // lock self as selected item when clicked
   function handleOnClick(e: ThreeEvent<MouseEvent>) {
     e.stopPropagation();
-    setselectedModel({ type: "planes", id: plane.id || 0 });
+    setSelectedModel({ type: "planes", id: plane.id || 0 });
     if (selectedGroup.id !== group.id) {
-      setselectedGroup({ id: group.id, name: group.group_name });
+      setSelectedGroup({ id: group.id, name: group.group_name });
     }
   }
 

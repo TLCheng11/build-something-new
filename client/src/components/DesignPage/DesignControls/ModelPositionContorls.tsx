@@ -3,12 +3,12 @@ import { useState } from "react";
 interface Props {
   type: string;
   position: [number, number, number];
-  setposition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setPosition: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function ModelPositionControls(props: Props) {
-  const { type, position, setposition } = props;
-  const [step, setstep] = useState<string>("0.05");
+  const { type, position, setPosition } = props;
+  const [step, setStep] = useState<string>("0.05");
 
   return (
     <div id="model-position-controls" className="h-full w-full bg-gray-600">
@@ -26,7 +26,7 @@ function ModelPositionControls(props: Props) {
           name="model-X-position"
           value={position[0]}
           onChange={(e) =>
-            setposition((position) => [
+            setPosition((position) => [
               parseFloat(e.target.value),
               position[1],
               position[2],
@@ -45,7 +45,7 @@ function ModelPositionControls(props: Props) {
           name="model-Y-position"
           value={position[1]}
           onChange={(e) =>
-            setposition((position) => [
+            setPosition((position) => [
               position[0],
               parseFloat(e.target.value),
               position[2],
@@ -64,7 +64,7 @@ function ModelPositionControls(props: Props) {
           name="model-Z-position"
           value={position[2]}
           onChange={(e) =>
-            setposition((position) => [
+            setPosition((position) => [
               position[0],
               position[1],
               parseFloat(e.target.value),

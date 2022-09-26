@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 interface Props {
-  setshowPasswordForm: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowPasswordForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function PasswordResetForm({ setshowPasswordForm }: Props) {
-  const [formInput, setformInput] = useState({
+function PasswordResetForm({ setShowPasswordForm }: Props) {
+  const [formInput, setFormInput] = useState({
     current_password: "",
     new_password: "",
     password_confirmation: "",
@@ -14,7 +14,7 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
     class: "cursor-not-allowed disabled:opacity-25",
     disable: true,
   });
-  const [message, setmessage] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
   const conditions = {
     first: formInput.current_password.length >= 8,
@@ -53,7 +53,7 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
       ...formInput,
       [e.target.name]: e.target.value,
     };
-    setformInput(newInput);
+    setFormInput(newInput);
   }
 
   function updatePassword(e: React.FormEvent<HTMLFormElement>) {
@@ -68,11 +68,11 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
       if (res.ok) {
         res.json().then(() => {
           console.log("Password updated");
-          setmessage("success");
+          setMessage("success");
         });
       } else {
         res.json().then((data) => {
-          setmessage("fail");
+          setMessage("fail");
         });
       }
     });
@@ -82,14 +82,14 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
     message === "success" ? (
       <div
         className="cursor-pointer bg-gradient-to-r from-white/90 to-green-800/80 rounded-lg flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8"
-        onClick={() => setshowPasswordForm(false)}
+        onClick={() => setShowPasswordForm(false)}
       >
         <h1 className="text-4xl text-black">Password changed successfully.</h1>
       </div>
     ) : (
       <div
         className="cursor-pointer bg-gradient-to-r from-white/90 to-red-800/80 rounded-lg flex items-center justify-center py-4 px-4 sm:px-6 lg:px-8"
-        onClick={() => setmessage("")}
+        onClick={() => setMessage("")}
       >
         <h1 className="text-4xl text-white">Wrong Password</h1>
       </div>
@@ -100,7 +100,7 @@ function PasswordResetForm({ setshowPasswordForm }: Props) {
         <div className="flex justify-end">
           <div
             className="cursor-pointer text-xl text-slate-600 hover:text-red-500"
-            onClick={() => setshowPasswordForm(false)}
+            onClick={() => setShowPasswordForm(false)}
           >
             X
           </div>

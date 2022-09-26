@@ -9,12 +9,12 @@ import ProjectInfoForm from "../commons/Projects/ProjectInfoForm";
 function MyProjects() {
   const params = useParams();
   const { currentUser } = useContext(UserContext);
-  const [refresh, setrefresh] = useState<boolean>(false);
-  const [myProjects, setmyProjects] = useState<IProject[]>([]);
-  const [pageCount, setpageCount] = useState(0);
-  const [currentPage, setcurrentPage] = useState<number>(1);
-  const [showProjectForm, setshowProjectForm] = useState<boolean>(false);
-  const [currentProject, setcurrentProject] = useState<IProject>({
+  const [refresh, setRefresh] = useState<boolean>(false);
+  const [myProjects, setMyProjects] = useState<IProject[]>([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [showProjectForm, setShowProjectForm] = useState<boolean>(false);
+  const [currentProject, setCurrentProject] = useState<IProject>({
     id: 0,
     title: "",
     on_market: false,
@@ -23,7 +23,7 @@ function MyProjects() {
 
   useEffect(() => {
     if (params.page) {
-      setcurrentPage(parseInt(params.page));
+      setCurrentPage(parseInt(params.page));
     }
   }, []);
 
@@ -34,7 +34,7 @@ function MyProjects() {
       ).then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            setpageCount(data.page_count);
+            setPageCount(data.page_count);
           });
         } else {
           res.json().then((data) => {
@@ -50,7 +50,7 @@ function MyProjects() {
       fetch(`/users/${currentUser.id}/projects/?page=${currentPage}`).then(
         (res) => {
           if (res.ok) {
-            res.json().then(setmyProjects);
+            res.json().then(setMyProjects);
           } else {
             res.json().then((data) => {
               alert(data.error);
@@ -65,11 +65,11 @@ function MyProjects() {
     <div className="h-full w-full">
       {showProjectForm && (
         <ProjectInfoForm
-          setshowProjectForm={setshowProjectForm}
+          setShowProjectForm={setShowProjectForm}
           action="edit"
           currentProject={currentProject}
-          setrefresh={setrefresh}
-          setcurrentPage={setcurrentPage}
+          setRefresh={setRefresh}
+          setCurrentPage={setCurrentPage}
         />
       )}
       {pageCount < 1 ? (
@@ -82,11 +82,11 @@ function MyProjects() {
         <div id="my-projects-showcase" className="h-full w-full">
           <div className="h-9/10 pb-3 overflow-auto">
             <ProjectShowcase
-              setrefresh={setrefresh}
+              setRefresh={setRefresh}
               type="myProject"
               projects={myProjects}
-              setshowProjectForm={setshowProjectForm}
-              setcurrentProject={setcurrentProject}
+              setShowProjectForm={setShowProjectForm}
+              setCurrentProject={setCurrentProject}
             />
           </div>
           <div className="h-1/10">
@@ -94,7 +94,7 @@ function MyProjects() {
               type="dashboard-projects"
               pageCount={pageCount}
               currentPage={currentPage}
-              setcurrentPage={setcurrentPage}
+              setCurrentPage={setCurrentPage}
             />
           </div>
         </div>

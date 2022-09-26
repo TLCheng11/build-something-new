@@ -9,7 +9,7 @@ interface Props {
 function LoginForm(props: Props) {
   let navigate = useNavigate();
   const { setSignUp } = props;
-  const { setcurrentUser, firstEnter } = useContext(UserContext);
+  const { setCurrentUser, firstEnter } = useContext(UserContext);
   const [formInput, setFormInput] = useState({
     username: "",
     password: "",
@@ -35,7 +35,7 @@ function LoginForm(props: Props) {
       .then((res) => {
         if (res.ok) {
           res.json().then((data) => {
-            setcurrentUser(data);
+            setCurrentUser(data);
             navigate("/marketplace/1");
           });
         } else {

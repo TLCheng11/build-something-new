@@ -8,14 +8,14 @@ import { IProject } from "../../Interface";
 function FavoredProjects() {
   const params = useParams();
   const { currentUser } = useContext(UserContext);
-  const [refresh, setrefresh] = useState<boolean>(false);
-  const [favoredProjects, setfavoredProjects] = useState<IProject[]>([]);
-  const [pageCount, setpageCount] = useState(0);
-  const [currentPage, setcurrentPage] = useState<number>(1);
+  const [refresh, setRefresh] = useState<boolean>(false);
+  const [favoredProjects, setFavoredProjects] = useState<IProject[]>([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
     if (params.page) {
-      setcurrentPage(parseInt(params.page));
+      setCurrentPage(parseInt(params.page));
     }
   }, []);
 
@@ -25,7 +25,7 @@ function FavoredProjects() {
         (res) => {
           if (res.ok) {
             res.json().then((data) => {
-              setpageCount(data.page_count);
+              setPageCount(data.page_count);
             });
           } else {
             res.json().then((data) => {
@@ -41,7 +41,7 @@ function FavoredProjects() {
     if (currentUser.id && pageCount > 0) {
       fetch(`/projects_favored/?page=${currentPage}`).then((res) => {
         if (res.ok) {
-          res.json().then(setfavoredProjects);
+          res.json().then(setFavoredProjects);
         } else {
           res.json().then((data) => {
             alert(data.error);
@@ -61,7 +61,7 @@ function FavoredProjects() {
         <div id="my-projects-showcase" className="h-full w-full">
           <div className="h-9/10 pb-3 overflow-auto">
             <ProjectShowcase
-              setrefresh={setrefresh}
+              setRefresh={setRefresh}
               type="favored"
               projects={favoredProjects}
             />
@@ -71,7 +71,7 @@ function FavoredProjects() {
               type="favored-projects"
               pageCount={pageCount}
               currentPage={currentPage}
-              setcurrentPage={setcurrentPage}
+              setCurrentPage={setCurrentPage}
             />
           </div>
         </div>

@@ -1,11 +1,11 @@
 interface Props {
   type: string;
   rotation: [number, number, number];
-  setrotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
+  setRotation: React.Dispatch<React.SetStateAction<[number, number, number]>>;
 }
 
 function ModelRotationControls(props: Props) {
-  const { type, rotation, setrotation } = props;
+  const { type, rotation, setRotation } = props;
 
   return (
     <div id="model-rotation-controls" className="h-full w-full bg-gray-600">
@@ -24,7 +24,7 @@ function ModelRotationControls(props: Props) {
           name="model-X-rotation"
           value={rotation[0]}
           onChange={(e) =>
-            setrotation((rotation) => [
+            setRotation((rotation) => [
               parseInt(e.target.value),
               rotation[1],
               rotation[2],
@@ -38,7 +38,7 @@ function ModelRotationControls(props: Props) {
           max={180}
           value={rotation[0]}
           onChange={(e) =>
-            setrotation((rotation) => [
+            setRotation((rotation) => [
               parseInt(e.target.value),
               rotation[1],
               rotation[2],
@@ -59,7 +59,7 @@ function ModelRotationControls(props: Props) {
           name="model-Y-rotation"
           value={rotation[1]}
           onChange={(e) =>
-            setrotation((rotation) => [
+            setRotation((rotation) => [
               rotation[0],
               parseInt(e.target.value),
               rotation[2],
@@ -73,7 +73,7 @@ function ModelRotationControls(props: Props) {
           max={180}
           value={rotation[1]}
           onChange={(e) =>
-            setrotation((rotation) => [
+            setRotation((rotation) => [
               rotation[0],
               parseInt(e.target.value),
               rotation[2],
@@ -94,7 +94,7 @@ function ModelRotationControls(props: Props) {
           name="model-Z-rotation"
           value={rotation[2]}
           onChange={(e) =>
-            setrotation((rotation) => [
+            setRotation((rotation) => [
               rotation[0],
               rotation[1],
               parseInt(e.target.value),
@@ -108,7 +108,7 @@ function ModelRotationControls(props: Props) {
           max={180}
           value={rotation[2]}
           onChange={(e) =>
-            setrotation((rotation) => [
+            setRotation((rotation) => [
               rotation[0],
               rotation[1],
               parseInt(e.target.value),

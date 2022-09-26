@@ -7,23 +7,23 @@ interface Props {
 
 export const UserContext = createContext<{
   currentUser: ICurrentUser;
-  setcurrentUser: React.Dispatch<React.SetStateAction<ICurrentUser>>;
+  setCurrentUser: React.Dispatch<React.SetStateAction<ICurrentUser>>;
   firstEnter: boolean;
-  setfirstEnter: React.Dispatch<React.SetStateAction<boolean>>;
+  setFirstEnter: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
   currentUser: {},
-  setcurrentUser: () => {},
+  setCurrentUser: () => {},
   firstEnter: true,
-  setfirstEnter: () => {},
+  setFirstEnter: () => {},
 });
 
 export function UserProvider({ children }: Props) {
-  const [currentUser, setcurrentUser] = useState<ICurrentUser>({});
-  const [firstEnter, setfirstEnter] = useState<boolean>(true);
+  const [currentUser, setCurrentUser] = useState<ICurrentUser>({});
+  const [firstEnter, setFirstEnter] = useState<boolean>(true);
 
   return (
     <UserContext.Provider
-      value={{ currentUser, setcurrentUser, firstEnter, setfirstEnter }}
+      value={{ currentUser, setCurrentUser, firstEnter, setFirstEnter }}
     >
       {children}
     </UserContext.Provider>
