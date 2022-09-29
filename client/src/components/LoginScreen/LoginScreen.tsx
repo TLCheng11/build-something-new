@@ -55,7 +55,9 @@ function LoginPage({ setShowLogin }: Props) {
       )}
       <div
         className={`w-1/4 min-w-360 z-10 ${
-          showForms ? "opacity-100" : "opacity-0"
+          showForms
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         } transition-opacity duration-500 ease-in`}
       >
         {!signUp ? (
