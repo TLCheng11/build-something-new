@@ -1,7 +1,7 @@
 # Build 3D
 
 - A dedicated website for everyone to build, share and download 3D models with sophisticated UI.
-- Link for deployed website: [buildsomethingnew.herokuapp.com](https://buildsomethingnew.herokuapp.com/)
+- Deployed website: [buildsomethingnew.herokuapp.com](https://buildsomethingnew.herokuapp.com/)
 
 ## Creator
 
@@ -9,10 +9,10 @@
 
 # Descriptions
 
-- Constructed a 3D model design platform that incorporated the React Three libraries - fiber, drei, and cannon. Users can design their own 3D models using the custom built UI.
-- Designed custom algorithmes and recursive functions to join individual components into groups, which allows users to reposition or copy multiple model components with ease.
-- Modeled custom database and REST API with Active Record, Active Storage, and PostgreSQL. With all the data stored, users can share their creations, or download and leave comments on others creations.
-- Monitored all users activities when editing the model with useEffect and useRef Hooks. All the changes that users made will be auto saved to the database.
+- Constructed a 3D model design platform that incorporated the React Three libraries - fiber, drei, and cannon. Users can design their own 3D models using the custom-built UI.
+- Designed custom algorithms and recursive functions to join individual components into groups, which allows users to reposition or copy multiple model components with ease.
+- Modeled custom database and REST API with Active Record, Active Storage, and PostgreSQL. With all the data stored, users can share their creations, or download and leave comments on others' creations.
+- Monitored all users' activities when editing the model with useEffect and useRef Hooks. All the changes that users made will be auto-saved to the database.
 - Utilized JSZip and File-saver for users to download 3D models as a React component.
 
 # System dependencies
