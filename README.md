@@ -35,4 +35,4 @@
 - How to run the test suite:
   - rails s
   - npm start --prefix client
-  - open [locolhost:4000](http://localhost:4000/) on your browser
+  - open [localhost:4000](http://localhost:4000/) on your browser
