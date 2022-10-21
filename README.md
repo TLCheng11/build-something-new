@@ -21,7 +21,7 @@
 
 - Ruby: 3.1.2
 - Node: 16.17.1
-- PostgreSQL: 12.12
+- PostgreSQL
 
 # Configuration:
 
