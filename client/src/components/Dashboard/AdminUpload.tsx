@@ -5,7 +5,17 @@ function AdminUpload() {
 
   function uploadData(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(modalData);
+    const jsonData = JSON.parse(modalData);
+    console.log(jsonData);
+    fetch("/model_upload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: modalData,
+    })
+      .then((res) => res.json())
+      .then(console.log);
   }
 
   return (

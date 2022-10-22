@@ -57,6 +57,9 @@ Rails.application.routes.draw do
     resources :model_cylinders, only: [:create, :update, :destroy]
     post "model_cylinders_copy/:id", to: "model_cylinders#copy"
 
+    # upload models
+    post "model_upload", to: "upload#upload"
+
   # redirect to frontend routing
     get '*path',
         to: 'fallback#index',

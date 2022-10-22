@@ -19,8 +19,6 @@ function Profile() {
   const [introduction, setIntroduction] = useState<string>("");
   const [imgFile, setImgFile] = useState<File | null>(null);
 
-  console.log(currentUser);
-
   function uploadImage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
