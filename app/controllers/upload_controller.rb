@@ -34,13 +34,12 @@ class UploadController < ApplicationController
     def create_group(project_id, group, parent_group_id=nil)
       # copy group setting
       group[:project_id] = project_id
-      new_group = ModelGroup.create!(group.permit(:project_id, :group_name, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation))
+      group[:parent_group_id] = parent_group_id
+      new_group = ModelGroup.create!(group.permit(:project_id, :parent_group_id, :group_name, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation))
 
       # copy each element in the group
       group[:model_planes].each do |item|
-        puts item[:model_group_id]
         item[:model_group_id] = new_group[:id]
-        puts item[:model_group_id]
         ModelPlane.create!(item.permit(:model_group_id, :width, :depth, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation, :color))
       end
       
