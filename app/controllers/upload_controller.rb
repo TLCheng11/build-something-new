@@ -2,6 +2,7 @@ class UploadController < ApplicationController
   # this controler only accessable by admin or tony account
   # mainly used to migrate sample model to other database on different hosting service
 
+  # POST /model_upload
   def upload
     user = User.find(session[:user_id])
     if user.username == "tony" || user.username == "admin"
@@ -32,7 +33,8 @@ class UploadController < ApplicationController
 
     def create_group(project_id, group, parent_group_id=nil)
       # copy group setting
-      new_group = ModelGroup.create!(project_id: project_id, group_name: group[:group_name], parent_group_id: parent_group_id, xposition: group[:xposition], xrotation: group[:xrotation], yposition: group[:yposition], yrotation: group[:yrotation], zposition: group[:zposition], zrotation: group[:zrotation])
+      group[:project_id] = project_id
+      new_group = ModelGroup.create!(group.permit(:project_id, :group_name, :xposition, :yposition, :zposition, :xrotation, :yrotation, :zrotation))
 
       # copy each element in the group
       group[:model_planes].each do |item|
