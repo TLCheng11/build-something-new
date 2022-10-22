@@ -8,9 +8,9 @@ class UploadController < ApplicationController
     if user.username == "tony" || user.username == "admin"
       @user = user
       create_project(params)
-      render json: { message: "model uploaded"}
+      render json: { messages: "model uploaded"}
     else
-      render json: { error: "user has no admin privilege" }
+      render json: { errors: "user has no admin privilege" }
     end
   end
 
