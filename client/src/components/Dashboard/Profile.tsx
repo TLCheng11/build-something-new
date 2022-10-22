@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import defaultProfileImg from "../../icons/defaultProfile.jpeg";
+import AdminUpload from "./AdminUpload";
 import PasswordResetForm from "./PasswordResetForm";
 
 function Profile() {
@@ -17,6 +18,8 @@ function Profile() {
   const [showIntroForm, setShowIntroForm] = useState<boolean>(false);
   const [introduction, setIntroduction] = useState<string>("");
   const [imgFile, setImgFile] = useState<File | null>(null);
+
+  console.log(currentUser);
 
   function uploadImage(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -366,6 +369,11 @@ function Profile() {
               </p>
             </div>
           )}
+
+          {/* Upload area */}
+          {/* only for user tony */}
+
+          {currentUser.id === 1 && <AdminUpload />}
         </div>
       </div>
     </div>
