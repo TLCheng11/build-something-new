@@ -371,7 +371,8 @@ function Profile() {
           {/* Upload area */}
           {/* only for user tony */}
 
-          {currentUser.id === 1 && <AdminUpload />}
+          {(currentUser.username === "tony" ||
+            currentUser.username === "admin") && <AdminUpload />}
         </div>
       </div>
     </div>
