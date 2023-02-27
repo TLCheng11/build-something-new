@@ -17,8 +17,11 @@ function MenuTop({ showMenu, setShowMenu }: Props) {
     [number, number, number, number]
   >([0 - wh, 0 - ww, 0 - ww, 180]);
 
+  const base = window.innerWidth <= 912 ? 1 : 2;
+
   const angle =
-    (((window.innerHeight * 3) / 5 / (window.innerWidth / 2)) * 180) / Math.PI;
+    (((window.innerHeight * 3) / 5 / (window.innerWidth / base)) * 180) /
+    Math.PI;
 
   // const angle =
   //   Math.atan((window.innerHeight * 3) / 5 / (window.innerWidth / 2)) * 180;
@@ -49,7 +52,7 @@ function MenuTop({ showMenu, setShowMenu }: Props) {
       >
         <p className="absolute left-1 rotate-45">Menu</p>
       </div>
-      <div className="text-6xl">
+      <div className="text-3xl md:text-6xl">
         <div
           id="menu-top"
           className="flex items-center justify-center h-3/5 w-screen z-40 fixed text-red-400 bg-blue-500 transition-all duration-1000 ease-in"
