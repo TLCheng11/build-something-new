@@ -63,7 +63,7 @@ input:checked ~ .dot {
   user-select: none;
 }
 
-@media (max-width: 375px) {
+@media (max-width: 912px) {
   #header-title {
     font-size: 4em;
   }

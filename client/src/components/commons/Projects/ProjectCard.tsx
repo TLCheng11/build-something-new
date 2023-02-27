@@ -128,9 +128,9 @@ function ProjectCard(props: Props) {
 
   return (
     <div
-      className={`col-span-1 flex flex-col items-center min-h-360 max-h-1/2screen border border-blue-200 rounded-xl  ${
+      className={`col-span-1 flex flex-col items-center min-h-300 max-h-1/2screen border border-blue-200 rounded-xl  ${
         currentUser.id === project.created_by ? "bg-green-800" : "bg-slate-900"
-      }`}
+      } md:min-h-360`}
     >
       <div
         className="h-4/5 min-h-100 w-full rounded-t-x"
