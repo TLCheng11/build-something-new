@@ -51,7 +51,7 @@ function MarketPlace() {
 
   return (
     <div id="dashboard" className="h-screen w-screen bg-white text-black">
-      <div className="h-1/10 w-full flex justify-center md:h-1/8">
+      <div className="h-1/10 min-h-80 w-full flex justify-center md:h-1/8">
         <h1 id="header-title">
           <span>B</span>
           <span>U</span>
@@ -67,7 +67,7 @@ function MarketPlace() {
       ) : (
         <div className="h-7/8 w-full">
           <div id="market-place-showcase" className="h-full w-full">
-            <div className="h-7/8 w-full overflow-auto">
+            <div className="w-full overflow-auto lg:h-7/8">
               <ProjectShowcase type="market" projects={allProjects} />
             </div>
             <div className="h-1/8">

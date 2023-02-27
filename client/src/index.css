@@ -65,6 +65,7 @@ input:checked ~ .dot {
 
 @media (max-width: 912px) {
   #header-title {
+    min-height: 80px;
     font-size: 4em;
   }
 }
