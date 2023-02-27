@@ -63,6 +63,12 @@ input:checked ~ .dot {
   user-select: none;
 }
 
+@media (max-width: 375px) {
+  #header-title {
+    font-size: 4em;
+  }
+}
+
 #header-title span {
   display: inline-block;
   animation: float 0.2s ease-in-out infinite;

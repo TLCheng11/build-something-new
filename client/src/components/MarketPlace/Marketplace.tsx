@@ -51,7 +51,7 @@ function MarketPlace() {
 
   return (
     <div id="dashboard" className="h-screen w-screen bg-white text-black">
-      <div className="h-1/8 w-full flex justify-center">
+      <div className="h-1/10 w-full flex justify-center md:h-1/8">
         <h1 id="header-title">
           <span>B</span>
           <span>U</span>
