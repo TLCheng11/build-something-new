@@ -63,7 +63,7 @@ function DetailView() {
       <div id="detail-container" className="h-1/2 w-full md:flex md:h-7/8">
         <div
           id="detail-view-area"
-          className="flex justify-center h-full w-full md:w-2/3 md:m-2"
+          className="flex justify-center h-full m-2 md:w-2/3"
         >
           <div
             className="h-full w-full mx-5 min-h-360px min-w-360px rounded-3xl bg-blue-200"

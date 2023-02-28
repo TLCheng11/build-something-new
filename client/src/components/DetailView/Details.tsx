@@ -93,11 +93,11 @@ function Details({ project }: Props) {
   }
 
   return (
-    <div id="reviews" className="flex justify-center h-full w-1/3 my-2 mx-5">
+    <div id="reviews" className="flex justify-center h-full my-2 mx-5 md:w-1/3">
       <div className="h-full w-full p-3 rounded-3xl border bg-white overflow-auto">
         {currentUser.id && (
           <div>
-            <div className="flex justify-between">
+            <div id="detail-like-btn" className="flex justify-between py-1">
               {/* like button */}
               {currentUser.id !== project.created_by ? (
                 <div
@@ -108,9 +108,22 @@ function Details({ project }: Props) {
               ) : (
                 <div></div>
               )}
+              <NavLink to={`/project-test-physic/${project.id}`}>
+                <button
+                  id="test-physic-btn"
+                  className="border rounded-md border-black hover:bg-blue-400 min-w-fit px-2 whitespace-nowrap"
+                >
+                  Test Physic
+                </button>
+              </NavLink>
+            </div>
+            <div
+              id="download-options"
+              className="flex justify-between py-1 my-2 md:justify-start"
+            >
               {/* radio buttons for download */}
-              <div className="flex items-center justify-end">
-                <div>
+              <div id="file-type-options" className="flex">
+                <div className="flex items-center">
                   <input
                     id="radio-jsx"
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -126,6 +139,8 @@ function Details({ project }: Props) {
                   >
                     .jsx
                   </label>
+                </div>
+                <div className="flex items-center">
                   <input
                     className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                     id="radio-tsx"
@@ -142,32 +157,25 @@ function Details({ project }: Props) {
                     .tsx
                   </label>
                 </div>
-                {/* with Physic option */}
-                <div className="flex items-center">
-                  <label>| With Physic: </label>
-                  <input
-                    className="h-4 w-4 mx-2 mt-1"
-                    type="checkbox"
-                    checked={withPhysic}
-                    onChange={(e) => setWithPhysic(e.target.checked)}
-                  />
-                </div>
-                <button
-                  className="design-btn min-w-fit px-1 "
-                  onClick={() => downloadModel()}
-                >
-                  Download
-                </button>
               </div>
+              {/* with Physic option */}
+              <div className="flex items-center mr-2">
+                <label>| </label>
+                <input
+                  className="h-4 w-4 mx-2"
+                  type="checkbox"
+                  checked={withPhysic}
+                  onChange={(e) => setWithPhysic(e.target.checked)}
+                />
+                <label>With Physic</label>
+              </div>
+              <button
+                className="design-btn min-w-fit px-1 "
+                onClick={() => downloadModel()}
+              >
+                Download
+              </button>
             </div>
-
-            <NavLink to={`/project-test-physic/${project.id}`}>
-              <div className="mt-1 flex justify-end">
-                <button className="design-btn min-w-fit px-0.5">
-                  Test Physic
-                </button>
-              </div>
-            </NavLink>
           </div>
         )}
 
