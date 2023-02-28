@@ -59,7 +59,7 @@ function FavoredProjects() {
         </div>
       ) : (
         <div id="my-projects-showcase" className="h-full w-full">
-          <div className="h-9/10 pb-3 overflow-auto">
+          <div className="md:h-9/10 pb-3 md:overflow-auto">
             <ProjectShowcase
               setRefresh={setRefresh}
               type="favored"

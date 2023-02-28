@@ -12,7 +12,7 @@
 }
 
 .project-card-btn {
-  @apply text-sm md:text-lg mx-1 px-2 border rounded-md disabled:opacity-60;
+  @apply text-sm md:text-lg mx-0.5 md:mx-1 px-1 md:px-2 border rounded-md disabled:opacity-60;
 }
 
 .design-input {

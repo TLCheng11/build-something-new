@@ -209,7 +209,7 @@ function ProjectCard(props: Props) {
                 </button>
               </div>
               {onMarket && (
-                <div className="text-xs ml-2">
+                <div className="hidden text-xs ml-2 md:block">
                   Take project off market before edit
                 </div>
               )}
@@ -233,6 +233,11 @@ function ProjectCard(props: Props) {
                 </div>
               </label>
             </div>
+          </div>
+        )}
+        {onMarket && type === "myProject" && (
+          <div className="text-xs ml-2 md:hidden">
+            Take project off market before edit
           </div>
         )}
       </div>
