@@ -53,14 +53,18 @@ function DetailView() {
       ></div>
       <div>
         <button
+          id="back-button"
           className="fixed flex items-end justify-end h-24 w-24 z-10 -top-12 -left-12 p-3 bg-blue-400 rounded-full hover:scale-200 transition-all duration-300"
           onClick={() => navigate(-1)}
         >
           <p className="-rotate-45">Back</p>
         </button>
       </div>
-      <div className="flex h-5/6 w-full">
-        <div className="flex justify-center h-full w-2/3 m-2">
+      <div id="detail-container" className="h-1/2 w-full md:flex md:h-7/8">
+        <div
+          id="detail-view-area"
+          className="flex justify-center h-full w-full md:w-2/3 md:m-2"
+        >
           <div
             className="h-full w-full mx-5 min-h-360px min-w-360px rounded-3xl bg-blue-200"
             style={{ backgroundColor: project.project_setting?.bg_color }}
