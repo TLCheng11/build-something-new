@@ -7,14 +7,20 @@ function Dashboard() {
   const [showProjectForm, setShowProjectForm] = useState<boolean>(false);
 
   return (
-    <div id="dashboard" className="flex h-screen w-screen bg-white text-black">
+    <div
+      id="dashboard"
+      className="h-screen w-screen bg-white text-black md:flex"
+    >
       {showProjectForm && (
         <ProjectInfoForm
           setShowProjectForm={setShowProjectForm}
           action="post"
         />
       )}
-      <div id="menu-side" className="h-full w-1/5 min-w-225 border-r">
+      <div
+        id="menu-side"
+        className="h-1/6 w-full min-w-225 border-r md:h-full md:w-1/5"
+      >
         <MenuSide setShowProjectForm={setShowProjectForm} />
       </div>
       <Outlet />

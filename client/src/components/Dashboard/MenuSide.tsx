@@ -25,11 +25,7 @@ function MenuSide(props: Props) {
   }
 
   return (
-    <div
-      id="menu-side"
-      className="h-full
-     bg-slate-900 text-white p-3"
-    >
+    <div id="menu-side" className="bg-slate-900 text-white p-3 md:h-full">
       <div className="mb-3 text-5xl font-bold">
         <h1 className="text-3xl">Welcome:</h1>
         <h1 className="text-4xl">
@@ -38,28 +34,30 @@ function MenuSide(props: Props) {
         </h1>
       </div>
       <hr />
-      <div className="text-3xl">
-        <NavLink to="/dashboard/projects/1">
-          <div
-            className={`side-menu-items ${
-              location.pathname.includes("project") && "underline"
-            }`}
-          >
-            My Projects
-          </div>
-        </NavLink>
-        {location.pathname.includes("project") && (
-          <div className="flex items-center ml-4">
-            <p>└</p>
-            <button
-              id="btn-add-project"
-              className="side-menu-items text-2xl"
-              onClick={() => setShowProjectForm(true)}
+      <div className="flex text-md md:block md:text-3xl">
+        <div>
+          <NavLink to="/dashboard/projects/1">
+            <div
+              className={`side-menu-items ${
+                location.pathname.includes("project") && "underline"
+              }`}
             >
-              Add Project
-            </button>
-          </div>
-        )}
+              My Projects
+            </div>
+          </NavLink>
+          {location.pathname.includes("project") && (
+            <div className="flex items-center ml-4">
+              <p>└</p>
+              <button
+                id="btn-add-project"
+                className="text-md side-menu-items md:text-2xl"
+                onClick={() => setShowProjectForm(true)}
+              >
+                Add Project
+              </button>
+            </div>
+          )}
+        </div>
         <NavLink to="/dashboard/favors/1">
           <div
             className={`side-menu-items ${
