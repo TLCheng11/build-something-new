@@ -27,7 +27,7 @@ function ProjectShowcase(props: Props) {
   return (
     <div
       id="project-showcase"
-      className={`gap-10 p-10 h-full min-h-fit min-w-360px grid grid-cols-1 md:grid-cols-2 ${
+      className={`gap-10 p-10 h-full min-h-fit min-w-360px grid grid-cols-1 ${
         type === "market" ? "lg:grid-cols-3" : "lg:grid-cols-2"
       }`}
     >

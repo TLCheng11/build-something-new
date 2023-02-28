@@ -12,7 +12,7 @@
 }
 
 .project-card-btn {
-  @apply text-lg mx-1 px-2 border rounded-md disabled:opacity-60;
+  @apply text-sm md:text-lg mx-1 px-2 border rounded-md disabled:opacity-60;
 }
 
 .design-input {
@@ -49,6 +49,13 @@
 input:checked ~ .dot {
   transform: translateX(100%);
   background-color: #48bb78;
+}
+
+@media (max-width: 720px) {
+  input:checked ~ .dot {
+    transform: translateX(80%);
+    background-color: #48bb78;
+  }
 }
 
 /* --------------------------------CSS for Title---------------------------------- */

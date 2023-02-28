@@ -19,7 +19,7 @@ function Dashboard() {
       )}
       <div
         id="menu-side"
-        className="h-1/6 w-full min-w-225 border-r md:h-full md:w-1/5"
+        className="w-full min-w-225 border-r md:h-full md:w-1/5"
       >
         <MenuSide setShowProjectForm={setShowProjectForm} />
       </div>

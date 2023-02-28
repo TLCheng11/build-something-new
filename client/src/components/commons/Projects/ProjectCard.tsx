@@ -130,7 +130,7 @@ function ProjectCard(props: Props) {
     <div
       className={`col-span-1 flex flex-col items-center min-h-300 max-h-1/2screen border border-blue-200 rounded-xl  ${
         currentUser.id === project.created_by ? "bg-green-800" : "bg-slate-900"
-      } md:min-h-360`}
+      } md:min-h-360 lg:mx-5`}
     >
       <div
         className="h-4/5 min-h-100 w-full rounded-t-x"
@@ -161,10 +161,10 @@ function ProjectCard(props: Props) {
           <Loader />
         </NavLink>
       </div>
-      <div className="w-full px-3 pb-2 text-white">
-        <div className="py-2">
+      <div className="w-full px-3 md:pb-2 text-white">
+        <div className="pt-1 py-1 md:py-2">
           <div className="flex justify-between">
-            <h1 className="text-3xl">{project.title}</h1>
+            <h1 className="text-2xl md:text-3xl">{project.title}</h1>
 
             {/* like button */}
             {currentUser.id && currentUser.id !== project.created_by && (
@@ -180,7 +180,7 @@ function ProjectCard(props: Props) {
         {type === "myProject" && (
           <div className="flex items-center justify-between min-h-card-b">
             <div>
-              <div>
+              <div id="edit-buttons-container">
                 <button
                   className="project-card-btn hover:bg-blue-300"
                   onClick={() => {
@@ -214,7 +214,7 @@ function ProjectCard(props: Props) {
                 </div>
               )}
             </div>
-            <div className="flex items-center">
+            <div id="on-market-btn" className="flex items-center">
               <label className="flex items-center cursor-pointer">
                 <div className="relative">
                   <input
@@ -225,10 +225,12 @@ function ProjectCard(props: Props) {
                       putOnMarket(e);
                     }}
                   />
-                  <div className="block bg-gray-600 w-14 h-8 rounded-full"></div>
-                  <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
+                  <div className="block bg-gray-600 w-8 h-5 md:w-14 md:h-8 rounded-full"></div>
+                  <div className="dot absolute left-0.5 top-0.5 md:left-1 md:top-1 bg-white w-4 h-4 md:w-6 md:h-6 rounded-full transition"></div>
                 </div>
-                <div className="ml-3 text-white font-medium">On Market</div>
+                <div className="text-sm ml-3 text-white font-medium md:text-xl">
+                  On Market
+                </div>
               </label>
             </div>
           </div>

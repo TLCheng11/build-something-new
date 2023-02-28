@@ -62,7 +62,7 @@ function MyProjects() {
   }, [refresh, pageCount, currentPage]);
 
   return (
-    <div className="h-full w-full">
+    <div id="my-projects-container" className="h-full w-full">
       {showProjectForm && (
         <ProjectInfoForm
           setShowProjectForm={setShowProjectForm}
@@ -74,13 +74,13 @@ function MyProjects() {
       )}
       {pageCount < 1 ? (
         <div className="flex items-center justify-center h-full w-full">
-          <h1 className="text-4xl font-medium">
+          <h1 className="text-4xl font-medium text-center">
             No project yet, please create a new project
           </h1>
         </div>
       ) : (
         <div id="my-projects-showcase" className="h-full w-full">
-          <div className="h-9/10 pb-3 overflow-auto">
+          <div className="pb-3 md:h-9/10 md:overflow-auto">
             <ProjectShowcase
               setRefresh={setRefresh}
               type="myProject"

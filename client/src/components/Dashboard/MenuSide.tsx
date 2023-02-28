@@ -42,11 +42,11 @@ function MenuSide(props: Props) {
                 location.pathname.includes("project") && "underline"
               }`}
             >
-              My Projects
+              Projects
             </div>
           </NavLink>
           {location.pathname.includes("project") && (
-            <div className="flex items-center ml-4">
+            <div className="hidden items-center ml-4 md:flex">
               <p>└</p>
               <button
                 id="btn-add-project"
@@ -80,6 +80,18 @@ function MenuSide(props: Props) {
           Logout
         </div>
       </div>
+      {location.pathname.includes("project") && (
+        <div className="flex items-center ml-4 md:hidden">
+          <p>└</p>
+          <button
+            id="btn-add-project"
+            className="text-md side-menu-items md:text-2xl"
+            onClick={() => setShowProjectForm(true)}
+          >
+            Add Project
+          </button>
+        </div>
+      )}
     </div>
   );
 }
