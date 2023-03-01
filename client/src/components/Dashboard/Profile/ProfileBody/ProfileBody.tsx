@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../../contexts/UserContext";
+import ProfileUsername from "./ProfileUsername";
 
 interface Props {
   closeAllForms(): void;
@@ -15,8 +16,8 @@ interface Props {
 function ProfileBody({
   closeAllForms,
   setShowPasswordForm,
-  setShowEmailForm,
   showEmailForm,
+  setShowEmailForm,
   showNameForm,
   setShowNameForm,
   showIntroForm,
@@ -67,18 +68,10 @@ function ProfileBody({
 
   return (
     <div className="w-full flex flex-col items-center justify-center text-2xl">
-      <div className="mt-4 mb-4">
-        <h1 className="text-5xl">{currentUser.username}</h1>
-      </div>
-      <button
-        className="design-btn min-w-fit px-2"
-        onClick={() => {
-          closeAllForms();
-          setShowPasswordForm(true);
-        }}
-      >
-        Change Password
-      </button>
+      <ProfileUsername
+        closeAllForms={closeAllForms}
+        setShowPasswordForm={setShowPasswordForm}
+      />
       <div className=" max-h-2/5screen w-1/3 min-w-480 overflow-auto">
         {/* email */}
         <div className="m-2 flex justify-between">
