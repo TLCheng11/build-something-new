@@ -9,7 +9,7 @@ import MenuTop from "./components/commons/Menus/MenuTop";
 import DetailView from "./components/DetailView/DetailView";
 import MyProjects from "./components/Dashboard/MyProjects";
 import FavoredProjects from "./components/Dashboard/FavoredProjects";
-import Profile from "./components/Dashboard/Profile";
+import Profile from "./components/Dashboard/Profile/Profile";
 import TestPhysic from "./components/TestPhysic/TestPhysic";
 import LoginTop from "./components/commons/Menus/LoginTop";
 

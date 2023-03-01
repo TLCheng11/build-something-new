@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import defaultProfileImg from "../../icons/defaultProfile.jpeg";
+import { UserContext } from "../../../contexts/UserContext";
 import AdminUpload from "./AdminUpload";
 import PasswordResetForm from "./PasswordResetForm";
+import ProfileHeader from "./ProfileHeader";
 
 function Profile() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -17,26 +17,6 @@ function Profile() {
   const [last_name, setLast_name] = useState<string>("");
   const [showIntroForm, setShowIntroForm] = useState<boolean>(false);
   const [introduction, setIntroduction] = useState<string>("");
-  const [imgFile, setImgFile] = useState<File | null>(null);
-
-  function uploadImage(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    if (imgFile) {
-      const formData = new FormData();
-      formData.append("image", imgFile);
-      fetch(`/users_change_image`, {
-        method: "PATCH",
-        body: formData,
-      }).then((res) => {
-        if (res.ok) {
-          res.json().then(setCurrentUser);
-        } else {
-          res.json().then((data) => alert(data.errors));
-        }
-      });
-    }
-  }
 
   function updateProfile(e: React.FormEvent<HTMLFormElement>, input = {}) {
     e.preventDefault();
@@ -87,7 +67,7 @@ function Profile() {
   }, [showIntroForm]);
 
   return (
-    <div className="h-full w-4/5">
+    <div className="h-full md:w-4/5">
       {/* password form */}
       {showPasswordForm && (
         <div className="fixed h-full w-4/5 z-30 flex justify-center items-center bg-gray-600 bg-opacity-70">
@@ -96,81 +76,11 @@ function Profile() {
       )}
 
       {/* profile header */}
-      <div className="h-1/6 min-h-180 w-full">
-        <div className="h-3/4 bg-blue-400 border-b-2 border-black"></div>
-        {/* profile picture */}
-        <div className="flex flex-col items-center justify-center w-full relative -top-24">
-          <div className="h-48 w-48 flex items-center justify-center bg-white rounded-full">
-            <img
-              className="cursor-pointer h-44 w-44 rounded-full"
-              src={currentUser.image_url || defaultProfileImg}
-              onClick={() => {
-                closeAllForms();
-                setShowImgForm((state) => !state);
-              }}
-            />
-          </div>
-          {showImgForm && (
-            <div className="px-2 py-1 rounded bg-blue-400">
-              {/* <form
-                onSubmit={(e) => {
-                  updateProfile(e, { profile_img });
-                  setShowImgForm(false);
-                }}
-              >
-                <label>Image url:</label>
-                <input
-                  className="mx-1 border-2 rounded-md"
-                  value={profile_img}
-                  onChange={(e) => setprofile_img(e.target.value)}
-                />
-                <button className="mx-1 px-2 border rounded-md" type="submit">
-                  change
-                </button>
-                <button
-                  className="px-2 border rounded-md"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowImgForm((state) => !state);
-                  }}
-                >
-                  X
-                </button>
-              </form> */}
-              <form
-                onSubmit={(e) => {
-                  uploadImage(e);
-                  setShowImgForm(false);
-                }}
-              >
-                <label>Image File:</label>
-                <input
-                  className="mx-1 border-2 rounded-md"
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    if (e.target.files) {
-                      setImgFile(e.target.files[0]);
-                    }
-                  }}
-                />
-                <button className="mx-1 px-2 border rounded-md" type="submit">
-                  change
-                </button>
-                <button
-                  className="px-2 border rounded-md"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowImgForm((state) => !state);
-                  }}
-                >
-                  X
-                </button>
-              </form>
-            </div>
-          )}
-        </div>
-      </div>
+      <ProfileHeader
+        closeAllForms={closeAllForms}
+        showImgForm={showImgForm}
+        setShowImgForm={setShowImgForm}
+      />
       <div className="h-1/10"></div>
 
       {/* profile body */}
