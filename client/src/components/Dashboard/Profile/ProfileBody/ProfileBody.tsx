@@ -52,7 +52,7 @@ function ProfileBody({
         setShowPasswordForm={setShowPasswordForm}
       />
       {/* Form body */}
-      <div className=" max-h-2/5screen w-1/3 min-w-480 overflow-auto">
+      <div className="text-base md:text-2xl w-full md:max-h-2/5screen md:w-1/3 md:min-w-480 overflow-auto">
         <ProfileEmail
           closeAllForms={closeAllForms}
           showEmailForm={showEmailForm}

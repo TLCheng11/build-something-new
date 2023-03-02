@@ -25,7 +25,7 @@ function Profile() {
     <div className="h-full md:w-4/5">
       {/* password form */}
       {showPasswordForm && (
-        <div className="fixed h-full w-4/5 z-30 flex justify-center items-center bg-gray-600 bg-opacity-70">
+        <div className="absolute h-full md:w-4/5 z-30 flex justify-center items-center bg-gray-600 bg-opacity-70">
           <PasswordResetForm setShowPasswordForm={setShowPasswordForm} />
         </div>
       )}
