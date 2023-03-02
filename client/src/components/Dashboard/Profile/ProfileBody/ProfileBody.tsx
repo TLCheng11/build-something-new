@@ -1,7 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../../../contexts/UserContext";
 import ProfileEmail from "./ProfileEmail";
 import ProfileFirstLastNames from "./ProfileFirstLastNames";
+import ProfileIntroduction from "./ProfileIntroduction";
 import ProfileUsername from "./ProfileUsername";
 
 interface Props {
@@ -26,11 +27,6 @@ function ProfileBody({
   setShowIntroForm,
 }: Props) {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  const [introduction, setIntroduction] = useState<string>("");
-
-  useEffect(() => {
-    setIntroduction(currentUser.introduction || "");
-  }, [showIntroForm]);
 
   function updateProfile(e: React.FormEvent<HTMLFormElement>, input = {}) {
     e.preventDefault();
@@ -69,63 +65,12 @@ function ProfileBody({
           setShowNameForm={setShowNameForm}
           updateProfile={updateProfile}
         />
-
-        {/* Introduction */}
-        <div className="mt-10 mx-2 flex justify-between">
-          <p>Introduction:</p>
-          <button
-            className="design-btn px-2"
-            onClick={() => {
-              closeAllForms();
-              setShowIntroForm((state) => !state);
-            }}
-          >
-            Edit
-          </button>
-        </div>
-
-        {showIntroForm ? (
-          <div className="px-2 py-1 rounded bg-blue-400">
-            <form
-              onSubmit={(e) => {
-                updateProfile(e, { introduction });
-                setShowIntroForm(false);
-              }}
-            >
-              <div>
-                <label>Introduction:</label>
-              </div>
-              <div>
-                <textarea
-                  maxLength={255}
-                  className="w-full border-2 rounded-md"
-                  value={introduction}
-                  onChange={(e) => setIntroduction(e.target.value)}
-                />
-              </div>
-              <button className="mx-1 px-2 border rounded-md" type="submit">
-                update
-              </button>
-              <button
-                className="px-2 border rounded-md"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowIntroForm((state) => !state);
-                }}
-              >
-                X
-              </button>
-            </form>
-          </div>
-        ) : (
-          <div className="m-2 flex">
-            <p className="overflow-x-hidden">
-              {currentUser.introduction || (
-                <span className="text-gray-400">Add your introduction</span>
-              )}
-            </p>
-          </div>
-        )}
+        <ProfileIntroduction
+          closeAllForms={closeAllForms}
+          showIntroForm={showIntroForm}
+          setShowIntroForm={setShowIntroForm}
+          updateProfile={updateProfile}
+        />
       </div>
     </div>
   );
