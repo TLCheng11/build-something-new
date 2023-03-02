@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../../contexts/UserContext";
+import ProfileEmail from "./ProfileEmail";
 import ProfileUsername from "./ProfileUsername";
 
 interface Props {
@@ -24,16 +25,9 @@ function ProfileBody({
   setShowIntroForm,
 }: Props) {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  const [email, setEmail] = useState<string>("");
-  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
   const [first_name, setFirst_name] = useState<string>("");
   const [last_name, setLast_name] = useState<string>("");
   const [introduction, setIntroduction] = useState<string>("");
-
-  useEffect(() => {
-    setEmail("");
-    setInvalidEmail(false);
-  }, [showEmailForm]);
 
   useEffect(() => {
     setFirst_name("");
@@ -43,11 +37,6 @@ function ProfileBody({
   useEffect(() => {
     setIntroduction(currentUser.introduction || "");
   }, [showIntroForm]);
-
-  function validateEmail(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    return email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g);
-  }
 
   function updateProfile(e: React.FormEvent<HTMLFormElement>, input = {}) {
     e.preventDefault();
@@ -72,59 +61,14 @@ function ProfileBody({
         closeAllForms={closeAllForms}
         setShowPasswordForm={setShowPasswordForm}
       />
+      {/* Form body */}
       <div className=" max-h-2/5screen w-1/3 min-w-480 overflow-auto">
-        {/* email */}
-        <div className="m-2 flex justify-between">
-          <p className="overflow-hidden">Email: {currentUser.email}</p>
-          <button
-            className="design-btn px-2"
-            onClick={() => {
-              closeAllForms();
-              setShowEmailForm((state) => !state);
-            }}
-          >
-            Edit
-          </button>
-        </div>
-        {showEmailForm && (
-          <div className="px-2 py-1 rounded text-xl bg-blue-400">
-            <form
-              onSubmit={(e) => {
-                if (validateEmail(e)) {
-                  updateProfile(e, { email });
-                  setShowEmailForm(false);
-                } else {
-                  setInvalidEmail(true);
-                }
-              }}
-            >
-              <label>New email:</label>
-              <input
-                className="mx-1 border-2 rounded-md"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setInvalidEmail(false);
-                }}
-              />
-              <button className="mx-1 px-2 border rounded-md" type="submit">
-                update
-              </button>
-              <button
-                className="px-2 border rounded-md"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowEmailForm((state) => !state);
-                }}
-              >
-                X
-              </button>
-            </form>
-            {invalidEmail && (
-              <div className="pl-28 text-red-500">Email is invalid!</div>
-            )}
-          </div>
-        )}
+        <ProfileEmail
+          closeAllForms={closeAllForms}
+          showEmailForm={showEmailForm}
+          setShowEmailForm={setShowEmailForm}
+          updateProfile={updateProfile}
+        />
         {/* first and last_name */}
         <div className="m-2 flex justify-between">
           <p className="overflow-hidden">
