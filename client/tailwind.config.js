@@ -27,6 +27,7 @@ module.exports = {
         "2/5screen": "40vh",
       },
       minWidth: {
+        btn: "80px",
         input: "150px",
         control: "360px",
         225: "225px",
