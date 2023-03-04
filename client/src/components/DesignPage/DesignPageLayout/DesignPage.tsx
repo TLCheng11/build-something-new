@@ -123,10 +123,13 @@ function DesignPage({ showMenu }: Props) {
   if (notFound) return <h1>Page Not Found</h1>;
 
   return (
-    <div id="design-page" className="flex h-screen w-screen bg-black">
+    <div
+      id="design-page"
+      className="horizonal:flex h-screen w-screen bg-black overflow-auto"
+    >
       <div
         id="design-controls-holder"
-        className="h-full w-1/4 min-w-control overflow-auto"
+        className="h-1/2 w-full horizonal:h-full horizonal:w-1/4 min-w-control"
       >
         <DesignControls
           setRefresh={setRefresh}
@@ -169,7 +172,10 @@ function DesignPage({ showMenu }: Props) {
           setModelColor={setModelColor}
         />
       </div>
-      <div id="design-canvas-holder" className="h-full w-3/4 border">
+      <div
+        id="design-canvas-holder"
+        className="h-1/2 horizonal:h-full w-full horizonal:w-3/4 border"
+      >
         <DesignCanvas
           showMenu={showMenu}
           refresh={refresh}

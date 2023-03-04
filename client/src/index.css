@@ -16,7 +16,7 @@
 }
 
 .design-input {
-  @apply w-150 mx-2 border rounded-md text-black;
+  @apply w-130 mx-2 border rounded-md text-black;
 }
 
 .design-btn {

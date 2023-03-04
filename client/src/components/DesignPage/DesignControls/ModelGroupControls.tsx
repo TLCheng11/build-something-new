@@ -229,7 +229,7 @@ function ModelGroupControls(props: Props) {
   }
 
   return (
-    <div className="h-full w-full py-2 mb-2 bg-gray-600 border-t border-b border-black">
+    <div className="w-full py-2 mb-2 bg-gray-600 border-t border-b border-black">
       <div className="flex mb-2">
         <h1 className="mr-3">Group Controls:</h1>
         <button
@@ -308,7 +308,7 @@ function ModelGroupControls(props: Props) {
       {/* group assignment */}
       <div className="flex">
         <h1 className="w-1/3">Parent Group:</h1>
-        <p className="mx-2 w-150">{parentGroupName}</p>
+        <p className="mx-2 w-130">{parentGroupName}</p>
         <button className="design-btn" onClick={detachFromParentGroup}>
           Detach
         </button>

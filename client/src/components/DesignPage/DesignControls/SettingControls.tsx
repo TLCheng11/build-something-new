@@ -46,7 +46,7 @@ function SettingControls(props: Props) {
   }
 
   return (
-    <div id="setting-control" className="h-full w-full bg-gray-600">
+    <div id="setting-control" className="w-full bg-gray-600">
       <div className="flex">
         <p>Project Settings:</p>
       </div>

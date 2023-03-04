@@ -121,8 +121,8 @@ function DesignControls(props: Props) {
   } = props;
 
   return (
-    <div className="text-lg text-white p-2 bg-gray-600">
-      <div className="h-full w-full flex justify-between">
+    <div className="overflow-auto h-full text-xs lg:text-lg text-white p-2 bg-gray-600">
+      <div className="w-full flex justify-between">
         <h1
           className="cursor-pointer border-b border-black"
           onClick={() => navigate(-1)}

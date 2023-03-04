@@ -45,7 +45,7 @@ function ModelSizeContorls(props: Props) {
   const [step, setStep] = useState<string>("0.05");
 
   return (
-    <div id="model-size-controls" className="h-full w-full bg-gray-600">
+    <div id="model-size-controls" className="w-full bg-gray-600">
       <h1>Model Size:</h1>
       {selectedModel.type === "planes" && (
         <div>

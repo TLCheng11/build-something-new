@@ -26,7 +26,7 @@ function GridControls(props: Props) {
   } = props;
 
   return (
-    <div id="grid-control" className="h-full w-full bg-gray-600">
+    <div id="grid-control" className="w-full bg-gray-600">
       <div>
         <p>Grid Controls:</p>
       </div>

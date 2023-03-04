@@ -8,7 +8,7 @@ function ModelRotationControls(props: Props) {
   const { type, rotation, setRotation } = props;
 
   return (
-    <div id="model-rotation-controls" className="h-full w-full bg-gray-600">
+    <div id="model-rotation-controls" className="w-full bg-gray-600">
       <div>
         <h1>{type} Rotations: (Degrees)</h1>
       </div>

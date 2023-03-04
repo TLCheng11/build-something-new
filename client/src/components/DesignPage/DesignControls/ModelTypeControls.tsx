@@ -92,7 +92,7 @@ function ModelTypesControls(props: Props) {
   }
 
   return (
-    <div id="model-type-controls" className="h-full w-full bg-gray-600">
+    <div id="model-type-controls" className="w-full bg-gray-600">
       <div className="flex mb-2">
         <h1 className="mr-3">Model Controls:</h1>
         <button

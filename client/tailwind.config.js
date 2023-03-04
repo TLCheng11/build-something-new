@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        horizonal: "650px",
+      },
       height: {
         "1/8": "12.5%",
         "7/8": "87.5%",
@@ -11,6 +14,7 @@ module.exports = {
       },
       width: {
         btn: "60px",
+        130: "130px",
         150: "150px",
       },
       minHeight: {

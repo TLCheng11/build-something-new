@@ -9,7 +9,7 @@ function ModelColorControls(props: Props) {
   const { modelColor, setModelColor } = props;
 
   return (
-    <div id="model-color-controls" className="h-full w-full bg-gray-600">
+    <div id="model-color-controls" className="w-full bg-gray-600">
       <div id="model-color-selection" className="flex flex-col">
         <div>
           <h1>Model Color:</h1>
