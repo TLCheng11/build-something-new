@@ -1,7 +1,7 @@
-# Build 3D
+# FreeDimension
 
 - A dedicated website for everyone to build, share and download 3D models with sophisticated UI.
-- Deployed website: [buildsomethingnew.herokuapp.com](https://buildsomethingnew.herokuapp.com/)
+- Deployed website: [FreeDimension](http://54.210.20.214:4000/)
 
 ## Creator
 
@@ -15,7 +15,6 @@
 - Modeled custom database and REST API with Active Record, Active Storage, and PostgreSQL. Through the API, users can share their creations, or download and leave comments on the creations of other users.
 - Monitored all user's activities while they are editing the model with useEffect and useRef Hooks. All the changes that users make will be auto-saved to the database.
 - Utilized JSZip and File-saver for users to download 3D models as a React component.
-
 
 # System dependencies
 
