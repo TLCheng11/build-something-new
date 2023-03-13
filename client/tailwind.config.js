@@ -39,6 +39,7 @@ module.exports = {
         480: "480px",
       },
       scale: {
+        title: "0.45",
         200: "2",
       },
       rotate: {
